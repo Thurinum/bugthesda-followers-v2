@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<database>
+	<sharedinfo>
+		<races>
+			<race id="0"
+				  commonname="Elfe des bois" 
+				  nativename="Bosmer"
+				  description="Ils vivent dans Vvwardenfell (je crois!)"
+				  color="brown" />
+			<race id="1"
+				  commonname="Orc"
+				  nativename="jai oublie"
+				  description="Peau verte, guerriers, copie de Warcraft genre"
+				  color="green" />
+			<race id="2"
+				  commonname="Races multiples"
+				  nativename="Races multiples"
+				  description="Il y a beaucoup de races dans cyrodiil"
+				  color="white" />
+		</races>
+		<classes>
+			<class id="0"
+				   name="Commoner"
+				   description="Classe non-jouable."
+				   color="grey" />
+			<class id="1"
+				   name="Marauder"
+				   description="Classe non-jouable spécialisée dans le combat."
+				   color="grey" />
+			<class id="2"
+				   name="Knight"
+				   description="Classe non-jouable spécialisée dans le combat et la magie."
+				   color="#394D78" />
+		</classes>
+	</sharedinfo>
+	
+	<games>
+		<game id="0"
+			  shortname="oblivion"
+			  name="Oblivion"
+			  description="L'ombre du chaos plane sur la province Imperiale de Cyrodiil alors que le prince Daedrique de la destruction, Mehrunes Dagon, et ses servants de l'Aube Mythique se preparent a attaquer l'Empire de plein fouet en ouvrant un portail donnant vers l'Oblivion. Il faudra un heros pour s'opposer a ce grand mal... mais un heros ne peut vaincre seul."
+			  tagline="Close Shut the Jaws... of Oblivion"
+			  director="Todd Howard"
+			  released="2006"
+			  color="brown">
+			<facts>
+				<fact>La carte du monde est plus grande que Skyrim</fact>
+				<fact>Les hommes nordiques, argoniens et Khajiits sont joués par le même acteur.</fact>
+			</facts>
+			<followers>
+				<follower id="0"
+						favorite="true"
+						baseid="000AED40"
+						refid="000AED41"
+						shortname="adoringfan"
+						name="The Adoring Fan"
+						description="Ce jeune elfe est passionné par la victoire du Héros de Kvatch sur le Prince Gris a l'arene impériale et lui jure obéissance."
+						unlockcontext="Devenir Champion de l'Arène."
+						hitpoints="38"
+						energy="100"
+						alignment="-100"
+						essential="false"
+						respawns="true"
+						raceid="0"
+						classid="0">
+					<facts>
+						<fact>Il meurt souvent car mauvais combattant, mais résurrecte souvent.</fact>
+						<fact>Néanmoins, il est possible de l'enfermer dans un plan de l'Oblivion.</fact>
+					</facts>
+					<quotes>
+						<quote context="Lorsque rencontré pour la première fois">By Azura, by Azura, by Azura! It's the Grand Champion!</quote>
+						<quote context="À l'interaction">Here? Right here? What about, say... over there? No? Right here? All right then, you're the Grand Champion!</quote>
+					</quotes>
+					<abilities>
+						<ability id="0"
+								name="Transporter une torche"
+								description="Ne sert à rien du tout."
+								color="orangered" />
+						<ability id="1"
+								name="S'enfuir du danger"
+								description="Il ne sert à rien du tout."
+								color="red" />
+					</abilities>
+				</follower>
+				<follower id="1"
+						  favorite="false"
+						  baseid="00085969"
+						  refid="0008596A"
+						  shortname="mazogatheorc"
+						  name="Mazoga l'Orque"
+						  description="Une guerrière qui sollicite l'aide du comte de Leyawiin pour s'occuper d'une affaire personnelle."
+						  unlockcontext="Terminer la quête 'Mazoga the Orc'."
+						  hitpoints="53"
+						  energy="100"
+						  alignment="-100"
+						  essential="false"
+						  respawns="false"
+						  raceid="1"
+						  classid="1">
+					<facts>
+						<fact>DUMMY</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">Are you the Count? (Yes) You don't even look like a count. Go away.</quote>
+						<quote context="À l'interaction">Are you the Count? (No) Then go away.</quote>
+					</quotes>
+					<abilities>
+						<ability id="0"
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="2"
+						  favorite="true"
+						  baseid="xx000F5x"
+						  refid="xx001A8x"
+						  shortname="knightofthenine"
+						  name="Chevaliers des Neuf"
+					      description="Une collection de 8 chevaliers recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="25"
+						  energy="100"
+						  alignment="100"
+						  essential="false"
+						  respawns="false"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability id="0"
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="3"
+						  favorite="false"
+						  baseid="0008675x"
+						  refid="0008675x"
+						  shortname="darkbrotherhoodmurderer"
+						  name="Assassin de la Confrérie Noire"
+					      description="Une collection de 4 assassins recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="40"
+						  energy="150"
+						  alignment="-100"
+						  essential="false"
+						  respawns="true"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability id="0"
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+			</followers>
+		</game>
+		<game id="1"
+			shortname="skyrim"
+			name="Skyrim"
+			description="Alduin le Mangeur de Mondes (cringe) s'est éveillé de son sommeil de beaucoup longtemps et projette d'asujettir Tamriel encore une fois. Mais l'Enfant de Dragon has also awaken from his carriage in direction of head-chopping metropolis Helgen. Will he triumph of the Enemy?!?!!"
+			tagline="Hey, you, you're finally awake."
+			director="Todd Howard"
+			released="2011"
+			color="grey">
+			<facts>
+				<fact>Whatever</fact>
+				<fact>sdfsdfsdfdsf.</fact>
+			</facts>
+		</game>
+		<game id="2"
+			shortname="fallout3"
+			name="Fallout 3"
+			description="Zachary voulait que je mette qqch"
+			tagline="War... war never changes."
+			director="Todd Howard"
+			released="2008"
+			color="green">
+			<facts>
+				<fact>Whatever</fact>
+				<fact>sdfsdfsdfdsf.</fact>
+			</facts>
+		</game>
+	</games>
+</database>

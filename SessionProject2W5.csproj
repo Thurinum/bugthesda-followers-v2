@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+	<TargetFramework>netcoreapp3.1</TargetFramework>
+	<Nullable>disable</Nullable>
+	<ImplicitUsings>disable</ImplicitUsings>
+	<RootNamespace>SessionProject2W5</RootNamespace>
+	<AssemblyName>SessionProject2W5</AssemblyName>
+	<ApplicationIcon>appicon.ico</ApplicationIcon>
+	<EnableNETAnalyzers>true</EnableNETAnalyzers>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	<WarningLevel>5</WarningLevel>
+	<DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+  </PropertyGroup>
+
+  <ItemGroup>
+	<Compile Remove="wwwroot\images\games\followers\**" />
+	<Compile Remove="wwwroot\images\shared\races\artwork\**" />
+	<Compile Remove="wwwroot\styles\NewFolder\**" />
+	<Content Remove="wwwroot\images\games\followers\**" />
+	<Content Remove="wwwroot\images\shared\races\artwork\**" />
+	<Content Remove="wwwroot\styles\NewFolder\**" />
+	<EmbeddedResource Remove="wwwroot\images\games\followers\**" />
+	<EmbeddedResource Remove="wwwroot\images\shared\races\artwork\**" />
+	<EmbeddedResource Remove="wwwroot\styles\NewFolder\**" />
+	<None Remove="wwwroot\images\games\followers\**" />
+	<None Remove="wwwroot\images\shared\races\artwork\**" />
+	<None Remove="wwwroot\styles\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.12" />
+	<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<Folder Include="wwwroot\images\shared\classes\" />
+	<Folder Include="wwwroot\images\shared\statuspages\" />
+	<Folder Include="wwwroot\images\shared\races\" />
+  </ItemGroup>
+
+</Project>

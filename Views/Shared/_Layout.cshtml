@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>@ViewData["sPageTitle"]</title>
+
+    <meta charset="utf-8" />
+    <link href="~/styles/shared.css" rel="stylesheet" />
+    <link href="~/styles/@(ViewContext.RouteData.Values["action"].ToString().ToLower()).css" rel="stylesheet" />
+    <link href="~/images/shared/ui/favicon.png" rel="icon" />
+    
+    @RenderSection("ExtraStyles", false)
+</head>
+
+<body>
+    <header>
+        <nav>
+            <button class="link search" data-href="/search" data-dir="top">Recherche</button>
+            <button class="link home" data-href="/" data-dir="right">
+                <img src="~/images/shared/ui/logo.png" alt="'Bugs in All of Our Games' Logo" />
+            </button>
+            <button class="link favorites" data-href="/favoris" data-dir="bottom">Favoris</button>
+        </nav>
+    </header>
+    <video id="background" autoplay="true" muted="true"><source src="" type="video/mp4" /></video>
+    <main>
+        @RenderBody()
+    </main>
+    <footer>
+        <p>Copyright 2022 Maxime Gagnon. All rights reserved.</p>
+    </footer>
+
+    <script src="~/scripts/shared.js"></script>
+    <script src="~/scripts/@(ViewContext.RouteData.Values["action"].ToString().ToLower()).js"></script>
+</body>
+
+</html>

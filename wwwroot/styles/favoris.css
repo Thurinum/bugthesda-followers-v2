@@ -1,0 +1,24 @@
+th, td {
+	font-size: 1.3rem !important;
+}
+
+/* Lien */
+a {
+	color: white;
+	text-decoration: underline;
+	transition: text-decoration 0.1s ease-in-out;
+}
+a:hover {
+	color: cyan;
+	animation: arcciel 2s ease-in-out infinite;
+}
+
+/* Pourquoi pas */
+@keyframes arcciel {
+	from {
+		filter: hue-rotate(0deg);
+	}
+	to {
+		filter: hue-rotate(360deg);
+	}
+}

@@ -1,0 +1,129 @@
+main {
+	display: grid;
+	background: transparent;
+	grid-template-rows: 100%;
+	grid-template-columns: 100vw max-content 100vw;
+}
+
+.carousel {
+	background-color: #000c;
+
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+
+	.carousel > div {
+		text-align: center;
+		transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+	}
+		.carousel .active {
+			opacity: 1;
+			transform: scale(1);
+		}
+		.carousel .inactive {
+			opacity: 0.25;
+			transform: scale(0.7);
+		}
+		.carousel .hidden {
+			opacity: 0.1;
+			transform: scale(0.4);
+		}
+		.carousel .dummy {
+			opacity: 0;
+			width: 10000px;
+		}
+
+		.carousel .showOnActive {
+			opacity: 0;
+			transform: scale(0.9);
+			transition: all 1s ease-out;
+		}
+
+		.carousel button {
+			border: 0;
+			background-color: transparent;
+			appearance: none;
+		}
+			.carousel button img {
+				filter: drop-shadow(0 0 21px #2a2626);
+				-webkit-box-reflect: below 0 linear-gradient(transparent, #ffffff40);
+			}
+
+	.carousel h1 {
+		font-size: 6vmin;
+		margin-top: 0;
+		margin-bottom: 2px;
+	}
+.carousel h3 {
+	font-size: 3vmin;
+	position: relative;
+	left: 0;
+	top: 0;
+	transition: left 0.2s ease-out, top 0.2s ease-out;
+}
+	.carousel h4 {
+		font-size: 2.5vmin;
+		color: #ccc;
+		position: relative;
+		left: 0;
+		transition: left 0.5s ease-out;
+	}
+.carousel h5 {
+	font-size: 1.5vmin;
+}
+
+.overscroll {
+	background-color: #000c;
+}
+
+.followerPreview {
+	position: fixed;
+	width: 20%;
+
+	z-index: 0;
+}
+
+#followerPreview1 {
+	left: 10%;
+	top: 5%;
+}
+#followerPreview2 {
+	left: 60%;
+	top: 30%;
+}
+#followerPreview3 {
+	left: 15%;
+	top: 70%;
+}
+#followerPreview4 {
+	left: 70%;
+	top: 60%;
+}
+
+#background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	box-shadow: 0 0 25px 111px black inset;
+}
+
+.statsWrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.statsWrapper .hiddenStat {
+	display: none;
+}
+
+.statsWrapper * {
+	margin: 0;
+	padding: 0 0 10px 10px;
+}

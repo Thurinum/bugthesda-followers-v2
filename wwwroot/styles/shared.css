@@ -118,8 +118,28 @@ footer {
 }
 
 
+#background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	box-shadow: 0 0 25px 111px black inset;
+	object-fit: cover;
+	filter: blur(5px);
+}
 
-
+#foreground {
+	position: fixed;
+	top: 0;
+	left: 0;
+	opacity: 0.5;
+	width: 100%;
+	height: 100%;
+	box-shadow: 0 0 25px 111px black inset;
+	object-fit: fill;
+	filter: saturate(0);
+}
 
 /******************/
 /* CONTROL STYLES */
@@ -135,95 +155,3 @@ button.link {
 	background-color: transparent;
 	font-family: "Pathway Gothic One", sans-serif;
 }
-
-
-
-
-/*****************/
-/* OLD STYLESSSS */
-/*****************/
-
-/* Styles de tableau */
-/*thead th {
-	background-color: var(--darker);
-}
-th, td {*/
-	/*classe vertical-align ne marchait pas...*/
-	/*vertical-align: middle !important;
-}*/
-
-/* Transitions des boutons */
-/*button, input, select {*/
-	/* all, parce que bootstrap ajoute ses propres transitions... */
-	/*transition: all 0.1s ease-in-out !important;
-}
-button:hover, input:hover, select:hover {
-	transform: translate(0, -10%);
-}
-button:active, input:active, select:active {
-	transform: translate(0, 0);
-}*/
-
-/* Rectangle d'animation de chargement */
-/*#loadOverlay {
-	background-color: var(--dark);
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100vw;
-	height: 100vh;
-	z-index: 2;
-	transition: top 1.5s ease-in-out;
-	box-shadow: 0 0 0 10px var(--dark);
-}*/
-
-/* Carré qui tourne avec un trou (techniquement le logo de Bethesda)*/
-/*#throbber {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	z-index: 4;
-	filter: drop-shadow(0 0 20px var(--dark));
-	transform: translate(-50%, -50%);
-	animation: throbber 1s ease-in-out infinite;
-	transition: opacity 1s ease-out;
-}*/
-
-/* Plus grosse police pour le header */
-/*.nav {
-	font-size: 2rem;
-}*/
-
-/* Transition des liens du nav */
-/*.hoverZoom {
-	transition: transform 0.1s ease-in-out;
-	transform: scale(0.8);
-}
-.hoverZoom:hover {
-	transform: scale(0.9);
-}
-.hoverZoom:active {
-	transform: scale(0.8);
-}*/
-
-/* pas d'espace au bas du nav (pour egaliser l'espace entre la bordure) */
-/*.noPaddingB {
-	padding-bottom: 0px !important;
-}*/
-
-/* Animation du truc qui tourne */
-/*@keyframes throbber {
-	from {
-		transform: translate(-50%, -50%) rotate(0deg);
-	}
-	to {
-		transform: translate(-50%, -50%) rotate(360deg);
-	}
-}*/
-
-/* Réduire la taille de la police dans index.html (elle a tendance a overflow) */
-/*@media (min-width: 544px) {
-	.subheader {
-		font-size: 0.9rem;
-	}
-}*/

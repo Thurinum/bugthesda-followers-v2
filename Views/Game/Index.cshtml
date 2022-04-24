@@ -5,35 +5,39 @@
     <link href="~/styles/index_details_empty.css" rel="stylesheet" />
 }
 
-<div class="overscroll"></div>
 
-<section class="carousel">
-    @foreach (Game game in Model)
-    {
-        int nbFollowers = game.Followers.Count;
+<main>
+    <video id="background" muted autoplay loop>
+        <source src="" type="video/mp4" />        
+    </video>
+    <div class="overscroll"></div>
 
-        <div class="hidden" id="card@(game.Id)" onmouseover="Carousel.setActiveAt(@game.Id)" onclick="showDetails(this)">
-            <h1 class="showOnActive">@game.Name</h1>
-            <h2 class="showOnActive">@game.Tagline</h2>
-            <button onclick="showDetails(this.parentNode.getAttribute("data-id"))">
-                <img src="~/images/games/@(game.ShortName)/logo.png" />
-            </button>
-            <div class="statsWrapper">
-                <p class="hiddenStat">dummy</p>
-                <p class="hiddenStat">dummy</p>
+    <section class="carousel">
+        @foreach (Game game in Model)
+        {
+            int nbFollowers = game.Followers.Count;
+
+            <div class="hidden" id="card@(game.Id)" onmouseover="Carousel.setActiveAt(@game.Id)" onclick="showDetails(this)">
+                <h1 class="showOnActive">@game.Name</h1>
+                <h2 class="showOnActive">@game.Tagline</h2>
+                <button onclick="showDetails(this.parentNode.getAttribute("data-id"))">
+                    <img src="~/images/games/@(game.ShortName)/logo.png" />
+                </button>
                 <h3 class="showOnActive">@nbFollowers @Utils.Plural("follower", nbFollowers)</h3>
                 <h4 class="showOnActive">@game.Followers.Where(f => f.IsEssential).ToList().Count @Utils.Plural("follower", nbFollowers) @Utils.Plural("essentiel", nbFollowers)</h4>
-                <p class="hiddenStat">dummy</p>
-                <p class="hiddenStat">dummy</p>
+                <input type="hidden" value="@game.ShortName" />
             </div>
-            <input type="hidden" value="@game.ShortName" />
-        </div>
-    }
-</section>
+        }
+    </section>
 
-<div class="overscroll"></div>
+    <div class="overscroll"></div>
 
-<img id="followerPreview1" class="followerPreview" />
-<img id="followerPreview2" class="followerPreview" />
-<img id="followerPreview3" class="followerPreview" />
-<img id="followerPreview4" class="followerPreview" />
+    <img id="followerPreview1" class="followerPreview" />
+    <img id="followerPreview2" class="followerPreview" />
+    <img id="followerPreview3" class="followerPreview" />
+    <img id="followerPreview4" class="followerPreview" />
+
+    <video id="foreground" muted autoplay loop>
+        <source src="~/videos/shared/foreground.mp4" type="video/mp4" />
+    </video>
+</main>

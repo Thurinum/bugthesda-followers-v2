@@ -61,7 +61,7 @@ const Carousel = {
 		$("main").scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2)
 
 		let shortname = target.querySelector("input").value;
-		$("#background").firstElementChild.src = `/videos/games/${shortname}/background.mp4`;
+		$("#background").firstElementChild.src = `/videos/games/${shortname}/background.mp4#t=10`;
 		$("#background").load();
 		$("#background").play();
 

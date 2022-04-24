@@ -50,27 +50,35 @@ main {
 		}
 			.carousel button img {
 				filter: drop-shadow(0 0 21px #2a2626);
-				-webkit-box-reflect: below 0 linear-gradient(transparent, #ffffff40);
+				/*-webkit-box-reflect: below 0 linear-gradient(transparent, #ffffff40);*/
 			}
 
 	.carousel h1 {
-		font-size: 6vmin;
+		font-size: 10vmin;
 		margin-top: 0;
-		margin-bottom: 2px;
+		margin-bottom: 15px;
 	}
-.carousel h3 {
-	font-size: 3vmin;
-	position: relative;
-	left: 0;
-	top: 0;
-	transition: left 0.2s ease-out, top 0.2s ease-out;
-}
+	.carousel h2 {
+		margin-top: 0;
+		margin-bottom: 30px;
+	}
+	.carousel h3 {
+		font-size: 3vmin;
+		position: relative;
+		left: 0;
+		top: 0;
+		transition: left 0.2s ease-out, top 0.2s ease-out;
+		margin-top: 30px;
+		margin-bottom: 15px;
+	}
 	.carousel h4 {
 		font-size: 2.5vmin;
 		color: #ccc;
 		position: relative;
 		left: 0;
 		transition: left 0.5s ease-out;
+		margin-top: 0;
+		margin-bottom: 15px;
 	}
 .carousel h5 {
 	font-size: 1.5vmin;
@@ -104,14 +112,7 @@ main {
 	top: 60%;
 }
 
-#background {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	box-shadow: 0 0 25px 111px black inset;
-}
+
 
 .statsWrapper {
 	display: flex;

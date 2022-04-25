@@ -3,7 +3,7 @@
 :root {
 	--letterbox-height: 8vh;
 	--letterbox-color: black;
-	--letterbox-accent: #727165;
+	--letterbox-accent: #4c4949;
 }
 
 
@@ -40,10 +40,11 @@ header {
 	justify-content: center;
 	align-items: center;
 
-	z-index: 1;
+	z-index: 2;
 
 	background-color: var(--letterbox-color);
-	box-shadow: 0 5px 22px 0 #727165;
+	box-shadow: 0 5px 22px 0 var(--letterbox-color);
+    border-bottom: solid 1px var(--letterbox-accent);
 }
 	header nav {
 		width: 50%;
@@ -113,7 +114,9 @@ footer {
 	gap: 100px;
 
 	background-color: var(--letterbox-color);
-	box-shadow: 0 -5px 22px 0 var(--letterbox-accent);
+	box-shadow: 0 -5px 22px 0 var(--letterbox-color);
+    border-top: solid 1px var(--letterbox-accent);
+
 	z-index: 2;
 }
 
@@ -122,11 +125,17 @@ footer {
 	position: fixed;
 	top: 0;
 	left: 0;
+
 	width: 100%;
 	height: 100%;
+
 	box-shadow: 0 0 25px 111px black inset;
 	object-fit: cover;
 	filter: blur(5px);
+	opacity: 1;
+
+	mask-image: radial-gradient(black, transparent);
+	-webkit-mask-image: radial-gradient(black, transparent);
 }
 
 #foreground {

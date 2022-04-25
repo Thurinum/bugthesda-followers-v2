@@ -3,6 +3,7 @@ main {
 	background: transparent;
 	grid-template-rows: 100%;
 	grid-template-columns: 100vw max-content 100vw;
+	z-index: 1;
 }
 
 .carousel {

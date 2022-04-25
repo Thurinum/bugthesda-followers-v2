@@ -61,9 +61,24 @@ const Carousel = {
 		$("main").scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2)
 
 		let shortname = target.querySelector("input").value;
-		$("#background").firstElementChild.src = `/videos/games/${shortname}/background.mp4#t=10`;
-		$("#background").load();
-		$("#background").play();
+		let background = $("#background");
+		let dir = index < currentindex ? -1 : 1;
+
+		background.style.left = `${-dir * 100}vw`;
+
+		setTimeout(() => {
+			background.style.transform = "scale(0)"; // rotateY(100deg) 0.5s
+			background.style.transition = "";
+			background.style.left = `${dir * 100}vw`;
+			setTimeout(() => {
+				background.firstElementChild.src = `/videos/games/${shortname}/background.mp4#t=15`;
+				background.load();
+
+				background.style.transition = "left 0.25s ease-out, transform 0.25s ease-out";
+				background.style.left = "0";
+				background.style.transform = "scale(1)";
+			}, 100);
+        }, 100);
 
 		currentindex = index;
 	}

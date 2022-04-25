@@ -62,12 +62,16 @@ const Carousel = {
 
 		let shortname = target.querySelector("input").value;
 		let background = $("#background");
+		let overlay = $("#foreground_mist");
 		let dir = index < currentindex ? -1 : 1;
 
 		background.style.left = `${-dir * 100}vw`;
+		overlay.style.transform = `scaleX(${dir})`;
+		overlay.playbackRate = 2;
+		overlay.style.opacity = 0.5;
 
 		setTimeout(() => {
-			background.style.transform = "scale(0)"; // rotateY(100deg) 0.5s
+			//background.style.transform = "scale(0)"; // rotateY(100deg) 0.5s
 			background.style.transition = "";
 			background.style.left = `${dir * 100}vw`;
 			setTimeout(() => {
@@ -76,7 +80,9 @@ const Carousel = {
 
 				background.style.transition = "left 0.25s ease-out, transform 0.25s ease-out";
 				background.style.left = "0";
-				background.style.transform = "scale(1)";
+				//background.style.transform = "scale(1)";
+				overlay.playbackRate = 0.9;
+				overlay.style.opacity = 0.3;
 			}, 100);
         }, 100);
 

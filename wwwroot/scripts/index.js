@@ -84,7 +84,7 @@ const Carousel = {
 				overlay.playbackRate = 0.9;
 				overlay.style.opacity = 0.3;
 			}, 100);
-        }, 100);
+		}, 100);
 
 		currentindex = index;
 	}

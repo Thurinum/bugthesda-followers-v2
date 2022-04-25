@@ -90,6 +90,11 @@ const Carousel = {
 	}
 }
 
+window.onresize = function () {
+	let target = $("#card" + currentindex);
+	$("main").scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2)
+}
+
 function showDetails(target) {
 	function setThumbnails() {
 		let previews = $$(".followerPreview");

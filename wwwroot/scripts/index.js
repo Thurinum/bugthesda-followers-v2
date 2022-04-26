@@ -144,6 +144,17 @@ function showDetails(target) {
 
 	setInterval(setThumbnails, 10000);
 
+	// reactiver les items au mouseleave
+	/*document.onclick = function (e) {
+		if (firstClick) {
+			firstClick = false;
+			return;
+		}
+
+		carouselenabled = true;
+		close();
+	};*/
+
 	function close() {
 		details.style.opacity = 0;
 		details.style.transform = "translate(-50%, -50%) scale(0.9)";

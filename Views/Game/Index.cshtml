@@ -1,19 +1,8 @@
 ﻿@model List<Game>
 
-@section Preload {
-    <link href="~/videos/shared/foreground.mp4" rel="preload" as="video" />
-    <link href="~/videos/shared/foreground_mist_sparks.mp4" rel="preload" as="video" />
-
-    @foreach (Game game in Model) {
-        <link href="~/videos/games/@game.ShortName/background.mp4" rel="preload" as="video" />
-    }
-} 
-
 @section ExtraStyles {
     <link href="~/styles/index_details.css" rel="stylesheet" />
-    <link href="~/styles/index_details_empty.css" rel="stylesheet" />
 }
-
 
 <main>
     <video id="background" muted autoplay loop>
@@ -29,7 +18,7 @@
             <div class="hidden" id="card@(game.Id)" onmouseover="Carousel.setActiveAt(@game.Id)" onclick="showDetails(this)">
                 <h1 class="showOnActive">@game.Name</h1>
                 <h2 class="showOnActive">@game.Tagline</h2>
-                <button onclick="showDetails(this.parentNode.getAttribute("data-id"))">
+                <button onclick="showDetails(this.parentNode.getAttribute(" data-id"))">
                     <img src="~/images/games/@(game.ShortName)/logo.png" />
                 </button>
                 <h3 class="showOnActive">@nbFollowers @Utils.Plural("follower", nbFollowers)</h3>

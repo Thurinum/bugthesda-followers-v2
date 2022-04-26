@@ -186,7 +186,7 @@ a:hover, button:hover {
 	animation: ad-h2-shadow 1s cubic-bezier(0.93, -0.71, 0.63, 1.88) infinite;
 }
 	
-#ad .geralt { /*nom*/
+#ad .gerald { /*nom*/
 	font-family: MedievalSharp;
 	font-size: 29px;
 	text-shadow: 0 0 4px #b34f10f0;

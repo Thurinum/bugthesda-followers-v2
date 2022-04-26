@@ -1,5 +1,14 @@
 ﻿@model List<Game>
 
+@section Preload {
+    <link href="~/videos/shared/foreground.mp4" rel="preload" as="video" />
+    <link href="~/videos/shared/foreground_mist_sparks.mp4" rel="preload" as="video" />
+
+    @foreach (Game game in Model) {
+        <link href="~/videos/games/@game.ShortName/background.mp4" rel="preload" as="video" />
+    }
+} 
+
 @section ExtraStyles {
     <link href="~/styles/index_details.css" rel="stylesheet" />
     <link href="~/styles/index_details_empty.css" rel="stylesheet" />

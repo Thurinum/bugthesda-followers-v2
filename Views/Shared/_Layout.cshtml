@@ -8,7 +8,8 @@
     <link href="~/styles/shared.css" rel="stylesheet" />
     <link href="~/styles/@(ViewContext.RouteData.Values["action"].ToString().ToLower()).css" rel="stylesheet" />
     <link href="~/images/shared/ui/favicon.png" rel="icon" />
-    
+
+    @RenderSection("Preload", false)
     @RenderSection("ExtraStyles", false)
 </head>
 
@@ -25,22 +26,27 @@
 
     @RenderBody()
 
-    <footer>
-        <p>Copyright 2022 Maxime Gagnon. All rights reserved.</p>
-    </footer>
-
-    <div id="notificationPopup">
+    <div id="ad">
         <img class="swordTop" src="~/images/shared/ui/popup/sword.png" />
-        <h2><center><span class="gerald">Geralt de Riv </span> a besoin de toi!</center></h2>
+        <h2>
+            <span class="gerald">Geralt de Riv&nbsp;</span> a besoin de toi!
+        </h2>
         <marquee bgcolor="#222" scrolldelay="10" truespeed><font color="red">█ █ █ █ █ █ █ █</font></marquee>
+
         <article>
-            <img class="geraltImg" src="~/images/shared/ui/popup/geralt.gif" />
-            <p>Sauras-tu triompher de tes ennemis? Joins <span style="font-family: MedievalSharp">Zachary de Riv</span> dans son aventure <mark>épique</mark> à la recherche de <span style="font-family: 'Garamond';">l'Épée de la Lune</span>!</p>
+            <img class="geraltImg" src="~/images/shared/ui/popup/geralt.png" />
+            <p>Sauras-tu triompher de tes ennemis? Joins-moi dans mon aventure épique à la recherche de <em>l'Épée de la Lune ! </em> Monstres et humains ne sauront résister à notre duo inséparable.<br /><br /><small><i>Lances-toi dans mon récit dès maintenant et court la chance de gagner une PS6.</i></small></p>
         </article>
+
         <marquee bgcolor="#222" scrolldelay="10" truespeed><font color="red">█ █ █ █ █ █ █ █</font></marquee>
         <button><b><a href="">ACCÉDER AU SITE</a></b></button>
         <img class="swordBottom" src="~/images/shared/ui/popup/sword.png" />
     </div>
+
+    <footer>
+        <p>Code &copy; 2022 Maxime Gagnon. All rights reserved.<br />
+        <small>Zenimax Media: For any liability issues pls contact kevin leduc</small></p>
+    </footer>
 
     <script src="~/scripts/shared.js"></script>
     <script src="~/scripts/@(ViewContext.RouteData.Values["action"].ToString().ToLower()).js"></script>

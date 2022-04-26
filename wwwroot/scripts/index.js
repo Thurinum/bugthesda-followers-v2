@@ -2,7 +2,7 @@
 
 let currentindex = 0;
 let carouselenabled = true;
-
+let firstTime = true;
 let currenttimeout;
 
 // "CoverFlow"-like carousel system pour les parents
@@ -86,8 +86,21 @@ const Carousel = {
 			}, 100);
 		}, 100);
 
+		// show clickbait popup on first launch and then every 1/10 times
+		if (Math.random() < 0.35)
+			showPopup();
+
 		currentindex = index;
 	}
+}
+
+// shows clickbait ad
+function showPopup() {
+	$("#ad").style.right = 0;
+
+	setTimeout(function () {
+		$("#ad").style.right = `-430px`;
+	}, 15000);
 }
 
 window.onresize = function () {
@@ -131,17 +144,6 @@ function showDetails(target) {
 
 	setInterval(setThumbnails, 10000);
 
-	// reactiver les items au mouseleave
-	/*document.onclick = function (e) {
-		if (firstClick) {
-			firstClick = false;
-			return;
-		}
-
-		carouselenabled = true;
-		close();
-	};*/
-
 	function close() {
 		details.style.opacity = 0;
 		details.style.transform = "translate(-50%, -50%) scale(0.9)";
@@ -160,7 +162,7 @@ document.addEventListener("keydown", function (e) {
 		showDetails($("card" + currentindex));
 });
 
-window.onload = function () {
+window.addEventListener("load", function () {
 	// rendre actif le dernier jeu selectionne en memoire
 	// sinon, rendre actif le jeu du milieu
 	let lastIndex = parseInt(window.localStorage.getItem("iLastSelectedGame"));
@@ -168,4 +170,6 @@ window.onload = function () {
 		Carousel.setActiveAt(lastIndex);
 	else
 		Carousel.setActiveAt(Math.round(($(".carousel").children.length - 1) / 2));
-}
+
+	main.style.opacity = "1";
+});

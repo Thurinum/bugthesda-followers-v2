@@ -5,7 +5,6 @@ function $(sel)  { return document.querySelector(sel); }
 function $$(sel) { return document.querySelectorAll(sel); }
 
 let main = $("main");
-main.style.top = "0";
 
 function registerLinks() {
 	let buttons = $$("button.link");
@@ -24,4 +23,11 @@ function registerLinks() {
 
 			setTimeout(window.location.href = target.getAttribute("data-href"), 1500);
 		});
+}
+$("#ad").onmouseover = function (e) {
+	$("#ad .geraltImg").src = "/images/shared/ui/popup/geralt2.png";
+}
+
+$("#ad").onmouseleave = function (e) {
+	$("#ad .geraltImg").src = "/images/shared/ui/popup/geralt.png";
 }

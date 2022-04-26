@@ -1,95 +1,163 @@
 main {
 	display: grid;
-	background: transparent;
 	grid-template-rows: 100%;
 	grid-template-columns: 100vw max-content 100vw;
 	z-index: 1;
+	
+	opacity: 0;
+	background: transparent;
 }
 
-.carousel {
-	background-color: transparent;
-	z-index: 3;
 
+
+
+
+
+/* overlays et backgrounds videos */
+#background {
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+
+	box-shadow: 0 0 25px 111px black inset;
+	object-fit: cover;
+	filter: blur(5px);
+	opacity: 1;
+
+	mask-image: radial-gradient(black, transparent);
+	-webkit-mask-image: radial-gradient(black, transparent);
+}
+
+#foreground {
+	width: 100%;
+	height: 100%;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	opacity: 0.5;
+	box-shadow: 0 0 25px 111px black inset;
+
+	filter: saturate(0);
+	object-fit: fill;
+	-webkit-mask-image: linear-gradient(135deg, #000000ab, transparent);
+}
+
+#foreground_mist {
+	width: 100%;
+	height: 100%;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	opacity: 0.3;
+	object-fit: cover;
+	filter: contrast(2);
+	mask-image: linear-gradient(0deg, black, #808080b8, #ffffff00);
+	-webkit-mask-image: linear-gradient(0deg, black, #808080b8, #ffffff00);
+}
+
+
+
+
+
+
+/* carousel des parents */
+.carousel {
 	display: flex;
 	flex-wrap: nowrap;
 	align-items: center;
+
+	z-index: 3;
+	background-color: transparent;
 }
 
-	.carousel > div {
-		text-align: center;
-		transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-		z-index: 1;
-		display: flex;
-		flex-direction: column;
-	}
-		.carousel .active {
-			opacity: 1;
-			transform: scale(1);
-		}
-		.carousel .inactive {
-			opacity: 0.25;
-			transform: scale(0.7);
-		}
-		.carousel .hidden {
-			opacity: 0.1;
-			transform: scale(0.4);
-		}
-		.carousel .dummy {
-			opacity: 0;
-			width: 10000px;
-		}
+.carousel > div {
+	text-align: center;
+	transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+}
 
-		.carousel .showOnActive {
-			opacity: 0;
-			transform: scale(0.9);
-			transition: all 1s ease-out;
-		}
+.carousel .active {
+	opacity: 1;
+	transform: scale(1);
+}
+.carousel .inactive {
+	opacity: 0.25;
+	transform: scale(0.7);
+}
+.carousel .hidden {
+	opacity: 0.1;
+	transform: scale(0.4);
+}
+.carousel .dummy {
+	opacity: 0;
+	width: 10000px;
+}
+.carousel .showOnActive {
+	opacity: 0;
+	transform: scale(0.9);
+	transition: all 1s ease-out;
+}
 
-		.carousel button {
-			border: 0;
-			background-color: transparent;
-			appearance: none;
-		}
-			.carousel button img {
-				filter: drop-shadow(0 0 21px #2a2626);
-				/*-webkit-box-reflect: below 0 linear-gradient(transparent, #ffffff40);*/
-			}
+.carousel button {
+	border: 0;
+	background-color: transparent;
+	appearance: none;
+}
 
-	.carousel h1 {
-		font-size: 10vmin;
-		margin-top: 0;
-		margin-bottom: 15px;
-	}
-	.carousel h2 {
-		margin-top: 0;
-		margin-bottom: 30px;
-	}
-	.carousel h3 {
-		font-size: 3vmin;
-		position: relative;
-		left: 0;
-		top: 0;
-		transition: left 0.2s ease-out, top 0.2s ease-out;
-		margin-top: 30px;
-		margin-bottom: 15px;
-	}
-	.carousel h4 {
-		font-size: 2.5vmin;
-		color: #ccc;
-		position: relative;
-		left: 0;
-		transition: left 0.5s ease-out;
-		margin-top: 0;
-		margin-bottom: 15px;
-	}
+.carousel button img {
+	filter: drop-shadow(0 0 21px #2a2626);
+}
+
+.carousel h1 {
+	font-size: 10vmin;
+	margin-top: 0;
+	margin-bottom: 15px;
+}
+.carousel h2 {
+	margin-top: 0;
+	margin-bottom: 30px;
+}
+.carousel h3 {
+	font-size: 3vmin;
+	position: relative;
+	left: 0;
+	top: 0;
+	transition: left 0.2s ease-out, top 0.2s ease-out;
+	margin-top: 30px;
+	margin-bottom: 15px;
+}
+.carousel h4 {
+	font-size: 2.5vmin;
+	color: #ccc;
+	position: relative;
+	left: 0;
+	transition: left 0.5s ease-out;
+	margin-top: 0;
+	margin-bottom: 15px;
+}
 .carousel h5 {
 	font-size: 1.5vmin;
 }
 
-.overscroll {
+.overscroll { /* permet de center le scroll dans le carousel */
 	background-color: #000c;
 }
 
+
+
+
+
+
+/* apercu des followers pour un parent */
 .followerPreview {
 	position: fixed;
 	width: 20%;
@@ -116,6 +184,10 @@ main {
 
 
 
+
+
+
+/* wrapper des statistiques*/
 .statsWrapper {
 	display: flex;
 	flex-direction: column;

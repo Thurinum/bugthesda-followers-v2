@@ -7,11 +7,7 @@
 	--letterbox-accent: #4c4949;
 }
 
-
-/*****************/
-/* LAYOUT STYLES */
-/*****************/
-
+/* styles principaux */
 html {
 	scroll-behavior: smooth;
 }
@@ -28,10 +24,10 @@ body {
 	background-color: black;
 	font-family: "Pathway Gothic One", sans-serif; 
 }
-	body::-webkit-scrollbar { /* Hide scrollbar (Blink) */
-		width: 0;
-		height: 0;
-	}
+body::-webkit-scrollbar { /* Hide scrollbar (Blink) */
+	width: 0;
+	height: 0;
+}
 
 header {
 	width: 100vw;
@@ -47,41 +43,45 @@ header {
 	box-shadow: 0 5px 22px 0 var(--letterbox-color);
 	border-bottom: solid 2px #4949494A;
 }
-	header nav {
-		width: 50%;
-		height: 100%;
 
-		display: flex;
-		justify-content: center;
-		align-items: center;
+header nav {
+	width: 50%;
+	height: 100%;
 
-		color: white;
-	}
-		header nav button, header nav button > img {
-			min-width: 10%;
-			margin-left: 10px;
-			margin-right: 10px;
-			border: 0;
-			color: white;
-			background-color: transparent;
-			font-family: "Pathway Gothic One", sans-serif;
-			font-size: 2vmin;
-			align-self: center;
-		}
-		.home {
-			height: 90%;
-		}
-			.home img {
-				height: 90%;
-			}
-	header nav button {
-		height: 90%;
-		transform: scale(0.9);
-		transition: transform 0.2s ease-in-out;
-	}
-	header nav button:hover {
-		transform: scale(1);
-	}
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	color: white;
+}
+
+header nav button, header nav button > img {
+	min-width: 10%;
+	margin-left: 10px;
+	margin-right: 10px;
+	border: 0;
+	color: white;
+	background-color: transparent;
+	font-family: "Pathway Gothic One", sans-serif;
+	font-size: 2vmin;
+	align-self: center;
+}
+
+header nav button {
+	height: 90%;
+	transform: scale(0.9);
+	transition: transform 0.2s ease-in-out;
+}
+header nav button:hover {
+	transform: scale(1);
+}
+
+.home { /* bouton bethesda central */
+	height: 90%;
+}
+.home img {
+	height: 90%;
+}
 
 main {
 	height: calc(100vh - (2 * var(--letterbox-height)));
@@ -91,9 +91,6 @@ main {
 
 	scroll-behavior: smooth;
 	overflow: hidden;
-	top: -100vw;
-	opacity: 1;
-	position: relative;
 
 	background-color: #333;
 
@@ -122,211 +119,183 @@ footer {
 }
 
 
-#background {
-	position: fixed;
-	top: 0;
-	left: 0;
 
-	width: 100%;
-	height: 100%;
 
-	box-shadow: 0 0 25px 111px black inset;
-	object-fit: cover;
-	filter: blur(5px);
-	opacity: 1;
 
-	mask-image: radial-gradient(black, transparent);
-	-webkit-mask-image: radial-gradient(black, transparent);
+
+/* liens */
+button.link {
+	color: white;
+	background-color: transparent;
+	font-family: "Pathway Gothic One", sans-serif;
 }
-
-#foreground {
-	position: fixed;
-	top: 0;
-	left: 0;
-	opacity: 0.5;
-	width: 100%;
-	height: 100%;
-	box-shadow: 0 0 25px 111px black inset;
-	object-fit: fill;
-	filter: saturate(0);
-	-webkit-mask-image: linear-gradient(135deg, #000000ab, transparent);
-}
-
-#foreground_mist {
-	position: fixed;
-	top: 0;
-	left: 0;
-	opacity: 0.3;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	mask-image: linear-gradient(0deg, black, #808080b8, #ffffff00)
-	-webkit-mask-image: linear-gradient(0deg, black, #808080b8, #ffffff00)
-	filter: contrast(2);
-}
-
-/******************/
-/* CONTROL STYLES */
-/******************/
 
 a:hover, button:hover {
 	cursor: pointer;
 }
 
 
-#notificationPopup {
+
+
+
+
+
+/* silly advertisement popup */
+#ad {
 	position: fixed;
+	right: -430px;
+	bottom: calc(var(--letterbox-height) + 4%);
+	z-index: 10;
+
 	width: 420px;
 	height: min-content;
-	right: 0;
-	bottom: 5%;
-	z-index: 10;
+
+	display: grid;
+	grid-template-rows: 15% 3% 63% 3% 10%;
 
 	border: ridge 4px #8b8787;
 	border-right: 0;
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
 	box-shadow: 0 0 10px lightgrey;
-	display: grid;
-	grid-template-rows: 15% 3% 63% 3% 10%;
-
-	font-size: 21px;
-		transition: right 0.5s ease-out;
 
 	font-family: 'Pathway Gothic One';
+	font-size: 21px;
+
+	transition: right 2.5s ease-out, transform 0.5s ease-in;
+	animation: ad-float 1s ease-in-out infinite;
 }
 
-#notificationPopup h2 {
-	text-align: center;
-	z-index: 4;
+#ad h2 {
 	position: relative;
-	background: black;
-	box-shadow: -4px 6px 6px #3c2b2b5c, -3px -11px 6px #3c2b2b5c, -5px 8px 6px #2f25258a;
-	animation: box-shadow-h2 1s cubic-bezier(0.93, -0.71, 0.63, 1.88) infinite;
-	padding: 10px 0 10px 0;
-	margin: 0;
+	z-index: 4;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	text-align: center;
+
+	padding: 10px 0 10px 0;
+	margin: 0;
+
+	background: black;
+	box-shadow: -4px 6px 6px #3c2b2b5c, -3px -11px 6px #3c2b2b5c, -5px 8px 6px #2f25258a;
 	border-top-left-radius: 10px;
 	font-size: 25px;
 
+	animation: ad-h2-shadow 1s cubic-bezier(0.93, -0.71, 0.63, 1.88) infinite;
 }
 	
-
-#notificationPopup .gerald {
+#ad .geralt { /*nom*/
 	font-family: MedievalSharp;
 	font-size: 29px;
-	animation: title-color 0.5s cubic-bezier(0.93, -0.71, 0.63, 1.88) infinite;
 	text-shadow: 0 0 4px #b34f10f0;
+
+	animation: ad-h2-color 0.5s cubic-bezier(0.93, -0.71, 0.63, 1.88) infinite;
 }
 
-@keyframes box-shadow-h2 {
-	0% { box-shadow: 0px 6px 20px 2px red; }
-	50% { box-shadow: 0px 6px 20px 2px #5b0000; }
-	100% { box-shadow: 0px 6px 20px 2px red; }
-}
-
-#notificationPopup article {
+#ad article {
 	display: flex;
 	flex-direction: row;
+
 	background: #080808;
 	box-shadow: 0 5px 10px red;
 }
 
-
-#notificationPopup marquee { /* :DDDDDDD */
+#ad marquee { /* :D */
 	line-height: 1px;
 	filter: blur(5px);
 }
 
-#notificationPopup font { /* :DDDDDDD */
-	height: min-content;
-}
-
-#notificationPopup p {
-	padding: 12px;
-	margin: 0;
-	text-align: justify;
-    font-size: 16px;
-}
-
-#notificationPopup .swordTop {
-	position: absolute;
-    width: 101%;
-    height: 17px;
-    z-index: 7;
-    top: -11px;
-    transform: scaleX(-1);
-    right: -4px;
-}
-
-#notificationPopup .swordBottom {
-	position: absolute;
-    width: 101%;
-    height: 17px;
-    z-index: 7;
-    bottom: -11px;
-    transform: scaleX(-1);
-    right: -4px;
-}
-
-#notificationPopup .geraltImg {
+#ad .geraltImg {
 	width: 40%;
 	object-fit: cover;
 	border-right: ridge 3px #2e020f;
-    box-shadow: 2px -2px 8px #680202;
+	box-shadow: 2px -2px 8px #680202;
 }
 
-#notificationPopup button {
-	border: none;
+#ad p {
+	padding: 12px;
+	margin: 0;
+	text-align: justify;
+	font-size: 16px;
+}
+
+#ad .swordTop {
+	width: 101%;
+	height: 17px;
+
+	position: absolute;
+	top: -11px;
+	right: -4px;
+	transform: scaleX(-1);
+	z-index: 7;
+}
+
+#ad .swordBottom {
+	width: 101%;
+	height: 17px;
+
+	position: absolute;
+	bottom: -11px;
+	right: -4px;
+	transform: scaleX(-1);
+	z-index: 7;
+}
+
+#ad button {
+	height: min-content;
+
 	font-size: 1.4em;
 	font-family: 'Pathway Gothic One';
-	height: min-content;
 	white-space: nowrap;
+
 	background: black;
-    box-shadow: 0 -10px 10px red;
+	border: none;
 	border-bottom-left-radius: 10px;
-	animation: box-shadow-btn 1s cubic-bezier(0.93, -0.71, 0.63, 1.88) infinite;
+	box-shadow: 0 -10px 10px red;
+
+	animation: ad-button-shadow 1s cubic-bezier(0.93, -0.71, 0.63, 1.88) infinite;
 }
 
-@keyframes box-shadow-btn {
-	0% { box-shadow: 0px -10px 20px 2px red; }
-	50% { box-shadow: 0px -10px 20px 2px #5b0000; }
-	100% { box-shadow: 0px -10px 20px 2px red; }
-}
-
-@keyframes title-color {
-	from { color: red; }
-	to { color: darkred; }
-}
-
-#notificationPopup button a {
+#ad button a {
+	color: transparent;
 	background-image: linear-gradient(0deg, white, red);	
 	background-clip: text;
-	color: transparent;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-	/*animation: glow 2s ease-in-out infinite;*/
+
 	transition: text-shadow 0.2s ease-out, letter-spacing 0.2s ease-out;
 }
-
-#notificationPopup button a:hover {
+#ad button a:hover {
 	text-shadow: 0px 0px 6px #941a1a;
 	letter-spacing: 4px;
 }
 
-@keyframes glow {
-	from {
-		
-	}
 
-	to {
-		background-image: linear-gradient(360deg, red, white);
-	}
+
+
+
+
+@keyframes ad-h2-color {
+	from { color: red; }
+	  to { color: darkred; }
 }
-button.link {
-	color: white;
-	background-color: transparent;
-	font-family: "Pathway Gothic One", sans-serif;
+
+@keyframes ad-h2-shadow {
+	  0% { box-shadow: 0px 6px 20px 2px red;     }
+	 50% { box-shadow: 0px 6px 20px 2px #5b0000; }
+	100% { box-shadow: 0px 6px 20px 2px red;     }
+}
+
+@keyframes ad-float {
+	  0% { transform: translateY(0);     }
+	 50% { transform: translateY(-10px); }
+	100% { transform: translateY(0);     }
+}
+
+@keyframes ad-button-shadow {
+	  0% { box-shadow: 0px -10px 20px 2px red; }
+	 50% { box-shadow: 0px -10px 20px 2px #5b0000; }
+	100% { box-shadow: 0px -10px 20px 2px red; }
 }

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
 :root {
 	--letterbox-height: 8vh;
@@ -176,19 +177,20 @@ a:hover, button:hover {
 #notificationPopup {
 	position: fixed;
 	width: 32%;
-	height: 30%;
+	height: min-content;
 	right: 0;
 	bottom: 5%;
 	z-index: 10;
 
-	display: flex;
-	flex-direction: column;
-
-	border: solid 2px white;
+	border: ridge 4px #8b8787;
 	border-right: 0;
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
 	box-shadow: 0 0 10px lightgrey;
+	display: grid;
+	grid-template-rows: 15% 3% 64% 3% 10%;
+
+	font-family: 'Comic Sans MS';
 }
 
 #notificationPopup h2 {
@@ -197,7 +199,6 @@ a:hover, button:hover {
 	position: relative;
 	background: black;
 	box-shadow: 0 5px 10px grey;
-	height: 25%;
 	padding: 10px 0 10px 0;
 	margin: 0;
 	display: flex;
@@ -205,11 +206,20 @@ a:hover, button:hover {
 	justify-content: center;
 	border-top-left-radius: 10px;
 }
+
 #notificationPopup article {
 	display: flex;
 	flex-direction: row;
-	height: 100%;
 	background: #080808;
+	box-shadow: 0 5px 10px purple;
+}
+
+#notificationPopup marquee { /* :DDDDDDD */
+	padding: 0;
+}
+
+#notificationPopup font { /* :DDDDDDD */
+	height: min-content;
 }
 
 #notificationPopup p {
@@ -223,9 +233,31 @@ a:hover, button:hover {
 }
 
 #notificationPopup button {
-	height: 25%;
+	border: inset 5px lightgrey;
+	font-size: 1.4em;
+	font-family: 'Comic Sans MS';
+	height: min-content;
+	white-space: nowrap;
 }
 
+#notificationPopup button a {
+	background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+	background-clip: text;
+	color: transparent;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: rainbow-text 2s ease-in-out infinite;
+}
+
+@keyframes rainbow-text {
+	from {
+		filter: hue-rotate(0deg);
+	}
+
+	to {
+		filter: hue-rotate(360deg);
+	}
+}
 button.link {
 	color: white;
 	background-color: transparent;

@@ -1,0 +1,24 @@
+﻿{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "outDir": "./wwwroot/scripts/js",
+    "target": "ES2022",
+    "allowJs": true,
+    "strict": true,
+    "removeComments": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "include": [
+    "./wwwroot/scripts/ts/**/*"
+  ]
+}

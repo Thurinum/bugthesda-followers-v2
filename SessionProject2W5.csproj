@@ -21,20 +21,39 @@
   <ItemGroup>
 	<Compile Remove="wwwroot\images\games\followers\**" />
 	<Compile Remove="wwwroot\images\shared\races\artwork\**" />
+	<Compile Remove="wwwroot\scripts\scripts\**" />
 	<Compile Remove="wwwroot\styles\NewFolder\**" />
 	<Content Remove="wwwroot\images\games\followers\**" />
 	<Content Remove="wwwroot\images\shared\races\artwork\**" />
+	<Content Remove="wwwroot\scripts\scripts\**" />
 	<Content Remove="wwwroot\styles\NewFolder\**" />
 	<EmbeddedResource Remove="wwwroot\images\games\followers\**" />
 	<EmbeddedResource Remove="wwwroot\images\shared\races\artwork\**" />
+	<EmbeddedResource Remove="wwwroot\scripts\scripts\**" />
 	<EmbeddedResource Remove="wwwroot\styles\NewFolder\**" />
 	<None Remove="wwwroot\images\games\followers\**" />
 	<None Remove="wwwroot\images\shared\races\artwork\**" />
+	<None Remove="wwwroot\scripts\scripts\**" />
 	<None Remove="wwwroot\styles\NewFolder\**" />
+	<TypeScriptCompile Remove="wwwroot\scripts\scripts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Remove="wwwroot\scripts\index.ts" />
+    <TypeScriptCompile Remove="wwwroot\scripts\shared.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\scripts\ts\index.ts" />
+    <Content Include="wwwroot\scripts\ts\shared.ts" />
   </ItemGroup>
 
   <ItemGroup>
 	<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.12" />
+	<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.6.4">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
 	<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
@@ -42,6 +61,7 @@
 	<Folder Include="wwwroot\images\shared\classes\" />
 	<Folder Include="wwwroot\images\shared\statuspages\" />
 	<Folder Include="wwwroot\images\shared\races\" />
+	<Folder Include="wwwroot\scripts\js\" />
   </ItemGroup>
 
 </Project>

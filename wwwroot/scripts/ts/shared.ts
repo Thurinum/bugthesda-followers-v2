@@ -18,13 +18,20 @@ function $(sel: string, target?: Element): HTMLElement {
 	if (elem === null) {
 		console.warn(`Attempt to access invalid element "${sel}" in "${target}".`);
 		return document.createElement("invalid");
-    }
+	}
 
 	return elem as HTMLElement;
 }
 
 function $$(sel: string, target?: Element): NodeListOf<HTMLElement> {
-	return (target ? target : document).querySelectorAll(sel);
+	if (!DEBUG)
+		(target ? target : document).querySelectorAll(sel);
+
+	let elems : NodeListOf<HTMLElement> = (target ? target : document).querySelectorAll(sel);
+	if (elems.length === 0)
+		console.warn(`There are no elements in collection ${sel} in ${target}.`);
+
+	return elems;
 }
 
 function $a(attr: string, target: HTMLElement): string {
@@ -36,7 +43,7 @@ function $a(attr: string, target: HTMLElement): string {
 	if (val === null || val == undefined) {
 		console.warn(`Attempt to access invalid attribute "${attr}" in "${target}".`);
 		return "invalid";
-    }
+	}
 
 	return val;
 }
@@ -54,7 +61,7 @@ function registerLinks() {
 
 			setTimeout(window.location.href = $a("data-href", target), 1500);
 		});
-    }
+	}
 }
 
 // annonce pas rapport

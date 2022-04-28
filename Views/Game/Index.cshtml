@@ -1,9 +1,5 @@
 ﻿@model List<Game>
 
-@section ExtraStyles {
-    <link href="~/styles/index_details.css" rel="stylesheet" />
-}
-
 <main>
     <video id="background" muted autoplay loop>
         <source src="" type="video/mp4" />        
@@ -15,11 +11,11 @@
         {
             int nbFollowers = game.Followers.Count;
 
-            <div class="hidden" id="card@(game.Id)" onmouseover="Carousel.setActiveAt(@game.Id)" onclick="showDetails(this)">
+            <div class="hidden" id="card@(game.Id)" onmouseover="Carousel.setActiveAt(@game.Id)">
                 <h1 class="showOnActive">@game.Name</h1>
                 <h2 class="showOnActive">@game.Tagline</h2>
-                <button onclick="showDetails(this.parentNode.getAttribute(" data-id"))">
-                    <img src="~/images/games/@(game.ShortName)/logo.png" />
+                <button>
+                    <img class="logo" src="~/images/games/@(game.ShortName)/logo.png" />
                 </button>
                 <h3 class="showOnActive">@nbFollowers @Utils.Plural("follower", nbFollowers)</h3>
                 <h4 class="showOnActive">@game.Followers.Where(f => f.IsEssential).ToList().Count @Utils.Plural("follower", nbFollowers) @Utils.Plural("essentiel", nbFollowers)</h4>
@@ -29,6 +25,10 @@
     </section>
 
     <div class="overscroll"></div>
+
+    <section id="details">
+        <!-- PARTIAL VIEW DYNAMIQUE -->
+    </section>
 
     <img id="followerPreview1" class="followerPreview" />
     <img id="followerPreview2" class="followerPreview" />

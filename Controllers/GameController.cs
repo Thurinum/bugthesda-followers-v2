@@ -28,16 +28,16 @@ namespace SessionProject2W5.Controllers
 		}
 
 		// affiche les infos secondaires sur un jeu
-		[Route("{Name}")]
-		public IActionResult Index_Details(string Name)
+		[Route("{Id}")]
+		public IActionResult Index_Details(string Id)
 		{
-			/*Game game = (Game)(database.Games.Where(g => g.Name == Name).ToList()[0]);
-
+			Game game = database.Games.Where(g => g.ShortName == Id).ToList()[0];
+			Debug.WriteLine(game.Followers[0
+		].Id);
 			if (game.Followers.Count == 0)
 				return PartialView("Index_Details_NoContent", game.Name);
 
-			return PartialView(game);*/
-			return Content("dsfsdfsdf");
+			return PartialView(game);
 		}
 
 		// affiche les infos secondaires sur un jeu (overload)

@@ -15,7 +15,12 @@ function $(sel, target) {
     return elem;
 }
 function $$(sel, target) {
-    return (target ? target : document).querySelectorAll(sel);
+    if (!DEBUG)
+        (target ? target : document).querySelectorAll(sel);
+    let elems = (target ? target : document).querySelectorAll(sel);
+    if (elems.length === 0)
+        console.warn(`There are no elements in collection ${sel} in ${target}.`);
+    return elems;
 }
 function $a(attr, target) {
     if (!DEBUG)
@@ -46,3 +51,4 @@ function showPopup() {
 }
 ad.onmouseover = function () { adimg.src = "/images/shared/ui/popup/geralt2.png"; };
 ad.onmouseleave = function () { adimg.src = "/images/shared/ui/popup/geralt.png"; };
+//# sourceMappingURL=shared.js.map

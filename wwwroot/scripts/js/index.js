@@ -3,11 +3,10 @@ let currentIndex = -1;
 let isCarouselEnabled = true;
 let firstTime = true;
 let currentTimeout;
+let items = $$(".carousel > div");
 const Carousel = {
     setActiveAt: (index) => {
-        if (index == currentIndex)
-            return;
-        if (!isCarouselEnabled)
+        if (index == currentIndex || !isCarouselEnabled)
             return;
         let container = $(".carousel");
         let target = container.children[index];
@@ -65,49 +64,75 @@ const Carousel = {
             showPopup();
         currentIndex = index;
         window.localStorage.setItem("iLastSelectedGame", `${currentIndex}`);
-    }
-};
-window.onresize = function () {
-    let target = $("#card" + currentIndex);
-    main.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2);
-};
-function showDetails(target) {
-    function setThumbnails() {
-        let previews = $$(".followerPreview");
-        let id = target.id.slice(5);
-        for (let i = 0; i < previews.length; i++) {
-            let preview = previews[i];
-            preview.style.opacity = "0";
-            fetch(`/${id}/randomthumbnail`)
-                .then(data => data.text())
-                .then(src => {
-                preview.src = "";
-                preview.src = src;
-                preview.onload = () => { preview.style.opacity = "1"; };
-            });
+    },
+    showDetails(target) {
+        function setThumbnails() {
+            let previews = $$(".followerPreview");
+            let id = target.id.slice(5);
+            for (let i = 0; i < previews.length; i++) {
+                let preview = previews[i];
+                preview.style.opacity = "0";
+                fetch(`/${id}/randomthumbnail`)
+                    .then(data => data.text())
+                    .then(src => {
+                    preview.src = "";
+                    preview.src = src;
+                    preview.onload = () => { preview.style.opacity = "1"; };
+                });
+            }
         }
+        setThumbnails();
+        isCarouselEnabled = false;
+        for (let i = 0; i < items.length; i++) {
+            let item = items[i];
+            if (item != target)
+                item.style.transform = "scale(0)";
+        }
+        let headers = $$(".showOnActive", target);
+        for (let i = 0; i < headers.length; i++) {
+            headers[i].style.opacity = "0";
+        }
+        let input = $("input", target);
+        console.log(input.value);
+        fetch(`/${input.value}`)
+            .then(data => data.text())
+            .then(html => {
+            $("#details").innerHTML = html;
+            $("#details").style.transform = "translateY(-50%) scale(1)";
+        });
     }
-    let hiddens = $$(".statsWrapper .hiddenStat", target);
-    for (let i = 0; i < hiddens.length; i++)
-        hiddens[i].style.display = "block";
-    setThumbnails();
-    isCarouselEnabled = false;
-    setInterval(setThumbnails, 10000);
-}
+};
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("logo"))
+        return;
+    isCarouselEnabled = true;
+    for (let i = 0; i < items.length; i++) {
+        let item = items[i];
+        item.style.transform = "";
+    }
+    $("#details").style.transform = "translateY(-50%) scale(0)";
+    Carousel.setActiveAt(currentIndex);
+});
 document.addEventListener("keydown", function (e) {
     if (e.key == "ArrowLeft")
         Carousel.setActiveAt(currentIndex - 1);
     else if (e.key == "ArrowRight")
         Carousel.setActiveAt(currentIndex + 1);
     else if (e.key == "Enter")
-        showDetails($("card" + currentIndex));
+        Carousel.showDetails($("card" + currentIndex));
 });
+window.onresize = function () {
+    let target = $("#card" + currentIndex);
+    main.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2);
+};
+for (let i = 0; i < items.length; i++)
+    items[i].onclick = (e) => Carousel.showDetails(e.currentTarget);
 window.addEventListener("load", function () {
     let lastIndex = Number(window.localStorage.getItem("iLastSelectedGame"));
-    console.log(lastIndex);
     if (!isNaN(lastIndex))
         Carousel.setActiveAt(lastIndex);
     else
         Carousel.setActiveAt(Math.round(($(".carousel").children.length - 1) / 2));
     main.style.opacity = "1";
 });
+//# sourceMappingURL=index.js.map

@@ -4,15 +4,13 @@ let currentIndex = -1;
 let isCarouselEnabled = true;
 let firstTime = true;
 let currentTimeout;
+let items = $$(".carousel > div");
 
-// "CoverFlow"-like carousel system pour les parents
+// carousel style coverflow pour les jeux (parents)
 const Carousel = {
 	// set card at index as active
 	setActiveAt: (index: number) => {
-		if (index == currentIndex)
-			return;
-
-		if (!isCarouselEnabled)
+		if (index == currentIndex || !isCarouselEnabled)
 			return;
 
 		let container = $(".carousel");
@@ -70,17 +68,14 @@ const Carousel = {
 		overlay.style.opacity = "0.5";
 
 		setTimeout(() => {
-			//background.style.transform = "scale(0)"; // rotateY(100deg) 0.5s
 			background.style.transition = "";
 			background.style.left = `${dir * 100}vw`;
 			setTimeout(() => {
-				// ($("source", background) as HTMLSourceElement).src = `/videos/games/${shortname}/background.mp4#t=15`;
 				background.src = `/videos/games/${shortname}/background.mp4#t=15`;
 				background.load();
 
 				background.style.transition = "left 0.25s ease-out, transform 0.25s ease-out";
 				background.style.left = "0";
-				//background.style.transform = "scale(1)";
 				overlay.playbackRate = 0.9;
 				overlay.style.opacity = "0.3";
 			}, 100);
@@ -91,89 +86,94 @@ const Carousel = {
 			showPopup();
 
 		currentIndex = index;
-
 		window.localStorage.setItem("iLastSelectedGame", `${currentIndex}`);
+	},
+
+	// afficher plus de details sur un jeu specifique
+	showDetails(target: HTMLElement) {
+		function setThumbnails() {
+			let previews = $$(".followerPreview");
+			let id = target.id.slice(5);
+
+			for (let i = 0; i < previews.length; i++) {
+				let preview = previews[i] as HTMLImageElement;
+				preview.style.opacity = "0";
+				fetch(`/${id}/randomthumbnail`)
+					.then(data => data.text())
+					.then(src => {
+						preview.src = "";
+						preview.src = src;
+						preview.onload = () => { preview.style.opacity = "1"; };
+					});
+			}
+		}
+
+		setThumbnails();
+
+		isCarouselEnabled = false;
+
+		for (let i = 0; i < items.length; i++) {
+			let item: HTMLElement = items[i];
+			if (item != target)
+				item.style.transform = "scale(0)";
+		}
+
+		let headers = $$(".showOnActive", target);
+		for (let i = 0; i < headers.length; i++) {
+			headers[i].style.opacity = "0";
+		}
+
+		let input = $("input", target) as HTMLInputElement;
+		console.log(input.value)
+		fetch(`/${input.value}`)
+			.then(data => data.text())
+			.then(html => {
+				$("#details").innerHTML = html;
+				$("#details").style.transform = "translateY(-50%) scale(1)";
+			});		
 	}
 }
 
+document.addEventListener("click", function (e) {
+	if ((e.target as HTMLElement).classList.contains("logo"))
+		return;
 
-window.onresize = function () {
-	let target = $("#card" + currentIndex);
-	main.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2)
-}
+	isCarouselEnabled = true;
 
-function showDetails(target : HTMLElement) {
-	function setThumbnails() {
-		let previews = $$(".followerPreview");
-		let id = target.id.slice(5);
-
-		for (let i = 0; i < previews.length; i++) {
-			let preview = previews[i] as HTMLImageElement;
-			preview.style.opacity = "0";
-			fetch(`/${id}/randomthumbnail`)
-				.then(data => data.text())
-				.then(src => {
-					preview.src = "";
-					preview.src = src;
-					preview.onload = () => { preview.style.opacity = "1"; };					
-				});
-		}
+	for (let i = 0; i < items.length; i++) {
+		let item: HTMLElement = items[i];
+		item.style.transform = "";
 	}
 
-	// cacher les infos pour ne montrer que le logo en background
-	/*target.querySelector("h1").style.fontSize = "100px";
-	target.querySelector("h2").style.transform = "scaleY(0)";
-	target.querySelector("h2").style.opacity = "0";
-	target.querySelector("h2").style.height = "0";
-	target.querySelector(".statsWrapper").style.flexDirection = "row";*/
+	$("#details").style.transform = "translateY(-50%) scale(0)";
+	Carousel.setActiveAt(currentIndex);
+});
 
-	let hiddens = $$(".statsWrapper .hiddenStat", target);
-	
-	for (let i = 0; i < hiddens.length; i++)
-		hiddens[i].style.display = "block";
-
-	setThumbnails()
-
-	// empecher l'activation des items
-	isCarouselEnabled = false;
-
-	setInterval(setThumbnails, 10000);
-
-
-	// reactiver les items au mouseleave
-	/*document.onclick = function (e) {
-		if (firstClick) {
-			firstClick = false;
-			return;
-		}
-
-		carouselenabled = true;
-		close();
-	};*/
-
-	/*function close() {
-		details.style.opacity = 0;
-		details.style.transform = "translate(-50%, -50%) scale(0.9)";
-		setTimeout(function () {
-			details.style.display = "none";
-		}, 500);
-	}*/
-}
-
+// naviguer dans le carousel avec les fleches du clavier + entree
 document.addEventListener("keydown", function (e) {
 	if (e.key == "ArrowLeft")
 		Carousel.setActiveAt(currentIndex - 1);
 	else if (e.key == "ArrowRight")
 		Carousel.setActiveAt(currentIndex + 1);
 	else if (e.key == "Enter")
-		showDetails($("card" + currentIndex));
+		Carousel.showDetails($("card" + currentIndex));
 });
 
+// re-centrer la position des items dans le carousel on page resize
+window.onresize = function () {
+	let target = $("#card" + currentIndex);
+	main.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2)
+}
+
+// ajouter les evenements aux items
+for (let i = 0; i < items.length; i++)
+	items[i].onclick = (e) => Carousel.showDetails(e.currentTarget as HTMLElement);
+
+// rendre actif le dernier jeu selectionne en memoire
+// sinon, rendre actif le jeu du milieu
 window.addEventListener("load", function () {
-	// rendre actif le dernier jeu selectionne en memoire
-	// sinon, rendre actif le jeu du milieu
 	let lastIndex = Number(window.localStorage.getItem("iLastSelectedGame"));
-	console.log(lastIndex)
+
 	if (!isNaN(lastIndex))
 		Carousel.setActiveAt(lastIndex);
 	else

@@ -1,1 +1,17 @@
 ﻿@model Game;
+
+<article class="leftStats">
+    <p>Nb de faits: @Model.Facts.Count</p>
+    <p>Nb de followers: @Model.Followers.Count</p>
+    <p>Nb de followers essentiels: @Model.Followers.Where(f => f.IsEssential).ToList().Count</p>
+    <p>Nb de followers qui respawns: @Model.Followers.Where(f => f.DoesRespawn).ToList().Count</p>
+</article>
+
+<div class="spacer"></div>
+
+<article class="rightStats">
+    <p>Hitpoints moyen: @Model.Followers.Average(f => Convert.ToDecimal(f.Hitpoints))</p>
+    <p>Energie moyenne: @Model.Followers.Average(f => f.Energy)</p>
+    <p>Alignment moyen: @Model.Followers.Average(f => f.Alignment)</p>
+    <p>Race la plus populaire: @Model.Followers.Count</p>
+</article>

@@ -78,11 +78,15 @@ main {
 }
 
 .carousel > div {
-	text-align: center;
-	transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-	z-index: 1;
+	width: 34%;
+
 	display: flex;
 	flex-direction: column;
+	z-index: 1;
+
+	text-align: center;
+
+	transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .carousel .active {
@@ -156,6 +160,39 @@ main {
 
 
 
+/* details du jeu */
+#details {
+	width: 100vw;
+	height: 50%;
+
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%) scale(0);
+
+	display: grid;
+	grid-template-columns: 1fr 35% 1fr;
+	justify-content: center;
+	align-items: center;
+
+	transition: transform 0.5s ease-in-out;
+}
+
+#details article {
+	font-size: 4vmin;
+}
+#details .leftStats {
+	text-align: right;
+}
+#details .rightStats {
+	text-align: left;
+}
+
+
+
+
+
+
 
 /* apercu des followers pour un parent */
 .followerPreview {
@@ -180,25 +217,4 @@ main {
 #followerPreview4 {
 	left: 70%;
 	top: 60%;
-}
-
-
-
-
-
-
-/* wrapper des statistiques*/
-.statsWrapper {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.statsWrapper .hiddenStat {
-	display: none;
-}
-
-.statsWrapper * {
-	margin: 0;
-	padding: 0 0 10px 10px;
 }

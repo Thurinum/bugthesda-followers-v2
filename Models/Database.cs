@@ -50,9 +50,9 @@ namespace SessionProject2W5.Models
 			// Helper: obtenir une attribut et convertir
 			int attri(string name) {
 				string value = attr(name);
-				int converted = 0;
+				int converted = -1;
 
-				try { 
+				try {					
 					converted = int.Parse(value);
 				}
 				catch(Exception) 
@@ -133,8 +133,8 @@ namespace SessionProject2W5.Models
 						follower.Name			= attr("name");
 						follower.Description	= attr("description");
 						follower.UnlockContext	= attr("unlockcontext");
-						follower.Hitpoints		= attri("health");
-						follower.Energy		    = attri("magicka");
+						follower.Hitpoints		= attri("hitpoints");
+						follower.Energy		    = attri("energy");
 						follower.Alignment		= attri("alignment");
 						follower.IsEssential	= attrb("essential");
 						follower.DoesRespawn	= attrb("respawns");

@@ -91,62 +91,75 @@ const Carousel = {
 
 	// afficher plus de details sur un jeu specifique
 	showDetails(target: HTMLElement) {
-		function setThumbnails() {
-			let previews = $$(".followerPreview");
-			let id = target.id.slice(5);
-
-			for (let i = 0; i < previews.length; i++) {
-				let preview = previews[i] as HTMLImageElement;
-				preview.style.opacity = "0";
-				fetch(`/${id}/randomthumbnail`)
-					.then(data => data.text())
-					.then(src => {
-						preview.src = "";
-						preview.src = src;
-						preview.onload = () => { preview.style.opacity = "1"; };
-					});
-			}
-		}
-
-		setThumbnails();
-
 		isCarouselEnabled = false;
 
+		// hide all carousel items except current
 		for (let i = 0; i < items.length; i++) {
 			let item: HTMLElement = items[i];
 			if (item != target)
 				item.style.transform = "scale(0)";
 		}
 
+		// hide all headers of current item except title
 		let headers = $$(".showOnActive", target);
 		for (let i = 0; i < headers.length; i++) {
-			headers[i].style.opacity = "0";
+			let header = headers[i];
+			console.log(header.nodeName)
+			if (header.nodeName === "H1") {
+				header.style.fontSize = "10vmin";
+			} else {
+				header.style.opacity = "0";
+				header.style.transform = "scale(0)";
+            }
 		}
 
+		// fetch game name from hidden input and load partial view
 		let input = $("input", target) as HTMLInputElement;
-		console.log(input.value)
+		let details = $("#details");
+
 		fetch(`/${input.value}`)
 			.then(data => data.text())
 			.then(html => {
-				$("#details").innerHTML = html;
-				$("#details").style.transform = "translateY(-50%) scale(1)";
+				details.innerHTML = html;
+				details.style.transform = "translateY(-50%) scale(1)";
 			});		
-	}
+
+		// blur further background
+		$("#background").style.filter = "blur(20px)";
+		let img = $("img", target);
+		img.style.animationPlayState = "running";
+		img.style.transform = "scale(1.2)";
+	},
+
+	hideDetails(target: HTMLElement) {
+		isCarouselEnabled = true;
+
+		// reset items display
+		for (let i = 0; i < items.length; i++) {
+			items[i].style.transform = "";
+		}
+
+		// hack: reset headers on current item
+		Carousel.setActiveAt(0);
+		Carousel.setActiveAt(currentIndex);
+
+		// unblur bg
+		$("#background").style.filter = "blur(5px)";
+		let img = $("img", target);
+		img.style.animationPlayState = "paused";
+		img.style.transform = "";
+
+		$("#details").style.transform = "translateY(-50%) scale(0)";
+    }
 }
 
 document.addEventListener("click", function (e) {
-	if ((e.target as HTMLElement).classList.contains("logo"))
+	let target = e.target as HTMLElement;
+
+	if (target.classList.contains("logo"))
 		return;
 
-	isCarouselEnabled = true;
-
-	for (let i = 0; i < items.length; i++) {
-		let item: HTMLElement = items[i];
-		item.style.transform = "";
-	}
-
-	$("#details").style.transform = "translateY(-50%) scale(0)";
-	Carousel.setActiveAt(currentIndex);
+	Carousel.hideDetails(target);
 });
 
 // naviguer dans le carousel avec les fleches du clavier + entree

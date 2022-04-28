@@ -29,6 +29,8 @@ main {
 
 	mask-image: radial-gradient(black, transparent);
 	-webkit-mask-image: radial-gradient(black, transparent);
+
+	transition: filter 2s ease-out;
 }
 
 #foreground {
@@ -119,6 +121,11 @@ main {
 
 .carousel button img {
 	filter: drop-shadow(0 0 21px #2a2626);
+
+	animation: logo-pulse 1s ease-in-out infinite;
+	animation-play-state: paused;
+
+	transition: transform 0.5s ease-out;
 }
 
 .carousel h1 {
@@ -152,10 +159,6 @@ main {
 	font-size: 1.5vmin;
 }
 
-.overscroll { /* permet de center le scroll dans le carousel */
-	background-color: #000c;
-}
-
 
 
 
@@ -171,6 +174,7 @@ main {
 	transform: translateY(-50%) scale(0);
 
 	display: grid;
+	grid-template-rows: 1fr;
 	grid-template-columns: 1fr 35% 1fr;
 	justify-content: center;
 	align-items: center;
@@ -188,33 +192,33 @@ main {
 	text-align: left;
 }
 
+#details button {
+	grid-area: 2/2;
 
+    position: relative;
+    top: 11vh;
 
-
-
-
-
-/* apercu des followers pour un parent */
-.followerPreview {
-	position: fixed;
-	width: 20%;
-
-	z-index: 0;
+    font-size: 4vmin;
+    border-radius: 10px;
+    box-shadow: -1px 3px 10px -3px #d51010;
+    background-color: #1111115c;
+    outline: #541f1f 2px solid;
+    font-family: 'Pathway Gothic One';
 }
 
-#followerPreview1 {
-	left: 10%;
-	top: 5%;
-}
-#followerPreview2 {
-	left: 60%;
-	top: 30%;
-}
-#followerPreview3 {
-	left: 15%;
-	top: 70%;
-}
-#followerPreview4 {
-	left: 70%;
-	top: 60%;
+
+
+
+
+/*animations*/
+@keyframes logo-pulse {
+    0% {
+        filter: drop-shadow(0 0 21px #2a2626);
+    }
+    50% {
+        filter: drop-shadow(0 0 72px #661111);
+    }
+    100% {
+        filter: drop-shadow(0 0 21px #2a2626);
+    }
 }

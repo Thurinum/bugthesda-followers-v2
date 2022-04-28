@@ -51,4 +51,12 @@ function showPopup() {
 }
 ad.onmouseover = function () { adimg.src = "/images/shared/ui/popup/geralt2.png"; };
 ad.onmouseleave = function () { adimg.src = "/images/shared/ui/popup/geralt.png"; };
+$("#collabBtn").onclick = function () {
+    let foreground = $("#foreground_witcherCollab");
+    foreground.style.display = "block";
+    setTimeout(function () {
+        foreground.style.opacity = "1";
+        foreground.style.filter = "blur(100px) brightness(100)";
+    }, 1000);
+};
 //# sourceMappingURL=shared.js.map

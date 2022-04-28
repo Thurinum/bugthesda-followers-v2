@@ -66,22 +66,6 @@ const Carousel = {
         window.localStorage.setItem("iLastSelectedGame", `${currentIndex}`);
     },
     showDetails(target) {
-        function setThumbnails() {
-            let previews = $$(".followerPreview");
-            let id = target.id.slice(5);
-            for (let i = 0; i < previews.length; i++) {
-                let preview = previews[i];
-                preview.style.opacity = "0";
-                fetch(`/${id}/randomthumbnail`)
-                    .then(data => data.text())
-                    .then(src => {
-                    preview.src = "";
-                    preview.src = src;
-                    preview.onload = () => { preview.style.opacity = "1"; };
-                });
-            }
-        }
-        setThumbnails();
         isCarouselEnabled = false;
         for (let i = 0; i < items.length; i++) {
             let item = items[i];
@@ -90,28 +74,48 @@ const Carousel = {
         }
         let headers = $$(".showOnActive", target);
         for (let i = 0; i < headers.length; i++) {
-            headers[i].style.opacity = "0";
+            let header = headers[i];
+            console.log(header.nodeName);
+            if (header.nodeName === "H1") {
+                header.style.fontSize = "10vmin";
+            }
+            else {
+                header.style.opacity = "0";
+                header.style.transform = "scale(0)";
+            }
         }
         let input = $("input", target);
-        console.log(input.value);
+        let details = $("#details");
         fetch(`/${input.value}`)
             .then(data => data.text())
             .then(html => {
-            $("#details").innerHTML = html;
-            $("#details").style.transform = "translateY(-50%) scale(1)";
+            details.innerHTML = html;
+            details.style.transform = "translateY(-50%) scale(1)";
         });
+        $("#background").style.filter = "blur(20px)";
+        let img = $("img", target);
+        img.style.animationPlayState = "running";
+        img.style.transform = "scale(1.2)";
+    },
+    hideDetails(target) {
+        isCarouselEnabled = true;
+        for (let i = 0; i < items.length; i++) {
+            items[i].style.transform = "";
+        }
+        Carousel.setActiveAt(0);
+        Carousel.setActiveAt(currentIndex);
+        $("#background").style.filter = "blur(5px)";
+        let img = $("img", target);
+        img.style.animationPlayState = "paused";
+        img.style.transform = "";
+        $("#details").style.transform = "translateY(-50%) scale(0)";
     }
 };
 document.addEventListener("click", function (e) {
-    if (e.target.classList.contains("logo"))
+    let target = e.target;
+    if (target.classList.contains("logo"))
         return;
-    isCarouselEnabled = true;
-    for (let i = 0; i < items.length; i++) {
-        let item = items[i];
-        item.style.transform = "";
-    }
-    $("#details").style.transform = "translateY(-50%) scale(0)";
-    Carousel.setActiveAt(currentIndex);
+    Carousel.hideDetails(target);
 });
 document.addEventListener("keydown", function (e) {
     if (e.key == "ArrowLeft")

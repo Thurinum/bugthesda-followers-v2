@@ -32,8 +32,7 @@ namespace SessionProject2W5.Controllers
 		public IActionResult Index_Details(string Id)
 		{
 			Game game = database.Games.Where(g => g.ShortName == Id).ToList()[0];
-			Debug.WriteLine(game.Followers[0
-		].Id);
+			
 			if (game.Followers.Count == 0)
 				return PartialView("Index_Details_NoContent", game.Name);
 

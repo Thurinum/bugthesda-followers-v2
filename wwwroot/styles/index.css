@@ -155,6 +155,9 @@
 
 			transition: transform 0.5s ease-out;
 		}
+		.carousel button.trigger img:hover {
+			cursor: pointer;
+		}
 
 .carousel #searchBtn {
 	grid-area: 2/2;
@@ -248,7 +251,7 @@
 			z-index: 0;
 			align-self: end;
 
-			filter: drop-shadow(-18px -10px 6px black) saturate(0.8);
+			filter: drop-shadow(-17px -12px 3px black) saturate(0.8);
 		}
 		#details .noContent p {
 			margin: 10px;

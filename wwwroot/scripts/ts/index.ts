@@ -57,7 +57,7 @@ const Carousel = {
 		// center the new active card in container
 		main.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2)
 
-		let shortname = ($("input", target) as HTMLInputElement).value;
+		let shortname = ($("input.gameName", target) as HTMLInputElement).value;
 		let background = $("#background") as HTMLVideoElement;
 		let overlay = $("#foreground_mist") as HTMLVideoElement;
 		let dir = index < currentIndex ? -1 : 1;
@@ -112,7 +112,7 @@ const Carousel = {
 		}
 
 		// fetch game name from hidden input and load partial view
-		let input = $("input", target) as HTMLInputElement;
+		let input = $("input.gameName", target) as HTMLInputElement;
 		let details = $("#details");
 
 		fetch(`/${input.value}`)
@@ -132,7 +132,7 @@ const Carousel = {
 		$("#searchBtn").style.transform = "scale(1)";
 	},
 
-	hideDetails(target: HTMLElement) {
+	hideDetails() {
 		isCarouselEnabled = true;
 
 		// reset items display
@@ -141,6 +141,8 @@ const Carousel = {
 		}
 
 		// reset headers
+		let target = items[currentIndex];
+		console.log(target)
 		let headers = $$(".showOnActive", target);
 		for (let i = 0; i < headers.length; i++) {
 			let header = headers[i];
@@ -162,13 +164,9 @@ const Carousel = {
 	}
 }
 
-document.addEventListener("click", function (e) {
-	let target = e.target as HTMLElement;
-
-	if (target.classList.contains("logo"))
-		return;
-
-	Carousel.hideDetails(target);
+document.addEventListener("click", (e) => {
+	if (!(e.target as HTMLElement).classList.contains("logo"))
+		Carousel.hideDetails();
 });
 
 // naviguer dans le carousel avec les fleches du clavier + entree

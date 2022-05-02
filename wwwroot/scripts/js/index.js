@@ -40,7 +40,7 @@ const Carousel = {
             hidden[i].style.transform = "scale(1)";
         }
         main.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2);
-        let shortname = $("input", target).value;
+        let shortname = $("input.gameName", target).value;
         let background = $("#background");
         let overlay = $("#foreground_mist");
         let dir = index < currentIndex ? -1 : 1;
@@ -80,7 +80,7 @@ const Carousel = {
                 header.style.transform = "scale(0)";
             }
         }
-        let input = $("input", target);
+        let input = $("input.gameName", target);
         let details = $("#details");
         fetch(`/${input.value}`)
             .then(data => data.text())
@@ -94,11 +94,13 @@ const Carousel = {
         img.style.transform = "scale(1.2)";
         $("#searchBtn").style.transform = "scale(1)";
     },
-    hideDetails(target) {
+    hideDetails() {
         isCarouselEnabled = true;
         for (let i = 0; i < items.length; i++) {
             items[i].style.transform = "";
         }
+        let target = items[currentIndex];
+        console.log(target);
         let headers = $$(".showOnActive", target);
         for (let i = 0; i < headers.length; i++) {
             let header = headers[i];
@@ -115,11 +117,9 @@ const Carousel = {
         $("#searchBtn").style.transform = "scale(0)";
     }
 };
-document.addEventListener("click", function (e) {
-    let target = e.target;
-    if (target.classList.contains("logo"))
-        return;
-    Carousel.hideDetails(target);
+document.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("logo"))
+        Carousel.hideDetails();
 });
 document.addEventListener("keydown", function (e) {
     if (e.key == "ArrowLeft")

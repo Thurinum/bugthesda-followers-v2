@@ -75,11 +75,7 @@ const Carousel = {
         let headers = $$(".showOnActive", target);
         for (let i = 0; i < headers.length; i++) {
             let header = headers[i];
-            console.log(header.nodeName);
-            if (header.nodeName === "H1") {
-                header.style.fontSize = "10vmin";
-            }
-            else {
+            if (header.nodeName != "H1") {
                 header.style.opacity = "0";
                 header.style.transform = "scale(0)";
             }
@@ -96,19 +92,27 @@ const Carousel = {
         let img = $("img", target);
         img.style.animationPlayState = "running";
         img.style.transform = "scale(1.2)";
+        $("#searchBtn").style.transform = "scale(1)";
     },
     hideDetails(target) {
         isCarouselEnabled = true;
         for (let i = 0; i < items.length; i++) {
             items[i].style.transform = "";
         }
-        Carousel.setActiveAt(0);
-        Carousel.setActiveAt(currentIndex);
+        let headers = $$(".showOnActive", target);
+        for (let i = 0; i < headers.length; i++) {
+            let header = headers[i];
+            if (header.nodeName != "H1") {
+                header.style.opacity = "1";
+                header.style.transform = "scale(1)";
+            }
+        }
         $("#background").style.filter = "blur(5px)";
         let img = $("img", target);
         img.style.animationPlayState = "paused";
         img.style.transform = "";
         $("#details").style.transform = "translateY(-50%) scale(0)";
+        $("#searchBtn").style.transform = "scale(0)";
     }
 };
 document.addEventListener("click", function (e) {

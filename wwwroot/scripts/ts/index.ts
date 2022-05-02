@@ -104,13 +104,11 @@ const Carousel = {
 		let headers = $$(".showOnActive", target);
 		for (let i = 0; i < headers.length; i++) {
 			let header = headers[i];
-			console.log(header.nodeName)
-			if (header.nodeName === "H1") {
-				header.style.fontSize = "10vmin";
-			} else {
+
+			if (header.nodeName != "H1") {
 				header.style.opacity = "0";
 				header.style.transform = "scale(0)";
-            }
+			}
 		}
 
 		// fetch game name from hidden input and load partial view
@@ -129,6 +127,9 @@ const Carousel = {
 		let img = $("img", target);
 		img.style.animationPlayState = "running";
 		img.style.transform = "scale(1.2)";
+
+		// show button
+		$("#searchBtn").style.transform = "scale(1)";
 	},
 
 	hideDetails(target: HTMLElement) {
@@ -139,9 +140,16 @@ const Carousel = {
 			items[i].style.transform = "";
 		}
 
-		// hack: reset headers on current item
-		Carousel.setActiveAt(0);
-		Carousel.setActiveAt(currentIndex);
+		// reset headers
+		let headers = $$(".showOnActive", target);
+		for (let i = 0; i < headers.length; i++) {
+			let header = headers[i];
+
+			if (header.nodeName != "H1") {
+				header.style.opacity = "1";
+				header.style.transform = "scale(1)";
+			}
+		}
 
 		// unblur bg
 		$("#background").style.filter = "blur(5px)";
@@ -150,7 +158,8 @@ const Carousel = {
 		img.style.transform = "";
 
 		$("#details").style.transform = "translateY(-50%) scale(0)";
-    }
+		$("#searchBtn").style.transform = "scale(0)";
+	}
 }
 
 document.addEventListener("click", function (e) {

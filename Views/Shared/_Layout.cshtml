@@ -2,57 +2,68 @@
 <html>
 
 <head>
-    <title>@ViewData["sPageTitle"]</title>
+	<title>@ViewData["sPageTitle"]</title>
+	<meta charset="UTF-8" />
 
-    <meta charset="utf-8" />
-    <link href="~/styles/shared.css" rel="stylesheet" />
-    <link href="~/styles/@(ViewContext.RouteData.Values["action"].ToString().ToLower()).css" rel="stylesheet" />
-    <link href="~/images/shared/ui/favicon.png" rel="icon" />
+	<link href="~/styles/shared.css" rel="stylesheet" />
+	<link href="~/styles/@(ViewContext.RouteData.Values["action"].ToString().ToLower()).css" rel="stylesheet" />
+	<link href="~/images/shared/ui/favicon.png" rel="icon" />
 
-    @RenderSection("ExtraStyles", false)
+	@RenderSection("ExtraStyles", false)
 </head>
 
 <body>
-    <header>
-        <nav>
-            <button class="link search" data-href="/search" data-dir="top">Recherche</button>
-            <button class="link home" data-href="/" data-dir="right">
-                <img src="~/images/shared/ui/logo.png" alt="'Bugs in All of Our Games' Logo" />
-            </button>
-            <button class="link favorites" data-href="/favoris" data-dir="bottom">Favoris</button>
-        </nav>
-    </header>
+	<!-- HEADER -->
+	<header>
+		<nav>
+			<button id="btn_search" class="link" data-href="/search" data-dir="top">Recherche</button>
+			<button id="btn_home" class="link" data-href="/" data-dir="right">
+				<img src="~/images/shared/ui/logo.png" alt="'Bugs in All of Our Games' Logo" />
+			</button>
+			<button id="btn_favorites" class="link" data-href="/favoris" data-dir="bottom">Favoris</button>
+		</nav>
+	</header>
 
-    @RenderBody()
+	<main>
+		@RenderBody()
+	</main>
 
-    <div id="ad">
-        <img class="swordTop" src="~/images/shared/ui/popup/sword.png" />
-        <h2>
-            <span class="gerald">Geralt de Riv&nbsp;</span> a besoin de toi!
-        </h2>
-        <marquee bgcolor="#222" scrolldelay="10" truespeed><font color="red">█ █ █ █ █ █ █ █</font></marquee>
+	<!-- ADVERTISEMENT POPUP POUR LE SITE DE ZACHARY TANGUAY-->
+	<section id="collabPopup">
+		<button class="closeBtn">&times;</button>
 
-        <article>
-            <img class="geraltImg" src="~/images/shared/ui/popup/geralt.png" />
-            <p>Sauras-tu triompher de tes ennemis? Joins-moi dans mon aventure épique à la recherche de <em>l'Épée de la Lune ! </em> Monstres et humains ne sauront résister à notre duo inséparable.<br /><br /><small><i>Lances-toi dans mon récit dès maintenant et court la chance de gagner une PS6.</i></small></p>
-        </article>
+		<img class="swordTop" src="~/images/shared/ui/popup/sword.png" />
+		<img class="swordBottom" src="~/images/shared/ui/popup/sword.png" />
 
-        <marquee bgcolor="#222" scrolldelay="10" truespeed><font color="red">█ █ █ █ █ █ █ █</font></marquee>
-        <button id="collabBtn"><b>ACCÉDER AU SITE</b></button>
-        <img class="swordBottom" src="~/images/shared/ui/popup/sword.png" />
-    </div>
-    
-    <img id="foreground_witcherCollab" src="~/images/shared/ui/popup/background.png" />
+		<!-- OVERLAY DE CHARGEMENT-->
+		<div class="overlay">
+			<h4 class="progressHeader">Processing request...</h4>
+			<img class="throbber" src="~/images/shared/ui/throbber.png" />
+			<progress min="-1" max="100"></progress>
+			<p class="progressText">Loading...</p>
+		</div>
 
-    <footer>
-        <p>
-            Code &copy; 2022 Maxime Gagnon. All rights reserved.<br />
-            <small>Zenimax Media: For any liability issues pls contact kevin leduc</small>
-        </p>
-    </footer>
+		<!-- CONTENU DE LA POPUP -->
+		<h2><span class="geralt">Geralt de Riv&nbsp;</span> a besoin de toi!</h2>
+		<marquee bgcolor="#222" scrolldelay="10" truespeed><font color="red">█ █ █ █ █ █ █ █</font></marquee>
+		<article>
+			<img class="geraltImg" src="~/images/shared/ui/popup/geralt.png" />
+			<p>Sauras-tu triompher de tes ennemis? Joins-moi dans mon aventure épique à la recherche de <em>l'Épée de la Lune ! </em> Monstres et humains ne sauront résister à notre duo inséparable.<br /><br /><small><i>Lances-toi dans mon récit dès maintenant et court la chance de gagner une PS6.</i></small></p>
+		</article>
+		<marquee bgcolor="#222" scrolldelay="10" truespeed><font color="red">█ █ █ █ █ █ █ █</font></marquee>
+		<button class="collabBtn"><b>ACCÉDER AU SITE</b></button>
+	</section>
 
-    <script src="~/scripts/js/shared.js"></script>
-    <script src="~/scripts/js/@(ViewContext.RouteData.Values["action"].ToString().ToLower()).js"></script>
+	<!-- FOOTER -->
+	<footer>
+		<p>
+			Code &copy; 2022 Maxime Gagnon. All rights reserved.<br />
+			<small>Zenimax Media: For any liability issues pls contact kevin leduc</small>
+		</p>
+	</footer>
+
+	<script src="~/scripts/js/shared.js"></script>
+	<script src="~/scripts/js/@(ViewContext.RouteData.Values["action"].ToString().ToLower()).js"></script>
 </body>
 
 </html>

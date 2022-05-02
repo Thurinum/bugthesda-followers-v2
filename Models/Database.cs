@@ -145,6 +145,7 @@ namespace SessionProject2W5.Models
 						try
 						{
 							follower.Race = this.SharedInfo.Races[raceid];
+							follower.Race.Population++;
 						}
 						catch(Exception)
 						{

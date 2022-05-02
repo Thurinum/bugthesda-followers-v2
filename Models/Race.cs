@@ -8,5 +8,6 @@ namespace SessionProject2W5.Models
         public new string Name;
         public string CommonName;
         public string NativeName;
+        public int Population = 0;
     }
 }

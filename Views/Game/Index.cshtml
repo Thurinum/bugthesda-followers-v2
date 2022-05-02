@@ -1,44 +1,45 @@
 ﻿@model List<Game>
 
-<main>
-    <video id="background" muted autoplay loop>
-        <source src="" type="video/mp4" />        
-    </video>
-    <div class="overscroll"></div>
+<!-- ARRIERE-PLAN VIDEO -->
+<video id="background" muted autoplay loop>
+	<source src="" type="video/mp4" />
+</video>
 
-    <section class="carousel">
-        @foreach (Game game in Model)
-        {
-            int nbFollowers = game.Followers.Count;
+<!-- CAROUSEL STYLE "COVERFLOW" DES JEUX -->
+<section id="carouselWrapper">
+	<div class="overscroll"></div>
 
-            <div class="hidden" id="card@(game.Id)" onmouseover="Carousel.setActiveAt(@game.Id)">
-                <h1 class="showOnActive">@game.Name</h1>
-                <h2 class="showOnActive">@game.Tagline</h2>
-                <button>
-                    <img class="logo" src="~/images/games/@(game.ShortName)/logo.png" />
-                </button>
-                <h3 class="showOnActive">@nbFollowers @Utils.Plural("follower", nbFollowers)</h3>
-                <h4 class="showOnActive">@game.Followers.Where(f => f.IsEssential).ToList().Count @Utils.Plural("follower", nbFollowers) @Utils.Plural("essentiel", nbFollowers)</h4>
-                <input type="hidden" value="@game.ShortName" />
-            </div>
-        }
-    </section>
+	<div class="carousel">
+		@foreach (Game game in Model)
+		{
+			int nbFollowers = game.Followers.Count;
 
-    <div class="overscroll"></div>
+			<div class="hidden" id="card@(game.Id)" onmouseover="Carousel.setActiveAt(@game.Id)">
+				<h1 class="showOnActive">@game.Name</h1>
+				<h2 class="showOnActive">@game.Tagline</h2>
+				<button class="trigger">
+					<img class="logo" src="~/images/games/@(game.ShortName)/logo.png" />
+				</button>
+				<h3 class="showOnActive">@nbFollowers @Utils.Plural("follower", nbFollowers)</h3>
+				<button id="searchBtn" class="link" data-href="/@(game.Name)" data-anim="scaleup">View followers</button>
+				<h4 class="showOnActive">@game.Followers.Where(f => f.IsEssential).ToList().Count @Utils.Plural("follower", nbFollowers) @Utils.Plural("essentiel", nbFollowers)</h4>
+				<input type="hidden" value="@game.ShortName" />
+			</div>
+		}
+	</div>
 
-    <section id="details">
-        <!-- PARTIAL VIEW DYNAMIQUE -->
-    </section>
+	<div class="overscroll"></div>
+</section>
 
-    <img id="followerPreview1" class="followerPreview" />
-    <img id="followerPreview2" class="followerPreview" />
-    <img id="followerPreview3" class="followerPreview" />
-    <img id="followerPreview4" class="followerPreview" />
+<!-- AFFICHAGE DES STATISTIQUES D'UN JEU -->
+<section id="details">
+	<!-- vue partielle dynamique -->
+</section>
 
-    <video id="foreground_mist" muted autoplay loop>
-        <source src="~/videos/shared/foreground_mist_sparks.mp4" type="video/mp4" />
-    </video>
-    <video id="foreground" muted autoplay loop>
-        <source src="~/videos/shared/foreground.mp4" type="video/mp4" />
-    </video>
-</main>
+<!-- AVANT-PLAN VIDEO -->
+<video id="foreground_mist" muted autoplay loop>
+	<source src="~/videos/shared/foreground_mist_sparks.mp4" type="video/mp4" />
+</video>
+<video id="foreground" muted autoplay loop>
+	<source src="~/videos/shared/foreground.mp4" type="video/mp4" />
+</video>

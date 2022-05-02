@@ -59,7 +59,6 @@
 
   <ItemGroup>
 	<Folder Include="wwwroot\images\shared\classes\" />
-	<Folder Include="wwwroot\images\shared\statuspages\" />
 	<Folder Include="wwwroot\images\shared\races\" />
 	<Folder Include="wwwroot\scripts\js\" />
   </ItemGroup>

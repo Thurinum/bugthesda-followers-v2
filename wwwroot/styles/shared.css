@@ -1,27 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
+/* STYLES PRINCIPAUX */
 :root {
 	--letterbox-height: 8vh;
 	--letterbox-color: black;
-	--letterbox-accent: #4c4949;
+	--letterbox-accent: #4C4949;
 }
 
-/* styles principaux */
 html {
 	scroll-behavior: smooth;
 }
 
 body {
+	margin: 0;
+
 	display: flex;
 	flex-direction: column;
 
-	margin: 0;
 	overflow: hidden;
 	scrollbar-width: none; /* Hide scrollbar (Firefox) */
 
 	color: white;
 	background-color: black;
+
 	font-family: "Pathway Gothic One", sans-serif; 
 }
 body::-webkit-scrollbar { /* Hide scrollbar (Blink) */
@@ -29,6 +31,12 @@ body::-webkit-scrollbar { /* Hide scrollbar (Blink) */
 	height: 0;
 }
 
+
+
+
+
+
+/* STYLES DU LAYOUT */
 header {
 	width: 100vw;
 	height: var(--letterbox-height);
@@ -36,52 +44,50 @@ header {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
 	z-index: 2;
 
 	background-color: var(--letterbox-color);
 	box-shadow: 0 5px 22px 0 var(--letterbox-color);
 	border-bottom: solid 2px #4949494A;
 }
+	header nav {
+		width: 50%;
+		height: 100%;
 
-header nav {
-	width: 50%;
-	height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-	display: flex;
-	justify-content: center;
-	align-items: center;
+		color: white;
+	}
 
-	color: white;
-}
+		header nav button {
+			height: 90%;
+			transform: scale(0.9);
+			transition: transform 0.2s ease-in-out;
+		}
 
-header nav button, header nav button > img {
-	min-width: 10%;
-	margin-left: 10px;
-	margin-right: 10px;
-	border: 0;
-	color: white;
-	background-color: transparent;
-	font-family: "Pathway Gothic One", sans-serif;
-	font-size: 2vmin;
-	align-self: center;
-}
+		header nav button, header nav button > img {
+			min-width: 10%;
+			margin-left: 10px;
+			margin-right: 10px;
 
-header nav button {
-	height: 90%;
-	transform: scale(0.9);
-	transition: transform 0.2s ease-in-out;
-}
-header nav button:hover {
-	transform: scale(1);
-}
+			border: 0;
+			color: white;
+			background-color: transparent;
 
-.home { /* bouton bethesda central */
-	height: 90%;
-}
-.home img {
-	height: 90%;
-}
+			font-family: "Pathway Gothic One", sans-serif;
+			font-size: 2vmin;
+			align-self: center;
+		}
+		header nav button:hover {
+			transform: scale(1);
+		}
+
+			/* bouton bethesda central */
+			#btn_home, #btn_home img {
+				height: 90%;
+			}
 
 main {
 	height: calc(100vh - (2 * var(--letterbox-height)));
@@ -92,13 +98,14 @@ main {
 	scroll-behavior: smooth;
 	overflow: hidden;
 
-	background-color: #333;
+	opacity: 0;
+	background-color: black;
 
 	transition: opacity 1.5s ease-in-out,
-				top 1.5s ease-in-out,
-				bottom 1.5s ease-in-out,
-				left 1.5s ease-in-out,
-				right 1.5s ease-in-out;
+			top 1.5s ease-in-out,
+			bottom 1.5s ease-in-out,
+			left 1.5s ease-in-out,
+			right 1.5s ease-in-out;
 }
 
 footer {
@@ -111,9 +118,9 @@ footer {
 	text-align: center;
 	gap: 100px;
 
+	border-top: solid 2px #4949494A;
 	background-color: var(--letterbox-color);
 	box-shadow: 0 -5px 22px 0 var(--letterbox-color);
-	border-top: solid 2px #4949494A;
 
 	z-index: 2;
 }
@@ -123,27 +130,10 @@ footer {
 
 
 
-/* liens */
-button.link {
-	color: white;
-	background-color: transparent;
-	font-family: "Pathway Gothic One", sans-serif;
-}
-
-a:hover, button:hover {
-	cursor: pointer;
-}
-
-
-
-
-
-
-
-/* silly advertisement popup */
-#ad {
+/* ANNONCE POUR LE SITE DE ZACHARY TANGUAY */
+#collabPopup {
 	position: fixed;
-	right: -430px;
+	right: -450px;
 	bottom: calc(var(--letterbox-height) + 4%);
 	z-index: 10;
 
@@ -162,139 +152,251 @@ a:hover, button:hover {
 	font-family: 'Pathway Gothic One';
 	font-size: 21px;
 
-	transition: right 2.5s ease-out, transform 0.5s ease-in;
+	transition: right 2.5s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.5s ease-in;
 	animation: ad-float 1s ease-in-out infinite;
 }
 
-#ad h2 {
-	position: relative;
-	z-index: 4;
+	#collabPopup h2 {
+		position: relative;
+		z-index: 4;
 
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
 
-	padding: 10px 0 10px 0;
-	margin: 0;
+		padding: 10px 0 10px 0;
+		margin: 0;
 
-	background: black;
-	box-shadow: -4px 6px 6px #3c2b2b5c, -3px -11px 6px #3c2b2b5c, -5px 8px 6px #2f25258a;
-	border-top-left-radius: 10px;
-	font-size: 25px;
+		background: black;
+		box-shadow: -4px 6px 6px #3c2b2b5c, -3px -11px 6px #3c2b2b5c, -5px 8px 6px #2f25258a;
+		border-top-left-radius: 10px;
+		font-size: 25px;
 
-	animation: ad-h2-shadow 1s cubic-bezier(0.93, -0.71, 0.63, 1.88) infinite;
+		animation: ad-h2-shadow 1s cubic-bezier(0.93, -0.71, 0.63, 1.88) infinite;
+	}
+
+		#collabPopup .geralt { /*nom*/
+			font-family: MedievalSharp;
+			font-size: 29px;
+			text-shadow: 0 0 4px #b34f10f0;
+
+			animation: ad-h2-color 0.5s cubic-bezier(0.93, -0.71, 0.63, 1.88) infinite;
+		}
+
+	#collabPopup article {
+		display: flex;
+		flex-direction: row;
+
+		background: #080808;
+		box-shadow: 0 5px 10px red;
+	}
+
+		#collabPopup p {
+			padding: 12px;
+			margin: 0;
+			text-align: justify;
+			font-size: 16px;
+		}
+
+		#collabPopup .geraltImg {
+			width: 40%;
+			object-fit: cover;
+			border-right: ridge 3px #2e020f;
+			box-shadow: 2px -2px 8px #680202;
+		}
+
+	#collabPopup marquee { /* :D */
+		line-height: 1px;
+		filter: blur(5px);
+	}
+
+	#collabPopup .swordTop {
+		width: 101%;
+		height: 17px;
+
+		position: absolute;
+		top: -11px;
+		right: -4px;
+		transform: scaleX(-1);
+		z-index: 7;
+	}
+
+	#collabPopup .swordBottom {
+		width: 101%;
+		height: 17px;
+
+		position: absolute;
+		bottom: -11px;
+		right: -4px;
+		transform: scaleX(-1);
+		z-index: 7;
+	}
+
+	#collabPopup button {
+		height: min-content;
+
+		font-size: 1.4em;
+		font-family: 'Pathway Gothic One';
+		white-space: nowrap;
+
+		background: black;
+		border: none;
+		border-bottom-left-radius: 10px;
+		box-shadow: 0 -10px 10px red;
+
+		animation: ad-button-shadow 1s cubic-bezier(0.93, -0.71, 0.63, 1.88) infinite;
+	}
+
+		#collabPopup button b {
+			color: transparent;
+			background-image: linear-gradient(0deg, white, red);	
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+
+			transition: text-shadow 0.2s ease-out, letter-spacing 0.2s ease-out;
+		}
+		#collabPopup button b:hover {
+			text-shadow: 0px 0px 6px #941a1a;
+			letter-spacing: 4px;
+		}
+
+	#collabPopup .closeBtn {
+		position: absolute;
+		right: 0;
+		z-index: 5;
+
+		color: white;
+		background: #ffffff00;
+		box-shadow: none;
+
+		font-size: 1.5em;
+
+		animation: none;
+	}
+
+	#collabPopup .overlay {
+		width: 100%;
+		height: 100%;
+
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 5;
+
+		opacity: 0;
+		border-radius: 10px;
+		background: #333131d1;
+		box-shadow: inset 0 0 10px #830000;
+		backdrop-filter: blur(3px);
+
+		pointer-events: none;
+
+		animation: ad-overlay-vignette 3s ease-in-out infinite;
+		transition: opacity 1s linear,
+				filter 1s linear;
+	}
+		#collabPopup .progressHeader {
+			margin-top: 5%;
+
+			text-shadow: 0 0 5px red;
+
+			font-size: 25px;
+			text-align: center;
+		}
+
+		#collabPopup .throbber {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%) rotate(0deg);
+			zoom: 0.7;
+			z-index: 6;
+
+			box-shadow: 0 0 20px 0px red;
+
+			animation: ad-throbber 1s ease-in-out infinite;
+		}
+
+		#collabPopup progress {
+			height: 30px;
+			margin: 0;
+			padding: 5px;
+
+			position: absolute;
+			left: 50%;
+			bottom: 6%;
+			transform: translateX(-50%);
+			z-index: 6;
+
+			appearance: none;
+			-webkit-appearance: none;
+
+			border: solid 1px darkred;
+			border-radius: 20px;
+			background: white;
+			box-shadow: 0 0 10px black;
+
+			transition: transform 0.5s linear;
+		}
+		#collabPopup progress::-moz-progress-bar {
+			border-radius: 20px;
+			background: red;
+		}
+		#collabPopup progress::-webkit-progress-bar {
+			border: 0;
+			border-radius: 20px;
+			background: white;
+		}
+		#collabPopup progress::-webkit-progress-value {
+			border-radius: 20px;
+			background: red;
+			box-shadow: 0 0 10px red;
+		}
+
+	#collabPopup .progressText {
+		margin: 0;
+		padding: 0;
+
+		position: absolute;
+		left: 50%;
+		bottom: 8.5%;
+		transform: translateX(-50%);
+		z-index: 6;
+
+		color: black;
+		text-shadow: 0 0 3px black;
+
+		font-size: 15px;
+
+		transition: transform 0.5s linear, opacity 0.3s ease-in-out;
+	}
+
+
+
+
+
+
+/* STYLES GENERIQUES */
+button.link {
+	color: white;
+	background-color: transparent;
+	font-family: "Pathway Gothic One", sans-serif;
 }
-	
-#ad .gerald { /*nom*/
-	font-family: MedievalSharp;
-	font-size: 29px;
-	text-shadow: 0 0 4px #b34f10f0;
 
-	animation: ad-h2-color 0.5s cubic-bezier(0.93, -0.71, 0.63, 1.88) infinite;
-}
-
-#ad article {
-	display: flex;
-	flex-direction: row;
-
-	background: #080808;
-	box-shadow: 0 5px 10px red;
-}
-
-#ad marquee { /* :D */
-	line-height: 1px;
-	filter: blur(5px);
-}
-
-#ad .geraltImg {
-	width: 40%;
-	object-fit: cover;
-	border-right: ridge 3px #2e020f;
-	box-shadow: 2px -2px 8px #680202;
-}
-
-#ad p {
-	padding: 12px;
-	margin: 0;
-	text-align: justify;
-	font-size: 16px;
-}
-
-#ad .swordTop {
-	width: 101%;
-	height: 17px;
-
-	position: absolute;
-	top: -11px;
-	right: -4px;
-	transform: scaleX(-1);
-	z-index: 7;
-}
-
-#ad .swordBottom {
-	width: 101%;
-	height: 17px;
-
-	position: absolute;
-	bottom: -11px;
-	right: -4px;
-	transform: scaleX(-1);
-	z-index: 7;
-}
-
-#ad button {
-	height: min-content;
-
-	font-size: 1.4em;
-	font-family: 'Pathway Gothic One';
-	white-space: nowrap;
-
-	background: black;
-	border: none;
-	border-bottom-left-radius: 10px;
-	box-shadow: 0 -10px 10px red;
-
-	animation: ad-button-shadow 1s cubic-bezier(0.93, -0.71, 0.63, 1.88) infinite;
-}
-
-#ad button b {
-	color: transparent;
-	background-image: linear-gradient(0deg, white, red);	
-	background-clip: text;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-
-	transition: text-shadow 0.2s ease-out, letter-spacing 0.2s ease-out;
-}
-#ad button b:hover {
-	text-shadow: 0px 0px 6px #941a1a;
-	letter-spacing: 4px;
-}
-
-#foreground_witcherCollab {
-	width: 100vw;
-    height: 100%;
-
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    opacity: 0;
-    object-fit: cover;
-	z-index: 1;
-
-	filter: blur(0px) brightness(1);
-
-	transition: opacity 3s ease-out, filter 4s ease-in;
+a:hover, button:hover {
+	cursor: pointer;
 }
 
 
 
 
+
+
+/* ANIMATIONS (il y en a beaucoup!) */
 @keyframes ad-h2-color {
-	from { color: red; }
+	from { color: red;     }
 	  to { color: darkred; }
 }
 
@@ -311,7 +413,28 @@ a:hover, button:hover {
 }
 
 @keyframes ad-button-shadow {
-	  0% { box-shadow: 0px -10px 20px 2px red; }
+	  0% { box-shadow: 0px -10px 20px 2px red;     }
 	 50% { box-shadow: 0px -10px 20px 2px #5b0000; }
-	100% { box-shadow: 0px -10px 20px 2px red; }
+	100% { box-shadow: 0px -10px 20px 2px red;     }
+}
+
+@keyframes ad-throbber {
+	from { transform: translate(-50%, -50%) rotate(0deg);   }
+	  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes ad-throbber-reverse {
+	from { transform: translate(-50%, -50%) rotate(0deg);    }
+	  to { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+@keyframes ad-overlay-vignette {
+	  0% { box-shadow: inset 0 0 10px #830000; }
+	 50% { box-shadow: inset 0 0 20px red;     }
+	100% { box-shadow: inset 0 0 10px #830000; }
+}
+
+@keyframes ad-progress-rainbow {
+	from { filter: hue-rotate(0deg);   }
+	  to { filter: hue-rotate(360deg); }
 }

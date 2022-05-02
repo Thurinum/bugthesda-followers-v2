@@ -1,5 +1,6 @@
 ﻿@model Game;
 
+<!-- VUE PARTIELLE DES DETAILS DU JEU (chargee dynamiquement) -->
 <article class="leftStats">
     <p>Nb de faits: @Model.Facts.Count</p>
     <p>Nb de followers: @Model.Followers.Count</p>
@@ -10,10 +11,8 @@
 <div class="spacer"></div>
 
 <article class="rightStats">
-    <p>Hitpoints moyen: @Model.Followers.Average(f => Convert.ToDecimal(f.Hitpoints))</p>
+    <p>Hitpoints moyen: @Model.Followers.Average(f => f.Hitpoints)</p>
     <p>Energie moyenne: @Model.Followers.Average(f => f.Energy)</p>
     <p>Alignment moyen: @Model.Followers.Average(f => f.Alignment)</p>
-    <p>Race la plus populaire: @Model.Followers.Count</p>
+    <p>Race la plus commune: @Model.Root.SharedInfo.Races.Aggregate((r1, r2) => r1.Population > r2.Population ? r1 : r2).CommonName</p>
 </article>
-
-<button class="link" data-href="/search/" data-anim="scaleup">View followers</button>

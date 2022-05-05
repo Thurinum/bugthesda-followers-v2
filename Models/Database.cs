@@ -8,11 +8,24 @@ namespace SessionProject2W5.Models
 {
 	public class Database
 	{
-		public List<Game> Games;		  // Liste des games
+		public List<Game> Games;          // Liste des games
+		public List<Follower> Followers
+		{
+			get
+			{
+				List<Follower> followers = new List<Follower>();
+
+				foreach (Game game in Games)
+					followers.AddRange(game.Followers);
+
+				return followers;
+			}
+		}
 		public List<Follower> Favorites;  // Liste des favoris
 		public SharedInfo SharedInfo;     // Informations partagees entre les followers
-		
-		public string ErrorString;        // Message d'erreur passe au ViewData dans le controller	
+
+		// Message d'erreur passe au ViewData dans le controller	
+		public string ErrorString { get; private set; }
 
 		public Database(string path)
 		{
@@ -99,7 +112,6 @@ namespace SessionProject2W5.Models
 						break;
 					case "ability":						
 						Datum ability		 = new Datum();
-						ability.Id			 = attri("id");
 						ability.Name		 = attr("name");
 						ability.Description	 = attr("description");
 						ability.Color		 = attr("color");
@@ -109,12 +121,13 @@ namespace SessionProject2W5.Models
 						game			  = new Game();
 						game.Id			  = attri("id");
 						game.Name		  = attr("name");
+						game.Color        = attr("color");
 						game.ShortName	  = attr("shortname");
 						game.Description  = attr("description");
 						game.YearReleased = attri("released");
 						game.Tagline	  = attr("tagline");
 						game.Director	  = attr("director");
-						game.Root		  = this;
+						game.SharedInfo   = this.SharedInfo;
 
 						// parse the game's facts
 						reader.ReadToDescendant("facts");
@@ -161,7 +174,7 @@ namespace SessionProject2W5.Models
 						{
 							this.ErrorString += $"Invalid class id {classid} for {reader.Name}.\n";
 						}
-						
+
 						// parse the follower's quotes
 						reader.ReadToFollowing("facts");
 						while (reader.Read() && reader.Name == "fact")

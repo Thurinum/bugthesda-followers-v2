@@ -1,9 +1,14 @@
 "use strict";
 const DEBUG = true;
-const main = $("main");
-const ad = $("#collabPopup");
-const adimg = $("#collabPopup .geraltImg");
+const MAIN = $("main");
+const AD = $("#collabPopup");
+const ADIMG = $("#collabPopup .geraltImg");
 let canClosePopup = true;
+var Transition;
+(function (Transition) {
+    Transition[Transition["ScaleDown"] = 0] = "ScaleDown";
+    Transition[Transition["ScaleUp"] = 1] = "ScaleUp";
+})(Transition || (Transition = {}));
 function getFunInfoStr(target) {
     return `${target.nodeName.toLowerCase()}${target.id != "" ? "#" + target.id : ""}${target.classList.length > 0 ? "." + target.classList.toString() : ""}`;
 }
@@ -46,22 +51,26 @@ function registerLinks() {
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener("click", (e) => {
             let target = e.currentTarget;
-            main.style.top = "100vw";
-            main.style.opacity = "0";
-            setTimeout(window.location.href = $a("data-href", target), 1500);
+            redirect($a("data-href", target));
         });
     }
 }
+function redirect(href) {
+    MAIN.style.opacity = "0";
+    setTimeout(() => {
+        window.location.href = href;
+    }, 2000);
+}
 function showPopup() {
-    ad.style.right = "0";
+    AD.style.right = "0";
     setTimeout(function () {
         if (canClosePopup)
-            ad.style.right = "-430px";
+            AD.style.right = "-430px";
     }, 15000);
 }
-ad.onmouseover = function () { adimg.src = "/images/shared/ui/popup/geralt2.png"; };
-ad.onmouseleave = function () { adimg.src = "/images/shared/ui/popup/geralt.png"; };
-$(".collabBtn", ad).onclick = function () {
+AD.onmouseover = function () { ADIMG.src = "/images/shared/ui/popup/geralt2.png"; };
+AD.onmouseleave = function () { ADIMG.src = "/images/shared/ui/popup/geralt.png"; };
+$(".collabBtn", AD).onclick = function () {
     let foreground = $("#foreground_witcherCollab");
     foreground.style.display = "block";
     setTimeout(function () {
@@ -70,7 +79,7 @@ $(".collabBtn", ad).onclick = function () {
     }, 1000);
 };
 $(".closeBtn").onclick = function () {
-    const progressTexts = [
+    const PROGRESS_TEXTS = [
         "Checking for null pointers...",
         "Loading closure data...",
         "Ensuring academical integrity...",
@@ -124,10 +133,10 @@ $(".closeBtn").onclick = function () {
     ];
     const MAX_ITERATIONS = DEBUG ? 0 : 5;
     let nbIterations = 0;
-    let progress = $("progress", ad);
-    let progressText = $(".progressText", ad);
+    let progress = $("progress", AD);
+    let progressText = $(".progressText", AD);
     let progressTextIndex = 0;
-    let throbber = $(".throbber", ad);
+    let throbber = $(".throbber", AD);
     let progressAmount = 1;
     let decreaseMode = false;
     let decreaseModeIterations = -1;
@@ -135,7 +144,7 @@ $(".closeBtn").onclick = function () {
     let progressHeader = $("#collabPopup .progressHeader");
     progressHeader.innerText = "Processing request...";
     let nbEllipsis = 3;
-    $(".overlay", ad).style.opacity = "1";
+    $(".overlay", AD).style.opacity = "1";
     canClosePopup = false;
     function ellipsis() {
         if (nbEllipsis === 3) {
@@ -150,7 +159,7 @@ $(".closeBtn").onclick = function () {
     function setProgressTextIndex() {
         progressText.style.opacity = "0";
         setTimeout(() => {
-            progressTextIndex = Math.round(Math.random() * (progressTexts.length - 1));
+            progressTextIndex = Math.round(Math.random() * (PROGRESS_TEXTS.length - 1));
             progressText.style.opacity = "1";
         }, 300);
     }
@@ -173,7 +182,7 @@ $(".closeBtn").onclick = function () {
             progress.style.animation = "none";
             throbber.style.animation = "ad-throbber 1s ease-in-out infinite";
         }
-        progressText.innerText = progressTexts[progressTextIndex] + " " + Math.round(progress.value) + "%";
+        progressText.innerText = PROGRESS_TEXTS[progressTextIndex] + " " + Math.round(progress.value) + "%";
         if (Math.random() < 0.1)
             progressAmount = Math.random() * Math.random();
         if (Math.random() < 0.005) {
@@ -195,8 +204,8 @@ $(".closeBtn").onclick = function () {
             progressHeader.innerText = "Closing popup...";
             progressText.innerText = "Request approved. Have a nice day!";
             setTimeout(() => {
-                $(".overlay", ad).style.opacity = "0";
-                ad.style.right = "-450px";
+                $(".overlay", AD).style.opacity = "0";
+                AD.style.right = "-450px";
             }, 1000);
             return;
         }

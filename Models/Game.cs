@@ -21,7 +21,7 @@ namespace SessionProject2W5.Models
         public List<string> Facts;         // facts about the game
         public List<Follower> Followers;   // children
 
-        public Database Root;
+        public SharedInfo SharedInfo;
 
         public Game()
         {

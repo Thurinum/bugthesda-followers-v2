@@ -1,7 +1,7 @@
 "use strict";
-let currentIndex = -1;
-let isCarouselEnabled = true;
 let firstTime = true;
+let isCarouselEnabled = true;
+let currentIndex = -1;
 let currentTimeout;
 let items = $$(".carousel > div");
 const Carousel = {
@@ -39,7 +39,7 @@ const Carousel = {
             hidden[i].style.opacity = "1";
             hidden[i].style.transform = "scale(1)";
         }
-        main.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2);
+        MAIN.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2);
         let shortname = $("input.gameName", target).value;
         let background = $("#background");
         let overlay = $("#foreground_mist");
@@ -77,12 +77,12 @@ const Carousel = {
             let header = headers[i];
             if (header.nodeName != "H1") {
                 header.style.opacity = "0";
-                header.style.transform = "scale(0)";
+                header.style.height = "0";
             }
         }
         let input = $("input.gameName", target);
         let details = $("#details");
-        fetch(`/${input.value}`)
+        fetch(`/game/${input.value}`)
             .then(data => data.text())
             .then(html => {
             details.innerHTML = html;
@@ -91,8 +91,10 @@ const Carousel = {
         $("#background").style.filter = "blur(20px)";
         let img = $("img", target);
         img.style.animationPlayState = "running";
-        img.style.transform = "scale(1.2)";
-        $("#searchBtn").style.transform = "scale(1)";
+        img.style.transform = "scale(1.1)";
+        let button = $(".searchBtn", target);
+        button.style.height = "3ex";
+        button.style.transform = "scale(1)";
     },
     hideDetails() {
         isCarouselEnabled = true;
@@ -100,13 +102,12 @@ const Carousel = {
             items[i].style.transform = "";
         }
         let target = items[currentIndex];
-        console.log(target);
         let headers = $$(".showOnActive", target);
         for (let i = 0; i < headers.length; i++) {
             let header = headers[i];
             if (header.nodeName != "H1") {
                 header.style.opacity = "1";
-                header.style.transform = "scale(1)";
+                header.style.height = "3ex";
             }
         }
         $("#background").style.filter = "blur(5px)";
@@ -114,7 +115,8 @@ const Carousel = {
         img.style.animationPlayState = "paused";
         img.style.transform = "";
         $("#details").style.transform = "translateY(-50%) scale(0)";
-        $("#searchBtn").style.transform = "scale(0)";
+        $(".searchBtn", target).style.height = "0";
+        $(".searchBtn", target).style.transform = "scale(0)";
     }
 };
 document.addEventListener("click", (e) => {
@@ -131,16 +133,17 @@ document.addEventListener("keydown", function (e) {
 });
 window.onresize = function () {
     let target = $("#card" + currentIndex);
-    main.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2);
+    MAIN.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2);
 };
-for (let i = 0; i < items.length; i++)
-    items[i].onclick = (e) => Carousel.showDetails(e.currentTarget);
 window.addEventListener("load", function () {
     let lastIndex = Number(window.localStorage.getItem("iLastSelectedGame"));
     if (!isNaN(lastIndex))
         Carousel.setActiveAt(lastIndex);
     else
         Carousel.setActiveAt(Math.round(($(".carousel").children.length - 1) / 2));
-    main.style.opacity = "1";
+    for (let i = 0; i < items.length; i++)
+        items[i].onclick = (e) => Carousel.showDetails(e.currentTarget);
+    registerLinks();
+    MAIN.style.opacity = "1";
 });
 //# sourceMappingURL=index.js.map

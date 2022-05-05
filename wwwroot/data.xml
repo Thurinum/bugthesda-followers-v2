@@ -3,13 +3,13 @@
 	<sharedinfo>
 		<races>
 			<race id="0"
-				  commonname="Elfe des bois" 
+				  commonname="Elfe des Bois" 
 				  nativename="Bosmer"
 				  description="Ils vivent dans Vvwardenfell (je crois!)"
 				  color="brown" />
 			<race id="1"
 				  commonname="Orc"
-				  nativename="jai oublie"
+				  nativename="Orsimer"
 				  description="Peau verte, guerriers, copie de Warcraft genre"
 				  color="green" />
 			<race id="2"
@@ -17,18 +17,27 @@
 				  nativename="Races multiples"
 				  description="Il y a beaucoup de races dans cyrodiil"
 				  color="white" />
+			<race id="3"
+				  commonname="Nordique"
+				  nativename="Nordique"
+				  description="Ces guerriers"
+				  color="white" />
 		</races>
 		<classes>
 			<class id="0"
-				   name="Commoner"
+				   name="Paysan"
 				   description="Classe non-jouable."
 				   color="grey" />
 			<class id="1"
-				   name="Marauder"
+				   name="Maraudeur"
 				   description="Classe non-jouable spécialisée dans le combat."
 				   color="grey" />
 			<class id="2"
-				   name="Knight"
+				   name="Chevalier"
+				   description="Classe non-jouable spécialisée dans le combat et la magie."
+				   color="#394D78" />
+			<class id="3"
+				   name="Guerrier"
 				   description="Classe non-jouable spécialisée dans le combat et la magie."
 				   color="#394D78" />
 		</classes>
@@ -72,11 +81,11 @@
 						<quote context="À l'interaction">Here? Right here? What about, say... over there? No? Right here? All right then, you're the Grand Champion!</quote>
 					</quotes>
 					<abilities>
-						<ability id="0"
+						<ability
 								name="Transporter une torche"
 								description="Ne sert à rien du tout."
 								color="orangered" />
-						<ability id="1"
+						<ability
 								name="S'enfuir du danger"
 								description="Il ne sert à rien du tout."
 								color="red" />
@@ -105,7 +114,7 @@
 						<quote context="À l'interaction">Are you the Count? (No) Then go away.</quote>
 					</quotes>
 					<abilities>
-						<ability id="0"
+						<ability 
 								 name="DUMMY"
 								 description="UNIMPLEMENTED"
 								 color="red" />
@@ -133,7 +142,7 @@
 						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
 					</quotes>
 					<abilities>
-						<ability id="0"
+						<ability
 								 name="DUMMY"
 								 description="UNIMPLEMENTED"
 								 color="red" />
@@ -143,7 +152,7 @@
 						  favorite="false"
 						  baseid="0008675x"
 						  refid="0008675x"
-						  shortname="darkbrotherhoodmurderer"
+						  shortname="dbmurderer"
 						  name="Assassin de la Confrérie Noire"
 					      description="Une collection de 4 assassins recrutables."
 						  unlockcontext="Terminer la quête des Knights of the Nine."
@@ -161,8 +170,951 @@
 						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
 					</quotes>
 					<abilities>
-						<ability id="0"
+						<ability name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="0"
+					favorite="true"
+					baseid="000AED40"
+					refid="000AED41"
+					shortname="adoringfan"
+					name="The Adoring Fan"
+					description="Ce jeune elfe est passionné par la victoire du Héros de Kvatch sur le Prince Gris a l'arene impériale et lui jure obéissance."
+					unlockcontext="Devenir Champion de l'Arène."
+					hitpoints="38"
+					energy="100"
+					alignment="-100"
+					essential="false"
+					respawns="true"
+					raceid="0"
+					classid="0">
+					<facts>
+						<fact>Il meurt souvent car mauvais combattant, mais résurrecte souvent.</fact>
+						<fact>Néanmoins, il est possible de l'enfermer dans un plan de l'Oblivion.</fact>
+					</facts>
+					<quotes>
+						<quote context="Lorsque rencontré pour la première fois">By Azura, by Azura, by Azura! It's the Grand Champion!</quote>
+						<quote context="À l'interaction">Here? Right here? What about, say... over there? No? Right here? All right then, you're the Grand Champion!</quote>
+					</quotes>
+					<abilities>
+						<ability
+								name="Transporter une torche"
+								description="Ne sert à rien du tout."
+								color="orangered" />
+						<ability
+								name="S'enfuir du danger"
+								description="Il ne sert à rien du tout."
+								color="red" />
+					</abilities>
+				</follower>
+				<follower id="1"
+						  favorite="false"
+						  baseid="00085969"
+						  refid="0008596A"
+						  shortname="mazogatheorc"
+						  name="Mazoga l'Orque"
+						  description="Une guerrière qui sollicite l'aide du comte de Leyawiin pour s'occuper d'une affaire personnelle."
+						  unlockcontext="Terminer la quête 'Mazoga the Orc'."
+						  hitpoints="53"
+						  energy="100"
+						  alignment="-100"
+						  essential="false"
+						  respawns="false"
+						  raceid="1"
+						  classid="1">
+					<facts>
+						<fact>DUMMY</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">Are you the Count? (Yes) You don't even look like a count. Go away.</quote>
+						<quote context="À l'interaction">Are you the Count? (No) Then go away.</quote>
+					</quotes>
+					<abilities>
+						<ability
 								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="2"
+						  favorite="true"
+						  baseid="xx000F5x"
+						  refid="xx001A8x"
+						  shortname="knightofthenine"
+						  name="Chevaliers des Neuf"
+					      description="Une collection de 8 chevaliers recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="25"
+						  energy="100"
+						  alignment="100"
+						  essential="false"
+						  respawns="false"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="3"
+						  favorite="false"
+						  baseid="0008675x"
+						  refid="0008675x"
+						  shortname="dbmurderer"
+						  name="Assassin de la Confrérie Noire"
+					      description="Une collection de 4 assassins recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="40"
+						  energy="150"
+						  alignment="-100"
+						  essential="false"
+						  respawns="true"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="0"
+					favorite="true"
+					baseid="000AED40"
+					refid="000AED41"
+					shortname="adoringfan"
+					name="The Adoring Fan"
+					description="Ce jeune elfe est passionné par la victoire du Héros de Kvatch sur le Prince Gris a l'arene impériale et lui jure obéissance."
+					unlockcontext="Devenir Champion de l'Arène."
+					hitpoints="38"
+					energy="100"
+					alignment="-100"
+					essential="false"
+					respawns="true"
+					raceid="0"
+					classid="0">
+					<facts>
+						<fact>Il meurt souvent car mauvais combattant, mais résurrecte souvent.</fact>
+						<fact>Néanmoins, il est possible de l'enfermer dans un plan de l'Oblivion.</fact>
+					</facts>
+					<quotes>
+						<quote context="Lorsque rencontré pour la première fois">By Azura, by Azura, by Azura! It's the Grand Champion!</quote>
+						<quote context="À l'interaction">Here? Right here? What about, say... over there? No? Right here? All right then, you're the Grand Champion!</quote>
+					</quotes>
+					<abilities>
+						<ability
+								name="Transporter une torche"
+								description="Ne sert à rien du tout."
+								color="orangered" />
+						<ability
+								name="S'enfuir du danger"
+								description="Il ne sert à rien du tout."
+								color="red" />
+					</abilities>
+				</follower>
+				<follower id="1"
+						  favorite="false"
+						  baseid="00085969"
+						  refid="0008596A"
+						  shortname="mazogatheorc"
+						  name="Mazoga l'Orque"
+						  description="Une guerrière qui sollicite l'aide du comte de Leyawiin pour s'occuper d'une affaire personnelle."
+						  unlockcontext="Terminer la quête 'Mazoga the Orc'."
+						  hitpoints="53"
+						  energy="100"
+						  alignment="-100"
+						  essential="false"
+						  respawns="false"
+						  raceid="1"
+						  classid="1">
+					<facts>
+						<fact>DUMMY</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">Are you the Count? (Yes) You don't even look like a count. Go away.</quote>
+						<quote context="À l'interaction">Are you the Count? (No) Then go away.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="2"
+						  favorite="true"
+						  baseid="xx000F5x"
+						  refid="xx001A8x"
+						  shortname="knightofthenine"
+						  name="Chevaliers des Neuf"
+					      description="Une collection de 8 chevaliers recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="25"
+						  energy="100"
+						  alignment="100"
+						  essential="false"
+						  respawns="false"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="3"
+						  favorite="false"
+						  baseid="0008675x"
+						  refid="0008675x"
+						  shortname="dbmurderer"
+						  name="Assassin de la Confrérie Noire"
+					      description="Une collection de 4 assassins recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="40"
+						  energy="150"
+						  alignment="-100"
+						  essential="false"
+						  respawns="true"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="0"
+					favorite="true"
+					baseid="000AED40"
+					refid="000AED41"
+					shortname="adoringfan"
+					name="The Adoring Fan"
+					description="Ce jeune elfe est passionné par la victoire du Héros de Kvatch sur le Prince Gris a l'arene impériale et lui jure obéissance."
+					unlockcontext="Devenir Champion de l'Arène."
+					hitpoints="38"
+					energy="100"
+					alignment="-100"
+					essential="false"
+					respawns="true"
+					raceid="0"
+					classid="0">
+					<facts>
+						<fact>Il meurt souvent car mauvais combattant, mais résurrecte souvent.</fact>
+						<fact>Néanmoins, il est possible de l'enfermer dans un plan de l'Oblivion.</fact>
+					</facts>
+					<quotes>
+						<quote context="Lorsque rencontré pour la première fois">By Azura, by Azura, by Azura! It's the Grand Champion!</quote>
+						<quote context="À l'interaction">Here? Right here? What about, say... over there? No? Right here? All right then, you're the Grand Champion!</quote>
+					</quotes>
+					<abilities>
+						<ability
+								name="Transporter une torche"
+								description="Ne sert à rien du tout."
+								color="orangered" />
+						<ability
+								name="S'enfuir du danger"
+								description="Il ne sert à rien du tout."
+								color="red" />
+					</abilities>
+				</follower>
+				<follower id="1"
+						  favorite="false"
+						  baseid="00085969"
+						  refid="0008596A"
+						  shortname="mazogatheorc"
+						  name="Mazoga l'Orque"
+						  description="Une guerrière qui sollicite l'aide du comte de Leyawiin pour s'occuper d'une affaire personnelle."
+						  unlockcontext="Terminer la quête 'Mazoga the Orc'."
+						  hitpoints="53"
+						  energy="100"
+						  alignment="-100"
+						  essential="false"
+						  respawns="false"
+						  raceid="1"
+						  classid="1">
+					<facts>
+						<fact>DUMMY</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">Are you the Count? (Yes) You don't even look like a count. Go away.</quote>
+						<quote context="À l'interaction">Are you the Count? (No) Then go away.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="2"
+						  favorite="true"
+						  baseid="xx000F5x"
+						  refid="xx001A8x"
+						  shortname="knightofthenine"
+						  name="Chevaliers des Neuf"
+					      description="Une collection de 8 chevaliers recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="25"
+						  energy="100"
+						  alignment="100"
+						  essential="false"
+						  respawns="false"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="3"
+						  favorite="false"
+						  baseid="0008675x"
+						  refid="0008675x"
+						  shortname="dbmurderer"
+						  name="Assassin de la Confrérie Noire"
+					      description="Une collection de 4 assassins recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="40"
+						  energy="150"
+						  alignment="-100"
+						  essential="false"
+						  respawns="true"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="0"
+					favorite="true"
+					baseid="000AED40"
+					refid="000AED41"
+					shortname="adoringfan"
+					name="The Adoring Fan"
+					description="Ce jeune elfe est passionné par la victoire du Héros de Kvatch sur le Prince Gris a l'arene impériale et lui jure obéissance."
+					unlockcontext="Devenir Champion de l'Arène."
+					hitpoints="38"
+					energy="100"
+					alignment="-100"
+					essential="false"
+					respawns="true"
+					raceid="0"
+					classid="0">
+					<facts>
+						<fact>Il meurt souvent car mauvais combattant, mais résurrecte souvent.</fact>
+						<fact>Néanmoins, il est possible de l'enfermer dans un plan de l'Oblivion.</fact>
+					</facts>
+					<quotes>
+						<quote context="Lorsque rencontré pour la première fois">By Azura, by Azura, by Azura! It's the Grand Champion!</quote>
+						<quote context="À l'interaction">Here? Right here? What about, say... over there? No? Right here? All right then, you're the Grand Champion!</quote>
+					</quotes>
+					<abilities>
+						<ability
+								name="Transporter une torche"
+								description="Ne sert à rien du tout."
+								color="orangered" />
+						<ability
+								name="S'enfuir du danger"
+								description="Il ne sert à rien du tout."
+								color="red" />
+					</abilities>
+				</follower>
+				<follower id="1"
+						  favorite="false"
+						  baseid="00085969"
+						  refid="0008596A"
+						  shortname="mazogatheorc"
+						  name="Mazoga l'Orque"
+						  description="Une guerrière qui sollicite l'aide du comte de Leyawiin pour s'occuper d'une affaire personnelle."
+						  unlockcontext="Terminer la quête 'Mazoga the Orc'."
+						  hitpoints="53"
+						  energy="100"
+						  alignment="-100"
+						  essential="false"
+						  respawns="false"
+						  raceid="1"
+						  classid="1">
+					<facts>
+						<fact>DUMMY</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">Are you the Count? (Yes) You don't even look like a count. Go away.</quote>
+						<quote context="À l'interaction">Are you the Count? (No) Then go away.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="2"
+						  favorite="true"
+						  baseid="xx000F5x"
+						  refid="xx001A8x"
+						  shortname="knightofthenine"
+						  name="Chevaliers des Neuf"
+					      description="Une collection de 8 chevaliers recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="25"
+						  energy="100"
+						  alignment="100"
+						  essential="false"
+						  respawns="false"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="3"
+						  favorite="false"
+						  baseid="0008675x"
+						  refid="0008675x"
+						  shortname="dbmurderer"
+						  name="Assassin de la Confrérie Noire"
+					      description="Une collection de 4 assassins recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="40"
+						  energy="150"
+						  alignment="-100"
+						  essential="false"
+						  respawns="true"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="0"
+					favorite="true"
+					baseid="000AED40"
+					refid="000AED41"
+					shortname="adoringfan"
+					name="The Adoring Fan"
+					description="Ce jeune elfe est passionné par la victoire du Héros de Kvatch sur le Prince Gris a l'arene impériale et lui jure obéissance."
+					unlockcontext="Devenir Champion de l'Arène."
+					hitpoints="38"
+					energy="100"
+					alignment="-100"
+					essential="false"
+					respawns="true"
+					raceid="0"
+					classid="0">
+					<facts>
+						<fact>Il meurt souvent car mauvais combattant, mais résurrecte souvent.</fact>
+						<fact>Néanmoins, il est possible de l'enfermer dans un plan de l'Oblivion.</fact>
+					</facts>
+					<quotes>
+						<quote context="Lorsque rencontré pour la première fois">By Azura, by Azura, by Azura! It's the Grand Champion!</quote>
+						<quote context="À l'interaction">Here? Right here? What about, say... over there? No? Right here? All right then, you're the Grand Champion!</quote>
+					</quotes>
+					<abilities>
+						<ability
+								name="Transporter une torche"
+								description="Ne sert à rien du tout."
+								color="orangered" />
+						<ability
+								name="S'enfuir du danger"
+								description="Il ne sert à rien du tout."
+								color="red" />
+					</abilities>
+				</follower>
+				<follower id="1"
+						  favorite="false"
+						  baseid="00085969"
+						  refid="0008596A"
+						  shortname="mazogatheorc"
+						  name="Mazoga l'Orque"
+						  description="Une guerrière qui sollicite l'aide du comte de Leyawiin pour s'occuper d'une affaire personnelle."
+						  unlockcontext="Terminer la quête 'Mazoga the Orc'."
+						  hitpoints="53"
+						  energy="100"
+						  alignment="-100"
+						  essential="false"
+						  respawns="false"
+						  raceid="1"
+						  classid="1">
+					<facts>
+						<fact>DUMMY</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">Are you the Count? (Yes) You don't even look like a count. Go away.</quote>
+						<quote context="À l'interaction">Are you the Count? (No) Then go away.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="2"
+						  favorite="true"
+						  baseid="xx000F5x"
+						  refid="xx001A8x"
+						  shortname="knightofthenine"
+						  name="Chevaliers des Neuf"
+					      description="Une collection de 8 chevaliers recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="25"
+						  energy="100"
+						  alignment="100"
+						  essential="false"
+						  respawns="false"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="3"
+						  favorite="false"
+						  baseid="0008675x"
+						  refid="0008675x"
+						  shortname="dbmurderer"
+						  name="Assassin de la Confrérie Noire"
+					      description="Une collection de 4 assassins recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="40"
+						  energy="150"
+						  alignment="-100"
+						  essential="false"
+						  respawns="true"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="0"
+					favorite="true"
+					baseid="000AED40"
+					refid="000AED41"
+					shortname="adoringfan"
+					name="The Adoring Fan"
+					description="Ce jeune elfe est passionné par la victoire du Héros de Kvatch sur le Prince Gris a l'arene impériale et lui jure obéissance."
+					unlockcontext="Devenir Champion de l'Arène."
+					hitpoints="38"
+					energy="100"
+					alignment="-100"
+					essential="false"
+					respawns="true"
+					raceid="0"
+					classid="0">
+					<facts>
+						<fact>Il meurt souvent car mauvais combattant, mais résurrecte souvent.</fact>
+						<fact>Néanmoins, il est possible de l'enfermer dans un plan de l'Oblivion.</fact>
+					</facts>
+					<quotes>
+						<quote context="Lorsque rencontré pour la première fois">By Azura, by Azura, by Azura! It's the Grand Champion!</quote>
+						<quote context="À l'interaction">Here? Right here? What about, say... over there? No? Right here? All right then, you're the Grand Champion!</quote>
+					</quotes>
+					<abilities>
+						<ability
+								name="Transporter une torche"
+								description="Ne sert à rien du tout."
+								color="orangered" />
+						<ability
+								name="S'enfuir du danger"
+								description="Il ne sert à rien du tout."
+								color="red" />
+					</abilities>
+				</follower>
+				<follower id="1"
+						  favorite="false"
+						  baseid="00085969"
+						  refid="0008596A"
+						  shortname="mazogatheorc"
+						  name="Mazoga l'Orque"
+						  description="Une guerrière qui sollicite l'aide du comte de Leyawiin pour s'occuper d'une affaire personnelle."
+						  unlockcontext="Terminer la quête 'Mazoga the Orc'."
+						  hitpoints="53"
+						  energy="100"
+						  alignment="-100"
+						  essential="false"
+						  respawns="false"
+						  raceid="1"
+						  classid="1">
+					<facts>
+						<fact>DUMMY</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">Are you the Count? (Yes) You don't even look like a count. Go away.</quote>
+						<quote context="À l'interaction">Are you the Count? (No) Then go away.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="2"
+						  favorite="true"
+						  baseid="xx000F5x"
+						  refid="xx001A8x"
+						  shortname="knightofthenine"
+						  name="Chevaliers des Neuf"
+					      description="Une collection de 8 chevaliers recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="25"
+						  energy="100"
+						  alignment="100"
+						  essential="false"
+						  respawns="false"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="3"
+						  favorite="false"
+						  baseid="0008675x"
+						  refid="0008675x"
+						  shortname="dbmurderer"
+						  name="Assassin de la Confrérie Noire"
+					      description="Une collection de 4 assassins recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="40"
+						  energy="150"
+						  alignment="-100"
+						  essential="false"
+						  respawns="true"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="0"
+					favorite="true"
+					baseid="000AED40"
+					refid="000AED41"
+					shortname="adoringfan"
+					name="The Adoring Fan"
+					description="Ce jeune elfe est passionné par la victoire du Héros de Kvatch sur le Prince Gris a l'arene impériale et lui jure obéissance."
+					unlockcontext="Devenir Champion de l'Arène."
+					hitpoints="38"
+					energy="100"
+					alignment="-100"
+					essential="false"
+					respawns="true"
+					raceid="0"
+					classid="0">
+					<facts>
+						<fact>Il meurt souvent car mauvais combattant, mais résurrecte souvent.</fact>
+						<fact>Néanmoins, il est possible de l'enfermer dans un plan de l'Oblivion.</fact>
+					</facts>
+					<quotes>
+						<quote context="Lorsque rencontré pour la première fois">By Azura, by Azura, by Azura! It's the Grand Champion!</quote>
+						<quote context="À l'interaction">Here? Right here? What about, say... over there? No? Right here? All right then, you're the Grand Champion!</quote>
+					</quotes>
+					<abilities>
+						<ability
+								name="Transporter une torche"
+								description="Ne sert à rien du tout."
+								color="orangered" />
+						<ability
+								name="S'enfuir du danger"
+								description="Il ne sert à rien du tout."
+								color="red" />
+					</abilities>
+				</follower>
+				<follower id="1"
+						  favorite="false"
+						  baseid="00085969"
+						  refid="0008596A"
+						  shortname="mazogatheorc"
+						  name="Mazoga l'Orque"
+						  description="Une guerrière qui sollicite l'aide du comte de Leyawiin pour s'occuper d'une affaire personnelle."
+						  unlockcontext="Terminer la quête 'Mazoga the Orc'."
+						  hitpoints="53"
+						  energy="100"
+						  alignment="-100"
+						  essential="false"
+						  respawns="false"
+						  raceid="1"
+						  classid="1">
+					<facts>
+						<fact>DUMMY</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">Are you the Count? (Yes) You don't even look like a count. Go away.</quote>
+						<quote context="À l'interaction">Are you the Count? (No) Then go away.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="2"
+						  favorite="true"
+						  baseid="xx000F5x"
+						  refid="xx001A8x"
+						  shortname="knightofthenine"
+						  name="Chevaliers des Neuf"
+					      description="Une collection de 8 chevaliers recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="25"
+						  energy="100"
+						  alignment="100"
+						  essential="false"
+						  respawns="false"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="3"
+						  favorite="false"
+						  baseid="0008675x"
+						  refid="0008675x"
+						  shortname="dbmurderer"
+						  name="Assassin de la Confrérie Noire"
+					      description="Une collection de 4 assassins recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="40"
+						  energy="150"
+						  alignment="-100"
+						  essential="false"
+						  respawns="true"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="0"
+					favorite="true"
+					baseid="000AED40"
+					refid="000AED41"
+					shortname="adoringfan"
+					name="The Adoring Fan"
+					description="Ce jeune elfe est passionné par la victoire du Héros de Kvatch sur le Prince Gris a l'arene impériale et lui jure obéissance."
+					unlockcontext="Devenir Champion de l'Arène."
+					hitpoints="38"
+					energy="100"
+					alignment="-100"
+					essential="false"
+					respawns="true"
+					raceid="0"
+					classid="0">
+					<facts>
+						<fact>Il meurt souvent car mauvais combattant, mais résurrecte souvent.</fact>
+						<fact>Néanmoins, il est possible de l'enfermer dans un plan de l'Oblivion.</fact>
+					</facts>
+					<quotes>
+						<quote context="Lorsque rencontré pour la première fois">By Azura, by Azura, by Azura! It's the Grand Champion!</quote>
+						<quote context="À l'interaction">Here? Right here? What about, say... over there? No? Right here? All right then, you're the Grand Champion!</quote>
+					</quotes>
+					<abilities>
+						<ability
+								name="Transporter une torche"
+								description="Ne sert à rien du tout."
+								color="orangered" />
+						<ability
+								name="S'enfuir du danger"
+								description="Il ne sert à rien du tout."
+								color="red" />
+					</abilities>
+				</follower>
+				<follower id="1"
+						  favorite="false"
+						  baseid="00085969"
+						  refid="0008596A"
+						  shortname="mazogatheorc"
+						  name="Mazoga l'Orque"
+						  description="Une guerrière qui sollicite l'aide du comte de Leyawiin pour s'occuper d'une affaire personnelle."
+						  unlockcontext="Terminer la quête 'Mazoga the Orc'."
+						  hitpoints="53"
+						  energy="100"
+						  alignment="-100"
+						  essential="false"
+						  respawns="false"
+						  raceid="1"
+						  classid="1">
+					<facts>
+						<fact>DUMMY</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">Are you the Count? (Yes) You don't even look like a count. Go away.</quote>
+						<quote context="À l'interaction">Are you the Count? (No) Then go away.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="2"
+						  favorite="true"
+						  baseid="xx000F5x"
+						  refid="xx001A8x"
+						  shortname="knightofthenine"
+						  name="Chevaliers des Neuf"
+					      description="Une collection de 8 chevaliers recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="25"
+						  energy="100"
+						  alignment="100"
+						  essential="false"
+						  respawns="false"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability
+								 name="DUMMY"
+								 description="UNIMPLEMENTED"
+								 color="red" />
+					</abilities>
+				</follower>
+				<follower id="3"
+						  favorite="false"
+						  baseid="0008675x"
+						  refid="0008675x"
+						  shortname="dbmurderer"
+						  name="Assassin de la Confrérie Noire"
+					      description="Une collection de 4 assassins recrutables."
+						  unlockcontext="Terminer la quête des Knights of the Nine."
+						  hitpoints="40"
+						  energy="150"
+						  alignment="-100"
+						  essential="false"
+						  respawns="true"
+						  raceid="2"
+						  classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability name="DUMMY"
 								 description="UNIMPLEMENTED"
 								 color="red" />
 					</abilities>
@@ -181,6 +1133,94 @@
 				<fact>Whatever</fact>
 				<fact>sdfsdfsdfdsf.</fact>
 			</facts>
+			<followers>
+				<follower id="4"
+						favorite="false"
+						baseid="000AED40"
+						refid="000AED41"
+						shortname="lydia"
+						name="Lydia"
+						description="Une jeune guerrière devenue huscarl de l'Enfant de Dragon."
+						unlockcontext="Devenir thane de Blancherive en tuant le dragon à la tour de guet ouest de Blancherive."
+						hitpoints="38"
+						energy="100"
+						alignment="-100"
+						essential="false"
+						respawns="false"
+						raceid="3"
+						classid="3">
+					<facts>
+						<fact>Il meurt souvent car mauvais combattant, mais résurrecte souvent.</fact>
+						<fact>Néanmoins, il est possible de l'enfermer dans un plan de l'Oblivion.</fact>
+					</facts>
+					<quotes>
+						<quote context="Lorsque demandée de transporter de l'équipement">I am bound to carry your burdens</quote>
+						<quote context="">Lead the way</quote>
+					</quotes>
+					<abilities>
+						<ability name="Carry your burdens"
+								 description="Ne sert à rien du tout."
+								 color="orangered" />
+					</abilities>
+				</follower>
+				<follower id="5"
+						favorite="true"
+						baseid="000AED40"
+						refid="000AED41"
+						shortname="serana"
+						name="Serana"
+						description="Une jeune guerrière devenue huscarl de l'Enfant de Dragon."
+						unlockcontext="Devenir thane de Blancherive en tuant le dragon à la tour de guet ouest de Blancherive."
+						hitpoints="38"
+						energy="100"
+						alignment="-100"
+						essential="false"
+						respawns="false"
+						raceid="3"
+						classid="3">
+					<facts></facts>
+					<quotes></quotes>
+					<abilities>	</abilities>
+				</follower>
+				<follower id="6"
+						favorite="false"
+						baseid="000AED40"
+						refid="000AED41"
+						shortname="kharjo"
+						name="Kharjo"
+						description="Un random khajiit qui a perdu son amulette lol."
+						unlockcontext="Retrouver le super duper pendentif."
+						hitpoints="38"
+						energy="100"
+						alignment="-100"
+						essential="false"
+						respawns="false"
+						raceid="3"
+						classid="3">
+					<facts></facts>
+					<quotes></quotes>
+					<abilities>	</abilities>
+				</follower>
+				<follower id="7"
+						favorite="true"
+						baseid="000AED40"
+						refid="000AED41"
+						shortname="jzargo"
+						name="J'zargo"
+						description="Un mage khajiit eccentrique"
+						unlockcontext="Quand t'est archmage."
+						hitpoints="38"
+						energy="100"
+						alignment="-100"
+						essential="false"
+						respawns="false"
+						raceid="3"
+						classid="3">
+					<facts></facts>
+					<quotes></quotes>
+					<abilities>	</abilities>
+				</follower>
+			</followers>
 		</game>
 		<game id="2"
 			shortname="fallout3"
@@ -194,6 +1234,94 @@
 				<fact>Whatever</fact>
 				<fact>sdfsdfsdfdsf.</fact>
 			</facts>
+			<followers>
+				<follower id="8"
+						favorite="true"
+						baseid="000AED40"
+						refid="000AED41"
+						shortname="dogmeat"
+						name="Dog Meat"
+						description="Un chien"
+						unlockcontext="Le trouver a qq part proche de megaton"
+						hitpoints="38"
+						energy="100"
+						alignment="-100"
+						essential="false"
+						respawns="false"
+						raceid="3"
+						classid="3">
+					<facts>
+						<fact>Il meurt souvent car mauvais combattant, mais résurrecte souvent.</fact>
+						<fact>Néanmoins, il est possible de l'enfermer dans un plan de l'Oblivion.</fact>
+					</facts>
+					<quotes>
+						<quote context="Lorsque demandée de transporter de l'équipement">I am bound to carry your burdens</quote>
+						<quote context="">Lead the way</quote>
+					</quotes>
+					<abilities>
+						<ability name="Carry your burdens"
+								 description="Ne sert à rien du tout."
+								 color="orangered" />
+					</abilities>
+				</follower>
+				<follower id="9"
+						favorite="false"
+						baseid="000AED40"
+						refid="000AED41"
+						shortname="jericho"
+						name="Jericho"
+						description="Un ex mercenaire."
+						unlockcontext="Avoir un mauvais karma."
+						hitpoints="38"
+						energy="100"
+						alignment="-100"
+						essential="false"
+						respawns="false"
+						raceid="3"
+						classid="3">
+					<facts></facts>
+					<quotes></quotes>
+					<abilities>	</abilities>
+				</follower>
+				<follower id="10"
+						favorite="false"
+						baseid="000AED40"
+						refid="000AED41"
+						shortname="butch"
+						name="Butch Deloria"
+						description="An arsehole."
+						unlockcontext="Retrouver le super duper pendentif."
+						hitpoints="38"
+						energy="100"
+						alignment="-100"
+						essential="false"
+						respawns="false"
+						raceid="3"
+						classid="3">
+					<facts></facts>
+					<quotes></quotes>
+					<abilities>	</abilities>
+				</follower>
+				<follower id="11"
+						favorite="false"
+						baseid="000AED40"
+						refid="000AED41"
+						shortname="paladincross"
+						name="Star Paladin Cross"
+						description="Un paladin pas rapport a la citadelle"
+						unlockcontext="Quand t'est archmage."
+						hitpoints="38"
+						energy="100"
+						alignment="-100"
+						essential="false"
+						respawns="false"
+						raceid="3"
+						classid="3">
+					<facts></facts>
+					<quotes></quotes>
+					<abilities>	</abilities>
+				</follower>
+			</followers>
 		</game>
 	</games>
 </database>

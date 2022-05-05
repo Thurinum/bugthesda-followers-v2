@@ -1,0 +1,15 @@
+﻿@* S'AFFICHE LORSQU'UNE RECHERCHE EST EFFECTUÉE POUR UN JEU QUI N'EXISTE PAS *@
+
+@model KeyValuePair<string, string>;
+
+<article class="errorPopup">
+    <img src="~/images/shared/misc/furry.gif" />
+    <div>
+        <h2>404 Not Found</h2>
+        @if (Model.Key == null) {
+            <p>The follower "@Model.Value" could not be found.</p>
+        } else {
+            <p>Game "@Model.Key" does not contain a follower named "@Model.Value".</p>        
+        }
+    </div>
+</article>

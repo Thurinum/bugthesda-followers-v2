@@ -2,10 +2,16 @@
 
 const DEBUG = true;
 
-const main = $("main");
-const ad = $("#collabPopup");
-const adimg = $("#collabPopup .geraltImg") as HTMLImageElement;
+const MAIN  = $("main");
+const AD    = $("#collabPopup");
+const ADIMG = $("#collabPopup .geraltImg") as HTMLImageElement;
+
 let canClosePopup: boolean = true; // si la popup peut fermer
+
+enum Transition {
+	ScaleDown,
+	ScaleUp
+}
 
 // random debug util
 function getFunInfoStr(target: Element) {
@@ -58,37 +64,42 @@ function $a(attr: string, parent: HTMLElement): string {
 }
 
 // register les liens de la page (permet une transition)
-function registerLinks() {
+function registerLinks() : void {
 	let buttons = $$("button.link");
 
 	for (let i = 0; i < buttons.length; i++) {
 		buttons[i].addEventListener("click", (e) => {
 			let target = e.currentTarget as HTMLElement;
-
-			main.style.top = "100vw";
-			main.style.opacity = "0";
-
-			setTimeout(window.location.href = $a("data-href", target), 1500);
+			redirect($a("data-href", target));
 		});
 	}
 }
 
+
+function redirect(href: string) {
+	MAIN.style.opacity = "0";
+
+	setTimeout(() => {
+		window.location.href = href;
+	}, 2000);
+}
+
 // montrer la popup
 function showPopup() {
-	ad.style.right = "0";
+	AD.style.right = "0";
 
 	setTimeout(function () {
 		if (canClosePopup)
-		ad.style.right = "-430px";
+		AD.style.right = "-430px";
 	}, 15000);
 }
 
 // changer l'image du Witcher on hover
-ad.onmouseover  = function () { adimg.src = "/images/shared/ui/popup/geralt2.png"; }
-ad.onmouseleave = function () { adimg.src = "/images/shared/ui/popup/geralt.png"; }
+AD.onmouseover  = function () { ADIMG.src = "/images/shared/ui/popup/geralt2.png"; }
+AD.onmouseleave = function () { ADIMG.src = "/images/shared/ui/popup/geralt.png"; }
 
 // rediriger vers le site de Zachary sur click de la popup
-$(".collabBtn", ad).onclick = function () {
+$(".collabBtn", AD).onclick = function () {
 	let foreground = $("#foreground_witcherCollab");
 	foreground.style.display = "block";
 
@@ -100,7 +111,7 @@ $(".collabBtn", ad).onclick = function () {
 
 // "fermer" la popup lorsque le bouton X est clique :3
 $(".closeBtn").onclick = function () {
-	const progressTexts: string[] = [
+	const PROGRESS_TEXTS: string[] = [
 		"Checking for null pointers...",
 		"Loading closure data...",
 		"Ensuring academical integrity...",
@@ -155,21 +166,21 @@ $(".closeBtn").onclick = function () {
 
 	const MAX_ITERATIONS = DEBUG ? 0 : 5; // how many dummy tasks to run
 	let nbIterations: number = 0;
-	let progress = $("progress", ad) as HTMLProgressElement;
-	let progressText = $(".progressText", ad);
+	let progress = $("progress", AD) as HTMLProgressElement;
+	let progressText = $(".progressText", AD);
 	let progressTextIndex: number = 0;
-	let throbber = $(".throbber", ad);
+	let throbber = $(".throbber", AD);
 	let progressAmount: number = 1;
 	let decreaseMode: boolean = false;
 	let decreaseModeIterations: number = -1;
-	let decreaseModeCurrentIterations: number = 0;
+	let decreaseModeCurrentIterations = 0;
 
 	let progressHeader = $("#collabPopup .progressHeader");
 	progressHeader.innerText = "Processing request...";
 	let nbEllipsis = 3;
 
 	// show obnoxious loading overlay
-	$(".overlay", ad).style.opacity = "1";
+	$(".overlay", AD).style.opacity = "1";
 
 	// prevent auto-closing of popup
 	canClosePopup = false;
@@ -190,7 +201,7 @@ $(".closeBtn").onclick = function () {
 		progressText.style.opacity = "0";
 
 		setTimeout(() => {
-			progressTextIndex = Math.round(Math.random() * (progressTexts.length - 1));
+			progressTextIndex = Math.round(Math.random() * (PROGRESS_TEXTS.length - 1));
 			progressText.style.opacity = "1";
 		}, 300);
 	}
@@ -220,7 +231,7 @@ $(".closeBtn").onclick = function () {
 		}
 
 		// set progress text
-		progressText.innerText = progressTexts[progressTextIndex] + " " + Math.round(progress.value) + "%";
+		progressText.innerText = PROGRESS_TEXTS[progressTextIndex] + " " + Math.round(progress.value) + "%";
 
 		// randomly choose a new progress amount
 		if (Math.random() < 0.1)
@@ -247,13 +258,13 @@ $(".closeBtn").onclick = function () {
 		// stop progress and redirect to Zachary's website after enough iterations
 		if (nbIterations === MAX_ITERATIONS) {
 			nbIterations = 0;
-               
+			   
 			progressHeader.innerText = "Closing popup...";
 			progressText.innerText = "Request approved. Have a nice day!";
 
 			setTimeout(() => {
-				$(".overlay", ad).style.opacity = "0";
-				ad.style.right = "-450px";
+				$(".overlay", AD).style.opacity = "0";
+				AD.style.right = "-450px";
 			}, 1000);
 
 			return;

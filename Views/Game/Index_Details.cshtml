@@ -14,5 +14,5 @@
     <p>Hitpoints moyen: @Model.Followers.Average(f => f.Hitpoints)</p>
     <p>Energie moyenne: @Model.Followers.Average(f => f.Energy)</p>
     <p>Alignment moyen: @Model.Followers.Average(f => f.Alignment)</p>
-    <p>Race la plus commune: @Model.Root.SharedInfo.Races.Aggregate((r1, r2) => r1.Population > r2.Population ? r1 : r2).CommonName</p>
+    <p>Race la plus commune: @Model.SharedInfo.Races.Aggregate((r1, r2) => r1.Population > r2.Population ? r1 : r2).CommonName</p>
 </article>

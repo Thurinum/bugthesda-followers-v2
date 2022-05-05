@@ -1,36 +1,56 @@
 :root{
 	--itemgap: 12px
 }
+
 main {
-	display: grid;
-	grid-template-columns: 60% 1fr;
+	display: flex;
+	flex-direction: column;
 	image-rendering: -webkit-optimize-contrast;
-	background-color: #222222;
 }
 
 
 
-.searchResults {
-	overflow-y: auto;
-	display: inline-flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+header#searchBar, footer#quotesBar {
+	width: 100vw;
+	height: calc(var(--letterbox-height) * 0.9);
+	background: #333333;
+}
+
+form {
+	width: 100vw;
+	height: 0;
+	display: none;
+}
+
+#cardsWrapper {
+	width: auto;
+	height: calc(100vh - (3.8 * var(--letterbox-height)));
 	margin: var(--itemgap);
+
+	display: grid;
+	grid-template-rows: 50% 50%;
+	grid-auto-flow: column;
 	gap: var(--itemgap);
-}
 
-/* Spécification d'usage de position:relative... */
-.btnsFormulaire {
-	position: relative;
+	overflow-x: auto;
+	overflow-y: hidden;
 }
-.btnsFormulaire:hover {
-	top: 10px;
+#cardsWrapper::-webkit-scrollbar {
+	background: white;
+	box-shadow: 0 -2px 10px grey;
 }
+	#cardsWrapper::-webkit-scrollbar-button {
+		background: grey;
+	}
+	#cardsWrapper::-webkit-scrollbar-thumb {
+		background: lightgrey;
+		box-shadow: 0 2px 10px red;
+	}
 
-/* Une carte d'une entité enfant */
+/* Carte d'une entite enfant */
 .follower {
-	width: calc(25% - (1 * var(--itemgap)));
-	height: 300px;
+	width: 250px;
+	height: 100%;
 
 	display: flex;
 	flex-direction: column;
@@ -49,11 +69,11 @@ main {
 	.follower:hover {
 		color: white;
 		transform: rotateX(12deg) translate(0, -1%);
-		box-shadow: 0px 15px 11px -1px black;
+		box-shadow: 0px 15px 11px -1px #222;
 	}
 	.follower:active {
 		transform: rotateX(0) translate(0, 0);
-		box-shadow: 0 5px 9px -6px black;
+		box-shadow: 0 5px 9px -6px #222;
 	}
 
 	.follower img {
@@ -85,11 +105,3 @@ main {
 		width: 50px;
 		height: 50px;
 	}
-
-form {
-	display: flex;
-	flex-direction: column;
-	padding: var(--itemgap);
-	margin-left: 0;
-	padding-left: 0;
-}

@@ -1,8 +1,8 @@
 "use strict";
 
-let currentIndex = -1;
-let isCarouselEnabled = true;
 let firstTime = true;
+let isCarouselEnabled = true;
+let currentIndex = -1;
 let currentTimeout;
 let items = $$(".carousel > div");
 
@@ -55,7 +55,7 @@ const Carousel = {
 		}
 	   
 		// center the new active card in container
-		main.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2)
+		MAIN.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2)
 
 		let shortname = ($("input.gameName", target) as HTMLInputElement).value;
 		let background = $("#background") as HTMLVideoElement;
@@ -107,7 +107,7 @@ const Carousel = {
 
 			if (header.nodeName != "H1") {
 				header.style.opacity = "0";
-				header.style.transform = "scale(0)";
+				header.style.height = "0";
 			}
 		}
 
@@ -115,7 +115,7 @@ const Carousel = {
 		let input = $("input.gameName", target) as HTMLInputElement;
 		let details = $("#details");
 
-		fetch(`/${input.value}`)
+		fetch(`/game/${input.value}`)
 			.then(data => data.text())
 			.then(html => {
 				details.innerHTML = html;
@@ -126,10 +126,12 @@ const Carousel = {
 		$("#background").style.filter = "blur(20px)";
 		let img = $("img", target);
 		img.style.animationPlayState = "running";
-		img.style.transform = "scale(1.2)";
+		img.style.transform = "scale(1.1)";
 
 		// show button
-		$("#searchBtn").style.transform = "scale(1)";
+		let button = $(".searchBtn", target);
+		button.style.height = "3ex";
+		button.style.transform = "scale(1)";
 	},
 
 	hideDetails() {
@@ -142,14 +144,13 @@ const Carousel = {
 
 		// reset headers
 		let target = items[currentIndex];
-		console.log(target)
 		let headers = $$(".showOnActive", target);
 		for (let i = 0; i < headers.length; i++) {
 			let header = headers[i];
 
 			if (header.nodeName != "H1") {
 				header.style.opacity = "1";
-				header.style.transform = "scale(1)";
+				header.style.height = "3ex";
 			}
 		}
 
@@ -160,7 +161,8 @@ const Carousel = {
 		img.style.transform = "";
 
 		$("#details").style.transform = "translateY(-50%) scale(0)";
-		$("#searchBtn").style.transform = "scale(0)";
+		$(".searchBtn", target).style.height = "0";
+		$(".searchBtn", target).style.transform = "scale(0)";
 	}
 }
 
@@ -182,12 +184,8 @@ document.addEventListener("keydown", function (e) {
 // re-centrer la position des items dans le carousel on page resize
 window.onresize = function () {
 	let target = $("#card" + currentIndex);
-	main.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2)
+	MAIN.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2)
 }
-
-// ajouter les evenements aux items
-for (let i = 0; i < items.length; i++)
-	items[i].onclick = (e) => Carousel.showDetails(e.currentTarget as HTMLElement);
 
 // rendre actif le dernier jeu selectionne en memoire
 // sinon, rendre actif le jeu du milieu
@@ -199,5 +197,11 @@ window.addEventListener("load", function () {
 	else
 		Carousel.setActiveAt(Math.round(($(".carousel").children.length - 1) / 2));
 
-	main.style.opacity = "1";
+	// ajouter les evenements aux items
+	for (let i = 0; i < items.length; i++)
+		items[i].onclick = (e) => Carousel.showDetails(e.currentTarget as HTMLElement);
+
+	registerLinks();
+
+	MAIN.style.opacity = "1";
 });

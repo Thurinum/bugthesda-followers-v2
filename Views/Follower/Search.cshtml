@@ -1,24 +1,40 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers;
 @model List<Follower>;
 
-<div class="searchResults">
-	@foreach (Follower follower in Model)
-	{
-		<button class="follower link" style="border-color: @follower.Parent.Color;" href="/details/@(Model[0].Parent.Id)/@follower.Id">
-			<img class="thumbnail" src="/images/games/@(follower.Parent.ShortName)/followers/@(follower.ShortName)/thumbnail.jpg" />
-			<div class="container">
-				<div class="primaryinfo">
-					<img class="gamelogo" src="/images/games/@(follower.Parent.ShortName)/logo.png" />
-					<h2>@follower.Name</h2>
-				</div>
+<!-- BARRE DE RECHERCHE-->
+<header id="searchBar">
+    <div id="searchWrapper">
+        <input id="search" type="text" placeholder="Search..." />
+        <img id="searchIcon" src="#" alt="" />
+    </div>
+</header>
 
-				<div class="secondaryinfo">
-					@if (follower.IsFavorite) { <img src="~/images/shared/badges/favorite.png" /> }
-					@if (follower.IsEssential) { <img src="~/images/shared/badges/essential.png" /> }
-				</div>
-			</div>
-		</button>
-	}
-</div>
-
+<!-- FORMULAIRE DE RECHERCHE (HIDDEN PAR DEFAULT)-->
 <partial name="Search_Form" />
+
+<!-- LISTE DES COMPAGNIONS-->
+<section id="cardsWrapper" data-color="red">
+   @foreach (Follower follower in Model) {
+        <button class="follower link" href="/details/@follower.Id">
+            <img class="thumbnail" src="/images/games/@(follower.Parent.ShortName)/followers/@(follower.ShortName)/thumbnail.jpg" />
+            <div class="container">
+                <div class="primaryinfo">
+                    <img class="gamelogo" src="/images/games/@(follower.Parent.ShortName)/logo.png" />
+                    <h2>@follower.Name</h2>
+                </div>
+
+                <div class="secondaryinfo">
+                    @if (follower.IsFavorite)
+                    {<img src="~/images/shared/attributes/favorite.png" />}
+                    @if (follower.IsEssential)
+                    {<img src="~/images/shared/attributes/essential.png" />}
+                </div>
+            </div>
+        </button>
+    }
+</section>
+
+<!-- CITATIONS ALEATOIRES -->
+<footer id="quotesBar">
+    <blockquote>TODO Using ViewModel</blockquote>
+</footer>

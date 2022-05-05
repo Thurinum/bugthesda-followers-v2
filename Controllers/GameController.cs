@@ -6,56 +6,78 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace SessionProject2W5.Controllers
 {
-	[Route("/")]
 	public class GameController : Controller
 	{
+		private Database database;
+		private Random generator;
+
 		public GameController(Database db)
 		{
 			this.database = db;
 			this.generator = new Random();
 
-			ViewData["sDatabaseError"] = db.ErrorString; // Montrer certains messages d'erreur
+		}
+
+		// passer l'erreur de la base de donnees au ViewData avant que
+		// la premiere action soit executee
+		public override void OnActionExecuted(ActionExecutedContext context)
+		{
+			base.OnActionExecuted(context);
+			ViewData["sDatabaseError"] = database.ErrorString; // Montrer certains messages d'erreur
 		}
 
 		// affiche les infos primaires des jeux dans un carousel
+		[Route("/")]
 		public IActionResult Index()
 		{
 			ViewData["sPageTitle"] = "Bethesda's Followers";
+			//ViewData["sDatabaseError"] = database.ErrorString;
 			return View(database.Games);
 		}
 
+		#region Details d'un jeu
 		// affiche les infos secondaires sur un jeu
-		[Route("{Id}")]
-		public IActionResult Index_Details(string Id)
+		[Route("/game/{name}")]
+		[Route("/parent/{name}")]
+		public IActionResult Index_Details(string name)
 		{
-			Game game = database.Games.Where(g => g.ShortName == Id).ToList()[0];
+			List<Game> match = database.Games.Where(g => g.ShortName == name).ToList();
+
+			if (match.Count != 1)
+				return PartialView("404_GameNotFound", name);
+
+			Game game = match[0];
 			
 			if (game.Followers.Count == 0)
-				return PartialView("Index_Details_NoContent", game.Name);
+				return PartialView("204_GameEmpty", game.Name);
 
 			return PartialView(game);
 		}
 
 		// affiche les infos secondaires sur un jeu (overload)
-		[Route("{Id:int}")]
-		public IActionResult Index_Details(int Id)
+		[Route("/game/{id:int}")]
+		[Route("/parent/{id:int}")]
+		public IActionResult Index_Details(int id)
 		{
-			Game game = database.Games[Id];
+			Game game = database.Games[id];
 
 			if (game.Followers.Count == 0)
-				return PartialView("Index_Details_NoContent", game.Name);
+				return PartialView("204_GameEmpty", game.Name);
 
-			return PartialView(game);
+			return PartialView(id);
 		}
 
 		// obtient l'url d'une image aleatoire pour le jeu
-		[Route("{Id:int}/randomthumbnail")]
-		public IActionResult RandomThumbnail(int Id)
+		[Route("/game/{id:int}/random_thumbnail")]
+		[Route("/parent/{id:int}/random_thumbnail")]
+		[Obsolete("Dont use this shit")]
+		public IActionResult RandomThumbnail(int id)
 		{
-			Game game = database.Games[Id];
+			Game game = database.Games[id];
 
 			if (game.Followers.Count == 0)
 				return Content("empty");
@@ -65,8 +87,7 @@ namespace SessionProject2W5.Controllers
 
 			return Content(name);
 		}
+		#endregion
 
-		private Database database;
-		private Random generator;
 	}
 }

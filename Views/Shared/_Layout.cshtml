@@ -54,6 +54,15 @@
 		<button class="collabBtn"><b>ACCÉDER AU SITE</b></button>
 	</section>
 
+	@if (ViewData["sDatabaseError"] != null)
+	{
+		<section id="errorPopup">
+			<h2>Error</h2>
+			<p>@ViewData["sDatabaseError"]</p>
+		</section>
+
+	 }
+
 	<!-- FOOTER -->
 	<footer>
 		<p>

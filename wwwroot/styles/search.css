@@ -8,18 +8,20 @@ main {
 	image-rendering: -webkit-optimize-contrast;
 }
 
-
-
 header#searchBar, footer#quotesBar {
 	width: 100vw;
 	height: calc(var(--letterbox-height) * 0.9);
 	background: #333333;
 }
 
-form {
+#searchForm {
 	width: 100vw;
-	height: 0;
+	height: min-content;
+	
 	display: none;
+
+	position: absolute;
+	top: calc(1.9 * var(--letterbox-height));
 }
 
 #cardsWrapper {

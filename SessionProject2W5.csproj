@@ -41,10 +41,8 @@
     <None Include="Views\Favorite\Index.cshtml" />
     <None Include="Views\Follower\Details.cshtml" />
     <None Include="Views\Follower\Search.cshtml" />
-    <None Include="Views\Follower\Search_Form.cshtml" />
     <None Include="Views\Game\Index.cshtml" />
     <None Include="Views\Game\Index_Details.cshtml" />
-    <None Include="Views\Game\Index_Details_NoContent.cshtml" />
     <None Include="Views\Shared\204_GameEmpty.cshtml" />
     <None Include="Views\Shared\404_FollowerNotFound.cshtml" />
     <None Include="Views\Shared\404_GameNotFound.cshtml" />

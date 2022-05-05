@@ -4,13 +4,17 @@
 <!-- BARRE DE RECHERCHE-->
 <header id="searchBar">
     <div id="searchWrapper">
-        <input id="search" type="text" placeholder="Search..." />
+        <input id="search" type="text" placeholder="Search..." form="searchForm" />
         <img id="searchIcon" src="#" alt="" />
     </div>
 </header>
 
 <!-- FORMULAIRE DE RECHERCHE (HIDDEN PAR DEFAULT)-->
-<partial name="Search_Form" />
+<form id="searchForm">
+   <select>
+         <option>dummy</option>
+   </select>
+</form>
 
 <!-- LISTE DES COMPAGNIONS-->
 <section id="cardsWrapper" data-color="red">

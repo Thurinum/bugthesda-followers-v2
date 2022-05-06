@@ -1,64 +1,11 @@
 ﻿@model Follower;
 
-<!-- Image du compagnion -->
-<div>
-	<div class="row bg-dark mx-2">
-		<img src="/resources/images/games/@(Model.Parent.ShortName)/followers/@(Model.ShortName)/thumbnail.jpg" alt="Image du compagnion" />
-	</div>
-	<div class="row bg-dark mx-2 align-items-center">
-		<img class="col-1 col-md-2 img-fluid p-2 pl-3" src="/resources/images/games/@(Model.Parent.ShortName)/logo.png" alt="@Model.Parent.Name" title="Dans Oblivion" data-toggle="tooltip" data-placement="bottom" />
-		<h2 class="col-10 mb-0 pl-1">@Model.Name</h2>
-		<h5 class="col-12 text-muted text-center">Ce compagnion est un favori.</h5>
-		<form class="col-12 bg-dark text-center mt-2 pb-3" method="post" action="https://www.w3schools.com/action_page.php">
-			<input type="hidden" name="nom" value="@Model.ShortName" />
-			<button class="btnFavori btn btn-secondary" type="submit"><i class="fas fa-plus"></i>&nbsp; Ajouter aux favoris</button>
-		</form>
-	</div>
-</div>
-
-<!-- Tableau des details -->
-<div class="col-12 col-md-6 mt-4 mt-md-0 text-center order-md-2 order-1">
-	<table class="table table-dark text-center vertical-align">
-		<thead>
-			<tr>
-				<th scope="col">Propriété</th>
-				<th scope="col">Valeur</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th scope="row">Race</th>
-				<td>@Model.Race.CommonName</td>
-			</tr>
-			<tr>
-				<th scope="row">Class</th>
-				<td>@Model.Class.Name</td>
-			</tr>
-			<tr>
-				<th scope="row">Devient compagnion</th>
-				<td>@Model.UnlockContext</td>
-			</tr>
-			<tr>
-				<th scope="row">Resurrection</th>
-				<td>@(Model.IsEssential ? "oui" : "non")</td>
-			</tr>
-			<tr>
-				<th scope="row">Citation celebre</th>
-				<!-- Tag: blockquote (citation) -->
-				<td>
-					<!-- Tag: details (contenu caché) -->
-					<details>
-						<summary>Afficher les citations</summary>
-						@foreach (Quote citation in Model.Quotes) {
-						<blockquote>
-							@citation.text;
-						</blockquote>
-						<span class="context">@citation.context</span>
-						}
-					</details>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<div class="mb-3 mb-md-0">(Curseur sur l'image pour zoomer)</div>
+<div id="detailsWrapper">
+	<figure class="portrait">
+		<img src="~/images/games/@(Model.Parent.ShortName)/followers/@(Model.ShortName).webp" alt="Image du compagnion @Model.Name" />
+		<figcaption>@Model.Name</figcaption>
+	</figure>
+	<section class="attributes">
+		
+	</section>
 </div>

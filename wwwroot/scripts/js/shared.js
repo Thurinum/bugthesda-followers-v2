@@ -41,7 +41,7 @@ function $a(attr, parent) {
         return parent.getAttribute(attr);
     let val = parent.getAttribute(attr);
     if (val === null || val == undefined) {
-        console.warn(`[WARN] No attribute "${attr}" was found in "${parent}".`);
+        console.warn(`[WARN] No attribute "${attr}" was found in "${getFunInfoStr(parent)}".`);
         return "invalid";
     }
     return val;

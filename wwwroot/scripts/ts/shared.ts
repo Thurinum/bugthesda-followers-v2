@@ -281,12 +281,9 @@ $(".closeBtn").onclick = function () {
 	}, 500);
 }
 
+MAIN.style.opacity = "0";
 window.addEventListener("load", function () {
-	MAIN.style.opacity = "0";
+	MAIN.style.opacity = "1";
 
-	window.onload = function () {
-		MAIN.style.opacity = "1";
-
-		registerLinks();
-	}
+	registerLinks();
 });

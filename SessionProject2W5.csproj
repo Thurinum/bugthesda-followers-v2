@@ -54,7 +54,6 @@
     <None Include="wwwroot\images\games\fallout3\Jericho.webp" />
     <None Include="wwwroot\images\games\skyrim\skyrim_art1.webp" />
     <None Include="wwwroot\images\games\skyrim\skyrim_art2.webp" />
-    <None Include="wwwroot\scripts\details.js" />
     <None Include="wwwroot\scripts\favoris.js" />
     <None Include="wwwroot\scripts\js\index.js" />
     <None Include="wwwroot\scripts\js\index.js.map" />

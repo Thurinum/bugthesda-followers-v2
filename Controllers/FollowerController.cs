@@ -67,20 +67,42 @@ namespace SessionProject2W5.Controllers
 
 		#region Afficher details d'un compagnion
 		// Affiche les details d'un compagnion selon son nom (supporte plusieurs routes)
-		[Route("/{followerid}")]
-		[Route("/enfant/{followerid}")]
-		[Route("/enfant/detail/{followerid}")]
-		[Route("/enfant/details/{followerid}")]
+		[Route("/{name}")]
+		[Route("/details/{name}")]
 
-		[Route("/follower/{followerid}")]
-		[Route("/follower/detail/{followerid}")]
-		[Route("/follower/details/{followerid}")]
-		public IActionResult Details(string followerid)
+		[Route("/follower/{name}")]
+		[Route("/follower/details/{name}")]
+
+		[Route("/enfant/{name}")]
+		[Route("/enfant/detail/{name}")]
+		[Route("/enfant/details/{name}")]
+		public IActionResult Details(string name)
 		{
-			Follower follower = Database.Followers.Where(f => f.ShortName == followerid).FirstOrDefault();
+			Follower follower = Database.Followers.Where(f => f.ShortName == name).FirstOrDefault();
 
 			if (follower == null)
-				return View("404_FollowerNotFound", new KeyValuePair<string, string>(null, followerid));
+				return View("404_FollowerNotFound", new KeyValuePair<string, string>(null, name));
+
+			ViewData["sPageTitle"] = $"{follower.Parent.Name} - {follower.Name}";
+			return View(follower);
+		}
+
+		// Affiche les details d'un compagnion selon son id (supporte plusieurs routes)
+		[Route("/{id:int}")]
+		[Route("/details/{id:int}")]
+
+		[Route("/follower/{id:int}")]
+		[Route("/follower/details/{id:int}")]
+
+		[Route("/enfant/{id:int}")]
+		[Route("/enfant/detail/{id:int}")]
+		[Route("/enfant/details/{id:int}")]
+		public IActionResult Details(int id)
+		{
+			Follower follower = Database.Followers[id];
+
+			if (follower == null)
+				return View("404_FollowerNotFound", new KeyValuePair<string, string>(null, id.ToString()));
 
 			ViewData["sPageTitle"] = $"{follower.Parent.Name} - {follower.Name}";
 			return View(follower);

@@ -1,63 +1,66 @@
 ﻿@model Follower;
 
 <!-- DETAILS D'UN COMPAGNION-->
-<article class="followerInfo">
+<article id="followerInfoWrapper">
     <!-- IMAGE DU COMPAGNION -->
-    <figure>
-        <img src="~/images/games/@(Model.Parent.ShortName)/followers/@(Model.ShortName).webp"
+    <figure id="portrait">
+        <img src="~/images/games/@(Model.Parent.ShortName)/followers/@(Model.ShortName)/thumbnail.jpg"
              alt="Image du compagnion @Model.Name" />
         <figcaption>@Model.Name</figcaption>
     </figure>
 
-    <!-- DESCRIPTION ET CONTEXTE -->
-    <section>
-        <p>@Model.Description</p>
-        <footer>@Model.UnlockContext</footer>
-    </section>
-
     <!-- ATTRIBUTS -->
-    <section class="attributes">
-        @if (Model.IsEssential)
-        {
-            <img src="~/images/shared/attributes/essential.png" alt="Est Essentiel" />
-        }
+    <section id="attributes">
         @if (Model.IsFavorite)
-        {
-            <img src="~/images/shared/attributes/favorite.png" alt="Est Favori" />
-        }
+        {<img src="~/images/shared/attributes/favorite.png" alt="Est Favori" />}
+
+        @if (Model.IsEssential)
+        {<img src="~/images/shared/attributes/essential.png" alt="Est Essentiel" />}
+        
+        @if (Model.DoesRespawn)
+        {<img src="~/images/shared/attributes/respawns.png" alt="Resurrecte" />}
     </section>
 
     <!-- RACE ET CLASSE -->
-    <section class="raceclassWrapper">
+    <section id="raceclass">
         <div class="raceclassCard">
-            <img src="~/images/shared/races/@(Model.Race.ShortName).webp" />
-            <h4>@Model.Race.NativeName</h4>
-            <p>@Model.Race.CommonName</p>
+            @*<img src="~/images/shared/races/@(Model.Race.ShortName).webp" />*@
+            <img src="~/images/shared/ui/throbber.png" />
+            <h2>@Model.Race.NativeName</h2>
+            <p>@Model.Race.Description</p>
         </div>
         <div class="raceclassCard">
-            <img src="~/images/shared/classes/@(Model.Class.ShortName).webp" />
-            <h4>@Model.Class.Name</h4>
+            @*<img src="~/images/shared/classes/@(Model.Class.ShortName).webp" />*@
+            <img src="~/images/shared/ui/throbber.png" />
+            <h2>@Model.Class.Name</h2>
             <p>@Model.Class.Description</p>
         </div>
     </section>
 
     <!-- HABILETES -->
-    <section>
+    <section id="abilities">
         <header>Abilities</header>
         <div class="scrollWrapper">
             @foreach (Datum datum in Model.Abilities)
             {
                 <div class="abilityCard">
-                    <img src="~/images/shared/abilities/@(datum.ShortName).webp" />
+                    @*<img src="~/images/shared/abilities/@(datum.ShortName).webp" />*@
+                    <img src="~/images/shared/ui/throbber.png" />
                     <h4>@datum.Name</h4>
                     <p>@datum.Description</p>
                 </div>
             }
         </div>
     </section>
+
+    <!-- DESCRIPTION ET CONTEXTE -->
+    <article id="description">
+        <p>@Model.Description</p>
+        <footer><strong>Condition:</strong>&nbsp;@Model.UnlockContext</footer>
+    </article>
 </article>
 
 <!-- CITATIONS ET FAIT ALEATOIRES -->
-<footer>
+<footer id="triviaWrapper">
     <p> todo</p>
 </footer>

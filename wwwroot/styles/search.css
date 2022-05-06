@@ -33,6 +33,7 @@ header#searchBar, footer#quotesBar {
 	grid-template-rows: 50% 50%;
 	grid-auto-flow: column;
 	gap: var(--itemgap);
+	justify-content: center;
 
 	overflow-x: auto;
 	overflow-y: hidden;
@@ -81,6 +82,8 @@ header#searchBar, footer#quotesBar {
 	.follower img {
 		width: 100%;
 		height: 50%;
+		object-fit: cover;
+		object-position: top;
 	}
 	.follower .container {
 		height: 50%;
@@ -102,6 +105,7 @@ header#searchBar, footer#quotesBar {
 		align-items: center;
 		justify-content: center;
 		padding: 10px;
+		gap: 15px;
 	}
 	.follower .secondaryinfo img {
 		width: 50px;

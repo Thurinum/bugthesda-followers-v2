@@ -33,6 +33,8 @@
                     {<img src="~/images/shared/attributes/favorite.png" />}
                     @if (follower.IsEssential)
                     {<img src="~/images/shared/attributes/essential.png" />}
+                    @if (follower.DoesRespawn)
+                    {<img src="~/images/shared/attributes/respawns.png" />}
                 </div>
             </div>
         </button>

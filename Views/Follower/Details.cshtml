@@ -1,11 +1,63 @@
 ﻿@model Follower;
 
-<div id="detailsWrapper">
-	<figure class="portrait">
-		<img src="~/images/games/@(Model.Parent.ShortName)/followers/@(Model.ShortName).webp" alt="Image du compagnion @Model.Name" />
-		<figcaption>@Model.Name</figcaption>
-	</figure>
-	<section class="attributes">
-		
-	</section>
-</div>
+<!-- DETAILS D'UN COMPAGNION-->
+<article class="followerInfo">
+    <!-- IMAGE DU COMPAGNION -->
+    <figure>
+        <img src="~/images/games/@(Model.Parent.ShortName)/followers/@(Model.ShortName).webp"
+             alt="Image du compagnion @Model.Name" />
+        <figcaption>@Model.Name</figcaption>
+    </figure>
+
+    <!-- DESCRIPTION ET CONTEXTE -->
+    <section>
+        <p>@Model.Description</p>
+        <footer>@Model.UnlockContext</footer>
+    </section>
+
+    <!-- ATTRIBUTS -->
+    <section class="attributes">
+        @if (Model.IsEssential)
+        {
+            <img src="~/images/shared/attributes/essential.png" alt="Est Essentiel" />
+        }
+        @if (Model.IsFavorite)
+        {
+            <img src="~/images/shared/attributes/favorite.png" alt="Est Favori" />
+        }
+    </section>
+
+    <!-- RACE ET CLASSE -->
+    <section class="raceclassWrapper">
+        <div class="raceclassCard">
+            <img src="~/images/shared/races/@(Model.Race.ShortName).webp" />
+            <h4>@Model.Race.NativeName</h4>
+            <p>@Model.Race.CommonName</p>
+        </div>
+        <div class="raceclassCard">
+            <img src="~/images/shared/classes/@(Model.Class.ShortName).webp" />
+            <h4>@Model.Class.Name</h4>
+            <p>@Model.Class.Description</p>
+        </div>
+    </section>
+
+    <!-- HABILETES -->
+    <section>
+        <header>Abilities</header>
+        <div class="scrollWrapper">
+            @foreach (Datum datum in Model.Abilities)
+            {
+                <div class="abilityCard">
+                    <img src="~/images/shared/abilities/@(datum.ShortName).webp" />
+                    <h4>@datum.Name</h4>
+                    <p>@datum.Description</p>
+                </div>
+            }
+        </div>
+    </section>
+</article>
+
+<!-- CITATIONS ET FAIT ALEATOIRES -->
+<footer>
+    <p> todo</p>
+</footer>

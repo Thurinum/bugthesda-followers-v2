@@ -45,7 +45,7 @@ namespace SessionProject2W5.Controllers
 		[Route("/parent/{name}")]
 		public IActionResult Index_Details(string name)
 		{
-			List<Game> match = database.Games.Where(g => g.ShortName == name).ToList();
+			List<Game> match = database.Games.Where(g => g.ShortName == name.ToLower()).ToList();
 
 			if (match.Count != 1)
 				return PartialView("404_GameNotFound", name);

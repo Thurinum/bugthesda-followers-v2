@@ -78,7 +78,7 @@ namespace SessionProject2W5.Controllers
 		[Route("/enfant/details/{name}")]
 		public IActionResult Details(string name)
 		{
-			Follower follower = Database.Followers.Where(f => f.ShortName == name).FirstOrDefault();
+			Follower follower = Database.Followers.Where(f => f.ShortName == name.ToLower()).FirstOrDefault();
 
 			if (follower == null)
 				return View("404_FollowerNotFound", new KeyValuePair<string, string>(null, name));
@@ -112,11 +112,11 @@ namespace SessionProject2W5.Controllers
 		[Route("/{gamename}/{followername}")]
 		public IActionResult Details(string gamename, string followername)
 		{
-			Game game = Database.Games.Where(g => g.ShortName == gamename).FirstOrDefault();
+			Game game = Database.Games.Where(g => g.ShortName == gamename.ToLower()).FirstOrDefault();
 			if (game == null)
 				return View("204_GameEmpty");
 
-			Follower follower = game.Followers.Where(f => f.ShortName == followername).FirstOrDefault();
+			Follower follower = game.Followers.Where(f => f.ShortName == followername.ToLower()).FirstOrDefault();
 			if (follower == null)
 				return View("404_FollowerNotFound", new KeyValuePair<string, string>(game.Name, followername));
 

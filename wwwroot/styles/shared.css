@@ -108,17 +108,14 @@ main {
 footer {
 	width: 100vw;
 	height: var(--letterbox-height);
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
 	gap: 100px;
-
 	border-top: solid 2px #4949494A;
 	background-color: var(--letterbox-color);
 	box-shadow: 0 -5px 22px 0 var(--letterbox-color);
-
 	z-index: 2;
 }
 
@@ -368,7 +365,7 @@ footer {
 			text-align: center;
 		}
 
-		#collabPopup .throbber {
+		.throbber {
 			position: absolute;
 			top: 50%;
 			left: 50%;

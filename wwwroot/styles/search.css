@@ -33,7 +33,7 @@ header#searchBar, footer#quotesBar {
 	grid-template-rows: 50% 50%;
 	grid-auto-flow: column;
 	gap: var(--itemgap);
-	justify-content: center;
+	justify-content: left;
 
 	overflow-x: auto;
 	overflow-y: hidden;

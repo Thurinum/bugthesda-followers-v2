@@ -128,8 +128,16 @@ document.addEventListener("keydown", function (e) {
         Carousel.setActiveAt(currentIndex - 1);
     else if (e.key == "ArrowRight")
         Carousel.setActiveAt(currentIndex + 1);
-    else if (e.key == "Enter")
-        Carousel.showDetails($("card" + currentIndex));
+    else if (e.key == "Enter") {
+        let card = $("#card" + currentIndex);
+        if ($("#details").style.transform === "translateY(-50%) scale(1)") {
+            Carousel.hideDetails();
+            isCarouselEnabled = false;
+            $(".searchBtn", card).click();
+        }
+        else
+            Carousel.showDetails(card);
+    }
 });
 window.onresize = function () {
     let target = $("#card" + currentIndex);
@@ -141,8 +149,12 @@ window.addEventListener("load", function () {
         Carousel.setActiveAt(lastIndex);
     else
         Carousel.setActiveAt(Math.round(($(".carousel").children.length - 1) / 2));
-    for (let i = 0; i < items.length; i++)
-        items[i].onclick = (e) => Carousel.showDetails(e.currentTarget);
+    for (let i = 0; i < items.length; i++) {
+        items[i].onclick = (e) => {
+            if (isCarouselEnabled)
+                Carousel.showDetails(e.currentTarget);
+        };
+    }
     registerLinks();
     MAIN.style.opacity = "1";
 });

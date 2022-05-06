@@ -19,6 +19,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\500_DatabaseError.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\scripts\ts\index.ts" />
     <Content Include="wwwroot\scripts\ts\shared.ts" />
   </ItemGroup>
@@ -43,6 +47,7 @@
     <None Include="Views\Follower\Search.cshtml" />
     <None Include="Views\Game\Index.cshtml" />
     <None Include="Views\Game\Index_Details.cshtml" />
+    <None Include="Views\Shared\500_DatabaseError.cshtml" />
     <None Include="Views\Shared\204_GameEmpty.cshtml" />
     <None Include="Views\Shared\404_FollowerNotFound.cshtml" />
     <None Include="Views\Shared\404_GameNotFound.cshtml" />

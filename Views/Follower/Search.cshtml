@@ -20,7 +20,7 @@
 <!-- LISTE DES COMPAGNIONS-->
 <section id="cardsWrapper" data-color="red">
    @foreach (Follower follower in Model) {
-        <button class="follower link" data-href="/details/@follower.Id">
+        <button class="follower link" data-href="/details/@follower.Id" autofocus>
             <img class="thumbnail" src="/images/games/@(follower.Parent.ShortName)/followers/@(follower.ShortName)/thumbnail.jpg" />
             <div class="container">
                 <div class="primaryinfo">

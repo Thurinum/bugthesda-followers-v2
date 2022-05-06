@@ -55,12 +55,8 @@
 	</section>
 
 	@if (ViewData["sDatabaseError"] != null)
-	{
-		<section id="errorPopup">
-			<h2>Error</h2>
-			<p>@ViewData["sDatabaseError"]</p>
-		</section>
-
+	 {
+		<partial name="500_DatabaseError" model="@ViewData["sDatabaseError"]" />
 	 }
 
 	<!-- FOOTER -->

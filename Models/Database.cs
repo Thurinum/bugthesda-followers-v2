@@ -44,6 +44,8 @@ namespace SessionProject2W5.Models
 			// variables temporaires (membre actuel)
 			Game game = null;
 			Follower follower = null;
+			List<int> gameids = new List<int>();
+			List<int> followerids = new List<int>();
 
 			#region Helper functions
 			// Helper: obtenir un attribut
@@ -68,9 +70,11 @@ namespace SessionProject2W5.Models
 				try {					
 					converted = int.Parse(value);
 				}
-				catch(Exception) 
-				{ 
-					this.ErrorString += $"Could not to convert attribute '{name}' with value '{value}' to integer in {reader.Name}.\n";
+				catch(Exception e) 
+				{
+					if (value.Length > 10)
+						value = value.Substring(0, 10) + "...";
+					this.ErrorString += $"Could not to convert attribute '{name}' with value '{value}' to integer in follower '{follower.Name}' of game '{game.Name}': {e.Message}\n";
 				}
 
 				return converted;
@@ -79,7 +83,19 @@ namespace SessionProject2W5.Models
 			// Helper: obtenir un attribut en bool
 			bool attrb(string name)
 			{
-				return attr(name) == "true";
+				string val = attr(name);
+				bool result = false;
+				
+				try
+				{
+					result = bool.Parse(val);
+				}
+				catch(Exception e)
+				{
+					this.ErrorString += $"Could not convert value '{val}' to boolean.\n";
+				}
+
+				return result;
 			}
 			#endregion
 
@@ -94,40 +110,56 @@ namespace SessionProject2W5.Models
 				switch (reader.Name)
 				{
 					case "race":
-						Race race			= new Race();
-						race.Id				= attri("id"); // TODO: Validate IDs, names, etc.
-						race.NativeName		= attr("nativename");
-						race.CommonName		= attr("commonname");
-						race.Description	= attr("description");
-						race.Color			= attr("color");
+						Race race = new Race
+						{
+							Id = attri("id"),
+							NativeName = attr("nativename"),
+							CommonName = attr("commonname"),
+							Description = attr("description"),
+							Color = attr("color")
+						};
 						this.SharedInfo.Races.Add(race);
+
 						break;
 					case "class":
-						Datum _class = new Datum(); // :P
-						_class.Id = attri("id");
-						_class.Name = attr("name");
-						_class.Description = attr("description");
-						_class.Color = attr("color");
+						Datum _class = new Datum
+						{
+							Id = attri("id"),
+							Name = attr("name"),
+							Description = attr("description"),
+							Color = attr("color")
+						};
 						this.SharedInfo.Classes.Add(_class);
+
 						break;
-					case "ability":						
-						Datum ability		 = new Datum();
-						ability.Name		 = attr("name");
-						ability.Description	 = attr("description");
-						ability.Color		 = attr("color");
+					case "ability":
+						Datum ability = new Datum
+						{
+							Name = attr("name"),
+							Description = attr("description"),
+							Color = attr("color")
+						};
 						follower.Abilities.Add(ability);
+
 						break;
 					case "game":
-						game			  = new Game();
-						game.Id			  = attri("id");
-						game.Name		  = attr("name");
-						game.Color        = attr("color");
-						game.ShortName	  = attr("shortname");
-						game.Description  = attr("description");
-						game.YearReleased = attri("released");
-						game.Tagline	  = attr("tagline");
-						game.Director	  = attr("director");
-						game.SharedInfo   = this.SharedInfo;
+						game = new Game
+						{
+							Id = attri("id"),
+							Name = attr("name"),
+							Color = attr("color"),
+							ShortName = attr("shortname"),
+							Description = attr("description"),
+							YearReleased = attri("released"),
+							Tagline = attr("tagline"),
+							Director = attr("director"),
+							SharedInfo = this.SharedInfo
+						};
+
+						// ensure unique id
+						if (gameids.Contains(game.Id))
+							this.ErrorString += $"Duplicate id {game.Id} for a game named '{game.Name}'.\n";
+						gameids.Add(game.Id);
 
 						// parse the game's facts
 						reader.ReadToDescendant("facts");
@@ -135,23 +167,31 @@ namespace SessionProject2W5.Models
 							game.Facts.Add(reader.Value);
 
 						this.Games.Add(game);
+
 						break;
 					case "follower":
-						follower				= new Follower();
-						follower.Id				= attri("id");
-						follower.IsFavorite		= attrb("favorite");
-						follower.BaseId		    = attr("baseid");
-						follower.RefId			= attr("refid");
-						follower.ShortName		= attr("shortname");
-						follower.Name			= attr("name");
-						follower.Description	= attr("description");
-						follower.UnlockContext	= attr("unlockcontext");
-						follower.Hitpoints		= attri("hitpoints");
-						follower.Energy		    = attri("energy");
-						follower.Alignment		= attri("alignment");
-						follower.IsEssential	= attrb("essential");
-						follower.DoesRespawn	= attrb("respawns");
-						follower.Parent			= game;
+						follower = new Follower
+						{
+							Id = attri("id"),
+							IsFavorite = attrb("favorite"),
+							BaseId = attr("baseid"),
+							RefId = attr("refid"),
+							ShortName = attr("shortname"),
+							Name = attr("name"),
+							Description = attr("description"),
+							UnlockContext = attr("unlockcontext"),
+							Hitpoints = attri("hitpoints"),
+							Energy = attri("energy"),
+							Alignment = attri("alignment"),
+							IsEssential = attrb("essential"),
+							DoesRespawn = attrb("respawns"),
+							Parent = game
+						};
+
+						// ensure unique id
+						if (followerids.Contains(follower.Id))
+							this.ErrorString += $"Duplicate id {follower.Id} for follower '{follower.Name}' in game '{game.Name}'.\n";
+						followerids.Add(follower.Id);
 
 						// FIXME: Will crash if access to race later (must do constructor)
 						int raceid = attri("raceid");
@@ -160,9 +200,9 @@ namespace SessionProject2W5.Models
 							follower.Race = this.SharedInfo.Races[raceid];
 							follower.Race.Population++;
 						}
-						catch(Exception)
+						catch(Exception e)
 						{
-							this.ErrorString += $"Invalid race id {raceid} for {reader.Name}.\n";							
+							this.ErrorString += $"Race id {raceid} of follower {follower.Name} is invalid.\n";	
 						}
 
 						int classid = attri("classid");
@@ -172,7 +212,7 @@ namespace SessionProject2W5.Models
 						}
 						catch (Exception)
 						{
-							this.ErrorString += $"Invalid class id {classid} for {reader.Name}.\n";
+							this.ErrorString += $"Class id {classid} of follower {follower.Name} is invalid.\n";
 						}
 
 						// parse the follower's quotes
@@ -191,6 +231,7 @@ namespace SessionProject2W5.Models
 						}
 
 						game.Followers.Add(follower);
+
 						break;
 				}
 			}

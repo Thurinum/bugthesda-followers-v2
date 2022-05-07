@@ -63,7 +63,7 @@ namespace SessionProject2W5.Controllers
 			search.Results = followers;
 
 			ViewData["sPageTitle"] = "Recherche de follower";
-			return Content(criteria.FavoriteFilter.ToString());
+			return Content(criteria.ProtectionFilter.ToString());
 		}
 
 		// Affiche page de recherche avec les compagnions d'UN jeu specifique

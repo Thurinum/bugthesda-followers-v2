@@ -90,7 +90,7 @@ namespace SessionProject2W5.Models
 				{
 					result = bool.Parse(val);
 				}
-				catch(Exception e)
+				catch(Exception)
 				{
 					this.ErrorString += $"Could not convert value '{val}' to boolean.\n";
 				}
@@ -113,13 +113,14 @@ namespace SessionProject2W5.Models
 						Race race = new Race
 						{
 							Id = attri("id"),
+							ShortName = attr("shortname"),
 							NativeName = attr("nativename"),
 							CommonName = attr("commonname"),
 							Description = attr("description"),
 							Color = attr("color")
 						};
-						this.SharedInfo.Races.Add(race);
 
+						this.SharedInfo.Races.Add(race);
 						break;
 					case "class":
 						Datum _class = new Datum
@@ -200,7 +201,7 @@ namespace SessionProject2W5.Models
 							follower.Race = this.SharedInfo.Races[raceid];
 							follower.Race.Population++;
 						}
-						catch(Exception e)
+						catch(Exception)
 						{
 							this.ErrorString += $"Race id {raceid} of follower {follower.Name} is invalid.\n";	
 						}

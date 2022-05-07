@@ -1,11 +1,9 @@
 ﻿@* S'AFFICHE LORSQU'UNE RECHERCHE EST EFFECTUÉE POUR UN JEU QUI N'EXISTE PAS *@
 
+@{ Layout = "_ErrorPopupLayout"; }
+
 @model string;
 
-<article class="errorPopup">
-    <img src="~/images/shared/ui/misc/furry.gif" />
-    <div>
-        <h2>204 No Content</h2>
-        <p>The game "@Model" contains no followers to display.</p>
-    </div>
-</article>
+@section image { ~/images/shared/ui/misc/furry.gif }
+@section header { 204 No Content }
+@section body { The game "@Model" contains no followers to display. }

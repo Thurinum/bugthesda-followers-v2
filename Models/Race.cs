@@ -2,12 +2,14 @@
 
 namespace SessionProject2W5.Models
 {
-    public class Race : Datum
-    {
-        [Obsolete("This member is unused!", true)]
-        public new string Name;
-        public string CommonName;
-        public string NativeName;
-        public int Population = 0;
-    }
+	public class Race
+	{
+		public int Id;
+		public string ShortName;
+		public string CommonName;
+		public string NativeName;
+		public string Description;
+		public string Color;
+		public int Population = 0;
+	}
 }

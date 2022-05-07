@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Content Remove="Views\Shared\500_DatabaseError.cshtml" />
+    <Content Remove="Views\Shared\_ErrorPopupLayout.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,6 +52,7 @@
     <None Include="Views\Shared\204_GameEmpty.cshtml" />
     <None Include="Views\Shared\404_FollowerNotFound.cshtml" />
     <None Include="Views\Shared\404_GameNotFound.cshtml" />
+    <None Include="Views\Shared\_ErrorPopupLayout.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />

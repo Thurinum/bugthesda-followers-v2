@@ -77,7 +77,7 @@ header {
 			background-color: transparent;
 
 			font-family: "Pathway Gothic One", sans-serif;
-			font-size: 2vmin;
+			font-size: 2vmax;
 			align-self: center;
 		}
 		header nav button:hover {
@@ -86,7 +86,10 @@ header {
 
 			/* bouton bethesda central */
 			#btn_home, #btn_home img {
+				width: 100%;
 				height: 90%;
+
+				object-fit: contain;
 			}
 
 main {
@@ -125,7 +128,7 @@ footer {
 
 /* WRAPPER D'ERREUR GENERIQUE */
 .errorPopup {
-	width: 50vw;
+	width: 80vw;
 	height: 50vh;
 
 	position: fixed;
@@ -169,12 +172,14 @@ footer {
 
 	.errorPopup p {
 		margin: 10px;
-		padding: 10px;
+		padding: 15px;
+
+		border: solid 1px #ffffff38;
 		border-radius: 10px;
 		background: #111111CC;
 		box-shadow: 0 0 10px black;
-		font-size: 24px;
 
+		font-size: 1.6vmax;
 		white-space: pre-line;
 	}
 
@@ -449,6 +454,20 @@ a:hover, button:hover {
 }
 
 
+
+
+
+
+/* MEDIA QUIERIES */
+/*@media (min-width: 1024px) {
+	.errorPopup {
+		flex-direction: column;
+	}
+
+		.errorPopup img {
+			align-self: center;
+		}
+}*/
 
 
 

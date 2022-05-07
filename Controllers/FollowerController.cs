@@ -34,7 +34,7 @@ namespace SessionProject2W5.Controllers
 			}
 
 			foreach (Race race in Database.SharedInfo.Races)
-				searchCriteria.RacesFilter.Add(race.NativeName, true);
+				searchCriteria.RacesFilter.Add(race.ShortName, true);
 
 			foreach (Datum datum in Database.SharedInfo.Classes)
 				searchCriteria.ClassesFilter.Add(datum.Name, true);
@@ -60,11 +60,11 @@ namespace SessionProject2W5.Controllers
 			for (int i = 0; i < followers.Count; i++)
 			{
 				Follower follower = followers[i];
-
+				return Content(criteria.RacesFilter.ElementAt(0).Key.ToString());
 				if (
 					(criteria.GamesFilter[follower.Parent.ShortName] == false) ||
-					(criteria.RacesFilter[follower.Parent.ShortName] == false) ||
-					(criteria.ClassesFilter[follower.Parent.ShortName] == false) ||
+					(criteria.RacesFilter[follower.Race.ShortName] == false) ||
+					(criteria.ClassesFilter[follower.Class.Name] == false) ||
 					(criteria.FavoriteFilter != FavoriteFilter.Ignore && ((follower.IsFavorite ? FavoriteFilter.Favorite : FavoriteFilter.NotFavorite) != criteria.FavoriteFilter)) ||
 					(criteria.ProtectionFilter != ProtectionFilter.Ignore && ((follower.IsEssential ? ProtectionFilter.Essential : (follower.DoesRespawn ? ProtectionFilter.Protected : ProtectionFilter.None)) != criteria.ProtectionFilter)) || // "true production code"
 					(criteria.MinAlignment != null && (follower.Alignment < criteria.MinAlignment)) ||
@@ -86,7 +86,7 @@ namespace SessionProject2W5.Controllers
 			search.Results = followers;
 
 			ViewData["sPageTitle"] = "Recherche de follower";
-			return Content(criteria.RacesFilter.ElementAt(1).ToString());
+			return View(search);
 		}
 
 		// Affiche page de recherche avec les compagnions d'UN jeu specifique

@@ -4,6 +4,7 @@ using SessionProject2W5.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace SessionProject2W5.Controllers
 {
@@ -22,16 +23,17 @@ namespace SessionProject2W5.Controllers
 		[Route("/search")]
 		public IActionResult Search()
 		{
+			SearchViewModel search = new SearchViewModel();
+			SearchCriteriaViewModel searchCriteria = new SearchCriteriaViewModel();
 			List<Follower> followers = new List<Follower>();
 
 			foreach (Game game in this.Database.Games)
+			{
+				searchCriteria.GamesFilter.Add(game.ShortName, true);
 				followers.AddRange(game.Followers);
+			}
 
-			SearchViewModel search = new SearchViewModel();
-			SearchCriteriaViewModel searchCriteria = new SearchCriteriaViewModel();
-			searchCriteria.GamesFilter = new bool[games.Count];
 			search.Criteria = searchCriteria;
-			search.Games = Database.Games;
 			search.Followers = followers;
 
 			ViewData["sPageTitle"] = "Recherche de follower";
@@ -51,21 +53,17 @@ namespace SessionProject2W5.Controllers
 
 			// process les donnees
 			for (int i = 0; i < followers.Count; i++)
-				if (followers[i].ShortName != "adoringfan")
-				{
-					followers.RemoveAt(i);
-					i--;
-				}
-			// ... TODO
+			{
+				Follower follower = followers[i];
+			}
 
 			// construire le view model du resultat
 			SearchViewModel search = new SearchViewModel();
 			search.Criteria = criteria;
-			search.Games = Database.Games; // TODO move to criteria...
 			search.Followers = followers;
 
 			ViewData["sPageTitle"] = "Recherche de follower";
-			return View(search);
+			return Content(criteria.GamesFilter.Count.ToString());
 		}
 
 		// Affiche page de recherche avec les compagnions d'UN jeu specifique

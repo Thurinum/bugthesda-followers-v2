@@ -25,7 +25,7 @@ namespace SessionProject2W5.ViewModels
 	{
 		public string Keywords   { get; set; } = String.Empty;
 
-		public bool[] GamesFilter;
+		public Dictionary<string, bool> GamesFilter { get; set; } = new Dictionary<string, bool>();
 		public Dictionary<string, bool> RacesFilter;
 		public Dictionary<string, bool> ClassesFilter;
 

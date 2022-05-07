@@ -12,9 +12,12 @@
 
 <!-- FORMULAIRE DE RECHERCHE (HIDDEN PAR DEFAULT)-->
 <form id="searchForm" action="/search/filter" method="get">
-	@for (int i = 0; i < Model.Games.Count; i++)
+	@for (int i = 0; i < Model.Criteria.GamesFilter.Count; i++)
 	{
-		<input type="checkbox" name="Model.Criteria.GamesFilter[@(i)]" value="@Model.Criteria.GamesFilter[i]" />
+		<label>@Model.Criteria.GamesFilter.ElementAt(i).Key</label>
+		<input type="hidden" name="GamesFilter[@i].Key" value="@Model.Criteria.GamesFilter.ElementAt(i).Key" />
+		<input type="checkbox" name="GamesFilter[@i].Value" value="@Model.Criteria.GamesFilter.ElementAt(i).Value" onchange="this.value = this.checked"  />
+		<input name="GamesFilter[@i].Value" type="hidden" value="false" />
 	}
 </form>
 

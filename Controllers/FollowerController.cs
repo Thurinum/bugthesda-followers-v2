@@ -1,4 +1,5 @@
 ﻿using SessionProject2W5.Models;
+using SessionProject2W5.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -21,13 +22,50 @@ namespace SessionProject2W5.Controllers
 		[Route("/search")]
 		public IActionResult Search()
 		{
-			List<Follower> allFollowers = new List<Follower>();
+			List<Follower> followers = new List<Follower>();
 
 			foreach (Game game in this.Database.Games)
-				allFollowers.AddRange(game.Followers);
+				followers.AddRange(game.Followers);
+
+			SearchViewModel search = new SearchViewModel();
+			SearchCriteriaViewModel searchCriteria = new SearchCriteriaViewModel();
+			searchCriteria.GamesFilter = new bool[games.Count];
+			search.Criteria = searchCriteria;
+			search.Games = Database.Games;
+			search.Followers = followers;
 
 			ViewData["sPageTitle"] = "Recherche de follower";
-			return View(allFollowers);
+			return View(search);
+		}
+
+		// Filtrer la liste des compagnions en fonction du CriteriaViewModel
+		// je l'ai mis comme un overload c'est plus simple et logique
+		[Route("/search/filter")]
+		public IActionResult Search(SearchCriteriaViewModel criteria)
+		{
+			// recuperer les donnees
+			List<Follower> followers = new List<Follower>();
+
+			foreach (Game game in this.Database.Games)
+				followers.AddRange(game.Followers);
+
+			// process les donnees
+			for (int i = 0; i < followers.Count; i++)
+				if (followers[i].ShortName != "adoringfan")
+				{
+					followers.RemoveAt(i);
+					i--;
+				}
+			// ... TODO
+
+			// construire le view model du resultat
+			SearchViewModel search = new SearchViewModel();
+			search.Criteria = criteria;
+			search.Games = Database.Games; // TODO move to criteria...
+			search.Followers = followers;
+
+			ViewData["sPageTitle"] = "Recherche de follower";
+			return View(search);
 		}
 
 		// Affiche page de recherche avec les compagnions d'UN jeu specifique

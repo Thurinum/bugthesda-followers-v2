@@ -1,46 +1,55 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers;
+﻿@*@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers;*@
 
-@model List<Follower>;
+@model SearchViewModel;
 
 <!-- BARRE DE RECHERCHE-->
 <header id="searchBar">
-    <div id="searchWrapper">
-        <input id="search" type="text" placeholder="Search..." form="searchForm" />
-        <img id="searchIcon" src="#" alt="" />
-    </div>
+	<div id="searchWrapper">
+		<input id="search" type="text" placeholder="Search..." form="searchForm" />
+		<img id="searchIcon" src="#" alt="" />
+	</div>
 </header>
 
 <!-- FORMULAIRE DE RECHERCHE (HIDDEN PAR DEFAULT)-->
-<form id="searchForm">
-    @Html.Label("Mots-cles")
-    @Html.TextBox("Mots-cles")
+<form id="searchForm" action="/search/filter" method="get">
+	@for (int i = 0; i < Model.Games.Count; i++)
+	{
+		<input type="checkbox" name="Model.Criteria.GamesFilter[@(i)]" value="@Model.Criteria.GamesFilter[i]" />
+	}
 </form>
 
 <!-- LISTE DES COMPAGNIONS-->
 <section id="cardsWrapper" data-color="red">
-   @foreach (Follower follower in Model) {
-        <button class="follower link" data-href="/details/@follower.Id" autofocus>
-            <img class="thumbnail" src="/images/games/@(follower.Parent.ShortName)/followers/@(follower.ShortName)/thumbnail.jpg" />
-            <div class="container">
-                <div class="primaryinfo">
-                    <img class="gamelogo" src="/images/games/@(follower.Parent.ShortName)/logo.png" />
-                    <h2>@follower.Name</h2>
-                </div>
+	@foreach (Follower follower in Model.Followers)
+	{
+		<button class="follower link" data-href="/details/@follower.Id" autofocus>
+			<img class="thumbnail" src="/images/games/@(follower.Parent.ShortName)/followers/@(follower.ShortName)/thumbnail.jpg" />
+			<div class="container">
+				<div class="primaryinfo">
+					<img class="gamelogo" src="/images/games/@(follower.Parent.ShortName)/logo.png" />
+					<h2>@follower.Name</h2>
+				</div>
 
-                <div class="secondaryinfo">
-                    @if (follower.IsFavorite)
-                    {<img src="~/images/shared/attributes/favorite.png" />}
-                    @if (follower.IsEssential)
-                    {<img src="~/images/shared/attributes/essential.png" />}
-                    @if (follower.DoesRespawn)
-                    {<img src="~/images/shared/attributes/respawns.png" />}
-                </div>
-            </div>
-        </button>
-    }
+				<div class="secondaryinfo">
+					@if (follower.IsFavorite)
+					{
+						<img src="~/images/shared/attributes/favorite.png" />
+					}
+					@if (follower.IsEssential)
+					{
+						<img src="~/images/shared/attributes/essential.png" />
+					}
+					@if (follower.DoesRespawn)
+					{
+						<img src="~/images/shared/attributes/respawns.png" />
+					}
+				</div>
+			</div>
+		</button>
+	}
 </section>
 
 <!-- CITATIONS ALEATOIRES -->
 <footer id="quotesBar">
-    <blockquote>TODO Using ViewModel</blockquote>
+	<blockquote>TODO Using ViewModel</blockquote>
 </footer>

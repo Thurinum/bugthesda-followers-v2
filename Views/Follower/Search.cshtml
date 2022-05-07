@@ -12,6 +12,8 @@
 
 <!-- FORMULAIRE DE RECHERCHE (HIDDEN PAR DEFAULT)-->
 <form id="searchForm" action="/search/filter" method="get">
+
+	@* Quel jeu est selectionne (change selon le nb de jeux dans la db) *@
 	@for (int i = 0; i < Model.Criteria.GamesFilter.Count; i++)
 	{
 		<label>@Model.Criteria.GamesFilter.ElementAt(i).Key</label>
@@ -19,11 +21,24 @@
 		<input type="checkbox" name="GamesFilter[@i].Value" value="@Model.Criteria.GamesFilter.ElementAt(i).Value" onchange="this.value = this.checked"  />
 		<input name="GamesFilter[@i].Value" type="hidden" value="false" />
 	}
+
+	@* Si c'est un favori (enum) *@
+	<select name="FavoriteFilter">
+		<option value="0">Peu importe</option>
+		<option value="1">Non</option>
+		<option value="2">Oui</option>
+	</select>
+
+	@* Le degre de protection du compagnion (enum) *@
+	@Html.LabelFor(x => x.Criteria.ProtectionFilter)
+	<input type="radio" name="ProtectionFilter" value="0" />
+	<input type="radio" name="ProtectionFilter" value="1" />
+	<input type="radio" name="ProtectionFilter" value="2" />
 </form>
 
 <!-- LISTE DES COMPAGNIONS-->
 <section id="cardsWrapper" data-color="red">
-	@foreach (Follower follower in Model.Followers)
+	@foreach (Follower follower in Model.Results)
 	{
 		<button class="follower link" data-href="/details/@follower.Id" autofocus>
 			<img class="thumbnail" src="/images/games/@(follower.Parent.ShortName)/followers/@(follower.ShortName)/thumbnail.jpg" />

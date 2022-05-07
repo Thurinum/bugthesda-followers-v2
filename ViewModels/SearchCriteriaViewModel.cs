@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SessionProject2W5.ViewModels
 {
-	public enum Protection
+	public enum ProtectionFilter
 	{
 		Ignore,
 		None,
@@ -36,7 +36,7 @@ namespace SessionProject2W5.ViewModels
 		public int? MinEnergy    { get; set; } = null;
 		public int? MaxEnergy    { get; set; } = null;
 
-		public Protection     Protection { get; set; } = Protection.Ignore;
-		public FavoriteFilter IsFavorite { get; set; } = FavoriteFilter.Ignore;
+		public ProtectionFilter ProtectionFilter { get; set; } = ProtectionFilter.Ignore;
+		public FavoriteFilter FavoriteFilter { get; set; } = FavoriteFilter.Ignore;
 	}
 }

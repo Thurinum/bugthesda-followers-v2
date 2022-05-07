@@ -34,7 +34,7 @@ namespace SessionProject2W5.Controllers
 			}
 
 			search.Criteria = searchCriteria;
-			search.Followers = followers;
+			search.Results = followers;
 
 			ViewData["sPageTitle"] = "Recherche de follower";
 			return View(search);
@@ -60,10 +60,10 @@ namespace SessionProject2W5.Controllers
 			// construire le view model du resultat
 			SearchViewModel search = new SearchViewModel();
 			search.Criteria = criteria;
-			search.Followers = followers;
+			search.Results = followers;
 
 			ViewData["sPageTitle"] = "Recherche de follower";
-			return Content(criteria.GamesFilter.Count.ToString());
+			return Content(criteria.FavoriteFilter.ToString());
 		}
 
 		// Affiche page de recherche avec les compagnions d'UN jeu specifique

@@ -26,8 +26,8 @@ namespace SessionProject2W5.ViewModels
 		public string Keywords   { get; set; } = String.Empty;
 
 		public Dictionary<string, bool> GamesFilter { get; set; } = new Dictionary<string, bool>();
-		public Dictionary<string, bool> RacesFilter;
-		public Dictionary<string, bool> ClassesFilter;
+		public Dictionary<string, bool> RacesFilter { get; set; } = new Dictionary<string, bool>();
+		public Dictionary<string, bool> ClassesFilter { get; set; } = new Dictionary<string, bool>();
 
 		public int? MinAlignment { get; set; } = null;
 		public int? MaxAlignment { get; set; } = null;

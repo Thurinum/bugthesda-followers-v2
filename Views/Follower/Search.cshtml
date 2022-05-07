@@ -5,7 +5,7 @@
 <!-- BARRE DE RECHERCHE-->
 <header id="searchBar">
 	<div id="searchWrapper">
-		<input id="search" type="text" placeholder="Search..." form="searchForm" />
+		<input id="search" name="Keywords" type="text" placeholder="Search..." form="searchForm" />
 		<img id="searchIcon" src="#" alt="" />
 	</div>
 </header>
@@ -30,11 +30,30 @@
 	</select>
 
 	@* Le degre de protection du compagnion (enum) *@
-	@Html.LabelFor(x => x.Criteria.ProtectionFilter)
-	<input type="radio" name="ProtectionFilter" value="0" />
-	<input type="radio" name="ProtectionFilter" value="1" />
-	<input type="radio" name="ProtectionFilter" value="2" />
-	<input type="radio" name="ProtectionFilter" value="3" />
+	<input name="ProtectionFilter" type="radio" value="0" />
+	<input name="ProtectionFilter" type="radio" value="1" />
+	<input name="ProtectionFilter" type="radio" value="2" />
+	<input name="ProtectionFilter" type="radio" value="3" />
+
+	@* La race du compagnion *@
+	<select name="RacesFilter" size="5" multiple>
+		@for (int i = 0; i < Model.Criteria.RacesFilter.Count; i++)
+		{
+			<option value="RacesFilter[@i].Value">@Model.Criteria.RacesFilter.ElementAt(i).Key</option>
+		}
+	</select>
+
+	@* L'alignment minimum/maximum du compagnion *@
+	<input name="MinAlignment" type="range" min="0" value="@Model.Criteria.MinAlignment" max="100" />
+	<input name="MaxAlignment" type="range" min="0" value="@Model.Criteria.MaxAlignment" max="100" />
+
+	@* La vie minimum et maximum *@
+	<input name="MinHitpoints" type="number" min="0" value="@Model.Criteria.MinHitpoints" max="999" />
+	<input name="MinHitpoints" type="number" min="0" value="@Model.Criteria.MaxHitpoints" max="999" />
+
+	@* L'energie minimum et maximum *@
+	<input name="MinEnergy" type="number" min="0" value="@Model.Criteria.MinEnergy" max="999" />
+	<input name="MaxEnergy" type="number" min="0" value="@Model.Criteria.MaxEnergy" max="999" />
 </form>
 
 <!-- LISTE DES COMPAGNIONS-->

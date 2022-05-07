@@ -33,6 +33,12 @@ namespace SessionProject2W5.Controllers
 				followers.AddRange(game.Followers);
 			}
 
+			foreach (Race race in Database.SharedInfo.Races)
+				searchCriteria.RacesFilter.Add(race.ShortName, true);
+
+			foreach (Datum datum in Database.SharedInfo.Classes)
+				searchCriteria.ClassesFilter.Add(datum.ShortName, true);
+
 			search.Criteria = searchCriteria;
 			search.Results = followers;
 

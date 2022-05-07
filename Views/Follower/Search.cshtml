@@ -5,62 +5,91 @@
 <!-- BARRE DE RECHERCHE-->
 <header id="searchBar">
 	<div id="searchWrapper">
-		<input id="search" name="Keywords" type="text" placeholder="Search..." form="searchForm" />
+		<input id="search" name="Keywords" type="text" placeholder="Search..." autocomplete="off" form="searchForm" autofocus />
 		<img id="searchIcon" src="#" alt="" />
 	</div>
 </header>
 
 <!-- FORMULAIRE DE RECHERCHE (HIDDEN PAR DEFAULT)-->
 <form id="searchForm" action="/search/filter" method="get">
+	<div class="formWrapper">
+		@* CATEGORIE DU COMPAGNION *@
+		<div class="categoriesWrapper">
+			@* Quel jeu est selectionne (change selon le nb de jeux dans la db) *@
+			@for (int i = 0; i < Model.Criteria.GamesFilter.Count; i++)
+			{
+				<label>@Model.Criteria.GamesFilter.ElementAt(i).Key</label>
+				<input name="GamesFilter[@i].Key"   type="hidden"    value="@Model.Criteria.GamesFilter.ElementAt(i).Key" />
+				<input name="GamesFilter[@i].Value" type="checkbox"  value="@Model.Criteria.GamesFilter.ElementAt(i).Value" onchange="this.value = this.checked"  />
+				<input name="GamesFilter[@i].Value" type="hidden"    value="false" />
+			}
 
-	@* Quel jeu est selectionne (change selon le nb de jeux dans la db) *@
-	@for (int i = 0; i < Model.Criteria.GamesFilter.Count; i++)
-	{
-		<label>@Model.Criteria.GamesFilter.ElementAt(i).Key</label>
-		<input type="hidden" name="GamesFilter[@i].Key" value="@Model.Criteria.GamesFilter.ElementAt(i).Key" />
-		<input type="checkbox" name="GamesFilter[@i].Value" value="@Model.Criteria.GamesFilter.ElementAt(i).Value" onchange="this.value = this.checked"  />
-		<input name="GamesFilter[@i].Value" type="hidden" value="false" />
-	}
+			@* La race du compagnion *@
+			<select name="RacesFilter" size="5" multiple>
+				@for (int i = 0; i < Model.Criteria.RacesFilter.Count; i++)
+				{
+					<option value="RacesFilter[@i].Value">@Model.Criteria.RacesFilter.ElementAt(i).Key</option>
+				}
+				@for (int i = 0; i < Model.Criteria.RacesFilter.Count; i++)
+				{
+					<input name="RacesFilter[@i].Key" type="hidden" value="@Model.Criteria.RacesFilter.ElementAt(i).Key" />
+				}
+			</select>
 
-	@* Si c'est un favori (enum) *@
-	<select name="FavoriteFilter">
-		<option value="0">Peu importe</option>
-		<option value="1">Non</option>
-		<option value="2">Oui</option>
-	</select>
+			@* La classe du compagnion *@
+			<select name="ClassesFilter" size="5" multiple>
+				@for (int i = 0; i < Model.Criteria.ClassesFilter.Count; i++)
+				{
+					<option value="ClassesFilter[@i].Value">@Model.Criteria.ClassesFilter.ElementAt(i).Key</option>
+				}
+				@for (int i = 0; i < Model.Criteria.ClassesFilter.Count; i++)
+				{
+					<input name="ClassesFilter[@i].Key" type="hidden" value="@Model.Criteria.ClassesFilter.ElementAt(i).Key" />
+				}
+			</select>
+		</div>
 
-	@* Le degre de protection du compagnion (enum) *@
-	<input name="ProtectionFilter" type="radio" value="0" />
-	<input name="ProtectionFilter" type="radio" value="1" />
-	<input name="ProtectionFilter" type="radio" value="2" />
-	<input name="ProtectionFilter" type="radio" value="3" />
+		@* ATTRIBUTS *@
+		<div class="attributesWrapper">
+			@* Si c'est un favori (enum) *@
+			<label for="cboFavori">Est un favori</label>
+			<select id="cboFavori" name="FavoriteFilter">
+				<option value="0">Peu importe</option>
+				<option value="1">Non</option>
+				<option value="2">Oui</option>
+			</select>
 
-	@* La race du compagnion *@
-	<select name="RacesFilter" size="5" multiple>
-		@for (int i = 0; i < Model.Criteria.RacesFilter.Count; i++)
-		{
-			<option value="RacesFilter[@i].Value">@Model.Criteria.RacesFilter.ElementAt(i).Key</option>
-		}
-	</select>
+			@* Le degre de protection du compagnion (enum) *@
+			<div class="protectWrapper">
+				<label for="cbxProtect1">Peu importe</label><input id="cbxProtect1" name="ProtectionFilter" type="radio" value="0" />
+				<label for="cbxProtect2">Aucune</label><input id="cbxProtect2" name="ProtectionFilter" type="radio" value="1" />
+				<label for="cbxProtect3">Protege</label><input id="cbxProtect3" name="ProtectionFilter" type="radio" value="2" />
+				<label for="cbxProtect4">Essentiel</label><input id="cbxProtect4" name="ProtectionFilter" type="radio" value="3" />
+			</div>
+		</div>
 
-	@* L'alignment minimum/maximum du compagnion *@
-	<input name="MinAlignment" type="range" min="0" value="@Model.Criteria.MinAlignment" max="100" />
-	<input name="MaxAlignment" type="range" min="0" value="@Model.Criteria.MaxAlignment" max="100" />
+		@* STATISTIQUES *@
+		<div class="statsWrapper">
+			@* L'alignment minimum/maximum du compagnion *@
+			<input name="MinAlignment" type="range" min="0" value="@Model.Criteria.MinAlignment" max="100" />
+			<input name="MaxAlignment" type="range" min="0" value="@Model.Criteria.MaxAlignment" max="100" />
 
-	@* La vie minimum et maximum *@
-	<input name="MinHitpoints" type="number" min="0" value="@Model.Criteria.MinHitpoints" max="999" />
-	<input name="MinHitpoints" type="number" min="0" value="@Model.Criteria.MaxHitpoints" max="999" />
+			@* La vie minimum et maximum *@
+			<input name="MinHitpoints" type="number" min="0" value="@Model.Criteria.MinHitpoints" max="999" />
+			<input name="MinHitpoints" type="number" min="0" value="@Model.Criteria.MaxHitpoints" max="999" />
 
-	@* L'energie minimum et maximum *@
-	<input name="MinEnergy" type="number" min="0" value="@Model.Criteria.MinEnergy" max="999" />
-	<input name="MaxEnergy" type="number" min="0" value="@Model.Criteria.MaxEnergy" max="999" />
+			@* L'energie minimum et maximum *@
+			<input name="MinEnergy" type="number" min="0" value="@Model.Criteria.MinEnergy" max="999" />
+			<input name="MaxEnergy" type="number" min="0" value="@Model.Criteria.MaxEnergy" max="999" />
+		</div>
+	</div>
 </form>
 
 <!-- LISTE DES COMPAGNIONS-->
 <section id="cardsWrapper" data-color="red">
 	@foreach (Follower follower in Model.Results)
 	{
-		<button class="follower link" data-href="/details/@follower.Id" autofocus>
+		<button class="follower link" data-href="/details/@follower.Id">
 			<img class="thumbnail" src="/images/games/@(follower.Parent.ShortName)/followers/@(follower.ShortName)/thumbnail.jpg" />
 			<div class="container">
 				<div class="primaryinfo">

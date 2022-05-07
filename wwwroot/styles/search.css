@@ -18,7 +18,7 @@ header#searchBar, footer#quotesBar {
 #searchForm {
 	width: 100vw;
 	height: 0;
-	padding: 20px;
+	padding: 0;
 	
 	overflow: hidden;
 

@@ -34,10 +34,10 @@ namespace SessionProject2W5.Controllers
 			}
 
 			foreach (Race race in Database.SharedInfo.Races)
-				searchCriteria.RacesFilter.Add(race.ShortName, true);
+				searchCriteria.RacesFilter.Add(race.NativeName, true);
 
 			foreach (Datum datum in Database.SharedInfo.Classes)
-				searchCriteria.ClassesFilter.Add(datum.ShortName, true);
+				searchCriteria.ClassesFilter.Add(datum.Name, true);
 
 			search.Criteria = searchCriteria;
 			search.Results = followers;
@@ -51,25 +51,42 @@ namespace SessionProject2W5.Controllers
 		[Route("/search/filter")]
 		public IActionResult Search(SearchCriteriaViewModel criteria)
 		{
-			// recuperer les donnees
+			// récupérer les données
 			List<Follower> followers = new List<Follower>();
-
 			foreach (Game game in this.Database.Games)
 				followers.AddRange(game.Followers);
 
-			// process les donnees
+			// filtrer les données
 			for (int i = 0; i < followers.Count; i++)
 			{
 				Follower follower = followers[i];
+
+				if (
+					(criteria.GamesFilter[follower.Parent.ShortName] == false) ||
+					(criteria.RacesFilter[follower.Parent.ShortName] == false) ||
+					(criteria.ClassesFilter[follower.Parent.ShortName] == false) ||
+					(criteria.FavoriteFilter != FavoriteFilter.Ignore && ((follower.IsFavorite ? FavoriteFilter.Favorite : FavoriteFilter.NotFavorite) != criteria.FavoriteFilter)) ||
+					(criteria.ProtectionFilter != ProtectionFilter.Ignore && ((follower.IsEssential ? ProtectionFilter.Essential : (follower.DoesRespawn ? ProtectionFilter.Protected : ProtectionFilter.None)) != criteria.ProtectionFilter)) || // "true production code"
+					(criteria.MinAlignment != null && (follower.Alignment < criteria.MinAlignment)) ||
+					(criteria.MaxAlignment != null && (follower.Alignment > criteria.MaxAlignment)) ||
+					(criteria.MinHitpoints != null && (follower.Hitpoints < criteria.MinHitpoints)) ||
+					(criteria.MaxHitpoints != null && (follower.Hitpoints > criteria.MaxHitpoints)) ||
+					(criteria.MinEnergy != null && (follower.Energy < criteria.MinEnergy)) ||
+					(criteria.MaxEnergy != null && (follower.Energy > criteria.MaxEnergy))
+				)
+				{
+					followers.Remove(follower);
+					i--;
+				}
 			}
 
-			// construire le view model du resultat
+			// construire le modèle des résultats
 			SearchViewModel search = new SearchViewModel();
 			search.Criteria = criteria;
 			search.Results = followers;
 
 			ViewData["sPageTitle"] = "Recherche de follower";
-			return Content(criteria.ProtectionFilter.ToString());
+			return Content(criteria.RacesFilter.ElementAt(1).ToString());
 		}
 
 		// Affiche page de recherche avec les compagnions d'UN jeu specifique

@@ -16,6 +16,7 @@
 		@* CATEGORIE DU COMPAGNION *@
 		<div class="categoriesWrapper">
 			@* Quel jeu est selectionne (change selon le nb de jeux dans la db) *@
+			@* On aurait aussi pu utiliser un select multiple, mais ca rend le model binding plus complique*@
 			@for (int i = 0; i < Model.Criteria.GamesFilter.Count; i++)
 			{
 				<label>@Model.Criteria.GamesFilter.ElementAt(i).Key</label>
@@ -25,28 +26,22 @@
 			}
 
 			@* La race du compagnion *@
-			<select name="RacesFilter" size="5" multiple>
-				@for (int i = 0; i < Model.Criteria.RacesFilter.Count; i++)
-				{
-					<option value="RacesFilter[@i].Value">@Model.Criteria.RacesFilter.ElementAt(i).Key</option>
-				}
-				@for (int i = 0; i < Model.Criteria.RacesFilter.Count; i++)
-				{
-					<input name="RacesFilter[@i].Key" type="hidden" value="@Model.Criteria.RacesFilter.ElementAt(i).Key" />
-				}
-			</select>
+			@for (int i = 0; i < Model.Criteria.RacesFilter.Count; i++)
+			{
+				<label>@Model.Criteria.RacesFilter.ElementAt(i).Key</label>
+				<input name="RacesFilter[@i].Key"   type="hidden"    value="@Model.Criteria.RacesFilter.ElementAt(i).Key" />
+				<input name="RacesFilter[@i].Value" type="checkbox"  value="@Model.Criteria.RacesFilter.ElementAt(i).Value" onchange="this.value = this.checked"  />
+				<input name="RacesFilter[@i].Value" type="hidden"    value="false" />
+			}
 
 			@* La classe du compagnion *@
-			<select name="ClassesFilter" size="5" multiple>
-				@for (int i = 0; i < Model.Criteria.ClassesFilter.Count; i++)
-				{
-					<option value="ClassesFilter[@i].Value">@Model.Criteria.ClassesFilter.ElementAt(i).Key</option>
-				}
-				@for (int i = 0; i < Model.Criteria.ClassesFilter.Count; i++)
-				{
-					<input name="ClassesFilter[@i].Key" type="hidden" value="@Model.Criteria.ClassesFilter.ElementAt(i).Key" />
-				}
-			</select>
+			@for (int i = 0; i < Model.Criteria.ClassesFilter.Count; i++)
+			{
+				<label>@Model.Criteria.ClassesFilter.ElementAt(i).Key</label>
+				<input name="ClassesFilter[@i].Key"   type="hidden"    value="@Model.Criteria.ClassesFilter.ElementAt(i).Key" />
+				<input name="ClassesFilter[@i].Value" type="checkbox"  value="@Model.Criteria.ClassesFilter.ElementAt(i).Value" onchange="this.value = this.checked"  />
+				<input name="ClassesFilter[@i].Value" type="hidden"    value="false" />
+			}
 		</div>
 
 		@* ATTRIBUTS *@

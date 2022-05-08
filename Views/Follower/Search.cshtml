@@ -107,8 +107,8 @@
 					@if (follower.IsEssential)
 					{
 						<img src="~/images/shared/attributes/essential.png" />
-					}
-					@if (follower.DoesRespawn)
+					} 
+                              else if (follower.DoesRespawn)
 					{
 						<img src="~/images/shared/attributes/respawns.png" />
 					}

@@ -74,7 +74,8 @@ namespace SessionProject2W5.Models
 				{
 					if (value.Length > 10)
 						value = value.Substring(0, 10) + "...";
-					this.ErrorString += $"Could not to convert attribute '{name}' with value '{value}' to integer in follower '{follower.Name}' of game '{game.Name}': {e.Message}\n";
+
+					this.ErrorString += $"Could not to convert attribute '{name}' with value '{value}' to integer in follower '{follower?.Name}' of game '{game?.Name}': {e.Message}\n";
 				}
 
 				return converted;

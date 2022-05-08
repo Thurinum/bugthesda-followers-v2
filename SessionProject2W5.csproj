@@ -19,8 +19,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\404_SearchNoResults.cshtml" />
     <Content Remove="Views\Shared\500_DatabaseError.cshtml" />
-    <Content Remove="Views\Shared\_ErrorPopupLayout.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,16 +43,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="C:\Users\Thurinum\OneDrive - Cégep Édouard-Montpetit\Classes\WebServer\Projects\TP2\SessionProject2W5\.editorconfig" />
     <None Include="Views\Favorite\Index.cshtml" />
     <None Include="Views\Follower\Details.cshtml" />
     <None Include="Views\Follower\Search.cshtml" />
     <None Include="Views\Game\Index.cshtml" />
     <None Include="Views\Game\Index_Details.cshtml" />
+    <None Include="Views\Shared\404_SearchNoResults.cshtml" />
     <None Include="Views\Shared\500_DatabaseError.cshtml" />
     <None Include="Views\Shared\204_GameEmpty.cshtml" />
     <None Include="Views\Shared\404_FollowerNotFound.cshtml" />
     <None Include="Views\Shared\404_GameNotFound.cshtml" />
-    <None Include="Views\Shared\_ErrorPopupLayout.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
@@ -73,6 +74,10 @@
 
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\Thurinum\OneDrive - Cégep Édouard-Montpetit\Classes\WebServer\Projects\TP2\SessionProject2W5\.editorconfig" />
   </ItemGroup>
 
 </Project>

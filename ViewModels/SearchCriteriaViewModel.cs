@@ -1,8 +1,6 @@
-﻿using SessionProject2W5.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace SessionProject2W5.ViewModels
 {
@@ -23,11 +21,13 @@ namespace SessionProject2W5.ViewModels
 
 	public class SearchCriteriaViewModel
 	{
+		[Required]
+		[StringLength(69, ErrorMessage = "Fill the field moron")]
 		public string Keywords   { get; set; } = String.Empty;
 
-		public Dictionary<string, bool> GamesFilter { get; set; } = new Dictionary<string, bool>();
-		public Dictionary<string, bool> RacesFilter { get; set; } = new Dictionary<string, bool>();
-		public Dictionary<string, bool> ClassesFilter { get; set; } = new Dictionary<string, bool>();
+		public List<TypeFilterViewModel> GamesFilters   { get; set; } = new List<TypeFilterViewModel>();
+		public List<TypeFilterViewModel> RacesFilters   { get; set; } = new List<TypeFilterViewModel>();
+		public List<TypeFilterViewModel> ClassesFilters { get; set; } = new List<TypeFilterViewModel>();
 
 		public int? MinAlignment { get; set; } = null;
 		public int? MaxAlignment { get; set; } = null;

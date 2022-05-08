@@ -1,13 +1,15 @@
 ﻿@* S'AFFICHE LORSQU'UNE ERREUR GENERIQUE SE PRODUIT EN CHARGEANT LA BASE DE DONNEES *@
 
-@{ Layout = "_ErrorPopupLayout"; }
-
 @model string;
 
-@section image { src="/images/shared/ui/misc/furry.gif" }
-@section header { 500 Internal Error }
-@section body { 
-      Error(s) occured while loading the database:
+<article class="errorPopup">
+	<img src="~/images/shared/ui/misc/furry.gif" />
+	<div>
+		<h2>500 Internal Error</h2>
+		<p>
+			Error(s) occured while loading the database:
 
-      <small><em>@Model</em></small> 
-}
+			<small><em>@Model</em></small>
+		</p>
+	</div>
+</article>

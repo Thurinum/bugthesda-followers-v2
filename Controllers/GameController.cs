@@ -19,7 +19,6 @@ namespace SessionProject2W5.Controllers
 		{
 			this.database = db;
 			this.generator = new Random();
-
 		}
 
 		// passer l'erreur de la base de donnees au ViewData avant que

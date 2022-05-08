@@ -5,7 +5,8 @@
 <!-- BARRE DE RECHERCHE-->
 <header id="searchBar">
 	<div id="searchWrapper">
-		<input id="search" name="Keywords" type="text" placeholder="Search..." autocomplete="off" form="searchForm" autofocus />
+		<input id="search" name="Keywords" type="search" placeholder="Search..." autocomplete="off" form="searchForm" autofocus />
+		<input type="submit" form="searchForm" value="Search" />
 		<img id="searchIcon" src="#" alt="" />
 	</div>
 </header>
@@ -17,36 +18,36 @@
 		<div class="categoriesWrapper">
 			@* Quel jeu est selectionne (change selon le nb de jeux dans la db) *@
 			@* On aurait aussi pu utiliser un select multiple, mais ca rend le model binding plus complique*@
-			@for (int i = 0; i < Model.Criteria.GamesFilter.Count; i++)
+			@for (int i = 0; i < Model.Criteria.GamesFilters.Count; i++)
 			{
-				var item = Model.Criteria.GamesFilter.ElementAt(i);
+				TypeFilterViewModel filter = Model.Criteria.GamesFilters[i];
 
-				<label>@item.Value</label>
-				<input name="GamesFilter[@item.Key].Key"   type="hidden"    value="@item.Key" />
-				<input name="GamesFilter[@item.Key].Value" type="hidden"  value="true"  />
-				@*<input name="GamesFilter[@item.Key].Value" type="hidden"    value="false" />*@
+				<label>@filter.Name</label>
+				<input name="GamesFilters[@i].Name"    type="hidden"   value="@filter.Name" />
+				<input name="GamesFilters[@i].Allowed" type="checkbox" value="@filter.Allowed.ToString()" @(filter.Allowed ? "checked" : "") onchange="this.value = this.checked" />
+				<input name="GamesFilters[@i].Allowed" type="hidden"   value="false" />
 			}
 
 			@* La race du compagnion *@
-			@for (int i = 0; i < Model.Criteria.RacesFilter.Count; i++)
+			@for (int i = 0; i < Model.Criteria.RacesFilters.Count; i++)
 			{
-				var item = Model.Criteria.RacesFilter.ElementAt(i);
+				TypeFilterViewModel filter = Model.Criteria.RacesFilters[i];
 
-				<label>@item.Key</label>
-				<input name="RacesFilter[@item.Key].Key"   type="hidden"    value="@item.Key" />
-				<input name="RacesFilter[@item.Key].Value" type="checkbox"  value="@item.Value" @(item.Value ? "checked" : "") onchange="this.value = this.checked"  />
-				<input name="RacesFilter[@item.Key].Value" type="hidden"    value="false" />
+				<label>@filter.Name</label>
+				<input name="RacesFilters[@i].Name"    type="hidden"   value="@filter.Name" />
+				<input name="RacesFilters[@i].Allowed" type="checkbox" value="@filter.Allowed.ToString()" @(filter.Allowed ? "checked" : "") onchange="this.value = this.checked" />
+				<input name="RacesFilters[@i].Allowed" type="hidden"   value="false" />
 			}
 
 			@* La classe du compagnion *@
-			@for (int i = 0; i < Model.Criteria.ClassesFilter.Count; i++)
+			@for (int i = 0; i < Model.Criteria.ClassesFilters.Count; i++)
 			{
-				var item = Model.Criteria.ClassesFilter.ElementAt(i);
+				TypeFilterViewModel filter = Model.Criteria.ClassesFilters[i];
 
-				<label>@item.Key</label>
-				<input name="ClassesFilter[@item.Key].Key"   type="hidden"    value="@item.Key" />
-				<input name="ClassesFilter[@item.Key].Value" type="checkbox"  value="@item.Value" @(item.Value ? "checked" : "") onchange="this.value = this.checked"  />
-				<input name="ClassesFilter[@item.Key].Value" type="hidden"    value="false" />
+				<label>@filter.Name</label>
+				<input name="ClassesFilters[@i].Name"    type="hidden"   value="@filter.Name" />
+				<input name="ClassesFilters[@i].Allowed" type="checkbox" value="@filter.Allowed.ToString()" @(filter.Allowed ? "checked" : "") onchange="this.value = this.checked" />
+				<input name="ClassesFilters[@i].Allowed" type="hidden"   value="false" />
 			}
 		</div>
 

@@ -1,10 +1,10 @@
 ﻿using SessionProject2W5.Models;
 using SessionProject2W5.ViewModels;
 
-using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Collections.Generic;
-using System;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace SessionProject2W5.Controllers
 {
@@ -29,21 +29,34 @@ namespace SessionProject2W5.Controllers
 
 			foreach (Game game in this.Database.Games)
 			{
-				searchCriteria.GamesFilter.Add(game.ShortName, true);
+				searchCriteria.GamesFilters.Add(new TypeFilterViewModel()
+				{
+					Name = game.ShortName,
+					Allowed = true
+				});
 				followers.AddRange(game.Followers);
 			}
 
 			foreach (Race race in Database.SharedInfo.Races)
-				searchCriteria.RacesFilter.Add(race.ShortName, true);
+				searchCriteria.RacesFilters.Add(new TypeFilterViewModel()
+				{
+					Name = race.ShortName,
+					Allowed = true
+				});
 
 			foreach (Datum cls in Database.SharedInfo.Classes)
-				searchCriteria.ClassesFilter.Add(cls.ShortName, true);
+				searchCriteria.ClassesFilters.Add(new TypeFilterViewModel()
+				{
+					Name = cls.ShortName,
+					Allowed = true
+				});
 
 			search.Criteria = searchCriteria;
 			search.Results = followers;
 
 			ViewData["sPageTitle"] = "Recherche de follower";
-			return View(search);
+
+			return followers.Count > 0 ? View(search) : View("404_SearchNoResults", searchCriteria.Keywords);
 		}
 
 		// Filtrer la liste des compagnions en fonction du CriteriaViewModel
@@ -60,11 +73,12 @@ namespace SessionProject2W5.Controllers
 			for (int i = 0; i < followers.Count; i++)
 			{
 				Follower follower = followers[i];
-				return Content(criteria.GamesFilter["oblivion"] ? "true" : "false");
-				if (
-					(criteria.GamesFilter[follower.Parent.ShortName] == false) /*||
-					(criteria.RacesFilter[follower.Race.ShortName] == false) ||
-					(criteria.ClassesFilter[follower.Class.ShortName] == false) ||
+				//return Content($"{follower.Class.ShortName} | {criteria.ClassesFilters.Count}");
+				if ( // TODO ADD case sensitive option
+					(criteria.Keywords != null && !follower.Name.ToLower().Contains(criteria.Keywords.ToLower())) ||
+					(criteria.GamesFilters.Where(f => f.Name == follower.Parent.ShortName).First().Allowed == false) ||
+					(criteria.RacesFilters.Where(f => f.Name == follower.Race.ShortName).First().Allowed == false) ||
+					(criteria.ClassesFilters.Where(f => f.Name == follower.Class.ShortName).First().Allowed == false) /*||
 					(criteria.FavoriteFilter != FavoriteFilter.Ignore && ((follower.IsFavorite ? FavoriteFilter.Favorite : FavoriteFilter.NotFavorite) != criteria.FavoriteFilter)) ||
 					(criteria.ProtectionFilter != ProtectionFilter.Ignore && ((follower.IsEssential ? ProtectionFilter.Essential : (follower.DoesRespawn ? ProtectionFilter.Protected : ProtectionFilter.None)) != criteria.ProtectionFilter)) || // "true production code"
 					(criteria.MinAlignment != null && (follower.Alignment < criteria.MinAlignment)) ||
@@ -86,7 +100,7 @@ namespace SessionProject2W5.Controllers
 			search.Results = followers;
 
 			ViewData["sPageTitle"] = "Recherche de follower";
-			return View(search);
+			return followers.Count > 0 ? View(search) : View("404_SearchNoResults", criteria.Keywords);
 		}
 
 		// Affiche page de recherche avec les compagnions d'UN jeu specifique

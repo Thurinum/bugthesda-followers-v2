@@ -36,8 +36,8 @@ namespace SessionProject2W5.Controllers
 			foreach (Race race in Database.SharedInfo.Races)
 				searchCriteria.RacesFilter.Add(race.ShortName, true);
 
-			foreach (Datum datum in Database.SharedInfo.Classes)
-				searchCriteria.ClassesFilter.Add(datum.Name, true);
+			foreach (Datum cls in Database.SharedInfo.Classes)
+				searchCriteria.ClassesFilter.Add(cls.ShortName, true);
 
 			search.Criteria = searchCriteria;
 			search.Results = followers;
@@ -60,11 +60,11 @@ namespace SessionProject2W5.Controllers
 			for (int i = 0; i < followers.Count; i++)
 			{
 				Follower follower = followers[i];
-				return Content(criteria.RacesFilter.ElementAt(0).Key.ToString());
+				return Content(criteria.GamesFilter["oblivion"] ? "true" : "false");
 				if (
-					(criteria.GamesFilter[follower.Parent.ShortName] == false) ||
+					(criteria.GamesFilter[follower.Parent.ShortName] == false) /*||
 					(criteria.RacesFilter[follower.Race.ShortName] == false) ||
-					(criteria.ClassesFilter[follower.Class.Name] == false) ||
+					(criteria.ClassesFilter[follower.Class.ShortName] == false) ||
 					(criteria.FavoriteFilter != FavoriteFilter.Ignore && ((follower.IsFavorite ? FavoriteFilter.Favorite : FavoriteFilter.NotFavorite) != criteria.FavoriteFilter)) ||
 					(criteria.ProtectionFilter != ProtectionFilter.Ignore && ((follower.IsEssential ? ProtectionFilter.Essential : (follower.DoesRespawn ? ProtectionFilter.Protected : ProtectionFilter.None)) != criteria.ProtectionFilter)) || // "true production code"
 					(criteria.MinAlignment != null && (follower.Alignment < criteria.MinAlignment)) ||
@@ -72,7 +72,7 @@ namespace SessionProject2W5.Controllers
 					(criteria.MinHitpoints != null && (follower.Hitpoints < criteria.MinHitpoints)) ||
 					(criteria.MaxHitpoints != null && (follower.Hitpoints > criteria.MaxHitpoints)) ||
 					(criteria.MinEnergy != null && (follower.Energy < criteria.MinEnergy)) ||
-					(criteria.MaxEnergy != null && (follower.Energy > criteria.MaxEnergy))
+					(criteria.MaxEnergy != null && (follower.Energy > criteria.MaxEnergy))*/
 				)
 				{
 					followers.Remove(follower);

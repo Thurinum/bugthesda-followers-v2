@@ -3,46 +3,54 @@
 	<sharedinfo>
 		<races>
 			<race id="0"
-				  commonname="Elfe des Bois" 
-				  nativename="Bosmer"
-				  description="Ils vivent dans Vvwardenfell (je crois!)"
-				  color="brown" />
+				shortname="woodelf"
+				commonname="Elfe des Bois"
+				nativename="Bosmer"
+				description="Ils vivent dans Vvwardenfell (je crois!)"
+				color="brown" />
 			<race id="1"
-				  commonname="Orc"
-				  nativename="Orsimer"
-				  description="Peau verte, guerriers, copie de Warcraft genre"
-				  color="green" />
+				shortname="orc"
+				commonname="Orc"
+				nativename="Orsimer"
+				description="Peau verte, guerriers, copie de Warcraft genre"
+				color="green" />
 			<race id="2"
-				  commonname="Races multiples"
-				  nativename="Races multiples"
-				  description="Il y a beaucoup de races dans cyrodiil"
-				  color="white" />
+				shortname="multiple"
+				commonname="Races multiples"
+				nativename="Races multiples"
+				description="Il y a beaucoup de races dans cyrodiil"
+				color="white" />
 			<race id="3"
-				  commonname="Nordique"
-				  nativename="Nordique"
-				  description="Ces guerriers"
-				  color="white" />
+				shortname="nord"
+				commonname="Nordique"
+				nativename="Nordique"
+				description="Ces guerriers"
+				color="white" />
 		</races>
 		<classes>
 			<class id="0"
-				   name="Paysan"
-				   description="Classe non-jouable."
-				   color="grey" />
+				 shortname="peasant"
+				 name="Paysan"
+				 description="Classe non-jouable."
+				 color="grey" />
 			<class id="1"
-				   name="Maraudeur"
-				   description="Classe non-jouable spécialisée dans le combat."
-				   color="grey" />
+				 shortname="marauder"
+				 name="Maraudeur"
+				 description="Classe non-jouable spécialisée dans le combat."
+				 color="grey" />
 			<class id="2"
-				   name="Chevalier"
-				   description="Classe non-jouable spécialisée dans le combat et la magie."
-				   color="#394D78" />
+				 shortname="knight"
+				 name="Chevalier"
+				 description="Classe non-jouable spécialisée dans le combat et la magie."
+				 color="#394D78" />
 			<class id="3"
-				   name="Guerrier"
-				   description="Classe non-jouable spécialisée dans le combat et la magie."
-				   color="#394D78" />
+				 shortname="warrior"
+				 name="Guerrier"
+				 description="Classe non-jouable spécialisée dans le combat et la magie."
+				 color="#394D78" />
 		</classes>
 	</sharedinfo>
-	
+
 	<games>
 		<game id="0"
 			  shortname="oblivion"
@@ -114,7 +122,7 @@
 						<quote context="À l'interaction">Are you the Count? (No) Then go away.</quote>
 					</quotes>
 					<abilities>
-						<ability 
+						<ability
 								 name="DUMMY"
 								 description="UNIMPLEMENTED"
 								 color="red" />

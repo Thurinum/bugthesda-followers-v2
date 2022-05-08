@@ -126,6 +126,7 @@ namespace SessionProject2W5.Models
 						Datum _class = new Datum
 						{
 							Id = attri("id"),
+							ShortName = attr("shortname"),
 							Name = attr("name"),
 							Description = attr("description"),
 							Color = attr("color")

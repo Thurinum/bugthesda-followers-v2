@@ -167,7 +167,7 @@ footer {
 		height: 98%;
 		z-index: 0;
 		align-self: end;
-		filter: drop-shadow(-17px -12px 3px black) saturate(0.8);
+		filter: drop-shadow(-25px -12px 3px black) saturate(0.8);
 	}
 
 	.errorPopup p {

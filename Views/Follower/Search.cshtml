@@ -73,12 +73,12 @@
 		@* STATISTIQUES *@
 		<div class="statsWrapper">
 			@* L'alignment minimum/maximum du compagnion *@
-			<input name="MinAlignment" type="range" min="0" value="@Model.Criteria.MinAlignment" max="100" />
-			<input name="MaxAlignment" type="range" min="0" value="@Model.Criteria.MaxAlignment" max="100" />
+			<input name="MinAlignment" type="range" min="-100" value="@Model.Criteria.MinAlignment" max="100" />
+			<input name="MaxAlignment" type="range" min="-100" value="@Model.Criteria.MaxAlignment" max="100" />
 
 			@* La vie minimum et maximum *@
 			<input name="MinHitpoints" type="number" min="0" value="@Model.Criteria.MinHitpoints" max="999" />
-			<input name="MinHitpoints" type="number" min="0" value="@Model.Criteria.MaxHitpoints" max="999" />
+			<input name="MaxHitpoints" type="number" min="0" value="@Model.Criteria.MaxHitpoints" max="999" />
 
 			@* L'energie minimum et maximum *@
 			<input name="MinEnergy" type="number" min="0" value="@Model.Criteria.MinEnergy" max="999" />

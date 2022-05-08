@@ -73,12 +73,12 @@ namespace SessionProject2W5.Controllers
 			for (int i = 0; i < followers.Count; i++)
 			{
 				Follower follower = followers[i];
-				//return Content($"{follower.Class.ShortName} | {criteria.ClassesFilters.Count}");
+				//return Content($"{criteria.MinHitpoints} | {follower.Hitpoints}");
 				if ( // TODO ADD case sensitive option
 					(criteria.Keywords != null && !follower.Name.ToLower().Contains(criteria.Keywords.ToLower())) ||
 					(criteria.GamesFilters.Where(f => f.Name == follower.Parent.ShortName).First().Allowed == false) ||
 					(criteria.RacesFilters.Where(f => f.Name == follower.Race.ShortName).First().Allowed == false) ||
-					(criteria.ClassesFilters.Where(f => f.Name == follower.Class.ShortName).First().Allowed == false) /*||
+					(criteria.ClassesFilters.Where(f => f.Name == follower.Class.ShortName).First().Allowed == false) ||
 					(criteria.FavoriteFilter != FavoriteFilter.Ignore && ((follower.IsFavorite ? FavoriteFilter.Favorite : FavoriteFilter.NotFavorite) != criteria.FavoriteFilter)) ||
 					(criteria.ProtectionFilter != ProtectionFilter.Ignore && ((follower.IsEssential ? ProtectionFilter.Essential : (follower.DoesRespawn ? ProtectionFilter.Protected : ProtectionFilter.None)) != criteria.ProtectionFilter)) || // "true production code"
 					(criteria.MinAlignment != null && (follower.Alignment < criteria.MinAlignment)) ||
@@ -86,7 +86,7 @@ namespace SessionProject2W5.Controllers
 					(criteria.MinHitpoints != null && (follower.Hitpoints < criteria.MinHitpoints)) ||
 					(criteria.MaxHitpoints != null && (follower.Hitpoints > criteria.MaxHitpoints)) ||
 					(criteria.MinEnergy != null && (follower.Energy < criteria.MinEnergy)) ||
-					(criteria.MaxEnergy != null && (follower.Energy > criteria.MaxEnergy))*/
+					(criteria.MaxEnergy != null && (follower.Energy > criteria.MaxEnergy))
 				)
 				{
 					followers.Remove(follower);

@@ -29,8 +29,8 @@ namespace SessionProject2W5.ViewModels
 		public List<TypeFilterViewModel> RacesFilters   { get; set; } = new List<TypeFilterViewModel>();
 		public List<TypeFilterViewModel> ClassesFilters { get; set; } = new List<TypeFilterViewModel>();
 
-		public int? MinAlignment { get; set; } = null;
-		public int? MaxAlignment { get; set; } = null;
+		public int? MinAlignment { get; set; } = -100;
+		public int? MaxAlignment { get; set; } = 100;
 		public int? MinHitpoints { get; set; } = null;
 		public int? MaxHitpoints { get; set; } = null;
 		public int? MinEnergy    { get; set; } = null;

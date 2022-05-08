@@ -21,20 +21,18 @@ namespace SessionProject2W5.Controllers
 			this.generator = new Random();
 		}
 
-		// passer l'erreur de la base de donnees au ViewData avant que
-		// la premiere action soit executee
+		// Passer l'erreur de la base de donnees au ViewData avant que la 1ere action soit exécutée
 		public override void OnActionExecuted(ActionExecutedContext context)
 		{
 			base.OnActionExecuted(context);
 			ViewData["sDatabaseError"] = database.ErrorString; // Montrer certains messages d'erreur
 		}
 
-		// affiche les infos primaires des jeux dans un carousel
+		// Afficher la page d'accueil (sélection du jeu)
 		[Route("/")]
 		public IActionResult Index()
 		{
 			ViewData["sPageTitle"] = "Bethesda's Followers";
-			//ViewData["sDatabaseError"] = database.ErrorString;
 			return View(database.Games);
 		}
 

@@ -58,6 +58,7 @@ const Carousel = {
                 background.style.left = "0";
                 overlay.playbackRate = 0.9;
                 overlay.style.opacity = "0.3";
+                MAIN.style.pointerEvents = "auto";
             }, 100);
         }, 100);
         if (Math.random() < 0.35)
@@ -124,10 +125,14 @@ document.addEventListener("click", (e) => {
         Carousel.hideDetails();
 });
 document.addEventListener("keydown", function (e) {
-    if (e.key == "ArrowLeft")
+    if (e.key == "ArrowLeft") {
+        MAIN.style.pointerEvents = "none";
         Carousel.setActiveAt(currentIndex - 1);
-    else if (e.key == "ArrowRight")
+    }
+    else if (e.key == "ArrowRight") {
+        MAIN.style.pointerEvents = "none";
         Carousel.setActiveAt(currentIndex + 1);
+    }
     else if (e.key == "Enter") {
         let card = $("#card" + currentIndex);
         if ($("#details").style.transform === "translateY(-50%) scale(1)") {
@@ -135,8 +140,9 @@ document.addEventListener("keydown", function (e) {
             isCarouselEnabled = false;
             $(".searchBtn", card).click();
         }
-        else
+        else {
             Carousel.showDetails(card);
+        }
     }
 });
 window.onresize = function () {

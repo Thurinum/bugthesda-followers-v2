@@ -78,6 +78,7 @@ const Carousel = {
 				background.style.left = "0";
 				overlay.playbackRate = 0.9;
 				overlay.style.opacity = "0.3";
+				MAIN.style.pointerEvents = "auto";
 			}, 100);
 		}, 100);
 
@@ -173,11 +174,13 @@ document.addEventListener("click", (e) => {
 
 // naviguer dans le carousel avec les fleches du clavier + entree
 document.addEventListener("keydown", function (e) {
-	if (e.key == "ArrowLeft")
+	if (e.key == "ArrowLeft") {
+		MAIN.style.pointerEvents = "none";
 		Carousel.setActiveAt(currentIndex - 1);
-	else if (e.key == "ArrowRight")
+	} else if (e.key == "ArrowRight") {
+		MAIN.style.pointerEvents = "none";
 		Carousel.setActiveAt(currentIndex + 1);
-	else if (e.key == "Enter") {
+	} else if (e.key == "Enter") {
 		let card = $("#card" + currentIndex);
 
 		// si details montre, rediriger sinon montrer details
@@ -185,9 +188,9 @@ document.addEventListener("keydown", function (e) {
 			Carousel.hideDetails();
 			isCarouselEnabled = false;
 			$(".searchBtn", card).click();
-		}
-		else
+		} else {
 			Carousel.showDetails(card);
+		}
 	}
 });
 

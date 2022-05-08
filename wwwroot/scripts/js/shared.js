@@ -59,7 +59,7 @@ function redirect(href) {
     MAIN.style.opacity = "0";
     setTimeout(() => {
         window.location.href = href;
-    }, 2000);
+    }, 500);
 }
 function showPopup() {
     AD.style.right = "0";

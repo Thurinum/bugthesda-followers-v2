@@ -81,7 +81,7 @@ function redirect(href: string) {
 
 	setTimeout(() => {
 		window.location.href = href;
-	}, 2000);
+	}, 500);
 }
 
 // montrer la popup

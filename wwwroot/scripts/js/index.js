@@ -3,9 +3,11 @@ let firstTime = true;
 let isCarouselEnabled = true;
 let currentIndex = -1;
 let currentTimeout;
+let precedenceTimeout;
 let items = $$(".carousel > div");
 const Carousel = {
     setActiveAt: (index) => {
+        clearTimeout(precedenceTimeout);
         if (index == currentIndex || !isCarouselEnabled)
             return;
         let container = $(".carousel");
@@ -58,13 +60,13 @@ const Carousel = {
                 background.style.left = "0";
                 overlay.playbackRate = 0.9;
                 overlay.style.opacity = "0.3";
-                MAIN.style.pointerEvents = "auto";
             }, 100);
         }, 100);
         if (Math.random() < 0.35)
             showPopup();
         currentIndex = index;
         window.localStorage.setItem("iLastSelectedGame", `${currentIndex}`);
+        precedenceTimeout = setTimeout(() => MAIN.style.pointerEvents = "auto", 500);
     },
     showDetails(target) {
         isCarouselEnabled = false;

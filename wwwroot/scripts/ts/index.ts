@@ -4,12 +4,15 @@ let firstTime = true;
 let isCarouselEnabled = true;
 let currentIndex = -1;
 let currentTimeout;
+let precedenceTimeout : any;
 let items = $$(".carousel > div");
 
 // carousel style coverflow pour les jeux (parents)
 const Carousel = {
 	// set card at index as active
 	setActiveAt: (index: number) => {
+		clearTimeout(precedenceTimeout);
+
 		if (index == currentIndex || !isCarouselEnabled)
 			return;
 
@@ -77,8 +80,7 @@ const Carousel = {
 				background.style.transition = "left 0.25s ease-out, transform 0.25s ease-out";
 				background.style.left = "0";
 				overlay.playbackRate = 0.9;
-				overlay.style.opacity = "0.3";
-				MAIN.style.pointerEvents = "auto";
+				overlay.style.opacity = "0.3";				
 			}, 100);
 		}, 100);
 
@@ -88,6 +90,8 @@ const Carousel = {
 
 		currentIndex = index;
 		window.localStorage.setItem("iLastSelectedGame", `${currentIndex}`);
+
+		precedenceTimeout = setTimeout(() => MAIN.style.pointerEvents = "auto", 500);
 	},
 
 	// afficher plus de details sur un jeu specifique

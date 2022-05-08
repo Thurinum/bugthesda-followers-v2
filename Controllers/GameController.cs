@@ -21,14 +21,22 @@ namespace SessionProject2W5.Controllers
 			this.generator = new Random();
 		}
 
-		// Passer l'erreur de la base de donnees au ViewData avant que la 1ere action soit exécutée
+		/// <summary>
+		/// Passe l'erreur de la base de donnees au ViewData avant que la première action soit exécutée.
+		/// Il est impossible de set le ViewData dans le constructeur.
+		/// </summary>
+		/// <param name="context">Le contexte de l'action.</param>
+		/// <seealso cref="Database"/>
 		public override void OnActionExecuted(ActionExecutedContext context)
 		{
 			base.OnActionExecuted(context);
 			ViewData["sDatabaseError"] = database.ErrorString; // Montrer certains messages d'erreur
 		}
 
-		// Afficher la page d'accueil (sélection du jeu)
+		/// <summary>
+		/// Affiche la page d'accueil permettant de sélectionner un jeu et de montrer ses détails.
+		/// </summary>
+		/// <returns>La vue Index contenant tous les jeux.</returns>
 		[Route("/")]
 		public IActionResult Index()
 		{
@@ -36,8 +44,12 @@ namespace SessionProject2W5.Controllers
 			return View(database.Games);
 		}
 
-		#region Details d'un jeu
-		// affiche les infos secondaires sur un jeu
+		#region Afficher les détails d'un jeu
+		/// <summary>
+		/// Affiche les détails d'un jeu sélectionné. Cette action est appelée depuis JavaScript dans la vue Index.
+		/// </summary>
+		/// <param name="name">Le ShortName du jeu en question.</param>
+		/// <returns>Une vue partielle Index_Details contenant les détails du jeu cible.</returns>
 		[Route("/game/{name}")]
 		[Route("/parent/{name}")]
 		public IActionResult Index_Details(string name)
@@ -55,7 +67,12 @@ namespace SessionProject2W5.Controllers
 			return PartialView(game);
 		}
 
-		// affiche les infos secondaires sur un jeu (overload)
+		/// <summary>
+		/// Affiche les détails d'un jeu sélectionné. Cette action est appelée depuis JavaScript dans la vue Index.
+		/// Cet overload supporte les ID.
+		/// </summary>
+		/// <param name="id">Le ID du jeu en question.</param>
+		/// <returns>Une vue partielle Index_Details contenant les détails du jeu cible.</returns>
 		[Route("/game/{id:int}")]
 		[Route("/parent/{id:int}")]
 		public IActionResult Index_Details(int id)
@@ -68,10 +85,15 @@ namespace SessionProject2W5.Controllers
 			return PartialView(id);
 		}
 
-		// obtient l'url d'une image aleatoire pour le jeu
+		/// <summary>
+		/// Renvoie l'URL d'une image aléatoire pour le jeu ciblé. Cette action est appelée depuis JavaScript.
+		/// </summary>
+		/// <remarks>N'est plus utilisée. Je la laisse au cas où...</remarks>
+		/// <param name="name">Le ShortName du jeu en question.</param>
+		/// <returns>L'URL de l'image d'un follower aléatoire dans le jeu spécifié.</returns>
+		[Obsolete("Pourquoi tu utilises ça???!!!!!")]
 		[Route("/game/{id:int}/random_thumbnail")]
 		[Route("/parent/{id:int}/random_thumbnail")]
-		[Obsolete("Dont use this shit")]
 		public IActionResult RandomThumbnail(int id)
 		{
 			Game game = database.Games[id];
@@ -85,6 +107,5 @@ namespace SessionProject2W5.Controllers
 			return Content(name);
 		}
 		#endregion
-
 	}
 }

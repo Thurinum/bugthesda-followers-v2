@@ -41,17 +41,33 @@ namespace SessionProject2W5.Controllers
 		}
 
 		// POST: FollowerManagerController/Create
+		[Route("/Test")]
 		[HttpPost]
-		[Route("/Test2")]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(Follower follower)
 		{
-			return Content("dsfsdf");
+			List<string> gameNames = new List<string>();
+			List<string> raceNames = new List<string>();
+			List<string> classNames = new List<string>();
+
+			foreach (Game game in Database.Games.OrderBy(g => g.Id))
+				gameNames.Add(game.Name);
+
+			foreach (Race race in Database.SharedInfo.Races.OrderBy(g => g.Id))
+				raceNames.Add(race.CommonName);
+
+			foreach (Class @class in Database.SharedInfo.Classes.OrderBy(g => g.Id))
+				gameNames.Add(@class.Name);
+
+			ViewData["sGameNames"] = gameNames;
+			ViewData["sRaceNames"] = raceNames;
+			ViewData["sClassNames"] = classNames;
+			6
 			if (!ModelState.IsValid)
 				return View();
 
 			int maxid = Database.Followers.Max(f => f.Id) + 1;
-			
+
 			Game parent = Database.Games[follower.Id];
 			follower.Parent = parent;
 			parent.Followers.Add(follower);

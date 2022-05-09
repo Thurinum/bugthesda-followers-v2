@@ -75,6 +75,12 @@ namespace SessionProject2W5.Models
 		public string ShortName { get; set; }
 
 		/// <summary>
+		/// L'url d'une image distante, si le follower l'utilise. Sinon, l'image sera obtenue sur le
+		/// serveur grâce au ShortName généré.
+		/// </summary>
+		public string ImageUrl { get; set; }
+
+		/// <summary>
 		/// La description du compagnion.
 		/// </summary>
 		[Required(ErrorMessage = "La description est requise.")]

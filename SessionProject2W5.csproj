@@ -38,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+	<Folder Include="Views\FollowerManager\" />
 	<Folder Include="wwwroot\images\shared\classes\" />
 	<Folder Include="wwwroot\images\shared\races\" />
   </ItemGroup>

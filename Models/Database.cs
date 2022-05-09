@@ -262,9 +262,11 @@ namespace SessionProject2W5.Models
 						reader.ReadToFollowing("quotes");
 						while (reader.Read() && reader.Name == "quote")
 						{
-							Quote quote = new Quote();
-							quote.context = attr("context");
-							quote.text = reader.Value;
+							Quote quote = new Quote
+							{
+								context = attr("context"),
+								text = reader.Value
+							};
 
 							follower.Quotes.Add(quote);
 						}

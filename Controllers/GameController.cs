@@ -11,8 +11,8 @@ namespace SessionProject2W5.Controllers
 {
 	public class GameController : Controller
 	{
-		private Database Database;
-		private Random Generator;
+		private readonly Database Database;
+		private readonly Random Generator;
 
 		public GameController(Database db)
 		{

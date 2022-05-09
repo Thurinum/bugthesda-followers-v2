@@ -6,7 +6,7 @@ namespace SessionProject2W5
 {
 	public class Program
 	{
-		static public void Main(string[] args)
+		public static void Main(string[] args)
 		{
 			IHostBuilder builder = Host.CreateDefaultBuilder(args);
 			builder.ConfigureWebHostDefaults(

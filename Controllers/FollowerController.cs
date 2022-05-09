@@ -11,7 +11,7 @@ namespace SessionProject2W5.Controllers
 {
 	public class FollowerController : Controller
 	{
-		private Database Database;
+		private readonly Database Database;
 
 		public FollowerController(Database database)
 		{
@@ -93,9 +93,11 @@ namespace SessionProject2W5.Controllers
 			}
 
 			// construire le modèle des résultats
-			SearchViewModel search = new SearchViewModel();
-			search.Criteria = criteria;
-			search.Results = followers;
+			SearchViewModel search = new SearchViewModel
+			{
+				Criteria = criteria,
+				Results = followers
+			};
 
 			ViewData["sPageTitle"] = "Bethesda's Followers - Recherche";
 			return followers.Count > 0 ? View(search) : View("404_SearchNoResults", criteria.Keywords);

@@ -20,8 +20,9 @@ namespace SessionProject2W5.Models
 		/// L'id du parent (jeu) du compagnion. Pas vraiment utilisé puisque le parent
 		/// est bound au compagnion par référence circulaire lors de la dé-sérialisation.
 		/// </summary>
+		[Required(ErrorMessage = "Le jeu parent est requis.")]
 		[Display(Name = "Jeu Parent")]
-		public int    ParentId { get; set; }
+		public int?   ParentId { get; set; }
 		#endregion
 
 		#region Infos de Type
@@ -33,8 +34,9 @@ namespace SessionProject2W5.Models
 		/// <summary>
 		/// Le ID de la race du compagnion.
 		/// </summary>
+		[Required(ErrorMessage = "La race est requise.")]
 		[Display(Name = "Race")]
-		public int RaceId { get; set; }
+		public int? RaceId { get; set; }
 
 		/// <summary>
 		/// La race du compagnion.
@@ -45,8 +47,9 @@ namespace SessionProject2W5.Models
 		/// <summary>
 		/// Le ID de la classe du compagnion.
 		/// </summary>
+		[Required(ErrorMessage = "La classe est requise.")]
 		[Display(Name = "Classe de personnage")]
-		public int ClassId { get; set; }
+		public int? ClassId { get; set; }
 
 		/// <summary>
 		/// La classe de personnage du compagnion.
@@ -59,10 +62,10 @@ namespace SessionProject2W5.Models
 		/// <summary>
 		/// Le nom complet du compagnion.
 		/// </summary>
-		[Required]
+		[Required(ErrorMessage = "Le nom est requis.")]
 		[Display(Name = "Nom complet")]
 		[MaxLength(69, ErrorMessage = "Le nom est trop long.")]
-		[RegularExpression("[a-zA-Z]", ErrorMessage = "Le nom contient des caractères invalides! Lettres seulement.")]
+		[RegularExpression("^[a-zA-Z0-9 àâéèêùûÀÂÉÈÊÙÛ.,:;!?-]*$", ErrorMessage = "Le nom contient des caractères invalides! Lettres, chiffres et ponctuation seulement.")]
 		public string Name { get; set; }
 
 		/// <summary>
@@ -76,7 +79,7 @@ namespace SessionProject2W5.Models
 		/// </summary>
 		[Required(ErrorMessage = "La description est requise.")]
 		[MaxLength(666, ErrorMessage = "C'est une description, pas un roman. Max. 666 caractères.")]
-		[RegularExpression("[a-zA-Z]", ErrorMessage = "La description contient des caractères invalides! Lettres seulement.")]
+		[RegularExpression("^[a-zA-Z0-9 àâéèêùûÀÂÉÈÊÙÛ.,:;!?-]*$", ErrorMessage = "La description contient des caractères invalides! Lettres, chiffres et ponctuation seulement.")]
 		public string Description { get; set; }
 
 		/// <summary>
@@ -85,7 +88,7 @@ namespace SessionProject2W5.Models
 		[Required(ErrorMessage = "Le contexte est requis.")]
 		[Display(Name = "Contexte d'obtention")]
 		[MaxLength(420, ErrorMessage = "Vous voulez qu'on s'endorme ou quoi? Max. 420 caractères.")]
-		[RegularExpression("[a-zA-Z]", ErrorMessage = "Le contexte contient des caractères invalides! Lettres seulement.")]
+		[RegularExpression("^[a-zA-Z0-9 àâéèêùûÀÂÉÈÊÙÛ.,:;!?-]*$", ErrorMessage = "Le contexte contient des caractères invalides! Lettres, chiffres et ponctuation seulement.")]
 		public string UnlockContext { get; set; }
 		#endregion
 
@@ -97,7 +100,7 @@ namespace SessionProject2W5.Models
 		[Required(ErrorMessage = "Le nombre de points de vie est requis.")]
 		[Display(Name = "Points de vie")]
 		[Range(0, 999, ErrorMessage = "Le nombre de points de vie dépasse les limites permises. Il doit être entre 0 et 999.")]
-		public int    Hitpoints { get; set; }
+		public int?    Hitpoints { get; set; }
 
 		/// <summary>
 		/// Le nombre de point d'énergie du compagnion.
@@ -107,7 +110,7 @@ namespace SessionProject2W5.Models
 		[Required(ErrorMessage = "Le nombre d'énergie est requis.")]
 		[Display(Name = "Points d'énergie")]
 		[Range(0, 999, ErrorMessage = "Le nombre de points d'énergie dépasse les limites permises. Il doit être entre 0 et 999.")]
-		public int	  Energy { get; set; }
+		public int?	  Energy { get; set; }
 
 		/// <summary>
 		/// L'alignement moral du personnage. Les jeux ont différentes manières de représenter cette 
@@ -132,8 +135,7 @@ namespace SessionProject2W5.Models
 		/// Un compagnion protégé peut être tué seulement par le joueur.
 		/// </summary>
 		[Required(ErrorMessage = "Le niveau de protection doit être spécifié.")]
-		[EnumDataType(typeof(Follower.ProtectionLevel), ErrorMessage = "Un niveau de protection valide doit être spécifié.")]
-		public ProtectionLevel Protection { get; set; }
+		public ProtectionLevel? Protection { get; set; }
 		#endregion
 
 		#region Faits et Habiletés

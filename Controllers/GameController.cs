@@ -1,24 +1,23 @@
 ﻿using SessionProject2W5.Models;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace SessionProject2W5.Controllers
 {
 	public class GameController : Controller
 	{
-		private Database database;
-		private Random generator;
+		private Database Database;
+		private Random Generator;
 
 		public GameController(Database db)
 		{
-			this.database = db;
-			this.generator = new Random();
+			this.Database = db;
+			this.Generator = new Random();
 		}
 
 		/// <summary>
@@ -26,11 +25,11 @@ namespace SessionProject2W5.Controllers
 		/// Il est impossible de set le ViewData dans le constructeur.
 		/// </summary>
 		/// <param name="context">Le contexte de l'action.</param>
-		/// <seealso cref="Database"/>
+		/// <seealso cref="Models.Database"/>
 		public override void OnActionExecuted(ActionExecutedContext context)
 		{
 			base.OnActionExecuted(context);
-			ViewData["sDatabaseError"] = database.ErrorString; // Montrer certains messages d'erreur
+			ViewData["sDatabaseError"] = Database.ErrorString; // Montrer certains messages d'erreur
 		}
 
 		/// <summary>
@@ -41,7 +40,7 @@ namespace SessionProject2W5.Controllers
 		public IActionResult Index()
 		{
 			ViewData["sPageTitle"] = "Bethesda's Followers";
-			return View(database.Games);
+			return View(Database.Games);
 		}
 
 		#region Afficher les détails d'un jeu
@@ -54,7 +53,7 @@ namespace SessionProject2W5.Controllers
 		[Route("/parent/{name}")]
 		public IActionResult Index_Details(string name)
 		{
-			List<Game> match = database.Games.Where(g => g.ShortName == name.ToLower()).ToList();
+			List<Game> match = Database.Games.Where(g => g.ShortName == name.ToLower()).ToList();
 
 			if (match.Count != 1)
 				return PartialView("404_GameNotFound", name);
@@ -77,7 +76,7 @@ namespace SessionProject2W5.Controllers
 		[Route("/parent/{id:int}")]
 		public IActionResult Index_Details(int id)
 		{
-			Game game = database.Games[id];
+			Game game = Database.Games[id];
 
 			if (game.Followers.Count == 0)
 				return PartialView("204_GameEmpty", game.Name);
@@ -96,12 +95,12 @@ namespace SessionProject2W5.Controllers
 		[Route("/parent/{id:int}/random_thumbnail")]
 		public IActionResult RandomThumbnail(int id)
 		{
-			Game game = database.Games[id];
+			Game game = Database.Games[id];
 
 			if (game.Followers.Count == 0)
 				return Content("empty");
 
-			int rand = generator.Next(0, game.Followers.Count - 1);
+			int rand = Generator.Next(0, game.Followers.Count - 1);
 			string name = $"/images/games/{game.ShortName}/followers/{game.Followers[rand].ShortName}/thumbnail.jpg";
 
 			return Content(name);

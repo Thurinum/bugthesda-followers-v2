@@ -1,10 +1,11 @@
 ﻿using SessionProject2W5.Models;
 using SessionProject2W5.ViewModels;
 
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+
 using System.Linq;
 using System.Collections.Generic;
-
-using Microsoft.AspNetCore.Mvc;
 
 namespace SessionProject2W5.Controllers
 {
@@ -15,7 +16,18 @@ namespace SessionProject2W5.Controllers
 		public FollowerController(Database database)
 		{
 			this.Database = database;
-			ViewData["sDatabaseError"] = database.ErrorString; // Montrer certains messages d'erreur
+		}
+
+		/// <summary>
+		/// Passe l'erreur de la base de donnees au ViewData avant que la première action soit exécutée.
+		/// Il est impossible de set le ViewData dans le constructeur.
+		/// </summary>
+		/// <param name="context">Le contexte de l'action.</param>
+		/// <seealso cref="Database"/>
+		public override void OnActionExecuted(ActionExecutedContext context)
+		{
+			base.OnActionExecuted(context);
+			ViewData["sDatabaseError"] = Database.ErrorString; // Montrer certains messages d'erreur
 		}
 
 		#region Lister les compagnions, avec ou sans filtre simple ou complexe
@@ -27,33 +39,10 @@ namespace SessionProject2W5.Controllers
 		[Route("/recherche")]
 		public IActionResult Search()
 		{
+			// initialiser les modèles de recherche
 			SearchViewModel search = new SearchViewModel();
-			SearchCriteriaViewModel searchCriteria = new SearchCriteriaViewModel();
-			List<Follower> followers = new List<Follower>();
-
-			// initialiser les critères de recherche par défaut
-			foreach (Game game in this.Database.Games)
-			{
-				searchCriteria.GamesFilters.Add(new TypeFilterViewModel()
-				{
-					Name = game.ShortName, Allowed = true
-				});
-				followers.AddRange(game.Followers);
-			}
-			foreach (Race race in Database.SharedInfo.Races)
-			{
-				searchCriteria.RacesFilters.Add(new TypeFilterViewModel()
-				{
-					Name = race.ShortName, Allowed = true
-				});
-			}
-			foreach (Datum cls in Database.SharedInfo.Classes)
-			{
-				searchCriteria.ClassesFilters.Add(new TypeFilterViewModel()
-				{
-					Name = cls.ShortName, Allowed = true
-				});
-			}
+			SearchCriteriaViewModel searchCriteria = new SearchCriteriaViewModel(Database.Games);
+			List<Follower> followers = Database.Followers;			
 
 			search.Criteria = searchCriteria;
 			search.Results = followers;
@@ -75,9 +64,7 @@ namespace SessionProject2W5.Controllers
 		public IActionResult Search(SearchCriteriaViewModel criteria)
 		{
 			// récupérer les données
-			List<Follower> followers = new List<Follower>();
-			foreach (Game game in this.Database.Games)
-				followers.AddRange(game.Followers);
+			List<Follower> followers = Database.Followers;
 
 			// filtrer les données
 			for (int i = 0; i < followers.Count; i++)
@@ -118,9 +105,6 @@ namespace SessionProject2W5.Controllers
 		/// Affiche la page de recherche avec les compagnions d'un jeu spécifique.
 		/// </summary>
 		/// <remarks>
-		/// Cette action n'utilise pas le modèle de filtre complexe. Je n'ai pas cru bon la convertir puisque
-		/// son filtre est très simple. Elle est utilisée pour afficher les compagnions du jeu sélectionné dans la page Index.
-		/// </remarks>
 		/// <param name="name">Le ShortName du jeu.</param>
 		/// <returns>La vue Search contenant les compagnions du jeu cible, ou une page de status si non trouvé.</returns>
 		[Route("/search/{name}/")]
@@ -135,8 +119,15 @@ namespace SessionProject2W5.Controllers
 			if (game.Followers.Count == 0)
 				return View("204_GameEmpty", game.Name);
 
-			ViewData["sPageTitle"] = "Recherche de follower pour " + game.Name;
-			return View(game.Followers.Where(f => f.Parent.ShortName == name).ToList());
+			// on bloque tous les jeux sauf la cible
+			SearchViewModel search = new SearchViewModel();
+			SearchCriteriaViewModel criteria = new SearchCriteriaViewModel(Database.Games, false, true, true);
+			criteria.GamesFilters.Where(f => f.Name == name).First().Allowed = true;
+			search.Criteria = criteria;
+			search.Results = game.Followers;			
+
+			ViewData["sPageTitle"] = "Bethesda's Followers - Recherche - " + game.Name;
+			return View(search);
 		}
 
 		/// <summary>
@@ -157,8 +148,13 @@ namespace SessionProject2W5.Controllers
 			if (game.Followers.Count == 0)
 				return PartialView("204_GameEmpty", game.Name);
 
-			ViewData["sPageTitle"] = "Recherche de follower pour " + game.Name;
-			return View(game.Followers.Where(f => f.Parent.Id == id).ToList());
+			SearchViewModel search = new SearchViewModel();
+			SearchCriteriaViewModel criteria = new SearchCriteriaViewModel(Database.Games, false, true, true);
+			criteria.GamesFilters.Where(f => f.Name == game.ShortName).First().Allowed = true;
+			search.Results = game.Followers;
+
+			ViewData["sPageTitle"] = "Bethesda's Followers - Recherche - " + game.Name;
+			return View(search);
 		}
 		#endregion
 

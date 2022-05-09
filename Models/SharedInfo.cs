@@ -5,12 +5,12 @@ namespace SessionProject2W5.Models
     public class SharedInfo
     {
         public List<Race>  Races;
-        public List<Datum> Classes;
+        public List<Class> Classes;
 
         public SharedInfo()
         {
             Races = new List<Race>();
-            Classes = new List<Datum>();
+            Classes = new List<Class>();
         }
     }
 }

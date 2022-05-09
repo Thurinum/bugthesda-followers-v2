@@ -6,9 +6,24 @@ using System.IO;
 
 namespace SessionProject2W5.Models
 {
+	/// <summary>
+	/// Une base de données des compagnions pour des jeux vidéos. Sérialise et désérialise les données depuis un fichier XML.
+	/// </summary>
+	/// <remarks>
+	/// Certains checks sont en place pour sanitize les données, mais tout est loin d'être parfait! Le design reste cependant suffisant pour ce projet...
+	/// </remarks>
 	public class Database
 	{
-		public List<Game> Games;          // Liste des games
+		#region Propriétés publiques
+		/// <summary>
+		/// La liste des jeux de la base de données.
+		/// </summary>
+		public List<Game> Games { get; set; }
+
+		/// <summary>
+		/// La liste des tous les compagnions de la DB, tous jeux confondus.
+		/// Cette propriété s'avère utile pour le filtrage de la recherche.
+		/// </summary>
 		public List<Follower> Followers
 		{
 			get
@@ -21,12 +36,30 @@ namespace SessionProject2W5.Models
 				return followers;
 			}
 		}
-		public List<Follower> Favorites;  // Liste des favoris
-		public SharedInfo SharedInfo;     // Informations partagees entre les followers
 
-		// Message d'erreur passe au ViewData dans le controller	
+		/// <summary>
+		/// La liste des compagnions marqués comme Favoris dans la base de données.
+		/// </summary>
+		public List<Follower> Favorites;
+
+		/// <summary>
+		/// Les informations partagées entre tous les personnages, soit la race, la classe, etc.
+		/// Les compagnions font référence aux entités de cette classe.
+		/// </summary>
+		public SharedInfo SharedInfo;
+
+		/// <summary>
+		/// Une liste d'erreurs du chargement des données, séparées par des newlines.
+		/// Cette valeur est passée au ViewData au chargement de la base de données.
+		/// </summary>
 		public string ErrorString { get; private set; }
+		#endregion
 
+		/// <summary>
+		/// Instantie une nouvelle base et désérialise un fichier XML pour populer les données.
+		/// </summary>
+		/// <param name="path">Le chemin vers le fichier XML à désérialiser.</param>
+		/// <exception cref="ArgumentException">Si le chemin vers le fichier XML n'existe pas (ce qui serait triste).</exception>
 		public Database(string path)
 		{
 			if (!File.Exists(path))
@@ -63,14 +96,16 @@ namespace SessionProject2W5.Models
 			}
 
 			// Helper: obtenir une attribut et convertir
-			int attri(string name) {
+			int attri(string name)
+			{
 				string value = attr(name);
 				int converted = -1;
 
-				try {					
+				try
+				{
 					converted = int.Parse(value);
 				}
-				catch(Exception e) 
+				catch (Exception e)
 				{
 					if (value.Length > 10)
 						value = value.Substring(0, 10) + "...";
@@ -86,12 +121,12 @@ namespace SessionProject2W5.Models
 			{
 				string val = attr(name);
 				bool result = false;
-				
+
 				try
 				{
 					result = bool.Parse(val);
 				}
-				catch(Exception)
+				catch (Exception)
 				{
 					this.ErrorString += $"Could not convert value '{val}' to boolean.\n";
 				}
@@ -124,7 +159,7 @@ namespace SessionProject2W5.Models
 						this.SharedInfo.Races.Add(race);
 						break;
 					case "class":
-						Datum _class = new Datum
+						Class _class = new Class
 						{
 							Id = attri("id"),
 							ShortName = attr("shortname"),
@@ -136,7 +171,7 @@ namespace SessionProject2W5.Models
 
 						break;
 					case "ability":
-						Datum ability = new Datum
+						Ability ability = new Ability
 						{
 							Name = attr("name"),
 							Description = attr("description"),
@@ -203,9 +238,9 @@ namespace SessionProject2W5.Models
 							follower.Race = this.SharedInfo.Races[raceid];
 							follower.Race.Population++;
 						}
-						catch(Exception)
+						catch (Exception)
 						{
-							this.ErrorString += $"Race id {raceid} of follower {follower.Name} is invalid.\n";	
+							this.ErrorString += $"Race id {raceid} of follower {follower.Name} is invalid.\n";
 						}
 
 						int classid = attri("classid");
@@ -225,7 +260,8 @@ namespace SessionProject2W5.Models
 
 						// parse follower's quotes
 						reader.ReadToFollowing("quotes");
-						while (reader.Read() && reader.Name == "quote") {
+						while (reader.Read() && reader.Name == "quote")
+						{
 							Quote quote = new Quote();
 							quote.context = attr("context");
 							quote.text = reader.Value;

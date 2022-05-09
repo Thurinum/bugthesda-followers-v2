@@ -45,13 +45,13 @@
 	<section id="abilities">
 		<header>Abilities</header>
 		<div class="scrollWrapper">
-			@foreach (Datum datum in Model.Abilities)
+			@foreach (Ability ability in Model.Abilities)
 			{
 				<div class="abilityCard">
 					@*<img src="~/images/shared/abilities/@(datum.ShortName).webp" />*@
 					<img src="~/images/shared/ui/throbber.png" />
-					<h4>@datum.Name</h4>
-					<p>@datum.Description</p>
+					<h4>@ability.Name</h4>
+					<p>@ability.Description</p>
 				</div>
 			}
 		</div>

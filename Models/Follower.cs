@@ -1,20 +1,22 @@
-﻿using System.Xml;
-using System.Xml.Serialization;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
 
 namespace SessionProject2W5.Models
 {
+	/// <summary>
+	/// Un compagnion (l'un des kernels de le DB).
+	/// C'est un personnage non-joueur qui peut être recruté au service du joueur.
+	/// Les personnalités des compagnions (et bugs associés) les rendent souvent célèbres.
+	/// </summary>
 	public class Follower
 	{
-		public int   Id;                    // numeric id (PK)
-		public bool  IsFavorite;            // numeric id (PK)
-		public int   ParentId;              // TODO: Find better workaround (see Database.cs)
-		public string BaseId;				// Ids dans le jeu
+		public int    Id;
+		public bool   IsFavorite;
+		public int    ParentId;
+		public string BaseId;	
 		public string RefId;
-		public Game  Parent;				// the follower's parent. Same as above
-		public Race  Race;
-		public Datum Class;
+		public Game   Parent;	
+		public Race   Race;
+		public Class  Class;
 
 		public string Name;
 		public string ShortName;
@@ -28,13 +30,13 @@ namespace SessionProject2W5.Models
 
 		public List<string> Facts;
 		public List<Quote> Quotes;
-		public List<Datum>  Abilities;
+		public List<Ability>  Abilities;
 
 		public Follower()
 		{
 			Facts = new List<string>();
 			Quotes = new List<Quote>();
-			Abilities = new List<Datum>();
+			Abilities = new List<Ability>();
 		}
 	}
 }

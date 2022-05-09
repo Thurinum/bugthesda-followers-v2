@@ -4,6 +4,7 @@
 
 <!-- BARRE DE RECHERCHE-->
 <header id="searchBar">
+	<a href="/test">Add follower</a>
 	<div id="searchWrapper">
 		<input id="search" name="Keywords" type="search" placeholder="Search..." autocomplete="off" form="searchForm" autofocus />
 		<input type="submit" form="searchForm" value="Search" />
@@ -21,10 +22,6 @@
 			@for (int i = 0; i < Model.Criteria.GamesFilters.Count; i++)
 			{
 				TypeFilterViewModel filter = Model.Criteria.GamesFilters[i];
-
-				// marche pas
-				//<input name="GamesFilters[@i].Name" asp-for="@Model.Criteria.GamesFilters[i].Name"   type="hidden"  />
-				//<input name="GamesFilters[@i].Allowed" asp-for="@Model.Criteria.GamesFilters[i].Allowed" type="checkbox" />
 
 				// marche mais pas de validation
 				<label>@filter.Name</label>

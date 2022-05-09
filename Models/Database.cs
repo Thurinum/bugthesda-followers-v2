@@ -224,7 +224,8 @@ namespace SessionProject2W5.Models
 									: (attrb("respawns") 
 										? Follower.ProtectionLevel.Protected 
 										: Follower.ProtectionLevel.None),
-							Parent = game
+							Parent = game,
+							ParentId = game.Id							
 						};
 
 						// ensure unique id
@@ -236,6 +237,7 @@ namespace SessionProject2W5.Models
 						int raceid = attri("raceid");
 						try
 						{
+							follower.RaceId = raceid;
 							follower.Race = this.SharedInfo.Races[raceid];
 							follower.Race.Population++;
 						}
@@ -247,6 +249,7 @@ namespace SessionProject2W5.Models
 						int classid = attri("classid");
 						try
 						{
+							follower.ClassId = classid;
 							follower.Class = this.SharedInfo.Classes[classid];
 						}
 						catch (Exception)

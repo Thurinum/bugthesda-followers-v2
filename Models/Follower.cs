@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SessionProject2W5.Models
 {
@@ -19,6 +20,7 @@ namespace SessionProject2W5.Models
 		/// L'id du parent (jeu) du compagnion. Pas vraiment utilisé puisque le parent
 		/// est bound au compagnion par référence circulaire lors de la dé-sérialisation.
 		/// </summary>
+		[Display(Name = "Jeu Parent")]
 		public int    ParentId { get; set; }
 		#endregion
 
@@ -29,10 +31,20 @@ namespace SessionProject2W5.Models
 		public Game   Parent { get; set; }
 
 		/// <summary>
+		/// Le ID de la race du compagnion.
+		/// </summary>
+		public int RaceId { get; set; }
+
+		/// <summary>
 		/// La race du compagnion.
 		/// </summary>
 		/// <seealso cref="SharedInfo"/>
 		public Race   Race { get; set; }
+
+		/// <summary>
+		/// Le ID de la classe du compagnion.
+		/// </summary>
+		public int ClassId { get; set; }
 
 		/// <summary>
 		/// La classe de personnage du compagnion.
@@ -45,6 +57,9 @@ namespace SessionProject2W5.Models
 		/// <summary>
 		/// Le nom complet du compagnion.
 		/// </summary>
+		[Required]
+		[Display(Name = "Nom complet")]
+		[MaxLength(69)]
 		public string Name { get; set; }
 
 		/// <summary>
@@ -56,11 +71,16 @@ namespace SessionProject2W5.Models
 		/// <summary>
 		/// La description du compagnion.
 		/// </summary>
+		[Required]
+		[MaxLength(666)]
 		public string Description { get; set; }
 
 		/// <summary>
 		/// Le contexte où le compagnion peut être obtenu.
 		/// </summary>
+		[Required]
+		[Display(Name = "Contexte d'obtention")]
+		[MaxLength(420)]
 		public string UnlockContext { get; set; }
 		#endregion
 
@@ -69,6 +89,9 @@ namespace SessionProject2W5.Models
 		/// Le nombre de points de vie du compagnion.
 		/// En réalité l'unité varie grandement de jeu en jeu, mais mon site en a fait abstraction.
 		/// </summary>
+		[Required]
+		[Display(Name = "Points de vie")]
+		[Range(0, 999)]
 		public int    Hitpoints { get; set; }
 
 		/// <summary>
@@ -76,12 +99,18 @@ namespace SessionProject2W5.Models
 		/// Les jeux ont différentes manières de représenter cette valeur, mais mon site en 
 		/// fait abstraction.
 		/// </summary>
+		[Required]
+		[Display(Name = "Points d'énergie")]
+		[Range(0, 999)]
 		public int	  Energy { get; set; }
 
 		/// <summary>
 		/// L'alignement moral du personnage. Les jeux ont différentes manières de représenter cette 
 		/// valeur, mais mon site en fait abstraction.
 		/// </summary>
+		[Required]
+		[Display(Name = "Alignement moral")]
+		[Range(-100, 100)]
 		public int    Alignment { get; set; }
 		#endregion
 
@@ -89,6 +118,8 @@ namespace SessionProject2W5.Models
 		/// <summary>
 		/// Indique si le compagnion est un favori.
 		/// </summary>
+		[Required]
+		[Display(Name = "Est un favori?")]
 		public bool   IsFavorite { get; set; }
 
 		/// <summary>

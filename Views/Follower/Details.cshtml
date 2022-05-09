@@ -15,11 +15,11 @@
 		{
 			<img src="~/images/shared/attributes/favorite.png" alt="Est Favori" />
 		}
-		@if (Model.IsEssential)
+		@if (Model.Protection == Follower.ProtectionLevel.Essential)
 		{
 			<img src="~/images/shared/attributes/essential.png" alt="Est Essentiel" />
 		}
-		else if (Model.IsProtected)
+		else if (Model.Protection == Follower.ProtectionLevel.Protected)
 		{
 			<img src="~/images/shared/attributes/respawns.png" alt="Resurrecte" />
 		}

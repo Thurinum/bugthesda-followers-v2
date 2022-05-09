@@ -221,8 +221,11 @@ namespace SessionProject2W5.Models
 							Hitpoints = attri("hitpoints"),
 							Energy = attri("energy"),
 							Alignment = attri("alignment"),
-							IsEssential = attrb("essential"),
-							IsProtected = attrb("respawns"),
+							Protection = attrb("essential") 
+									? Follower.ProtectionLevel.Essential 
+									: (attrb("respawns") 
+										? Follower.ProtectionLevel.Protected 
+										: Follower.ProtectionLevel.None),
 							Parent = game
 						};
 

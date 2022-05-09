@@ -77,7 +77,7 @@ namespace SessionProject2W5.Controllers
 					(criteria.RacesFilters.Where(f => f.Name == follower.Race.ShortName).First().Allowed == false) ||
 					(criteria.ClassesFilters.Where(f => f.Name == follower.Class.ShortName).First().Allowed == false) ||
 					(criteria.FavoriteFilter != FavoriteFilter.Ignore && ((follower.IsFavorite ? FavoriteFilter.Favorite : FavoriteFilter.NotFavorite) != criteria.FavoriteFilter)) ||
-					(criteria.ProtectionFilter != ProtectionFilter.Ignore && ((follower.IsEssential ? ProtectionFilter.Essential : (follower.IsProtected ? ProtectionFilter.Protected : ProtectionFilter.None)) != criteria.ProtectionFilter)) || // "true production code"
+					(criteria.ProtectionFilter != ProtectionFilter.Ignore && (ProtectionFilter)follower.Protection != criteria.ProtectionFilter) || // "true production code"
 					(criteria.MinAlignment != null && (follower.Alignment < criteria.MinAlignment)) ||
 					(criteria.MaxAlignment != null && (follower.Alignment > criteria.MaxAlignment)) ||
 					(criteria.MinHitpoints != null && (follower.Hitpoints < criteria.MinHitpoints)) ||

@@ -98,14 +98,10 @@ namespace SessionProject2W5.Models
 		public bool   IsFavorite { get; set; }
 
 		/// <summary>
-		/// Si le compagnion est essentiel. Un compagnion essentiel ne peut pas mourir.
+		/// Le niveau de protection du compagnion. Un compagnion essentiel ne peut pas mourir.
+		/// Un compagnion protégé peut être tué seulement par le joueur.
 		/// </summary>
-		public bool   IsEssential { get; set; }
-
-		/// <summary>
-		/// Si le compagnion est protégé. Un compagnion protégé peut être tué seulement par le joueur.
-		/// </summary>
-		public bool   IsProtected { get; set; }
+		public ProtectionLevel Protection { get; set; }
 		#endregion
 
 		#region Faits et Habiletés
@@ -134,6 +130,13 @@ namespace SessionProject2W5.Models
 			Facts = new List<string>();
 			Quotes = new List<Quote>();
 			Abilities = new List<Ability>();
+		}
+
+		public enum ProtectionLevel
+		{
+			None	    = 1,
+			Protected = 2,
+			Essential = 3
 		}
 	}
 }

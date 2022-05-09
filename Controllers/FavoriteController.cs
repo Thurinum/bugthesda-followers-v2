@@ -4,18 +4,19 @@ using SessionProject2W5.Models;
 namespace SessionProject2W5.Controllers
 {
 	public class FavoriteController : Controller
-	{	
+	{
+		private readonly Database Database;
+
 		public FavoriteController(Database db)
 		{
-			this.database = db;
-			ViewData["sDatabaseError"] = db.ErrorString; // Montrer certains messages d'erreur
+			this.Database = db;
 		}
 
 		[Route("/favoris")]
 		[Route("/favorites")]
 		public IActionResult Index()
 		{
-			return View(database.Favorites);
+			return View(Database.Favorites);
 		}
 
 		[Route("/favoris/{favoriteid}")]
@@ -34,7 +35,5 @@ namespace SessionProject2W5.Controllers
 		{
 			return View();
 		}
-
-		private Database database;
 	}
 }

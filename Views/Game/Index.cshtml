@@ -22,7 +22,7 @@
 				</button>
 				<h3 class="showOnActive">@nbFollowers @Utils.Plural("follower", nbFollowers)</h3>
 				<button class="searchBtn link" data-href="/search/@(game.ShortName)" data-anim="scaleup">View followers</button>
-				<h4 class="showOnActive">@game.Followers.Where(f => f.IsEssential).ToList().Count @Utils.Plural("follower", nbFollowers) @Utils.Plural("essentiel", nbFollowers)</h4>
+				<h4 class="showOnActive">@game.Followers.Where(f => f.Protection == Follower.ProtectionLevel.Essential).ToList().Count @Utils.Plural("follower", nbFollowers) @Utils.Plural("essentiel", nbFollowers)</h4>
 				<input class="gameName" type="hidden" value="@game.ShortName" />
 				<input class="gameColor" type="hidden" value="@game.Color" />
 			</div>

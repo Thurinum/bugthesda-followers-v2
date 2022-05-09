@@ -20,12 +20,6 @@ namespace SessionProject2W5.Models
 		/// est bound au compagnion par référence circulaire lors de la dé-sérialisation.
 		/// </summary>
 		public int    ParentId { get; set; }
-
-		/// <summary>
-		/// Les deux IDs du compagnion utilisés par le game engine de Bethesda.
-		/// </summary>
-		public string BaseId { get; set; }
-		public string RefId { get; set; }
 		#endregion
 
 		#region Infos de Type

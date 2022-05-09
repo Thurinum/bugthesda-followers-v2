@@ -1,0 +1,74 @@
+﻿@model Follower;
+
+@{
+	ViewData["sPageTitle"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Follower</h4>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Create">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="ParentId" class="control-label"></label>
+				<input asp-for="ParentId" class="form-control" />
+				<span asp-validation-for="ParentId" class="text-danger"></span>
+
+				<select asp-for="ParentId" asp-items="@(new SelectList(ViewData["sGameNames"] as List<string>))" >
+					<option>Choisir un jeu...</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label asp-for="Name" class="control-label"></label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Description" class="control-label"></label>
+				<input asp-for="Description" class="form-control" />
+				<span asp-validation-for="Description" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="UnlockContext" class="control-label"></label>
+				<input asp-for="UnlockContext" class="form-control" />
+				<span asp-validation-for="UnlockContext" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Hitpoints" class="control-label"></label>
+				<input asp-for="Hitpoints" class="form-control" />
+				<span asp-validation-for="Hitpoints" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Energy" class="control-label"></label>
+				<input asp-for="Energy" class="form-control" />
+				<span asp-validation-for="Energy" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Alignment" class="control-label"></label>
+				<input asp-for="Alignment" class="form-control" />
+				<span asp-validation-for="Alignment" class="text-danger"></span>
+			</div>
+			<div class="form-group form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" asp-for="IsFavorite" /> @Html.DisplayNameFor(model => model.IsFavorite)
+				</label>
+			</div>
+			<div class="form-group">
+				<label asp-for="Protection" class="control-label"></label>
+				<input asp-for="Protection" class="form-control" />
+				<span asp-validation-for="Protection" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Create" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
+

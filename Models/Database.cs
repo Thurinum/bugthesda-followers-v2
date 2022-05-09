@@ -212,8 +212,6 @@ namespace SessionProject2W5.Models
 						{
 							Id = attri("id"),
 							IsFavorite = attrb("favorite"),
-							BaseId = attr("baseid"),
-							RefId = attr("refid"),
 							ShortName = attr("shortname"),
 							Name = attr("name"),
 							Description = attr("description"),

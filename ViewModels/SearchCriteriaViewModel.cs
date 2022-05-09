@@ -31,6 +31,8 @@ namespace SessionProject2W5.ViewModels
 		public List<TypeFilterViewModel> RacesFilters   { get; set; } = new List<TypeFilterViewModel>();
 		public List<TypeFilterViewModel> ClassesFilters { get; set; } = new List<TypeFilterViewModel>();
 
+		[Required]
+		[Range(-100, 100, ErrorMessage = "Veuillez entrer une valeur entre -100 et 100.")]
 		public int? MinAlignment { get; set; } = -100;
 		public int? MaxAlignment { get; set; } = 100;
 		public int? MinHitpoints { get; set; } = null;

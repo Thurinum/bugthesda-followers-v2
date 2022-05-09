@@ -70,7 +70,7 @@ namespace SessionProject2W5.Controllers
 			for (int i = 0; i < followers.Count; i++)
 			{
 				Follower follower = followers[i];
-
+				
 				if ( // les filtres sont insensibles à la casse
 					(criteria.Keywords != null && !follower.Name.ToLower().Contains(criteria.Keywords.ToLower())) ||
 					(criteria.GamesFilters.Where(f => f.Name == follower.Parent.ShortName).First().Allowed == false) ||

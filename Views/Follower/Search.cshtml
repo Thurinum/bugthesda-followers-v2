@@ -22,6 +22,11 @@
 			{
 				TypeFilterViewModel filter = Model.Criteria.GamesFilters[i];
 
+				// marche pas
+				//<input name="GamesFilters[@i].Name" asp-for="@Model.Criteria.GamesFilters[i].Name"   type="hidden"  />
+				//<input name="GamesFilters[@i].Allowed" asp-for="@Model.Criteria.GamesFilters[i].Allowed" type="checkbox" />
+
+				// marche mais pas de validation
 				<label>@filter.Name</label>
 				<input name="GamesFilters[@i].Name"    type="hidden"   value="@filter.Name" />
 				<input name="GamesFilters[@i].Allowed" type="checkbox" value="@filter.Allowed.ToString()" @(filter.Allowed ? "checked" : "") onchange="this.value = this.checked" />
@@ -55,7 +60,7 @@
 		<div class="attributesWrapper">
 			@* Si c'est un favori (enum) *@
 			<label for="cboFavori">Est un favori</label>
-			<select id="cboFavori" name="FavoriteFilter">
+			<select id="cboFavori" name="FavoriteFilter" asp-for="Criteria.FavoriteFilter">
 				<option value="0">Peu importe</option>
 				<option value="1">Non</option>
 				<option value="2">Oui</option>
@@ -63,10 +68,14 @@
 
 			@* Le degre de protection du compagnion (enum) *@
 			<div class="protectWrapper">
-				<label for="cbxProtect1">Peu importe</label><input id="cbxProtect1" name="ProtectionFilter" type="radio" value="0" />
-				<label for="cbxProtect2">Aucune</label><input id="cbxProtect2" name="ProtectionFilter" type="radio" value="1" />
-				<label for="cbxProtect3">Protege</label><input id="cbxProtect3" name="ProtectionFilter" type="radio" value="2" />
-				<label for="cbxProtect4">Essentiel</label><input id="cbxProtect4" name="ProtectionFilter" type="radio" value="3" />
+				<label for="cbxProtect1">Peu importe</label>
+				<input id="cbxProtect1" name="ProtectionFilter" type="radio" value="0" @(Model.Criteria.ProtectionFilter == ProtectionFilter.Ignore ? "checked" : "") />
+				<label for="cbxProtect2">Aucune</label>
+				<input id="cbxProtect2" name="ProtectionFilter" type="radio" value="1" @(Model.Criteria.ProtectionFilter == ProtectionFilter.None ? "checked" : "") />
+				<label for="cbxProtect3">Protege</label>
+				<input id="cbxProtect3" name="ProtectionFilter" type="radio" value="2" @(Model.Criteria.ProtectionFilter == ProtectionFilter.Protected ? "checked" : "") />
+				<label for="cbxProtect4">Essentiel</label>
+				<input id="cbxProtect4" name="ProtectionFilter" type="radio" value="3" @(Model.Criteria.ProtectionFilter == ProtectionFilter.Essential ? "checked" : "") />
 			</div>
 		</div>
 

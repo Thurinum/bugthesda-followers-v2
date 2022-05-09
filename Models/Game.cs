@@ -7,26 +7,78 @@ using System.Collections.Generic;
 
 namespace SessionProject2W5.Models
 {
-    public class Game
-    {
-        public int Id;               // numeric ID (PK)
-        public string Name;          // display name
-        public string ShortName;     // spaceless name used to create image paths (e.g. {shortname}_logo.png)
-        public string Description;   // description
-        public string Tagline;       // game's tagline (slogan)
-        public int    YearReleased;  // game's tagline (slogan)
-        public string Director;      // whoever directed the game (probably Todd Howard)
-        public string Color;         // theme color for buttons, inputs, etc.
+	/// <summary>
+	/// Un jeu, soit une représentation contenant des compagnions (Followers).
+	/// </summary>
+	public class Game
+	{
+		#region Proprietes
+		/// <summary>
+		/// L'ID numérique (PK) du jeu
+		/// </summary>
+		public int Id;
 
-        public List<string> Facts;         // facts about the game
-        public List<Follower> Followers;   // children
+		/// <summary>
+		/// Le nom du jeu
+		/// </summary>
+		public string Name;
 
-        public SharedInfo SharedInfo;
+		/// <summary>
+		/// Le nom court du jeu. Il s'agit d'un nom sans espace et en miniscules utilisé pour former 
+		/// les chemins d'image et dans certaines routes.
+		/// </summary>
+		public string ShortName;
 
-        public Game()
-        {
-            Facts = new List<string>();    
-            Followers = new List<Follower>();
-        }
-    }
+		/// <summary>
+		/// La description du jeu.
+		/// </summary>
+		public string Description;
+
+		/// <summary>
+		/// Le slogan du jeu.
+		/// </summary>
+		public string Tagline;
+
+		/// <summary>
+		/// L'année de sortie du jeu.
+		/// </summary>
+		public int YearReleased;
+
+		/// <summary>
+		/// Le Game Director. Probablement Todd Howard.
+		/// </summary>
+		public string Director;
+
+		/// <summary>
+		/// La couleur du thème du jeu. Utilisée pour styler le CSS.
+		/// </summary>
+		public string Color;
+		#endregion
+
+		#region Collections
+		/// <summary>
+		/// Une liste de faits à propos du jeu.
+		/// </summary>
+		public List<string> Facts;
+
+		/// <summary>
+		/// La liste des compagnions du jeu.
+		/// </summary>
+		public List<Follower> Followers;
+
+		/// <summary>
+		/// Référence aux Informations Partagées par la base de données
+		/// </summary>
+		public SharedInfo SharedInfo;
+		#endregion
+
+		/// <summary>
+		/// Instantie un nouveau jeu
+		/// </summary>
+		public Game()
+		{
+			Facts = new List<string>();
+			Followers = new List<Follower>();
+		}
+	}
 }

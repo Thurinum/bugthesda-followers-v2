@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SessionProject2W5.Controllers
 {
-	public class FollowerGestionController : Controller
+	public class FollowerManagerController : Controller
 	{
 		private Database Database;
 
-		public FollowerGestionController(Database database)
+		public FollowerManagerController(Database database)
 		{
 			this.Database = database;
 		}

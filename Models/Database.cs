@@ -222,7 +222,7 @@ namespace SessionProject2W5.Models
 							Energy = attri("energy"),
 							Alignment = attri("alignment"),
 							IsEssential = attrb("essential"),
-							DoesRespawn = attrb("respawns"),
+							IsProtected = attrb("respawns"),
 							Parent = game
 						};
 

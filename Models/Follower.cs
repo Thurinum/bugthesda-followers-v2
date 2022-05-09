@@ -33,6 +33,7 @@ namespace SessionProject2W5.Models
 		/// <summary>
 		/// Le ID de la race du compagnion.
 		/// </summary>
+		[Display(Name = "Race")]
 		public int RaceId { get; set; }
 
 		/// <summary>
@@ -44,6 +45,7 @@ namespace SessionProject2W5.Models
 		/// <summary>
 		/// Le ID de la classe du compagnion.
 		/// </summary>
+		[Display(Name = "Classe de personnage")]
 		public int ClassId { get; set; }
 
 		/// <summary>
@@ -59,7 +61,8 @@ namespace SessionProject2W5.Models
 		/// </summary>
 		[Required]
 		[Display(Name = "Nom complet")]
-		[MaxLength(69)]
+		[MaxLength(69, ErrorMessage = "Le nom est trop long.")]
+		[RegularExpression("[a-zA-Z]", ErrorMessage = "Le nom contient des caractères invalides! Lettres seulement.")]
 		public string Name { get; set; }
 
 		/// <summary>
@@ -71,16 +74,18 @@ namespace SessionProject2W5.Models
 		/// <summary>
 		/// La description du compagnion.
 		/// </summary>
-		[Required]
-		[MaxLength(666)]
+		[Required(ErrorMessage = "La description est requise.")]
+		[MaxLength(666, ErrorMessage = "C'est une description, pas un roman. Max. 666 caractères.")]
+		[RegularExpression("[a-zA-Z]", ErrorMessage = "La description contient des caractères invalides! Lettres seulement.")]
 		public string Description { get; set; }
 
 		/// <summary>
 		/// Le contexte où le compagnion peut être obtenu.
 		/// </summary>
-		[Required]
+		[Required(ErrorMessage = "Le contexte est requis.")]
 		[Display(Name = "Contexte d'obtention")]
-		[MaxLength(420)]
+		[MaxLength(420, ErrorMessage = "Vous voulez qu'on s'endorme ou quoi? Max. 420 caractères.")]
+		[RegularExpression("[a-zA-Z]", ErrorMessage = "Le contexte contient des caractères invalides! Lettres seulement.")]
 		public string UnlockContext { get; set; }
 		#endregion
 
@@ -89,9 +94,9 @@ namespace SessionProject2W5.Models
 		/// Le nombre de points de vie du compagnion.
 		/// En réalité l'unité varie grandement de jeu en jeu, mais mon site en a fait abstraction.
 		/// </summary>
-		[Required]
+		[Required(ErrorMessage = "Le nombre de points de vie est requis.")]
 		[Display(Name = "Points de vie")]
-		[Range(0, 999)]
+		[Range(0, 999, ErrorMessage = "Le nombre de points de vie dépasse les limites permises. Il doit être entre 0 et 999.")]
 		public int    Hitpoints { get; set; }
 
 		/// <summary>
@@ -99,18 +104,18 @@ namespace SessionProject2W5.Models
 		/// Les jeux ont différentes manières de représenter cette valeur, mais mon site en 
 		/// fait abstraction.
 		/// </summary>
-		[Required]
+		[Required(ErrorMessage = "Le nombre d'énergie est requis.")]
 		[Display(Name = "Points d'énergie")]
-		[Range(0, 999)]
+		[Range(0, 999, ErrorMessage = "Le nombre de points d'énergie dépasse les limites permises. Il doit être entre 0 et 999.")]
 		public int	  Energy { get; set; }
 
 		/// <summary>
 		/// L'alignement moral du personnage. Les jeux ont différentes manières de représenter cette 
 		/// valeur, mais mon site en fait abstraction.
 		/// </summary>
-		[Required]
+		[Required(ErrorMessage = "L'alignement moral est requis.")]
 		[Display(Name = "Alignement moral")]
-		[Range(-100, 100)]
+		[Range(-100, 100, ErrorMessage = "L'alignement moral dépasse les limites permises. Il doit être entre -100 et 100.")]
 		public int    Alignment { get; set; }
 		#endregion
 
@@ -126,6 +131,8 @@ namespace SessionProject2W5.Models
 		/// Le niveau de protection du compagnion. Un compagnion essentiel ne peut pas mourir.
 		/// Un compagnion protégé peut être tué seulement par le joueur.
 		/// </summary>
+		[Required(ErrorMessage = "Le niveau de protection doit être spécifié.")]
+		[EnumDataType(typeof(Follower.ProtectionLevel), ErrorMessage = "Un niveau de protection valide doit être spécifié.")]
 		public ProtectionLevel Protection { get; set; }
 		#endregion
 
@@ -159,8 +166,13 @@ namespace SessionProject2W5.Models
 
 		public enum ProtectionLevel
 		{
+			[Display(Name = "Aucun")]
 			None	    = 1,
+
+			[Display(Name = "Protégé")]
 			Protected = 2,
+
+			[Display(Name = "Essentiel")]
 			Essential = 3
 		}
 	}

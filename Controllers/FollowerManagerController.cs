@@ -32,7 +32,7 @@ namespace SessionProject2W5.Controllers
 				raceNames.Add(race.CommonName);
 
 			foreach (Class @class in Database.SharedInfo.Classes.OrderBy(g => g.Id))
-				gameNames.Add(@class.Name);
+				classNames.Add(@class.Name);
 
 			ViewData["sGameNames"] = gameNames;
 			ViewData["sRaceNames"] = raceNames;

@@ -78,6 +78,8 @@ namespace SessionProject2W5.Models
 		/// L'url d'une image distante, si le follower l'utilise. Sinon, l'image sera obtenue sur le
 		/// serveur grâce au ShortName généré.
 		/// </summary>
+		[MaxLength(100, ErrorMessage = "L'url d'image est trop long! Max. 100 caractères.")]
+		[RegularExpression("^[a-zA-Z0-9./-]*$", ErrorMessage = "L'url contient des caractères invalides!")]
 		public string ImageUrl { get; set; }
 
 		/// <summary>

@@ -13,61 +13,61 @@ namespace SessionProject2W5.Models
 		/// <summary>
 		/// La clé primaire d'un compagnion.
 		/// </summary>
-		public int    Id;
+		public int    Id { get; set; }
 
 		/// <summary>
 		/// L'id du parent (jeu) du compagnion. Pas vraiment utilisé puisque le parent
 		/// est bound au compagnion par référence circulaire lors de la dé-sérialisation.
 		/// </summary>
-		public int    ParentId;
+		public int    ParentId { get; set; }
 
 		/// <summary>
 		/// Les deux IDs du compagnion utilisés par le game engine de Bethesda.
 		/// </summary>
-		public string BaseId;	
-		public string RefId;
+		public string BaseId { get; set; }
+		public string RefId { get; set; }
 		#endregion
 
 		#region Infos de Type
 		/// <summary>
 		/// Le parent (jeu) du compagnion.
 		/// </summary>
-		public Game   Parent;	
+		public Game   Parent { get; set; }
 
 		/// <summary>
 		/// La race du compagnion.
 		/// </summary>
 		/// <seealso cref="SharedInfo"/>
-		public Race   Race;
+		public Race   Race { get; set; }
 
 		/// <summary>
 		/// La classe de personnage du compagnion.
 		/// </summary>
 		/// <seealso cref="SharedInfo"/>
-		public Class  Class;
+		public Class  Class { get; set; }
 		#endregion
 
 		#region Biographie
 		/// <summary>
 		/// Le nom complet du compagnion.
 		/// </summary>
-		public string Name;
+		public string Name { get; set; }
 
 		/// <summary>
 		/// Le nom écourté du compagnion. Il s'agit d'un seul mot en minuscule
 		/// utilisé pour former certaines routes et obtenir les chemins d'images.
 		/// </summary>
-		public string ShortName;
+		public string ShortName { get; set; }
 
 		/// <summary>
 		/// La description du compagnion.
 		/// </summary>
-		public string Description;
+		public string Description { get; set; }
 
 		/// <summary>
 		/// Le contexte où le compagnion peut être obtenu.
 		/// </summary>
-		public string UnlockContext;
+		public string UnlockContext { get; set; }
 		#endregion
 
 		#region Statistiques
@@ -75,55 +75,55 @@ namespace SessionProject2W5.Models
 		/// Le nombre de points de vie du compagnion.
 		/// En réalité l'unité varie grandement de jeu en jeu, mais mon site en a fait abstraction.
 		/// </summary>
-		public int    Hitpoints;
+		public int    Hitpoints { get; set; }
 
 		/// <summary>
 		/// Le nombre de point d'énergie du compagnion.
 		/// Les jeux ont différentes manières de représenter cette valeur, mais mon site en 
 		/// fait abstraction.
 		/// </summary>
-		public int	  Energy;
+		public int	  Energy { get; set; }
 
 		/// <summary>
 		/// L'alignement moral du personnage. Les jeux ont différentes manières de représenter cette 
 		/// valeur, mais mon site en fait abstraction.
 		/// </summary>
-		public int    Alignment;
+		public int    Alignment { get; set; }
 		#endregion
 
 		#region Attributs
 		/// <summary>
 		/// Indique si le compagnion est un favori.
 		/// </summary>
-		public bool   IsFavorite;
+		public bool   IsFavorite { get; set; }
 
 		/// <summary>
 		/// Si le compagnion est essentiel. Un compagnion essentiel ne peut pas mourir.
 		/// </summary>
-		public bool   IsEssential;
+		public bool   IsEssential { get; set; }
 
 		/// <summary>
 		/// Si le compagnion est protégé. Un compagnion protégé peut être tué seulement par le joueur.
 		/// </summary>
-		public bool   IsProtected;
+		public bool   IsProtected { get; set; }
 		#endregion
 
 		#region Faits et Habiletés
 		/// <summary>
 		/// Une liste de faits à propos du compagnion.
 		/// </summary>
-		public List<string> Facts;
+		public List<string> Facts { get; set; }
 
 		/// <summary>
 		/// Une liste de citations notoires du compagnion.
 		/// </summary>
-		public List<Quote>  Quotes;
+		public List<Quote>  Quotes { get; set; }
 
 		/// <summary>
 		/// Une liste d'habiletés du compagnion. Le terme est plutôt vague et comprend toute sortes
 		/// de perks et de skills.
 		/// </summary>
-		public List<Ability> Abilities;
+		public List<Ability> Abilities { get; set; }
 		#endregion
 
 		/// <summary>

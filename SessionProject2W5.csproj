@@ -21,6 +21,7 @@
   <ItemGroup>
     <Content Remove="Views\Shared\404_SearchNoResults.cshtml" />
     <Content Remove="Views\Shared\500_DatabaseError.cshtml" />
+    <Content Remove="Views\Shared\500_GenericError.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +31,7 @@
 
   <ItemGroup>
 	<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.12" />
+	<PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
 	<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.6.4">
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -49,6 +51,7 @@
     <None Include="Views\Follower\Search.cshtml" />
     <None Include="Views\Game\Index.cshtml" />
     <None Include="Views\Game\Index_Details.cshtml" />
+    <None Include="Views\Shared\500_GenericError.cshtml" />
     <None Include="Views\Shared\404_SearchNoResults.cshtml" />
     <None Include="Views\Shared\500_DatabaseError.cshtml" />
     <None Include="Views\Shared\204_GameEmpty.cshtml" />

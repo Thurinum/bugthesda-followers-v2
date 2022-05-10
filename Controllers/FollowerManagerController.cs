@@ -10,15 +10,20 @@ namespace SessionProject2W5.Controllers
 {
 	public class FollowerManagerController : Controller
 	{
-		private Database Database;
+		private readonly Database Database;
 
 		public FollowerManagerController(Database database)
 		{
 			this.Database = database;
 		}
 
-		// GET: FollowerManagerController/Create
-		[Route("/Test")]
+		/// <summary>
+		/// Obtient le formulaire de création de compagnion.
+		/// </summary>
+		/// <returns>La vue Create.</returns>
+		[HttpGet]
+		[Route("/gestionenfant/create")]
+		[Route("/managefollowers/create")]
 		public ActionResult Create()
 		{
 			List<string> gameNames = new List<string>();
@@ -40,8 +45,13 @@ namespace SessionProject2W5.Controllers
 			return View();
 		}
 
-		// POST: FollowerManagerController/Create
-		[Route("/Test")]
+		/// <summary>
+		/// Envoie les données du nouveau compagnion, crée ce dernier, et l'ajoute à la base de données.
+		/// </summary>
+		/// <param name="follower">Le compagnion retourné par le model binder</param>
+		/// <returns>Une redirection vers la recherche (et non l'index).</returns>
+		[Route("/gestionenfant/create")]
+		[Route("/managefollowers/create")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(Follower follower)
@@ -79,28 +89,48 @@ namespace SessionProject2W5.Controllers
 			
 			parent.Followers.Add(follower);
 
-			return RedirectToAction("Index", "Game");
+			return RedirectToAction("Search", "Follower");
 		}
 
-		// GET: FollowerManagementController/Delete/5
+		/// <summary>
+		/// Obtient le formulaire de suppression de compagnion.
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		[HttpGet]
+		[Route("/{id:int}/delete")]
+		[Route("gestionenfant/delete/{id:int}")]
+		[Route("managefollowers/delete/{id:int}")]
 		public ActionResult Delete(int id)
 		{
-			return View();
+			Follower follower = Database.Followers.Where(f => f.Id == id).SingleOrDefault();
+
+			if (follower == null) 
+				return View("404_FollowerNotFound", id.ToString());
+
+			return View(follower);
 		}
 
-		// POST: FollowerManagementController/Delete/5
+		/// <summary>
+		/// Supprime le compagnion spécifié.
+		/// </summary>
+		/// <param name="id">L</param>
+		/// <param name="collection"></param>
+		/// <returns></returns>
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, IFormCollection collection)
+		[Route("/{id:int}/delete")]
+		[Route("gestionenfant/delete/{id:int}")]
+		[Route("managefollowers/delete/{id:int}")]
+		public ActionResult Delete(Follower fl)
 		{
-			try
-			{
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return View();
-			}
+			Follower follower = Database.Followers.Where(f => f.Id == fl.Id).SingleOrDefault();
+
+			if (follower == null)
+				return View("500_GenericError");
+
+			follower.Parent.Followers.Remove(follower);
+			return Redirect("/search");
 		}
 	}
 }

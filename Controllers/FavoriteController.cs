@@ -7,9 +7,9 @@ namespace SessionProject2W5.Controllers
 	{
 		private readonly Database Database;
 
-		public FavoriteController(Database db)
+		public FavoriteController(Database database)
 		{
-			this.Database = db;
+			Database = database;
 		}
 
 		[Route("/favoris")]
@@ -26,12 +26,12 @@ namespace SessionProject2W5.Controllers
 			return View();
 		}
 
-		public IActionResult Add()
+		public IActionResult Add(int id)
 		{
 			return View();
 		}
 
-		public IActionResult Remove()
+		public IActionResult Remove(int id)
 		{
 			return View();
 		}

@@ -142,7 +142,7 @@ namespace SessionProject2W5.Controllers
 		[Route("/recherche/{id:int}/")]
 		public IActionResult Search(int id)
 		{
-			Game game = Database.Games[id];
+			Game game = Database.Games.OrderBy(g => g.Id).ElementAt(id);
 
 			if (game == null)
 				return PartialView("404_GameNotFound", id);
@@ -205,7 +205,7 @@ namespace SessionProject2W5.Controllers
 		{
 			Follower follower;
 
-			  try { follower = Database.Followers[id]; }
+			  try { follower = Database.Followers.OrderBy(f => f.Id).ElementAt(id); }
 			catch { return View("404_FollowerNotFound", new KeyValuePair<string, string>(null, id.ToString())); }
 
 			if (follower == null)

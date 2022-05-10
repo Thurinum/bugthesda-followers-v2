@@ -4,9 +4,9 @@
 <article id="followerInfoWrapper">
 	<!-- IMAGE DU COMPAGNION -->
 	<figure id="portrait">
-		<img src="~/images/games/@(Model.Parent.ShortName)/followers/@(Model.ShortName)/thumbnail.jpg"
+		<img src="@Follower.GetPictureSrc(Model)"
 		     alt="Image du compagnion @Model.Name" />
-		<figcaption>@Model.Name</figcaption>
+		<figcaption>@Model.Id</figcaption>
 	</figure>
 
 	<!-- ATTRIBUTS -->

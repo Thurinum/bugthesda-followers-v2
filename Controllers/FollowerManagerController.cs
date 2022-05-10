@@ -89,6 +89,9 @@ namespace SessionProject2W5.Controllers
 			
 			parent.Followers.Add(follower);
 
+			// mettre a jour la db
+			Database.AddFollower(follower);
+
 			return RedirectToAction("Search", "Follower");
 		}
 
@@ -130,6 +133,9 @@ namespace SessionProject2W5.Controllers
 				return View("500_GenericError");
 
 			follower.Parent.Followers.Remove(follower);
+
+			Database.DeleteFollower(fl.Id);
+
 			return Redirect("/search");
 		}
 	}

@@ -40,6 +40,7 @@ namespace SessionProject2W5.Models
 		/// <summary>
 		/// La liste des compagnions marqués comme Favoris dans la base de données.
 		/// </summary>
+		[Obsolete("Utiliser les variables de session pour gérer les favoris.")]
 		public List<Follower> Favorites;
 
 		/// <summary>
@@ -55,6 +56,8 @@ namespace SessionProject2W5.Models
 		public string ErrorString { get; private set; }
 		#endregion
 
+		public string FilePath { get; }
+
 		/// <summary>
 		/// Instantie une nouvelle base et désérialise un fichier XML pour populer les données.
 		/// </summary>
@@ -65,10 +68,22 @@ namespace SessionProject2W5.Models
 			if (!File.Exists(path))
 				throw new ArgumentException("Le chemin n'existe pas.");
 
-			// XmlSerializer ne supporte PAS les references circulaires (ref au parent dans l'enfant)
-			// DataContractSerializer ne support PAS les... attributs (!)
-			// On parse donc le XML manuellement et on instantie nos classes
-			XmlTextReader reader = new XmlTextReader(path);
+			FilePath = path;
+			Deserialize();
+		}
+
+		/// <summary>
+		/// Désérialise manuelle un fichier XML afin de récupérer les données.
+		/// </summary>
+		/// <remarks>
+		/// XmlSerializer ne supporte PAS les references circulaires (ref au parent dans l'enfant)
+		/// DataContractSerializer ne support PAS les... attributs (!)
+		/// On parse donc vite le XML manuellement et on instantie nos classes...
+		/// La prochaine fois faudra regarder le JSON :P
+		/// </remarks>
+		public void Deserialize()
+		{
+			XmlTextReader reader = new XmlTextReader(FilePath);
 
 			// initialiser collections
 			this.Games = new List<Game>();
@@ -108,7 +123,7 @@ namespace SessionProject2W5.Models
 				catch (Exception e)
 				{
 					if (value.Length > 10)
-						value = value.Substring(0, 10) + "...";
+						value = string.Concat(value.AsSpan(0, 10), "...");
 
 					this.ErrorString += $"Could not to convert attribute '{name}' with value '{value}' to integer in follower '{follower?.Name}' of game '{game?.Name}': {e.Message}\n";
 				}
@@ -219,13 +234,13 @@ namespace SessionProject2W5.Models
 							Hitpoints = attri("hitpoints"),
 							Energy = attri("energy"),
 							Alignment = attri("alignment"),
-							Protection = attrb("essential") 
-									? Follower.ProtectionLevel.Essential 
-									: (attrb("respawns") 
-										? Follower.ProtectionLevel.Protected 
+							Protection = attrb("essential")
+									? Follower.ProtectionLevel.Essential
+									: (attrb("protected")
+										? Follower.ProtectionLevel.Protected
 										: Follower.ProtectionLevel.None),
 							Parent = game,
-							ParentId = game.Id							
+							ParentId = game.Id
 						};
 
 						// ensure unique id
@@ -278,6 +293,62 @@ namespace SessionProject2W5.Models
 						game.Followers.Add(follower);
 
 						break;
+				}
+			}
+
+			reader.Close();
+		}
+
+		/// <summary>
+		/// Utilise le DOM pour ajouter un compagnion au fichier sérialisé XML.
+		/// Ne modifie que la ligne nécessaire.
+		/// </summary>
+		public void AddFollower(Follower follower)
+		{
+			XmlDocument doc = new XmlDocument();
+			doc.PreserveWhitespace = true;
+			doc.Load(FilePath);
+
+			XmlElement element = doc.CreateElement("follower");
+			element.SetAttribute("id", follower.Id.ToString());
+			element.SetAttribute("shortname", follower.ShortName);
+			element.SetAttribute("name", follower.Name);
+			element.SetAttribute("description", follower.Description);
+			element.SetAttribute("unlockcontext", follower.UnlockContext);
+			element.SetAttribute("hitpoints", follower.Hitpoints.ToString());
+			element.SetAttribute("energy", follower.Energy.ToString());
+			element.SetAttribute("alignment", follower.Alignment.ToString());
+			element.SetAttribute("essential", follower.Protection == Follower.ProtectionLevel.Essential ? "true" : "false");
+			element.SetAttribute("protected", follower.Protection == Follower.ProtectionLevel.Protected ? "true" : "false");
+			element.SetAttribute("raceid", follower.RaceId.ToString());
+			element.SetAttribute("classid", follower.ClassId.ToString());
+
+			XmlNodeList games = doc.GetElementsByTagName("game");
+			foreach (XmlElement game in games)
+				if (game.GetAttribute("id") == follower.ParentId.ToString())
+					game.GetElementsByTagName("followers")[0].AppendChild(element);
+		}
+
+		/// <summary>
+		/// Utilise le DOM pour supprimer un compagnion du fichier sérialisé XML.
+		/// Malheuresement la structure du fichier fait en sorte qu'il y a plusieurs propriétés "id",
+		/// il est donc impossible d'utilise GetElementById et il faut faire récursion manuellement.
+		/// </summary>
+		public void DeleteFollower(int id)
+		{
+			XmlDocument doc = new XmlDocument();
+			doc.PreserveWhitespace = true;
+			doc.Load(FilePath);
+
+			XmlNodeList games = doc.GetElementsByTagName("game");
+
+			foreach (XmlElement game in games)
+			{
+				XmlNodeList followers = game.GetElementsByTagName("follower");
+				foreach (XmlElement follower in followers)
+				{
+					if (follower.GetAttribute("id") == id.ToString())
+						follower.ParentNode.RemoveChild(follower);
 				}
 			}
 		}

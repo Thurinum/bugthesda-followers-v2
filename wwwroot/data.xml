@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <database>
 	<sharedinfo>
 		<races>
@@ -67,8 +67,6 @@
 			<followers>
 				<follower id="0"
 						favorite="true"
-						baseid="000AED40"
-						refid="000AED41"
 						shortname="adoringfan"
 						name="The Adoring Fan"
 						description="Ce jeune elfe est passionné par la victoire du Héros de Kvatch sur le Prince Gris a l'arene impériale et lui jure obéissance."
@@ -77,7 +75,7 @@
 						energy="100"
 						alignment="-100"
 						essential="true"
-						respawns="true"
+						protected="true"
 						raceid="0"
 						classid="0">
 					<facts>
@@ -100,9 +98,6 @@
 					</abilities>
 				</follower>
 				<follower id="1"
-						  favorite="false"
-						  baseid="00085969"
-						  refid="0008596A"
 						  shortname="mazogatheorc"
 						  name="Mazoga l'Orque"
 						  description="Une guerrière qui sollicite l'aide du comte de Leyawiin pour s'occuper d'une affaire personnelle."
@@ -111,7 +106,7 @@
 						  energy="100"
 						  alignment="-100"
 						  essential="false"
-						  respawns="false"
+						  protected="false"
 						  raceid="1"
 						  classid="1">
 					<facts>
@@ -129,9 +124,6 @@
 					</abilities>
 				</follower>
 				<follower id="2"
-						  favorite="true"
-						  baseid="xx000F5x"
-						  refid="xx001A8x"
 						  shortname="knightofthenine"
 						  name="Chevaliers des Neuf"
 					      description="Une collection de 8 chevaliers recrutables."
@@ -140,7 +132,7 @@
 						  energy="100"
 						  alignment="100"
 						  essential="false"
-						  respawns="false"
+						  protected="false"
 						  raceid="2"
 						  classid="2">
 					<facts>
@@ -157,9 +149,6 @@
 					</abilities>
 				</follower>
 				<follower id="3"
-						  favorite="false"
-						  baseid="0008675x"
-						  refid="0008675x"
 						  shortname="dbmurderer"
 						  name="Assassin de la Confrérie Noire"
 					      description="Une collection de 4 assassins recrutables."
@@ -168,7 +157,7 @@
 						  energy="150"
 						  alignment="-100"
 						  essential="false"
-						  respawns="true"
+						  protected="true"
 						  raceid="2"
 						  classid="2">
 					<facts>
@@ -199,9 +188,6 @@
 			</facts>
 			<followers>
 				<follower id="4"
-						favorite="false"
-						baseid="000AED40"
-						refid="000AED41"
 						shortname="lydia"
 						name="Lydia"
 						description="Une jeune guerrière devenue huscarl de l'Enfant de Dragon."
@@ -210,7 +196,7 @@
 						energy="100"
 						alignment="-100"
 						essential="false"
-						respawns="false"
+						protected="false"
 						raceid="3"
 						classid="3">
 					<facts>
@@ -228,9 +214,6 @@
 					</abilities>
 				</follower>
 				<follower id="5"
-						favorite="true"
-						baseid="000AED40"
-						refid="000AED41"
 						shortname="serana"
 						name="Serana"
 						description="Une jeune guerrière devenue huscarl de l'Enfant de Dragon."
@@ -239,7 +222,7 @@
 						energy="100"
 						alignment="-100"
 						essential="false"
-						respawns="false"
+						protected="false"
 						raceid="3"
 						classid="3">
 					<facts></facts>
@@ -247,9 +230,6 @@
 					<abilities>	</abilities>
 				</follower>
 				<follower id="6"
-						favorite="false"
-						baseid="000AED40"
-						refid="000AED41"
 						shortname="kharjo"
 						name="Kharjo"
 						description="Un random khajiit qui a perdu son amulette lol."
@@ -258,7 +238,7 @@
 						energy="100"
 						alignment="-100"
 						essential="false"
-						respawns="false"
+						protected="false"
 						raceid="3"
 						classid="3">
 					<facts></facts>
@@ -266,9 +246,6 @@
 					<abilities>	</abilities>
 				</follower>
 				<follower id="7"
-						favorite="true"
-						baseid="000AED40"
-						refid="000AED41"
 						shortname="jzargo"
 						name="J'zargo"
 						description="Un mage khajiit eccentrique"
@@ -277,7 +254,7 @@
 						energy="100"
 						alignment="-100"
 						essential="false"
-						respawns="false"
+						protected="false"
 						raceid="3"
 						classid="3">
 					<facts></facts>
@@ -300,9 +277,6 @@
 			</facts>
 			<followers>
 				<follower id="8"
-						favorite="true"
-						baseid="000AED40"
-						refid="000AED41"
 						shortname="dogmeat"
 						name="Dog Meat"
 						description="Un chien"
@@ -311,7 +285,7 @@
 						energy="100"
 						alignment="-100"
 						essential="false"
-						respawns="false"
+						protected="false"
 						raceid="3"
 						classid="3">
 					<facts>
@@ -329,9 +303,6 @@
 					</abilities>
 				</follower>
 				<follower id="9"
-						favorite="false"
-						baseid="000AED40"
-						refid="000AED41"
 						shortname="jericho"
 						name="Jericho"
 						description="Un ex mercenaire."
@@ -340,7 +311,7 @@
 						energy="100"
 						alignment="-100"
 						essential="false"
-						respawns="false"
+						protected="false"
 						raceid="3"
 						classid="3">
 					<facts></facts>
@@ -348,9 +319,6 @@
 					<abilities>	</abilities>
 				</follower>
 				<follower id="10"
-						favorite="false"
-						baseid="000AED40"
-						refid="000AED41"
 						shortname="butch"
 						name="Butch Deloria"
 						description="An arsehole."
@@ -359,7 +327,7 @@
 						energy="100"
 						alignment="-100"
 						essential="false"
-						respawns="false"
+						protected="false"
 						raceid="3"
 						classid="3">
 					<facts></facts>
@@ -367,9 +335,6 @@
 					<abilities>	</abilities>
 				</follower>
 				<follower id="11"
-						favorite="false"
-						baseid="000AED40"
-						refid="000AED41"
 						shortname="paladincross"
 						name="Star Paladin Cross"
 						description="Un paladin pas rapport a la citadelle"
@@ -378,7 +343,7 @@
 						energy="100"
 						alignment="-100"
 						essential="false"
-						respawns="false"
+						protected="false"
 						raceid="3"
 						classid="3">
 					<facts></facts>

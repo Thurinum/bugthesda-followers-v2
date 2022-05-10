@@ -1,0 +1,27 @@
+﻿@model Follower;
+
+<button class="follower link" data-href="/details/@Model.Id">
+	<img class="thumbnail" src="@Follower.GetPictureSrc(Model)" />
+	<div class="container">
+		<div class="primaryinfo">
+			<img class="gamelogo" src="/images/games/@(Model.Parent.ShortName)/logo.png" />
+			<h2>@Model.Name</h2>
+		</div>
+
+		<div class="secondaryinfo">
+			@if (Model.IsFavorite)
+			{
+				<img src="~/images/shared/attributes/favorite.png" />
+			}
+			@if (Model.Protection == Follower.ProtectionLevel.Essential)
+			{
+				<img src="~/images/shared/attributes/essential.png" />
+			}
+			else if (Model.Protection == Follower.ProtectionLevel.Protected)
+			{
+				<img src="~/images/shared/attributes/respawns.png" />
+			}
+		</div>
+	</div>
+</button>
+<a type="button" href="/@Model.Id/delete">Supprimer</a>

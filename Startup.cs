@@ -1,4 +1,4 @@
-using SessionProject2W5.Models;
+﻿using SessionProject2W5.Models;
 
 using System.Xml;
 using System.Runtime.Serialization;
@@ -30,6 +30,7 @@ namespace SessionProject2W5
 			}
 
 			// activer et configurer le routage
+			app.UseSession();
 			app.UseRouting();
 			app.UseEndpoints(endpoints =>
 			{
@@ -47,6 +48,8 @@ namespace SessionProject2W5
 
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddDistributedMemoryCache();
+			services.AddSession(options => { options.IdleTimeout = System.TimeSpan.FromMinutes(20); });
 			services.AddMvc().AddRazorRuntimeCompilation();
 			services.AddSingleton<Database>(new Database("wwwroot/data.xml"));
 		}

@@ -1,2 +1,11 @@
 ﻿@model List<Follower>
 
+@foreach (Follower follower in Model)
+{
+	<form asp-action="Delete">
+		<p>@follower.Name</p>
+		<input type="hidden" name="Id" value="@follower.Id" />
+	</form>
+}
+
+<p>Vous avez @Model.Count favoris lol</p>

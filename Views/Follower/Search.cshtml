@@ -97,31 +97,7 @@
 <section id="cardsWrapper" data-color="red">
 	@foreach (Follower follower in Model.Results)
 	{
-		<button class="follower link" data-href="/details/@follower.Id">
-			<img class="thumbnail" src="@Follower.GetPictureSrc(follower)" />
-			<div class="container">
-				<div class="primaryinfo">
-					<img class="gamelogo" src="/images/games/@(follower.Parent.ShortName)/logo.png" />
-					<h2>@follower.Name</h2>
-				</div>
-
-				<div class="secondaryinfo">
-					@if (follower.IsFavorite)
-					{
-						<img src="~/images/shared/attributes/favorite.png" />
-					}
-					@if (follower.Protection == Follower.ProtectionLevel.Essential)
-					{
-						<img src="~/images/shared/attributes/essential.png" />
-					} 
-					else if (follower.Protection == Follower.ProtectionLevel.Protected)
-					{
-						<img src="~/images/shared/attributes/respawns.png" />
-					}
-				</div>
-			</div>
-		</button>
-		<a type="button" href="/@follower.Id/delete">Supprimer</a>
+		<partial name="Search_Follower" model="follower" />
 	}
 </section>
 

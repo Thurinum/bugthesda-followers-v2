@@ -73,9 +73,9 @@ namespace SessionProject2W5.Controllers
 				
 				if ( // les filtres sont insensibles à la casse
 					(criteria.Keywords != null && !follower.Name.ToLower().Contains(criteria.Keywords.ToLower())) ||
-					(criteria.GamesFilters.Where(f => f.Name == follower.Parent.ShortName).First().Allowed == false) ||
-					(criteria.RacesFilters.Where(f => f.Name == follower.Race.ShortName).First().Allowed == false) ||
-					(criteria.ClassesFilters.Where(f => f.Name == follower.Class.ShortName).First().Allowed == false) ||
+					(criteria.GamesFilters.Where(f => f.Name == follower.Parent.ShortName).SingleOrDefault().Allowed == false) ||
+					(criteria.RacesFilters.Where(f => f.Name == follower.Race.ShortName).SingleOrDefault().Allowed == false) ||
+					(criteria.ClassesFilters.Where(f => f.Name == follower.Class.ShortName).SingleOrDefault().Allowed == false) ||
 					(criteria.FavoriteFilter != FavoriteFilter.Ignore && ((follower.IsFavorite ? FavoriteFilter.Favorite : FavoriteFilter.NotFavorite) != criteria.FavoriteFilter)) ||
 					(criteria.ProtectionFilter != ProtectionFilter.Ignore && (ProtectionFilter)follower.Protection != criteria.ProtectionFilter) || // "true production code"
 					(criteria.MinAlignment != null && (follower.Alignment < criteria.MinAlignment)) ||

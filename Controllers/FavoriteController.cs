@@ -30,8 +30,6 @@ namespace SessionProject2W5.Controllers
 
 			List<Follower> favorites = Database.Followers.Where(f => favoriteIds.Contains(f.Id)).ToList();
 
-			Database.Serialize();
-
 			return View(favorites);
 		}
 

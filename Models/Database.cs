@@ -226,7 +226,6 @@ namespace SessionProject2W5.Models
 						follower = new Follower
 						{
 							Id = attri("id"),
-							IsFavorite = attrb("favorite"),
 							ShortName = attr("shortname"),
 							Name = attr("name"),
 							Description = attr("description"),
@@ -305,8 +304,10 @@ namespace SessionProject2W5.Models
 		/// </summary>
 		public void AddFollower(Follower follower)
 		{
-			XmlDocument doc = new XmlDocument();
-			doc.PreserveWhitespace = true;
+			XmlDocument doc = new XmlDocument
+			{
+				PreserveWhitespace = true
+			};
 			doc.Load(FilePath);
 
 			XmlElement element = doc.CreateElement("follower");
@@ -336,8 +337,10 @@ namespace SessionProject2W5.Models
 		/// </summary>
 		public void DeleteFollower(int id)
 		{
-			XmlDocument doc = new XmlDocument();
-			doc.PreserveWhitespace = true;
+			XmlDocument doc = new XmlDocument
+			{
+				PreserveWhitespace = true
+			};
 			doc.Load(FilePath);
 
 			XmlNodeList games = doc.GetElementsByTagName("game");

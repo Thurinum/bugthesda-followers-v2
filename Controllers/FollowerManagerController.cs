@@ -61,8 +61,8 @@ namespace SessionProject2W5.Controllers
 
 			int maxid = Database.Followers.Max(f => f.Id);
 			Game parent = Database.Games[(int)follower.ParentId];
-			Race followerRace = Database.SharedInfo.Races[(int)follower.ParentId];
-			Class followerClass = Database.SharedInfo.Classes[(int)follower.ParentId];
+			Race followerRace = Database.SharedInfo.Races[(int)follower.RaceId];
+			Class followerClass = Database.SharedInfo.Classes[(int)follower.ClassId];
 
 			follower.Id = maxid + 1;
 			follower.Parent = parent;

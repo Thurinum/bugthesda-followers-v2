@@ -328,6 +328,8 @@ namespace SessionProject2W5.Models
 			foreach (XmlElement game in games)
 				if (game.GetAttribute("id") == follower.ParentId.ToString())
 					game.GetElementsByTagName("followers")[0].AppendChild(element);
+
+			doc.Save(FilePath);
 		}
 
 		/// <summary>
@@ -348,12 +350,18 @@ namespace SessionProject2W5.Models
 			foreach (XmlElement game in games)
 			{
 				XmlNodeList followers = game.GetElementsByTagName("follower");
-				foreach (XmlElement follower in followers)
+				for (int j = 0; j < followers.Count; j++)
 				{
+					XmlElement follower = (XmlElement)followers[j];
 					if (follower.GetAttribute("id") == id.ToString())
+					{
 						follower.ParentNode.RemoveChild(follower);
+						j--;
+					}
 				}
 			}
+
+			doc.Save(FilePath);
 		}
 	}
 }

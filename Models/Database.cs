@@ -247,6 +247,10 @@ namespace SessionProject2W5.Models
 							this.ErrorString += $"Duplicate id {follower.Id} for follower '{follower.Name}' in game '{game.Name}'.\n";
 						followerids.Add(follower.Id);
 
+						// img url
+						if (reader.GetAttribute("pictureurl") != null)
+							follower.PictureUrl = attr("pictureurl");
+
 						// FIXME: Will crash if access to race later (must do constructor)
 						int raceid = attri("raceid");
 						try
@@ -313,6 +317,7 @@ namespace SessionProject2W5.Models
 			XmlElement element = doc.CreateElement("follower");
 			element.SetAttribute("id", follower.Id.ToString());
 			element.SetAttribute("shortname", follower.ShortName);
+			element.SetAttribute("pictureurl", follower.PictureUrl);
 			element.SetAttribute("name", follower.Name);
 			element.SetAttribute("description", follower.Description);
 			element.SetAttribute("unlockcontext", follower.UnlockContext);

@@ -70,7 +70,7 @@
 						<ability name="DUMMY" description="UNIMPLEMENTED" color="red" />
 					</abilities>
 				</follower>
-			<follower id="12" shortname="zacharytanguay" name="Zachary Tanguay" description="sdf" unlockcontext="sdf" hitpoints="3" energy="3" alignment="-74" essential="false" protected="false" raceid="0" classid="0" /></followers>
+			</followers>
 		</game>
 		<game id="1" shortname="skyrim" name="Skyrim" description="Alduin le Mangeur de Mondes (cringe) s'est éveillé de son sommeil de beaucoup longtemps et projette d'asujettir Tamriel encore une fois. Mais l'Enfant de Dragon has also awaken from his carriage in direction of head-chopping metropolis Helgen. Will he triumph of the Enemy?!?!!" tagline="Hey, you, you're finally awake." director="Todd Howard" released="2011" color="grey">
 			<facts>
@@ -145,4 +145,5 @@
 			</followers>
 		</game>
 	</games>
+
 </database>

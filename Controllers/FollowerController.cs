@@ -203,10 +203,7 @@ namespace SessionProject2W5.Controllers
 		[Route("/enfant/details/{id:int}")]
 		public IActionResult Details(int id)
 		{
-			Follower follower;
-
-			  try { follower = Database.Followers.OrderBy(f => f.Id).ElementAt(id); }
-			catch { return View("404_FollowerNotFound", new KeyValuePair<string, string>(null, id.ToString())); }
+			Follower follower = Database.Followers.Where(f => f.Id == id).SingleOrDefault();
 
 			if (follower == null)
 				return View("404_FollowerNotFound", new KeyValuePair<string, string>(null, id.ToString()));
@@ -246,10 +243,14 @@ namespace SessionProject2W5.Controllers
 		[Route("/{gameid:int}/{followerid:int}")]
 		public IActionResult Details(int gameid, int followerid)
 		{
-			Follower follower;
+			Game game = Database.Games.Where(g => g.Id == gameid).SingleOrDefault();
+			Follower follower = Database.Followers.Where(f => f.Id == followerid).SingleOrDefault();
 
-			try { follower = Database.Games[gameid].Followers[followerid]; }
-			catch { return View("404_FollowerNotFound", new KeyValuePair<string, string>(gameid.ToString(), followerid.ToString())); }
+			if (game == null)
+				return View("404_GameNotFound", gameid);
+
+			if (follower == null)
+				return View("404_FollowerNotFound", new KeyValuePair<string, string>(gameid.ToString(), followerid.ToString()));
 
 			ViewData["sPageTitle"] = $"Bethesda's Followers - {follower.Parent.Name} - {follower.Name}";
 			return View(follower);

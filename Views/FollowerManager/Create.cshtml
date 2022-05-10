@@ -19,7 +19,7 @@
 				<label asp-for="ParentId"></label>
 				<select asp-for="ParentId" required>
 					<option value="">Choisir un jeu...</option>
-					@for (int i = 0; i < GameNames.Count; i++)
+					@for (int i = 0; i < GameNames.Count; i++) 
 					{
 						<option value="@i">@GameNames[i]</option>
 					}
@@ -54,9 +54,9 @@
 				<span asp-validation-for="Name"></span>
 			</div>
 			<div>
-				<label asp-for="ImageUrl"></label>
-				<input asp-for="ImageUrl" type="url" placeholder="Entrer l'url de l'image" required />
-				<span asp-validation-for="ImageUrl"></span>
+				<label asp-for="PictureUrl"></label>
+				<input asp-for="PictureUrl" type="url" placeholder="Entrer l'url de l'image" required />
+				<span asp-validation-for="PictureUrl"></span>
 			</div>
 			<div>
 				<label asp-for="Description"></label>

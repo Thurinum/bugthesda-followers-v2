@@ -76,9 +76,10 @@ namespace SessionProject2W5.Models
 		/// L'url d'une image distante, si le follower l'utilise. Sinon, l'image sera obtenue sur le
 		/// serveur grâce au ShortName généré.
 		/// </summary>
+		[Display(Name = "URL Image")]
 		[MaxLength(100, ErrorMessage = "L'url d'image est trop long! Max. 100 caractères.")]
 		[RegularExpression("^[a-zA-Z0-9.:/@#=_-]*$", ErrorMessage = "L'url contient des caractères invalides!")]
-		public string ImageUrl { get; set; }
+		public string PictureUrl { get; set; }
 
 		/// <summary>
 		/// La description du compagnion.
@@ -193,7 +194,7 @@ namespace SessionProject2W5.Models
 		/// <returns>Le chemin vers l'image du follower.</returns>
 		public static string GetPictureSrc(Follower follower)
 		{
-			return follower.ImageUrl ?? $"/images/games/{follower.Parent.ShortName}/followers/{follower.ShortName}/thumbnail.jpg";
+			return follower.PictureUrl ?? $"/images/games/{follower.Parent.ShortName}/followers/{follower.ShortName}/thumbnail.jpg";
 		}
 	}
 }

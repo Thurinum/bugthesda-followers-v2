@@ -10,7 +10,6 @@ namespace SessionProject2W5.Models
 	/// </summary>
 	public class Follower
 	{
-		#region Clés
 		/// <summary>
 		/// La clé primaire d'un compagnion.
 		/// </summary>
@@ -23,7 +22,6 @@ namespace SessionProject2W5.Models
 		[Required(ErrorMessage = "Le jeu parent est requis.")]
 		[Display(Name = "Jeu Parent")]
 		public int?   ParentId { get; set; }
-		#endregion
 
 		#region Infos de Type
 		/// <summary>
@@ -79,7 +77,7 @@ namespace SessionProject2W5.Models
 		/// serveur grâce au ShortName généré.
 		/// </summary>
 		[MaxLength(100, ErrorMessage = "L'url d'image est trop long! Max. 100 caractères.")]
-		[RegularExpression("^[a-zA-Z0-9.:/@#_-]*$", ErrorMessage = "L'url contient des caractères invalides!")]
+		[RegularExpression("^[a-zA-Z0-9.:/@#=_-]*$", ErrorMessage = "L'url contient des caractères invalides!")]
 		public string ImageUrl { get; set; }
 
 		/// <summary>
@@ -184,6 +182,18 @@ namespace SessionProject2W5.Models
 
 			[Display(Name = "Essentiel")]
 			Essential = 3
+		}
+
+		/// <summary>
+		/// Obtient l'image du portrait du compagnion.
+		/// Certains compagnions (créés dynamiquement) utilisent un URL pour leur image.
+		/// En l'absence d'un tel URL, on forme le chemin de l'image sur le serveur local
+		/// </summary>
+		/// <param name="follower">Le follower dont l'image est recherchée.</param>
+		/// <returns>Le chemin vers l'image du follower.</returns>
+		public static string GetPictureSrc(Follower follower)
+		{
+			return follower.ImageUrl ?? $"/images/games/{follower.Parent.ShortName}/followers/{follower.ShortName}/thumbnail.jpg";
 		}
 	}
 }

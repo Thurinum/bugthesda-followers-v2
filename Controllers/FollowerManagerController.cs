@@ -66,10 +66,12 @@ namespace SessionProject2W5.Controllers
 			if (!ModelState.IsValid)
 				return View();
 
-			int maxid = Database.Followers.Max(f => f.Id) + 1;
+			Game parent = Database.Games[(int)follower.ParentId];
+			int maxid = Database.Followers.Max(f => f.Id);
 
-			Game parent = Database.Games[follower.Id];
+			follower.Id = maxid + 1;
 			follower.Parent = parent;
+			follower.ShortName = follower.Name.Replace(" ", "").ToLower();
 			parent.Followers.Add(follower);
 
 			return RedirectToAction("Index", "Game");

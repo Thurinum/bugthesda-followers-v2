@@ -1,8 +1,7 @@
 ﻿using SessionProject2W5.Models;
-using SessionProject2W5.ViewModels;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 using System.Collections.Generic;
 using System.Linq;
 

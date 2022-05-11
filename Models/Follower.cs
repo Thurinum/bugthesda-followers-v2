@@ -175,13 +175,8 @@ namespace SessionProject2W5.Models
 
 		public enum ProtectionLevel
 		{
-			[Display(Name = "Aucun")]
 			None	    = 1,
-
-			[Display(Name = "Protégé")]
 			Protected = 2,
-
-			[Display(Name = "Essentiel")]
 			Essential = 3
 		}
 

@@ -1,11 +1,11 @@
 ﻿using SessionProject2W5.Models;
+using SessionProject2W5.Extensions;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 
 using System.Collections.Generic;
 using System.Linq;
-using SessionProject2W5.Extensions;
 
 namespace SessionProject2W5.Controllers
 {

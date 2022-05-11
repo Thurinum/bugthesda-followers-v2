@@ -8,9 +8,16 @@ namespace SessionProject2W5.ViewModels
 {
 	public enum ProtectionFilter
 	{
+		[Display(Name = "Peu importe")]
 		Ignore,
+
+		[Display(Name = "Aucun")]
 		None,
+
+		[Display(Name = "Protégé")]
 		Protected,
+
+		[Display(Name = "Essentiel")]
 		Essential
 	}
 
@@ -57,13 +64,13 @@ namespace SessionProject2W5.ViewModels
 		public SearchCriteriaViewModel(List<Game> games, bool allowGames = true, bool allowRaces = true, bool allowClasses = true)
 		{
 			foreach (Game game in games)
-				GamesFilters.Add(new TypeFilterViewModel() { Name = game.ShortName, Allowed = allowGames });
+				GamesFilters.Add(new TypeFilterViewModel() { Name = game.Name, Allowed = allowGames });
 
 			foreach (Race race in games[0].SharedInfo.Races)
-				RacesFilters.Add(new TypeFilterViewModel() { Name = race.ShortName, Allowed = allowRaces });
+				RacesFilters.Add(new TypeFilterViewModel() { Name = race.NativeName, Allowed = allowRaces });
 
 			foreach (Class @class in games[0].SharedInfo.Classes)
-				ClassesFilters.Add(new TypeFilterViewModel() { Name = @class.ShortName, Allowed = allowClasses });
+				ClassesFilters.Add(new TypeFilterViewModel() { Name = @class.Name, Allowed = allowClasses });
 		}
 	}
 }

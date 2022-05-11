@@ -73,9 +73,9 @@ namespace SessionProject2W5.Controllers
 				
 				if ( // les filtres sont insensibles à la casse
 					(criteria.Keywords != null && !follower.Name.ToLower().Contains(criteria.Keywords.ToLower())) ||
-					(criteria.GamesFilters.Where(f => f.Name == follower.Parent.ShortName).SingleOrDefault().Allowed == false) ||
-					(criteria.RacesFilters.Where(f => f.Name == follower.Race.ShortName).SingleOrDefault().Allowed == false) ||
-					(criteria.ClassesFilters.Where(f => f.Name == follower.Class.ShortName).SingleOrDefault().Allowed == false) ||
+					(criteria.GamesFilters.Where(f => f.Name == follower.Parent.Name).SingleOrDefault().Allowed == false) ||
+					(criteria.RacesFilters.Where(f => f.Name == follower.Race.NativeName).SingleOrDefault().Allowed == false) ||
+					(criteria.ClassesFilters.Where(f => f.Name == follower.Class.Name).SingleOrDefault().Allowed == false) ||
 					(criteria.FavoriteFilter != FavoriteFilter.Ignore && ((follower.IsFavorite ? FavoriteFilter.Favorite : FavoriteFilter.NotFavorite) != criteria.FavoriteFilter)) ||
 					(criteria.ProtectionFilter != ProtectionFilter.Ignore && (ProtectionFilter)follower.Protection != criteria.ProtectionFilter) || // "true production code"
 					(criteria.MinAlignment != null && (follower.Alignment < criteria.MinAlignment)) ||
@@ -152,7 +152,7 @@ namespace SessionProject2W5.Controllers
 
 			SearchViewModel search = new SearchViewModel();
 			SearchCriteriaViewModel criteria = new SearchCriteriaViewModel(Database.Games, false, true, true);
-			criteria.GamesFilters.Where(f => f.Name == game.ShortName).First().Allowed = true;
+			criteria.GamesFilters.Where(f => f.Name == game.Name).First().Allowed = true;
 			search.Results = game.Followers;
 
 			ViewData["sPageTitle"] = "Bethesda's Followers - Recherche - " + game.Name;

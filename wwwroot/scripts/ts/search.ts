@@ -10,6 +10,7 @@ $("#cardsWrapper").onwheel = function (e) {
 SEARCH_INPUT.onclick = () => {
 	FORM.style.maxHeight = "100vh";
 	FORM.style.padding = "40px";
+	FORM.style.borderWidth = "1px";
 	isRedirectEnabled = false;
 }
 
@@ -22,6 +23,7 @@ window.onclick = (e) => {
 	if (e.target != SEARCH_INPUT && !FORM.contains(e.target as HTMLElement)) {
 		FORM.style.maxHeight = "0";
 		FORM.style.padding = "0";
+		FORM.style.borderWidth = "0";
 		isRedirectEnabled = true;
 	}
 }

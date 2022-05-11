@@ -6,17 +6,23 @@ main {
 	display: flex;
 	flex-direction: column;
 	image-rendering: -webkit-optimize-contrast;
+	background-size: cover;
+	background-position: center center;
 }
 
 header#searchBar, footer#quotesBar {
 	width: 100vw;
 	height: calc(var(--letterbox-height) * 0.9);
-	background: #333333;
+	background: #33333377;
+	backdrop-filter: blur(25px);
 	z-index: 10;
 }
 
 #searchBar {
-	height: min-content;
+	height: 5vh;
+	padding: 5px;
+	border-top: solid 1px #95949442;
+	border-bottom: solid 1px #707070d1;
 }
 	#searchInput {
 		width: 50vw;
@@ -42,7 +48,7 @@ header#searchBar, footer#quotesBar {
 	padding: 40px;
 
 	position: absolute;
-	top: calc(1.9 * var(--letterbox-height));
+	top: calc(1.7 * var(--letterbox-height));
 	left: 50%;
 	transform: translate(-50%, 0);
 	z-index: 9;
@@ -55,7 +61,7 @@ header#searchBar, footer#quotesBar {
 	background: #00000022;
 	box-shadow: 0 10px 15px black;
 	backdrop-filter: blur(35px);
-	transition: max-height 0.5s ease, padding 0.5s ease;
+	transition: max-height 0.5s ease, padding 0.5s ease, border 0.5s ease;
 
 	display: grid;
 	grid-template-columns: max-content 50px max-content 50px max-content;
@@ -148,8 +154,9 @@ header#searchBar, footer#quotesBar {
 
 #cardsWrapper {
 	width: auto;
-	height: calc(100vh - (3.8 * var(--letterbox-height)));
-	margin: var(--itemgap);
+	/*height: calc(100vh - (3.8 * var(--letterbox-height)));*/
+	margin: 0;
+	padding: 2%;
 
 	display: grid;
 	grid-template-rows: 50% 50%;
@@ -159,6 +166,11 @@ header#searchBar, footer#quotesBar {
 
 	overflow-x: auto;
 	overflow-y: hidden;
+
+	background-size: cover;
+    background-position: center center;
+	background: transparent;
+	backdrop-filter: blur(5px);
 }
 #cardsWrapper::-webkit-scrollbar {
 	background: white;
@@ -175,14 +187,16 @@ header#searchBar, footer#quotesBar {
 /* Carte d'une entite enfant */
 .follower {
 	width: 250px;
-	height: 100%;
+	height: calc(100% - var(--itemgap));
 
 	display: flex;
 	flex-direction: column;
 
 	border: solid 1px #333333;
 	border-radius: 3px;
+	background: #323232b0 !important;
 	box-shadow: 0 5px 10px -5px black;
+	backdrop-filter: blur(10px);
 	transition: color 0.1s ease-in,
 				box-shadow 0.1s ease-in,
 				transform 0.1s ease-in;

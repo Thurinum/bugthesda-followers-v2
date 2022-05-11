@@ -41,6 +41,7 @@
 
   <ItemGroup>
 	<Folder Include="wwwroot\images\shared\classes\" />
+	<Folder Include="wwwroot\images\shared\abilities\" />
 	<Folder Include="wwwroot\images\shared\races\" />
   </ItemGroup>
 

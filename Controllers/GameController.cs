@@ -85,26 +85,23 @@ namespace SessionProject2W5.Controllers
 		}
 
 		/// <summary>
-		/// Renvoie l'URL d'une image aléatoire pour le jeu ciblé. Cette action est appelée depuis JavaScript.
+		/// Obtient un fait aléatoire sur n'importe quel jeu de la DB.
 		/// </summary>
-		/// <remarks>N'est plus utilisée. Je la laisse au cas où...</remarks>
-		/// <param name="name">Le ShortName du jeu en question.</param>
-		/// <returns>L'URL de l'image d'un follower aléatoire dans le jeu spécifié.</returns>
-		[Obsolete("Pourquoi tu utilises ça???!!!!!")]
-		[Route("/game/{id:int}/random_thumbnail")]
-		[Route("/parent/{id:int}/random_thumbnail")]
-		public IActionResult RandomThumbnail(int id)
+		/// <returns>Un fait sur un jeu.</returns>
+		[Route("/game/getrandomtrivia")]
+		[Route("/parent/getrandomtrivia")]
+		public IActionResult GetRandomTrivia()
 		{
-			Game game = Database.Games[id];
+			List<string> trivia = new List<string>();
 
-			if (game.Followers.Count == 0)
-				return Content("empty");
+			foreach (Game game in Database.Games)
+				trivia.AddRange(game.Facts);
 
-			int rand = Generator.Next(0, game.Followers.Count - 1);
-			string name = $"/images/games/{game.ShortName}/followers/{game.Followers[rand].ShortName}/thumbnail.jpg";
+			int index = Generator.Next(0, trivia.Count - 1);
 
-			return Content(name);
+			return Content(trivia[index]);
 		}
+
 		#endregion
 	}
 }

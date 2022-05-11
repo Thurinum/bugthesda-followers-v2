@@ -15,81 +15,7 @@
 <!-- FORMULAIRE DE RECHERCHE (HIDDEN PAR DEFAULT)-->
 <form id="searchForm" action="/search/filter" method="get">
 	<div class="formWrapper">
-		@* CATEGORIE DU COMPAGNION *@
-		<div class="categoriesWrapper">
-			@* Quel jeu est selectionne (change selon le nb de jeux dans la db) *@
-			@* On aurait aussi pu utiliser un select multiple, mais ca rend le model binding plus complique*@
-			@for (int i = 0; i < Model.Criteria.GamesFilters.Count; i++)
-			{
-				TypeFilterViewModel filter = Model.Criteria.GamesFilters[i];
-
-				// marche mais pas de validation
-				<label>@filter.Name</label>
-				<input name="GamesFilters[@i].Name"    type="hidden"   value="@filter.Name" />
-				<input name="GamesFilters[@i].Allowed" type="checkbox" value="@filter.Allowed.ToString()" @(filter.Allowed ? "checked" : "") onchange="this.value = this.checked" />
-				<input name="GamesFilters[@i].Allowed" type="hidden"   value="false" />
-			}
-
-			@* La race du compagnion *@
-			@for (int i = 0; i < Model.Criteria.RacesFilters.Count; i++)
-			{
-				TypeFilterViewModel filter = Model.Criteria.RacesFilters[i];
-
-				<label>@filter.Name</label>
-				<input name="RacesFilters[@i].Name"    type="hidden"   value="@filter.Name" />
-				<input name="RacesFilters[@i].Allowed" type="checkbox" value="@filter.Allowed.ToString()" @(filter.Allowed ? "checked" : "") onchange="this.value = this.checked" />
-				<input name="RacesFilters[@i].Allowed" type="hidden"   value="false" />
-			}
-
-			@* La classe du compagnion *@
-			@for (int i = 0; i < Model.Criteria.ClassesFilters.Count; i++)
-			{
-				TypeFilterViewModel filter = Model.Criteria.ClassesFilters[i];
-
-				<label>@filter.Name</label>
-				<input name="ClassesFilters[@i].Name"    type="hidden"   value="@filter.Name" />
-				<input name="ClassesFilters[@i].Allowed" type="checkbox" value="@filter.Allowed.ToString()" @(filter.Allowed ? "checked" : "") onchange="this.value = this.checked" />
-				<input name="ClassesFilters[@i].Allowed" type="hidden"   value="false" />
-			}
-		</div>
-
-		@* ATTRIBUTS *@
-		<div class="attributesWrapper">
-			@* Si c'est un favori (enum) *@
-			<label for="cboFavori">Est un favori</label>
-			<select id="cboFavori" name="FavoriteFilter" asp-for="Criteria.FavoriteFilter">
-				<option value="0">Peu importe</option>
-				<option value="1">Non</option>
-				<option value="2">Oui</option>
-			</select>
-
-			@* Le degre de protection du compagnion (enum) *@
-			<div class="protectWrapper">
-				<label for="cbxProtect1">Peu importe</label>
-				<input id="cbxProtect1" name="ProtectionFilter" type="radio" value="0" @(Model.Criteria.ProtectionFilter == ProtectionFilter.Ignore ? "checked" : "") />
-				<label for="cbxProtect2">Aucune</label>
-				<input id="cbxProtect2" name="ProtectionFilter" type="radio" value="1" @(Model.Criteria.ProtectionFilter == ProtectionFilter.None ? "checked" : "") />
-				<label for="cbxProtect3">Protege</label>
-				<input id="cbxProtect3" name="ProtectionFilter" type="radio" value="2" @(Model.Criteria.ProtectionFilter == ProtectionFilter.Protected ? "checked" : "") />
-				<label for="cbxProtect4">Essentiel</label>
-				<input id="cbxProtect4" name="ProtectionFilter" type="radio" value="3" @(Model.Criteria.ProtectionFilter == ProtectionFilter.Essential ? "checked" : "") />
-			</div>
-		</div>
-
-		@* STATISTIQUES *@
-		<div class="statsWrapper">
-			@* L'alignment minimum/maximum du compagnion *@
-			<input name="MinAlignment" type="range" min="-100" value="@Model.Criteria.MinAlignment" max="100" />
-			<input name="MaxAlignment" type="range" min="-100" value="@Model.Criteria.MaxAlignment" max="100" />
-
-			@* La vie minimum et maximum *@
-			<input name="MinHitpoints" type="number" min="0" value="@Model.Criteria.MinHitpoints" max="999" />
-			<input name="MaxHitpoints" type="number" min="0" value="@Model.Criteria.MaxHitpoints" max="999" />
-
-			@* L'energie minimum et maximum *@
-			<input name="MinEnergy" type="number" min="0" value="@Model.Criteria.MinEnergy" max="999" />
-			<input name="MaxEnergy" type="number" min="0" value="@Model.Criteria.MaxEnergy" max="999" />
-		</div>
+		<partial name="Search_Form" model="Model" />
 	</div>
 </form>
 
@@ -103,5 +29,5 @@
 
 <!-- CITATIONS ALEATOIRES -->
 <footer id="quotesBar">
-	<blockquote>TODO Using ViewModel</blockquote>
+	<blockquote id="trivia"></blockquote>
 </footer>

@@ -15,6 +15,39 @@ header#searchBar, footer#quotesBar {
 	z-index: 10;
 }
 
+#search {
+	width: 50vw;
+	height: 3ex;
+	font-size: 2vmax;
+	border-radius: 2px;
+	border: solid 2px black;
+	padding: 20px;
+	box-shadow: 0 0 10px grey inset;
+	font-family: 'Pathway Gothic One';
+}
+
+.formWrapper {
+	width: 94%;
+	height: 94%;
+	padding: 3%;
+	
+	display: grid;
+	grid-template-columns: 50% 20% 30%;
+}
+
+.categoriesWrapper {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+.category {
+	
+	
+}
+
+.check-group {
+	display: block;
+}
+
 #searchForm {
 	width: 100vw;
 	height: 0;

@@ -15,4 +15,13 @@ window.onclick = (e) => {
     if (e.target === $("#searchBar") || e.target === $("#cardsWrapper"))
         FORM.style.height = "0";
 };
+window.addEventListener("load", setTrivia);
+function setTrivia() {
+    fetch("/game/getrandomtrivia")
+        .then(data => data.text())
+        .then(trivia => {
+        $("#trivia").innerText = trivia;
+        setTimeout(setTrivia, 5000);
+    });
+}
 //# sourceMappingURL=search.js.map

@@ -213,13 +213,13 @@ namespace SessionProject2W5.Models
 						if (gameids.Contains(game.Id))
 							this.ErrorString += $"Duplicate id {game.Id} for a game named '{game.Name}'.\n";
 						gameids.Add(game.Id);
-
-						// parse the game's facts
-						reader.ReadToDescendant("facts");
-						while (reader.Read() && reader.Name == "fact")
-							game.Facts.Add(reader.Value);
-
+							
 						this.Games.Add(game);
+
+						break;
+
+					case "fact":
+						game.Facts.Add(reader.ReadString());
 
 						break;
 					case "follower":

@@ -30,21 +30,33 @@ namespace SessionProject2W5.ViewModels
 
 	public class SearchCriteriaViewModel
 	{
-		[Required]
-		[StringLength(69, ErrorMessage = "Fill the field moron")]
-		public string Keywords   { get; set; } = String.Empty;
+		[StringLength(69, ErrorMessage = "Le champ est trop long. Max. 69 caractères.")]
+		public string Keywords   { get; set; }
 
 		public List<TypeFilterViewModel> GamesFilters   { get; set; } = new List<TypeFilterViewModel>();
 		public List<TypeFilterViewModel> RacesFilters   { get; set; } = new List<TypeFilterViewModel>();
 		public List<TypeFilterViewModel> ClassesFilters { get; set; } = new List<TypeFilterViewModel>();
 
-		[Required]
+		[Display(Name = "Alignment Min.")]
 		[Range(-100, 100, ErrorMessage = "Veuillez entrer une valeur entre -100 et 100.")]
 		public int? MinAlignment { get; set; } = -100;
+
+		[Display(Name = "Alignment Max.")]
+		[Range(-100, 100, ErrorMessage = "Veuillez entrer une valeur entre -100 et 100.")]
 		public int? MaxAlignment { get; set; } = 100;
+
+		[Display(Name = "Points vie min.")]
+		[Range(0, 999, ErrorMessage = "Veuillez entrer une valeur entre 0 et 999.")]
 		public int? MinHitpoints { get; set; } = null;
+
+		[Display(Name = "Points vie max.")]
+		[Range(0, 999, ErrorMessage = "Veuillez entrer une valeur entre 0 et 999.")]
 		public int? MaxHitpoints { get; set; } = null;
+
+		[Display(Name = "Points energy min.")]
 		public int? MinEnergy    { get; set; } = null;
+
+		[Display(Name = "Points energy max.")]
 		public int? MaxEnergy    { get; set; } = null;
 
 		public ProtectionFilter ProtectionFilter { get; set; } = ProtectionFilter.Ignore;

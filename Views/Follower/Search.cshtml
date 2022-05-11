@@ -1,20 +1,18 @@
-﻿
-
-@model SearchViewModel;
+﻿@model SearchViewModel;
 
 <!-- BARRE DE RECHERCHE-->
 <header id="searchBar">
 	<a href="/gestionenfant/create">Add follower</a>
-	<div id="searchWrapper">
-		<input id="search" name="Keywords" type="search" placeholder="Search..." autocomplete="off" form="searchForm" autofocus />
-		<input type="submit" form="searchForm" value="Search" />
+	<div id="searchInputWrapper">
+		<input id="searchInput" asp-for="Criteria.Keywords" type="search" placeholder="Recherche..." autocomplete="off" form="searchForm" autofocus />
+		<span asp-validation-for="Criteria.Keywords"></span>
 		<img id="searchIcon" src="#" alt="" />
 	</div>
 </header>
 
 <!-- FORMULAIRE DE RECHERCHE (HIDDEN PAR DEFAULT)-->
 <form id="searchForm" action="/search/filter" method="get">
-	<div class="formWrapper">
+	<div id="searchFormContent">
 		<partial name="Search_Form" model="Model" />
 	</div>
 </form>

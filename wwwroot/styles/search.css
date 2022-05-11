@@ -15,49 +15,36 @@ header#searchBar, footer#quotesBar {
 	z-index: 10;
 }
 
-#search {
-	width: 50vw;
-	height: 3ex;
-	font-size: 2vmax;
-	border-radius: 2px;
-	border: solid 2px black;
-	padding: 20px;
-	box-shadow: 0 0 10px grey inset;
-	font-family: 'Pathway Gothic One';
+#searchBar {
+	height: min-content;
 }
+	#searchInput {
+		width: 50vw;
+		height: 3ex;
+		font-size: 1.4vmax;
+		border-radius: 2px;
+		border: solid 2px #505050;
+		padding: 20px;
+		box-shadow: 0 0 10px #1a1a1a inset, 0 0 2px 2px #1a1a1a;
+		font-family: 'Pathway Gothic One';
+		background: #ffffff00;
+		border-radius: 6px;
+	}
 
-.formWrapper {
-	width: 94%;
-	height: 94%;
-	padding: 3%;
-	
-	display: grid;
-	grid-template-columns: 50% 20% 30%;
-}
+#searchIcon {
 
-.categoriesWrapper {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-}
-.category {
-	
-	
-}
-
-.check-group {
-	display: block;
 }
 
 #searchForm {
 	width: 100vw;
-	height: 0;
+	height: min-content;
 	padding: 0;
-	
-	overflow: hidden;
 
 	position: absolute;
 	top: calc(1.9 * var(--letterbox-height));
 	z-index: 9;
+
+	overflow: hidden;
 
 	border-bottom: solid 1px #CCC;
 	border-bottom-left-radius: 10px;
@@ -65,9 +52,98 @@ header#searchBar, footer#quotesBar {
 	background: #00000022;
 	box-shadow: 0 10px 15px black;
 	backdrop-filter: blur(35px);
-
-	transition: height 0.1s ease-out;
+	transition: max-height 0.5s ease;
 }
+#searchFormContent {
+	width: 94%;
+	height: 94%;
+	padding: 3%;
+	display: grid;
+	grid-template-columns: max-content 6% max-content 6% 1fr;
+	font-size: 1.1em;
+}
+		#searchForm h2 {
+			margin-top: 0;
+			margin-bottom: 10px;
+		}
+
+		#searchForm .categories {
+			display: grid;
+			grid-template-columns: max-content max-content max-content;
+			justify-content: center;
+			gap: 20px;
+		}
+
+		#searchForm .attributes select {
+			width: 100%;
+		}
+
+		#searchForm .separator {
+				width: 1px;
+			    background: lightgrey;
+				justify-self: center;
+		}
+
+		#searchForm .stats {
+
+		}
+
+		#searchForm .category {
+		}
+
+		#searchForm .form-line {
+			display: block;
+		}
+
+		#searchForm input[type="number"] {
+			border: solid 1px #878080a3;
+			padding: 5px;
+			border-radius: 4px;
+			box-shadow: 0px 4px 6px 0px #000000;
+			color: #CFCFCF;
+			background: linear-gradient(270deg, black, transparent);
+			position: relative;
+			top: -1px;
+			transition: top 0.1s ease;
+		}
+			#searchForm input[type="number"]:hover {
+				top: -3px;
+				box-shadow: 0px 8px 10px 0px #000000;
+			}
+			#searchForm input[type="number"]:focus {
+				top: 1px;
+				box-shadow: 0px 4px 5px -2px #000000;
+			}
+			#searchForm input[type="number"]::-webkit-inner-spin-button {
+				opacity: 0;
+			}
+
+		#searchForm input:focus {
+			outline: none;
+		}
+
+		#searchForm .span-line {
+			    display: grid;
+				grid-auto-flow: column;
+				align-items: center;
+				gap: 10px;
+		}
+		#searchForm .span-line label {
+			    width: 125px;
+		}
+		#searchForm .span-line input {
+			    width: 100px;
+				font-family: "Pathway Gothic One";
+				font-size: 1.0em;
+		}
+
+		#searchForm .spaceBottom {
+			margin-bottom: 20px;
+		}
+
+		#searchForm input.slider {
+			height: 12px;
+		}
 
 #cardsWrapper {
 	width: auto;

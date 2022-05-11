@@ -1,9 +1,10 @@
 "use strict";
-const DEBUG = true;
+const DEBUG = false;
 const MAIN = $("main");
 const AD = $("#collabPopup");
 const ADIMG = $("#collabPopup .geraltImg");
 let canClosePopup = true;
+let isRedirectEnabled = true;
 var Transition;
 (function (Transition) {
     Transition[Transition["ScaleDown"] = 0] = "ScaleDown";
@@ -56,6 +57,8 @@ function registerLinks() {
     }
 }
 function redirect(href) {
+    if (!isRedirectEnabled)
+        return;
     MAIN.style.opacity = "0";
     setTimeout(() => {
         window.location.href = href;

@@ -1,12 +1,13 @@
 "use strict";
 
-const DEBUG = true;
+const DEBUG = false;
 
 const MAIN  = $("main");
 const AD    = $("#collabPopup");
 const ADIMG = $("#collabPopup .geraltImg") as HTMLImageElement;
 
 let canClosePopup: boolean = true; // si la popup peut fermer
+let isRedirectEnabled: boolean = true;
 
 enum Transition {
 	ScaleDown,
@@ -77,6 +78,9 @@ function registerLinks() : void {
 
 
 function redirect(href: string) {
+	if (!isRedirectEnabled)
+		return;
+
 	MAIN.style.opacity = "0";
 
 	setTimeout(() => {

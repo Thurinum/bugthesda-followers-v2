@@ -63,6 +63,16 @@ namespace SessionProject2W5.Controllers
 		[Route("/recherche/filtrer")]
 		public IActionResult Search(SearchCriteriaViewModel criteria)
 		{
+			if (!ModelState.IsValid)
+			{
+				SearchViewModel invalidsearch = new SearchViewModel
+				{
+					Criteria = criteria,
+					Results = Database.Followers
+				};
+				return View(invalidsearch);
+			}
+
 			// récupérer les données
 			List<Follower> followers = Database.Followers;
 
@@ -73,7 +83,7 @@ namespace SessionProject2W5.Controllers
 				
 				if ( // les filtres sont insensibles à la casse
 					(criteria.Keywords != null && !follower.Name.ToLower().Contains(criteria.Keywords.ToLower())) ||
-					(criteria.GamesFilters.Where(f => f.Name == follower.Parent.Name).SingleOrDefault().Allowed == false) ||
+					(criteria.GamesFilters.Where(f => f.Name == follower.Parent.Name).SingleOrDefault().Allowed == false) /*||
 					(criteria.RacesFilters.Where(f => f.Name == follower.Race.NativeName).SingleOrDefault().Allowed == false) ||
 					(criteria.ClassesFilters.Where(f => f.Name == follower.Class.Name).SingleOrDefault().Allowed == false) ||
 					(criteria.FavoriteFilter != FavoriteFilter.Ignore && ((follower.IsFavorite ? FavoriteFilter.Favorite : FavoriteFilter.NotFavorite) != criteria.FavoriteFilter)) ||
@@ -83,7 +93,7 @@ namespace SessionProject2W5.Controllers
 					(criteria.MinHitpoints != null && (follower.Hitpoints < criteria.MinHitpoints)) ||
 					(criteria.MaxHitpoints != null && (follower.Hitpoints > criteria.MaxHitpoints)) ||
 					(criteria.MinEnergy != null && (follower.Energy < criteria.MinEnergy)) ||
-					(criteria.MaxEnergy != null && (follower.Energy > criteria.MaxEnergy))
+					(criteria.MaxEnergy != null && (follower.Energy > criteria.MaxEnergy))*/
 				)
 				{
 					// si une des conditions discriminantes ci-haut est présente, on disqualifie le compagnion du résultat
@@ -113,7 +123,7 @@ namespace SessionProject2W5.Controllers
 		[Route("/recherche/{name}/")]
 		public IActionResult Search(string name)
 		{
-			Game game = Database.Games.Where(g => g.ShortName == name).FirstOrDefault();
+			Game game = Database.Games.Where(g => g.Name == name).SingleOrDefault();
 
 			if (game == null)
 				return View("404_GameNotFound", name);
@@ -124,7 +134,7 @@ namespace SessionProject2W5.Controllers
 			// on bloque tous les jeux sauf la cible
 			SearchViewModel search = new SearchViewModel();
 			SearchCriteriaViewModel criteria = new SearchCriteriaViewModel(Database.Games, false, true, true);
-			criteria.GamesFilters.Where(f => f.Name == name).First().Allowed = true;
+			criteria.GamesFilters.Where(f => f.Name == name).SingleOrDefault().Allowed = true;
 			search.Criteria = criteria;
 			search.Results = game.Followers;			
 

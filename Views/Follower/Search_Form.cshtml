@@ -4,68 +4,116 @@
 @model SearchViewModel;
 
 @* CATEGORIE DU COMPAGNION *@
-<div class="categoriesWrapper">
+<div class="categories">
 	@* Quel jeu est selectionne (change selon le nb de jeux dans la db) *@
 	@* On aurait aussi pu utiliser un select multiple, mais ca rend le model binding plus complique*@
 	<div class="category">
-	<h2>Jeux</h2>
-	@for (int i = 0; i < Model.Criteria.GamesFilters.Count; i++)
-	{
-		TypeFilterViewModel filter = Model.Criteria.GamesFilters[i];
+		<h2>Jeux</h2>
+		@for (int i = 0; i < Model.Criteria.GamesFilters.Count; i++)
+		{
+			TypeFilterViewModel filter = Model.Criteria.GamesFilters[i];
 
-		<span class="check-group">
-			<label>
-				<input name="GamesFilters[@i].Name" type="hidden" value="@filter.Name" />
-				<input name="GamesFilters[@i].Allowed" type="checkbox" value="@filter.Allowed.ToString()" @(filter.Allowed ? "checked" : "") onchange="this.value = this.checked" />
-				<input name="GamesFilters[@i].Allowed" type="hidden" value="false" />
-				@filter.Name
-			</label>			
-		</span>
-	}
+			<span class="form-line">
+				<label>
+					<input name="Criteria.GamesFilters[@i].Name" type="hidden" value="@filter.Name" />
+					<input name="Criteria.GamesFilters[@i].Allowed" type="checkbox" value="@filter.Allowed.ToString()" @(filter.Allowed ? "checked" : "") onchange="this.value = this.checked" />
+					<input name="Criteria.GamesFilters[@i].Allowed" type="hidden" value="false" />
+					@filter.Name
+				</label>			
+			</span>
+		}
 	</div>
 
 	@* La race du compagnion *@
 	<div class="category">
-	<h2>Races</h2>
-	@for (int i = 0; i < Model.Criteria.RacesFilters.Count; i++)
-	{
-		TypeFilterViewModel filter = Model.Criteria.RacesFilters[i];
+		<h2>Races</h2>
+		@for (int i = 0; i < Model.Criteria.RacesFilters.Count; i++)
+		{
+			TypeFilterViewModel filter = Model.Criteria.RacesFilters[i];
 
-		<span class="check-group">
-			<label>
-				<input name="RacesFilters[@i].Name" type="hidden" value="@filter.Name" />
-				<input name="RacesFilters[@i].Allowed" type="checkbox" value="@filter.Allowed.ToString()" @(filter.Allowed ? "checked" : "") onchange="this.value = this.checked" />
-				<input name="RacesFilters[@i].Allowed" type="hidden" value="false" />
-				@filter.Name
-			</label>
-		</span>
-	}
+			<span class="form-line">
+				<label>
+					<input name="Criteria.RacesFilters[@i].Name" type="hidden" value="@filter.Name" />
+					<input name="Criteria.RacesFilters[@i].Allowed" type="checkbox" value="@filter.Allowed.ToString()" @(filter.Allowed ? "checked" : "") onchange="this.value = this.checked" />
+					<input name="Criteria.RacesFilters[@i].Allowed" type="hidden" value="false" />
+					@filter.Name
+				</label>
+			</span>
+		}
 	</div>
 
 	@* La classe du compagnion *@
 	<div class="category">
 	<h2>Classes</h2>
-	@for (int i = 0; i < Model.Criteria.ClassesFilters.Count; i++)
-	{
-		TypeFilterViewModel filter = Model.Criteria.ClassesFilters[i];
+		@for (int i = 0; i < Model.Criteria.ClassesFilters.Count; i++)
+		{
+			TypeFilterViewModel filter = Model.Criteria.ClassesFilters[i];
 
-		<span class="check-group">
-			<label>
-				<input name="ClassesFilters[@i].Name" type="hidden" value="@filter.Name" />
-				<input name="ClassesFilters[@i].Allowed" type="checkbox" value="@filter.Allowed.ToString()" @(filter.Allowed ? "checked" : "") onchange="this.value = this.checked" />
-				<input name="ClassesFilters[@i].Allowed" type="hidden" value="false" />
-				@filter.Name
-			</label>
-		</span>
-	}
+			<span class="form-line">
+				<label>
+					<input name="Criteria.ClassesFilters[@i].Name" type="hidden" value="@filter.Name" />
+					<input name="Criteria.ClassesFilters[@i].Allowed" type="checkbox" value="@filter.Allowed.ToString()" @(filter.Allowed ? "checked" : "") onchange="this.value = this.checked" />
+					<input name="Criteria.ClassesFilters[@i].Allowed" type="hidden" value="false" />
+					@filter.Name
+				</label>
+			</span>
+		}
 	</div>
 </div>
 
+<div class="separator"></div>
+
+@* STATISTIQUES *@
+<div class="stats">
+	@* L'alignment minimum/maximum du compagnion *@
+	<h2>Alignment moral</h2>
+	<span class="form-line span-line spaceBottom">
+		<label asp-for="Criteria.MinAlignment"></label>
+		<input class="slider" asp-for="Criteria.MinAlignment" type="range" min="-100" step="1" list="steps" value="@Model.Criteria.MinAlignment" max="100" />
+		<span asp-validation-for="Criteria.MinAlignment"></span>
+
+		<label asp-for="Criteria.MaxAlignment"></label>
+		<input class="slider" asp-for="Criteria.MaxAlignment" type="range" min="-100" step="1" list="steps" value="@Model.Criteria.MaxAlignment" max="100" />
+		<span asp-validation-for="Criteria.MaxAlignment"></span>
+		<datalist id="steps">
+			<option>-100</option>
+			<option>-50</option>
+			<option>0</option>
+			<option>50</option>
+			<option>100</option>
+		</datalist>
+	</span>
+
+	@* La vie minimum et maximum *@
+	<h2>Points de vie</h2>
+	<span class="form-line span-line spaceBottom">
+		<label asp-for="Criteria.MinHitpoints"></label>
+		<input asp-for="Criteria.MinHitpoints" type="number" min="0" value="@Model.Criteria.MinHitpoints" max="999" />
+		<span asp-validation-for="Criteria.MinHitpoints"></span>
+		<label asp-for="Criteria.MaxHitpoints"></label>
+		<input asp-for="Criteria.MaxHitpoints" type="number" min="0" value="@Model.Criteria.MaxHitpoints" max="999" />
+		<span asp-validation-for="Criteria.MaxHitpoints"></span>
+	</span>
+
+	@* L'energie minimum et maximum *@
+	<h2>Énergie</h2>
+	<span class="form-line span-line">
+		<label asp-for="Criteria.MinEnergy"></label>
+		<input asp-for="Criteria.MinEnergy" type="number" min="0" value="@Model.Criteria.MinEnergy" max="999" />
+		<span asp-validation-for="Criteria.MinEnergy"></span>
+		<label asp-for="Criteria.MaxEnergy"></label>
+		<input asp-for="Criteria.MaxEnergy" type="number" min="0" value="@Model.Criteria.MaxEnergy" max="999" />
+		<span asp-validation-for="Criteria.MaxEnergy"></span>
+	</span>
+</div>
+
+<div class="separator"></div>
+
 @* ATTRIBUTS *@
-<div class="attributesWrapper">
+<div class="attributes">
 	@* Si c'est un favori (enum) *@
 	<h2>Est un favori</h2>
-	<select id="cboFavori" name="FavoriteFilter" asp-for="Criteria.FavoriteFilter">
+	<select class="spaceBottom" name="FavoriteFilter" asp-for="Criteria.FavoriteFilter">
 		<option value="0">Peu importe</option>
 		<option value="1">Non</option>
 		<option value="2">Oui</option>
@@ -76,30 +124,10 @@
 		<h2>Protection</h2>
 		@for (int i = 0; i < Enum.GetNames(typeof(ProtectionFilter)).Length; i++)
 		{
-			<span class="check-group">
+			<span class="form-line">
 				<input id="cbxProtect@(i)" name="ProtectionFilter" type="radio" value="@i" @(Model.Criteria.ProtectionFilter == (ProtectionFilter)i ? "checked" : "") />
 				<label for="cbxProtect@(i)">@(SessionExtensions.GetEnumDisplay((ProtectionFilter)i))</label>
 			</span>
 		}
 	</div>
-</div>
-
-@* STATISTIQUES *@
-<div class="statsWrapper">
-	@* L'alignment minimum/maximum du compagnion *@
-	 
-	<input name="MinAlignment" type="range" min="-100" value="@Model.Criteria.MinAlignment" max="100" />
-	<input name="MaxAlignment" type="range" min="-100" value="@Model.Criteria.MaxAlignment" max="100" />
-
-	@* La vie minimum et maximum *@
-	<span class="check-group">
-		<input name="MinHitpoints" type="number" min="0" value="@Model.Criteria.MinHitpoints" max="999" />
-		<input name="MaxHitpoints" type="number" min="0" value="@Model.Criteria.MaxHitpoints" max="999" />
-	</span>
-
-	@* L'energie minimum et maximum *@
-	<span>
-		<input name="MinEnergy" type="number" min="0" value="@Model.Criteria.MinEnergy" max="999" />
-		<input name="MaxEnergy" type="number" min="0" value="@Model.Criteria.MaxEnergy" max="999" />
-	</span>
 </div>

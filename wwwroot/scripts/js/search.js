@@ -1,19 +1,22 @@
 "use strict";
-const SEARCH_INPUT = $("#search");
+const SEARCH_INPUT = $("#searchInput");
 const FORM = $("#searchForm");
 $("#cardsWrapper").onwheel = function (e) {
     $("#cardsWrapper").scrollLeft += e.deltaY;
 };
 SEARCH_INPUT.onclick = () => {
-    FORM.style.height = "30vh";
+    FORM.style.maxHeight = "100vh";
+    isRedirectEnabled = false;
 };
 SEARCH_INPUT.onkeydown = (e) => {
     if (e.key === "Enter")
         FORM.submit();
 };
 window.onclick = (e) => {
-    if (e.target === $("#searchBar") || e.target === $("#cardsWrapper"))
-        FORM.style.height = "0";
+    if (e.target != SEARCH_INPUT && !FORM.contains(e.target)) {
+        FORM.style.maxHeight = "0";
+        isRedirectEnabled = true;
+    }
 };
 window.addEventListener("load", setTrivia);
 function setTrivia() {

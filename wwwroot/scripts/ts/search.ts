@@ -1,6 +1,6 @@
 "use strict";
 
-const SEARCH_INPUT = $("#search");
+const SEARCH_INPUT = $("#searchInput");
 const FORM = $("#searchForm") as HTMLFormElement;
 
 $("#cardsWrapper").onwheel = function (e) {
@@ -8,7 +8,8 @@ $("#cardsWrapper").onwheel = function (e) {
 }
 
 SEARCH_INPUT.onclick = () => {
-	FORM.style.height = "30vh";
+	FORM.style.maxHeight = "100vh";
+	isRedirectEnabled = false;
 }
 
 SEARCH_INPUT.onkeydown = (e: any) => {
@@ -17,8 +18,10 @@ SEARCH_INPUT.onkeydown = (e: any) => {
 }
 
 window.onclick = (e) => {
-	if (e.target === $("#searchBar") || e.target === $("#cardsWrapper"))
-		FORM.style.height = "0";
+	if (e.target != SEARCH_INPUT && !FORM.contains(e.target as HTMLElement)) {
+		FORM.style.maxHeight = "0";
+		isRedirectEnabled = true;
+	}
 }
 
 window.addEventListener("load", setTrivia);

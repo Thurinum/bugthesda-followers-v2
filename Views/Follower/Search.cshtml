@@ -12,13 +12,16 @@
 
 <!-- FORMULAIRE DE RECHERCHE (HIDDEN PAR DEFAULT)-->
 <form id="searchForm" action="/search/filter" method="get">
-	<div id="searchFormContent">
-		<partial name="Search_Form" model="Model" />
-	</div>
+	<partial name="Search_Form" model="Model" />
 </form>
 
 <!-- LISTE DES COMPAGNIONS-->
-<section id="cardsWrapper" data-color="red">
+<style>
+	#cardsWrapper {
+		background-image: url('/images/games/@Model.Parent?.ShortName/artwork.jpeg');
+	}
+</style>
+<section id="cardsWrapper">
 	@foreach (Follower follower in Model.Results)
 	{
 		<partial name="Search_Follower" model="follower" />

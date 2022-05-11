@@ -15,7 +15,7 @@ namespace SessionProject2W5.Controllers
 
 		public FollowerController(Database database)
 		{
-			this.Database = database;
+			Database = database;
 		}
 
 		/// <summary>
@@ -83,9 +83,14 @@ namespace SessionProject2W5.Controllers
 				
 				if ( // les filtres sont insensibles à la casse
 					(criteria.Keywords != null && !follower.Name.ToLower().Contains(criteria.Keywords.ToLower())) ||
-					(criteria.GamesFilters.Where(f => f.Name == follower.Parent.Name).SingleOrDefault().Allowed == false) /*||
-					(criteria.RacesFilters.Where(f => f.Name == follower.Race.NativeName).SingleOrDefault().Allowed == false) ||
-					(criteria.ClassesFilters.Where(f => f.Name == follower.Class.Name).SingleOrDefault().Allowed == false) ||
+					(criteria.ExtraKeywords != null && ( // FIXME: Le filtre quotes et facts est brise lol
+						!follower.Description.ToLower().Contains(criteria.ExtraKeywords.ToLower()) ||
+						!(follower.Quotes.Count(q => q.Text.ToLower().Contains(criteria.ExtraKeywords.ToLower())) > 0) ||
+						!(follower.Facts.Count(f => f.ToLower().Contains(criteria.ExtraKeywords.ToLower())) > 0)
+					)) ||
+					(criteria.GamesFilters.SingleOrDefault(f => f.Name == follower.Parent.Name).Allowed == false) ||
+					(criteria.RacesFilters.SingleOrDefault(f => f.Name == follower.Race.NativeName).Allowed == false) ||
+					(criteria.ClassesFilters.SingleOrDefault(f => f.Name == follower.Class.Name).Allowed == false) ||
 					(criteria.FavoriteFilter != FavoriteFilter.Ignore && ((follower.IsFavorite ? FavoriteFilter.Favorite : FavoriteFilter.NotFavorite) != criteria.FavoriteFilter)) ||
 					(criteria.ProtectionFilter != ProtectionFilter.Ignore && (ProtectionFilter)follower.Protection != criteria.ProtectionFilter) || // "true production code"
 					(criteria.MinAlignment != null && (follower.Alignment < criteria.MinAlignment)) ||
@@ -93,7 +98,7 @@ namespace SessionProject2W5.Controllers
 					(criteria.MinHitpoints != null && (follower.Hitpoints < criteria.MinHitpoints)) ||
 					(criteria.MaxHitpoints != null && (follower.Hitpoints > criteria.MaxHitpoints)) ||
 					(criteria.MinEnergy != null && (follower.Energy < criteria.MinEnergy)) ||
-					(criteria.MaxEnergy != null && (follower.Energy > criteria.MaxEnergy))*/
+					(criteria.MaxEnergy != null && (follower.Energy > criteria.MaxEnergy))
 				)
 				{
 					// si une des conditions discriminantes ci-haut est présente, on disqualifie le compagnion du résultat
@@ -102,12 +107,17 @@ namespace SessionProject2W5.Controllers
 				}
 			}
 
+
+
+
 			// construire le modèle des résultats
 			SearchViewModel search = new SearchViewModel
 			{
 				Criteria = criteria,
-				Results = followers
+				Results = followers,
+				BackgroundSrc = criteria.GamesFilters.Count(f => f.Allowed == true) == 1 ? $"/images/games/{Database.Games.Single(g => g.Name == criteria.GamesFilters.Single(f => f.Allowed == true).Name).ShortName}/artwork.jpeg" : "/images/shared/ui/misc/defaultartwork.jpeg"
 			};
+
 
 			ViewData["sPageTitle"] = "Bethesda's Followers - Recherche";
 			return followers.Count > 0 ? View(search) : View("404_SearchNoResults", criteria.Keywords);

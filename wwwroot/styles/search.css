@@ -29,6 +29,7 @@ header#searchBar, footer#quotesBar {
 		font-family: 'Pathway Gothic One';
 		background: #ffffff00;
 		border-radius: 6px;
+		color: lightgrey;
 	}
 
 #searchIcon {
@@ -36,114 +37,114 @@ header#searchBar, footer#quotesBar {
 }
 
 #searchForm {
-	width: 100vw;
+	width: max-content;
 	height: min-content;
-	padding: 0;
+	padding: 40px;
 
 	position: absolute;
 	top: calc(1.9 * var(--letterbox-height));
+	left: 50%;
+	transform: translate(-50%, 0);
 	z-index: 9;
 
 	overflow: hidden;
 
-	border-bottom: solid 1px #CCC;
+	border: solid 1px #CCC;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 	background: #00000022;
 	box-shadow: 0 10px 15px black;
 	backdrop-filter: blur(35px);
-	transition: max-height 0.5s ease;
-}
-#searchFormContent {
-	width: 94%;
-	height: 94%;
-	padding: 3%;
+	transition: max-height 0.5s ease, padding 0.5s ease;
+
 	display: grid;
-	grid-template-columns: max-content 6% max-content 6% 1fr;
+	grid-template-columns: max-content 50px max-content 50px max-content;
 	font-size: 1.1em;
 }
-		#searchForm h2 {
-			margin-top: 0;
-			margin-bottom: 10px;
+	#searchForm h2 {
+		margin-top: 0;
+		margin-bottom: 10px;
+	}
+
+	#searchForm .categories {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		justify-content: center;
+		gap: 20px;
+	}
+
+	#searchForm textarea {
+		width: calc(300% + 20px);
+		resize: none;
+	}
+
+	#searchForm .attributes select {
+		width: 100%;
+	}
+
+	#searchForm .separator {
+			width: 1px;
+			background: lightgrey;
+			justify-self: center;
+	}
+
+	#searchForm .form-line {
+		display: block;
+	}
+
+	#searchForm input, #searchForm textarea, #searchForm select {
+		box-shadow: 0px 4px 6px 0px #333;
+		color: #CFCFCF;
+		background: linear-gradient(270deg, black, #ffffff21);
+		position: relative;
+		top: -1px;
+		border-radius: 4px;
+		padding: 5px;
+		transition: top 0.1s ease, box-shadow 0.1s ease;
+		border: solid 1px #878080a3;
+		font-family: "Pathway Gothic One";
+		font-size: 1.1em;
+	}
+		#searchForm select * {
+			background-color: black;
 		}
 
-		#searchForm .categories {
+	#searchForm input:hover, #searchForm textarea:hover, #searchForm select:hover {
+		top: -3px;
+		box-shadow: 0px 8px 10px 0px #444;
+	}
+	#searchForm input[type="number"]::-webkit-inner-spin-button {
+		opacity: 0;
+	}
+
+	#searchForm input:focus, #searchForm textarea:focus, #searchForm select:focus {
+		top: 1px;
+		box-shadow: 0px 4px 5px -2px #333;
+		outline: none;
+	}
+
+	#searchForm .span-line {
 			display: grid;
-			grid-template-columns: max-content max-content max-content;
-			justify-content: center;
-			gap: 20px;
-		}
+			grid-auto-flow: column;
+			align-items: center;
+			gap: 10px;
+	}
+	#searchForm .span-line label {
+			width: 125px;
+	}
+	#searchForm .span-line input {
+			width: 100px;
+			font-family: "Pathway Gothic One";
+			font-size: 1.0em;
+	}
 
-		#searchForm .attributes select {
-			width: 100%;
-		}
+	#searchForm .spaceBottom {
+		margin-bottom: 20px;
+	}
 
-		#searchForm .separator {
-				width: 1px;
-			    background: lightgrey;
-				justify-self: center;
-		}
-
-		#searchForm .stats {
-
-		}
-
-		#searchForm .category {
-		}
-
-		#searchForm .form-line {
-			display: block;
-		}
-
-		#searchForm input[type="number"] {
-			border: solid 1px #878080a3;
-			padding: 5px;
-			border-radius: 4px;
-			box-shadow: 0px 4px 6px 0px #000000;
-			color: #CFCFCF;
-			background: linear-gradient(270deg, black, transparent);
-			position: relative;
-			top: -1px;
-			transition: top 0.1s ease;
-		}
-			#searchForm input[type="number"]:hover {
-				top: -3px;
-				box-shadow: 0px 8px 10px 0px #000000;
-			}
-			#searchForm input[type="number"]:focus {
-				top: 1px;
-				box-shadow: 0px 4px 5px -2px #000000;
-			}
-			#searchForm input[type="number"]::-webkit-inner-spin-button {
-				opacity: 0;
-			}
-
-		#searchForm input:focus {
-			outline: none;
-		}
-
-		#searchForm .span-line {
-			    display: grid;
-				grid-auto-flow: column;
-				align-items: center;
-				gap: 10px;
-		}
-		#searchForm .span-line label {
-			    width: 125px;
-		}
-		#searchForm .span-line input {
-			    width: 100px;
-				font-family: "Pathway Gothic One";
-				font-size: 1.0em;
-		}
-
-		#searchForm .spaceBottom {
-			margin-bottom: 20px;
-		}
-
-		#searchForm input.slider {
-			height: 12px;
-		}
+	#searchForm input.slider {
+		height: 12px;
+	}
 
 #cardsWrapper {
 	width: auto;

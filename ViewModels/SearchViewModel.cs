@@ -7,5 +7,6 @@ namespace SessionProject2W5.ViewModels
 	{
 		public SearchCriteriaViewModel Criteria { get; set; }
 		public List<Follower> Results { get; set; }
+		public string BackgroundSrc { get; set; }
 	}
 }

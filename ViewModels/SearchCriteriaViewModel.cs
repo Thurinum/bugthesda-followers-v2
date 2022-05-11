@@ -31,7 +31,12 @@ namespace SessionProject2W5.ViewModels
 	public class SearchCriteriaViewModel
 	{
 		[StringLength(69, ErrorMessage = "Le champ est trop long. Max. 69 caractères.")]
+		[RegularExpression("^[a-zA-Z0-9 àâéèêùûÀÂÉÈÊÙÛ.,:;!?-]*$", ErrorMessage = "La recherche contient des caractères invalides! Lettres, chiffres et ponctuation seulement.")]
 		public string Keywords   { get; set; }
+
+		[StringLength(69, ErrorMessage = "Le champ est trop long. Max. 69 caractères.")]
+		[RegularExpression("^[a-zA-Z0-9 àâéèêùûÀÂÉÈÊÙÛ.,:;!?-]*$", ErrorMessage = "La recherche contient des caractères invalides! Lettres, chiffres et ponctuation seulement.")]
+		public string ExtraKeywords { get; set; }
 
 		public List<TypeFilterViewModel> GamesFilters   { get; set; } = new List<TypeFilterViewModel>();
 		public List<TypeFilterViewModel> RacesFilters   { get; set; } = new List<TypeFilterViewModel>();
@@ -45,18 +50,18 @@ namespace SessionProject2W5.ViewModels
 		[Range(-100, 100, ErrorMessage = "Veuillez entrer une valeur entre -100 et 100.")]
 		public int? MaxAlignment { get; set; } = 100;
 
-		[Display(Name = "Points vie min.")]
+		[Display(Name = "Mininum")]
 		[Range(0, 999, ErrorMessage = "Veuillez entrer une valeur entre 0 et 999.")]
 		public int? MinHitpoints { get; set; } = null;
 
-		[Display(Name = "Points vie max.")]
+		[Display(Name = "Maximum")]
 		[Range(0, 999, ErrorMessage = "Veuillez entrer une valeur entre 0 et 999.")]
 		public int? MaxHitpoints { get; set; } = null;
 
-		[Display(Name = "Points energy min.")]
+		[Display(Name = "Minimum")]
 		public int? MinEnergy    { get; set; } = null;
 
-		[Display(Name = "Points energy max.")]
+		[Display(Name = "Maximum")]
 		public int? MaxEnergy    { get; set; } = null;
 
 		public ProtectionFilter ProtectionFilter { get; set; } = ProtectionFilter.Ignore;

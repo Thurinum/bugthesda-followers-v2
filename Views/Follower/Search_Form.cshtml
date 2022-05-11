@@ -59,6 +59,12 @@
 			</span>
 		}
 	</div>
+
+	<div class="description">
+		<h2>Informations</h2>
+		<textarea asp-for="Criteria.ExtraKeywords" placeholder="Chercher dans la description, les faits, les citations, etc."></textarea>
+		<span asp-validation-for="Criteria.ExtraKeywords"></span>
+	</div>
 </div>
 
 <div class="separator"></div>
@@ -88,10 +94,10 @@
 	<h2>Points de vie</h2>
 	<span class="form-line span-line spaceBottom">
 		<label asp-for="Criteria.MinHitpoints"></label>
-		<input asp-for="Criteria.MinHitpoints" type="number" min="0" value="@Model.Criteria.MinHitpoints" max="999" />
+		<input asp-for="Criteria.MinHitpoints" type="number" min="0" placeholder="Entrer valeur" value="@Model.Criteria.MinHitpoints" max="999" />
 		<span asp-validation-for="Criteria.MinHitpoints"></span>
 		<label asp-for="Criteria.MaxHitpoints"></label>
-		<input asp-for="Criteria.MaxHitpoints" type="number" min="0" value="@Model.Criteria.MaxHitpoints" max="999" />
+		<input asp-for="Criteria.MaxHitpoints" type="number" min="0" placeholder="Entrer valeur" value="@Model.Criteria.MaxHitpoints" max="999" />
 		<span asp-validation-for="Criteria.MaxHitpoints"></span>
 	</span>
 
@@ -99,10 +105,10 @@
 	<h2>Énergie</h2>
 	<span class="form-line span-line">
 		<label asp-for="Criteria.MinEnergy"></label>
-		<input asp-for="Criteria.MinEnergy" type="number" min="0" value="@Model.Criteria.MinEnergy" max="999" />
+		<input asp-for="Criteria.MinEnergy" type="number" min="0" placeholder="Entrer valeur" value="@Model.Criteria.MinEnergy" max="999" />
 		<span asp-validation-for="Criteria.MinEnergy"></span>
 		<label asp-for="Criteria.MaxEnergy"></label>
-		<input asp-for="Criteria.MaxEnergy" type="number" min="0" value="@Model.Criteria.MaxEnergy" max="999" />
+		<input asp-for="Criteria.MaxEnergy" type="number" min="0" placeholder="Entrer valeur" value="@Model.Criteria.MaxEnergy" max="999" />
 		<span asp-validation-for="Criteria.MaxEnergy"></span>
 	</span>
 </div>
@@ -115,8 +121,8 @@
 	<h2>Est un favori</h2>
 	<select class="spaceBottom" name="FavoriteFilter" asp-for="Criteria.FavoriteFilter">
 		<option value="0">Peu importe</option>
-		<option value="1">Non</option>
 		<option value="2">Oui</option>
+		<option value="1">Non</option>
 	</select>
 
 	@* Le degre de protection du compagnion (enum) *@

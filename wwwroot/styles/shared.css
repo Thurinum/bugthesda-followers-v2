@@ -8,6 +8,10 @@
 	--letterbox-accent: #4C4949;
 }
 
+* {
+	user-select: none;
+}
+
 html {
 	scroll-behavior: smooth;
 }

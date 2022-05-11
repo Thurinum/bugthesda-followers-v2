@@ -2,7 +2,7 @@
 {
     public class Quote
     {
-        public string context;
-        public string text;
+        public string Context;
+        public string Text;
     }
 }

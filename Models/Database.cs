@@ -213,14 +213,18 @@ namespace SessionProject2W5.Models
 						if (gameids.Contains(game.Id))
 							this.ErrorString += $"Duplicate id {game.Id} for a game named '{game.Name}'.\n";
 						gameids.Add(game.Id);
-							
+
+						// facts
+						reader.ReadToDescendant("facts");
+						reader.ReadToDescendant("fact");
+
+						while (reader.Name == "fact" && reader.NodeType == XmlNodeType.Element)
+						{
+							game.Facts.Add(reader.ReadString());
+							reader.ReadToNextSibling("fact");
+						}
+
 						this.Games.Add(game);
-
-						break;
-
-					case "fact":
-						game.Facts.Add(reader.ReadString());
-
 						break;
 					case "follower":
 						follower = new Follower
@@ -275,22 +279,31 @@ namespace SessionProject2W5.Models
 							this.ErrorString += $"Class id {classid} of follower {follower.Name} is invalid.\n";
 						}
 
-						// parse the follower's quotes
-						reader.ReadToFollowing("facts");
-						while (reader.Read() && reader.Name == "fact")
-							follower.Facts.Add(reader.Value);
+						// parse the follower's facts
+						reader.ReadToDescendant("facts");
+						reader.ReadToDescendant("fact");
+
+						while (reader.Name == "fact" && reader.NodeType == XmlNodeType.Element)
+						{
+							follower.Facts.Add(reader.ReadString());
+							reader.ReadToNextSibling("fact");
+						}
+
 
 						// parse follower's quotes
 						reader.ReadToFollowing("quotes");
-						while (reader.Read() && reader.Name == "quote")
+						reader.ReadToDescendant("quote");
+
+						while (reader.Name == "quote" && reader.NodeType == XmlNodeType.Element)
 						{
+
 							Quote quote = new Quote
 							{
-								context = attr("context"),
-								text = reader.Value
+								Context = attr("context"),
+								Text = reader.ReadString()
 							};
-
 							follower.Quotes.Add(quote);
+							reader.ReadToNextSibling("quote");
 						}
 
 						game.Followers.Add(follower);

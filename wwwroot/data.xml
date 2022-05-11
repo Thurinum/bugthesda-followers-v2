@@ -26,6 +26,7 @@
 					<facts>
 						<fact>Il meurt souvent car mauvais combattant, mais résurrecte souvent.</fact>
 						<fact>Néanmoins, il est possible de l'enfermer dans un plan de l'Oblivion.</fact>
+						<fact>Néanmoins, il est possible de l'enfermer dans un plan de l'Oblivion.</fact>
 					</facts>
 					<quotes>
 						<quote context="Lorsque rencontré pour la première fois">By Azura, by Azura, by Azura! It's the Grand Champion!</quote>
@@ -101,10 +102,16 @@
 					<quotes></quotes>
 					<abilities>	</abilities>
 				</follower>
-				<follower id="7" shortname="jzargo" name="J'zargo" description="Un mage khajiit eccentrique" unlockcontext="Quand t'est archmage." hitpoints="38" energy="100" alignment="-100" essential="false" protected="false" raceid="3" classid="3">
-					<facts></facts>
-					<quotes></quotes>
-					<abilities>	</abilities>
+				<follower id="7" shortname="jzargo" name="J'zargo" description="Une collection de 4 assassins recrutables." unlockcontext="Terminer la quête des Knights of the Nine." hitpoints="40" energy="150" alignment="-100" essential="false" protected="true" raceid="2" classid="2">
+					<facts>
+						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
+					</facts>
+					<quotes>
+						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
+					</quotes>
+					<abilities>
+						<ability name="DUMMY" description="UNIMPLEMENTED" color="red" />
+					</abilities>
 				</follower>
 			</followers>
 		</game>

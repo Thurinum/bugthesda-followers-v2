@@ -1,8 +1,9 @@
 ﻿@model Follower;
 
-<button class="follower link" data-href="/details/@Model.Id">
+<button class="follower link" data-href="/details/@Model.Id" autofocus>
 	<img class="thumbnail" src="@Follower.GetPictureSrc(Model)" />
 	<div class="container">
+		@*<img class="addFavorite link " data-href="/favorites/add/@Model.Id" src="/images/shared/ui/star.png" />*@
 		<div class="primaryinfo">
 			<img class="gamelogo" src="/images/games/@(Model.Parent.ShortName)/logo.png" />
 			<h2>@Model.Name</h2>

@@ -66,7 +66,7 @@ function $a(attr: string, parent: HTMLElement): string {
 
 // register les liens de la page (permet une transition)
 function registerLinks() : void {
-	let buttons = $$("button.link");
+	let buttons = $$(".link");
 
 	for (let i = 0; i < buttons.length; i++) {
 		buttons[i].addEventListener("click", (e) => {

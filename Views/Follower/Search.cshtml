@@ -2,9 +2,8 @@
 
 <!-- BARRE DE RECHERCHE-->
 <header id="searchBar">
-	<a href="/gestionenfant/create">Add follower</a>
 	<div id="searchInputWrapper">
-		<input id="searchInput" asp-for="Criteria.Keywords" type="search" placeholder="Recherche..." autocomplete="off" form="searchForm" autofocus />
+		<input id="searchInput" asp-for="Criteria.Keywords" type="search" placeholder="Recherche..." autocomplete="off" form="searchForm" />
 		<span asp-validation-for="Criteria.Keywords"></span>
 		<img id="searchIcon" src="#" alt="" />
 	</div>
@@ -28,7 +27,11 @@
 	}
 </section>
 
+
 <!-- CITATIONS ALEATOIRES -->
 <footer id="quotesBar">
 	<blockquote id="trivia"></blockquote>
+
+	<!-- BOUTON DE CRÉATION-->
+	<button id="addFollowerBtn" class="link" data-href="/gestionenfant/create">+ Ajouter compagnion</button>
 </footer>

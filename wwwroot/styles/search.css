@@ -13,9 +13,14 @@ main {
 header#searchBar, footer#quotesBar {
 	width: 100vw;
 	height: calc(var(--letterbox-height) * 0.9);
-	background: #33333377;
+	background: #000000bf;
 	backdrop-filter: blur(25px);
 	z-index: 10;
+}
+
+footer#quotesBar {
+	border-top: solid 1px #8582827a;
+	box-shadow: 0px -4px 20px #bdbdbd54;
 }
 
 #searchBar {
@@ -45,7 +50,8 @@ header#searchBar, footer#quotesBar {
 #searchForm {
 	width: max-content;
 	height: min-content;
-	padding: 40px;
+	max-height: 0;
+	padding: 0;
 
 	position: absolute;
 	top: calc(1.7 * var(--letterbox-height));
@@ -55,10 +61,10 @@ header#searchBar, footer#quotesBar {
 
 	overflow: hidden;
 
-	border: solid 1px #CCC;
+	border: solid 1px #646464cc;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	background: #00000022;
+	background: #00000069;
 	box-shadow: 0 10px 15px black;
 	backdrop-filter: blur(35px);
 	transition: max-height 0.5s ease, padding 0.5s ease, border 0.5s ease;
@@ -101,7 +107,7 @@ header#searchBar, footer#quotesBar {
 	#searchForm input, #searchForm textarea, #searchForm select {
 		box-shadow: 0px 4px 6px 0px #333;
 		color: #CFCFCF;
-		background: linear-gradient(270deg, black, #ffffff21);
+		background: radial-gradient(#00000073, #00000087);
 		position: relative;
 		top: -1px;
 		border-radius: 4px;
@@ -171,6 +177,7 @@ header#searchBar, footer#quotesBar {
     background-position: center center;
 	background: transparent;
 	backdrop-filter: blur(5px);
+	box-shadow: inset 0 0 100px black;
 }
 #cardsWrapper::-webkit-scrollbar {
 	background: white;
@@ -192,9 +199,9 @@ header#searchBar, footer#quotesBar {
 	display: flex;
 	flex-direction: column;
 
-	border: solid 1px #333333;
-	border-radius: 3px;
-	background: #323232b0 !important;
+	border: solid 1px grey;
+	border-radius: 5px;
+	background: #323232dd !important;
 	box-shadow: 0 5px 10px -5px black;
 	backdrop-filter: blur(10px);
 	transition: color 0.1s ease-in,
@@ -207,12 +214,18 @@ header#searchBar, footer#quotesBar {
 }
 	.follower:hover {
 		color: white;
-		transform: rotateX(12deg) translate(0, -1%);
+		transform: rotateX(12deg) translate(0, -2%);
 		box-shadow: 0px 15px 11px -1px #222;
 	}
 	.follower:active {
 		transform: rotateX(0) translate(0, 0);
 		box-shadow: 0 5px 9px -6px #222;
+	}
+
+	.follower .addFavorite {
+		position: absolute;
+		width: 30px;
+		height: 30px;
 	}
 
 	.follower img {
@@ -247,3 +260,18 @@ header#searchBar, footer#quotesBar {
 		width: 50px;
 		height: 50px;
 	}
+
+
+#addFollowerBtn {
+	position: absolute;
+	top: -99%;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 1.7em;
+	padding: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	box-shadow: -1px -2px 14px #979797;
+	background: #202020c2;
+	backdrop-filter: blur(50px);
+}

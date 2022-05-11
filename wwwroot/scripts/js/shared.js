@@ -48,7 +48,7 @@ function $a(attr, parent) {
     return val;
 }
 function registerLinks() {
-    let buttons = $$("button.link");
+    let buttons = $$(".link");
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener("click", (e) => {
             let target = e.currentTarget;

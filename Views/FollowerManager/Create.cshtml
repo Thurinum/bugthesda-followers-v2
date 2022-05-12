@@ -7,9 +7,15 @@
 	var ClassNames = ViewData["sClassNames"] as List<string>;
 }
 
-<h1>Create</h1>
+<style>
+	* {
+		font-family: 'Comic Sans MS';
+	}
+</style>
+<h1>Créer un COMPAGNION</h1>
 
-<h4>Follower</h4>
+<h4>Grâce à cette super page ergonomique vous pouvez ajouter un compagnion a la DB.</h4>
+<p>Note: si vous ajoutez ou supprimez, le personnage sera vraiment ajouté/enlevé de la base de données! Pas de undo :)</p>
 <hr />
 <div>
 	<div>
@@ -104,13 +110,13 @@
 				<span asp-validation-for="Protection"></span>
 			</div>
 			<div>
-				<input type="submit" value="Create" class="btn btn-primary" />
+				<input type="submit" value="Créer" class="btn btn-primary" />
 			</div>
 		</form>
 	</div>
 </div>
 
 <div>
-	<a asp-action="Index">Back to List</a>
+	<a asp-action="Index">Retour</a>
 </div>
 

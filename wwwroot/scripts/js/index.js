@@ -55,6 +55,7 @@ const Carousel = {
             background.style.left = `${dir * 100}vw`;
             setTimeout(() => {
                 background.src = `/videos/fallback/${shortname}.webp`;
+                background.load();
                 background.style.transition = "left 0.25s ease-out, transform 0.25s ease-out";
                 background.style.left = "0";
                 overlay.playbackRate = 0.9;

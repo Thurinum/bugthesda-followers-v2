@@ -87,8 +87,8 @@ namespace SessionProject2W5.Controllers
 					(criteria.Keywords != null && !follower.Name.ToLower().Contains(criteria.Keywords.ToLower())) ||
 					(criteria.ExtraKeywords != null && ( // FIXME: Le filtre quotes et facts est brise lol
 						!follower.Description.ToLower().Contains(criteria.ExtraKeywords.ToLower()) ||
-						!(follower.Quotes.Count(q => q.Text.ToLower().Contains(criteria.ExtraKeywords.ToLower())) > 0) ||
-						!(follower.Facts.Count(f => f.ToLower().Contains(criteria.ExtraKeywords.ToLower())) > 0)
+						!(follower.Quotes.Any(q => q.Text.ToLower().Contains(criteria.ExtraKeywords.ToLower()))) ||
+						!(follower.Facts.Any(f => f.ToLower().Contains(criteria.ExtraKeywords.ToLower())))
 					)) ||
 					(criteria.GamesFilters.SingleOrDefault(f => f.Name == follower.Parent.Name).Allowed == false) ||
 					(criteria.RacesFilters.SingleOrDefault(f => f.Name == follower.Race.NativeName).Allowed == false) ||

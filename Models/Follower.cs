@@ -189,7 +189,7 @@ namespace SessionProject2W5.Models
 		/// <returns>Le chemin vers l'image du follower.</returns>
 		public static string GetPictureSrc(Follower follower)
 		{
-			return follower.PictureUrl ?? $"/images/games/{follower.Parent.ShortName}/followers/{follower.ShortName}/thumbnail.webp";
+			return follower.PictureUrl ?? $"/images/games/{follower.Parent.ShortName}/followers/{follower.ShortName}.webp";
 		}
 	}
 }

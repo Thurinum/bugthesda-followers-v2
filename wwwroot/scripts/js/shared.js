@@ -71,8 +71,8 @@ function showPopup() {
             AD.style.right = "-430px";
     }, 15000);
 }
-AD.onmouseover = function () { ADIMG.src = "/images/shared/ui/popup/geralt2.png"; };
-AD.onmouseleave = function () { ADIMG.src = "/images/shared/ui/popup/geralt.png"; };
+AD.onmouseover = function () { ADIMG.src = "/images/shared/ui/popup/geralt2.webp"; };
+AD.onmouseleave = function () { ADIMG.src = "/images/shared/ui/popup/geralt.webp"; };
 $(".collabBtn", AD).onclick = function () {
     let foreground = $("#foreground_witcherCollab");
     foreground.style.display = "block";

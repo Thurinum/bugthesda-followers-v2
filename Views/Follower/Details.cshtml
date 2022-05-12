@@ -7,27 +7,27 @@
 		<img src="@Follower.GetPictureSrc(Model)"
 		     alt="Image du compagnion @Model.Name" />
 		<figcaption>
-			<img class="gameLogo" src="~/images/games/@(Model.Parent.ShortName)/logo.png" alt="Logo du jeu" />
+			<img class="gameLogo" src="~/images/games/@(Model.Parent.ShortName)/logo.webp" alt="Logo du jeu" />
 			<span>
 				@Model.Name
 				<a href="/@Model.Id/delete" style="display:block;font-size: 18px; color: cyan;">Supprimer</a>
-				@*<img class="deleteFavorite link" data-href="/@Model.Id/delete" src="~/images/shared/ui/remove.png" />*@
+				@*<img class="deleteFavorite link" data-href="/@Model.Id/delete" src="~/images/shared/ui/remove.webp" />*@
 			</span>
 			@if (Model.IsFavorite)
 			{
-				<img class="favoriteToggle link" src="~/images/shared/ui/favorite.png" alt="Enlever @Model.Name aux favoris" onclick="$('removeFromFavs').submit()" />
+				<img class="favoriteToggle link" src="~/images/shared/ui/favorite.webp" alt="Enlever @Model.Name aux favoris" onclick="$('removeFromFavs').submit()" />
 			}
 			else
 			{
-				<img class="favoriteToggle link" src="~/images/shared/ui/favorite_hollow.png" data-href="/favorites/add/@(Model.Id)" alt="Ajouter @Model.Name des favoris" onclick="$('addToFavs').submit()" />
+				<img class="favoriteToggle link" src="~/images/shared/ui/favorite_hollow.webp" data-href="/favorites/add/@(Model.Id)" alt="Ajouter @Model.Name des favoris" onclick="$('addToFavs').submit()" />
 			}
 		</figcaption>
 	</figure>
 
-	<form id="addToFavs" asp-controller="Favorite" asp-action="Add">
+	<form id="addToFavs" asp-controller="Favorite" asp-action="Add" hidden>
 		<input name="Id" asp-for="Id" type="hidden" value="@(Model.Id)" />
 	</form>
-	<form id="removeFromFavs" asp-controller="Favorite" asp-action="Remove">
+	<form id="removeFromFavs" asp-controller="Favorite" asp-action="Remove" hidden>
 		<input asp-for="Id" type="hidden" value="@(Model.Id)" />
 	</form>
 
@@ -35,15 +35,15 @@
 	<section id="attributes">
 		@if (Model.IsFavorite)
 		{
-			<img class="link" src="~/images/shared/attributes/favorite_edit.png" data-href="/favorites/remove/@(Model.Id)" alt="Est Favori" />
+			<img class="link" src="~/images/shared/attributes/favorite_edit.webp" data-href="/favorites/remove/@(Model.Id)" alt="Est Favori" />
 		}
 		@if (Model.Protection == Follower.ProtectionLevel.Essential)
 		{
-			<img src="~/images/shared/attributes/essential.png" alt="Est Essentiel" />
+			<img src="~/images/shared/attributes/essential.webp" alt="Est Essentiel" />
 		}
 		else if (Model.Protection == Follower.ProtectionLevel.Protected)
 		{
-			<img src="~/images/shared/attributes/respawns.png" alt="Resurrecte" />
+			<img src="~/images/shared/attributes/respawns.webp" alt="Resurrecte" />
 		}
 	</section>
 
@@ -51,13 +51,13 @@
 	<section id="raceclass">
 		<div class="raceclassCard">
 			@*<img src="~/images/shared/races/@(Model.Race.ShortName).webp" />*@
-			<img src="~/images/shared/ui/throbber.png" />
+			<img src="~/images/shared/ui/throbber.webp" />
 			<h2>@Model.Race.NativeName</h2>
 			<p>@Model.Race.Description</p>
 		</div>
 		<div class="raceclassCard">
 			@*<img src="~/images/shared/classes/@(Model.Class.ShortName).webp" />*@
-			<img src="~/images/shared/ui/throbber.png" />
+			<img src="~/images/shared/ui/throbber.webp" />
 			<h2>@Model.Class.Name</h2>
 			<p>@Model.Class.Description</p>
 		</div>
@@ -71,7 +71,7 @@
 			{
 				<div class="abilityCard">
 					@*<img src="~/images/shared/abilities/@(datum.ShortName).webp" />*@
-					<img src="~/images/shared/ui/throbber.png" />
+					<img src="~/images/shared/ui/throbber.webp" />
 					<h4>@ability.Name</h4>
 					<p>@ability.Description</p>
 				</div>

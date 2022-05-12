@@ -4,10 +4,11 @@
 <head>
 	<title>@ViewData["sPageTitle"]</title>
 	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link href="~/styles/shared.css" rel="stylesheet" />
 	<link href="~/styles/@(ViewContext.RouteData.Values["action"].ToString().ToLower()).css" rel="stylesheet" />
-	<link href="~/images/shared/ui/favicon.png" rel="icon" />
+	<link href="~/images/shared/ui/favicon.webp" rel="icon" />
 
 	@RenderSection("ExtraStyles", false)
 </head>
@@ -18,7 +19,7 @@
 		<nav>
 			<button id="btn_search" class="link" data-href="/search" data-dir="top">Recherche</button>
 			<button id="btn_home" class="link" data-href="/" data-dir="right">
-				<img src="~/images/shared/ui/logo.png" alt="'Bugs in All of Our Games' Logo" />
+				<img src="~/images/shared/ui/logo.webp" alt="'Bugs in All of Our Games' Logo" />
 			</button>
 			<button id="btn_favorites" class="link" data-href="/favoris" data-dir="bottom">Favoris</button>
 		</nav>
@@ -32,13 +33,13 @@
 	<section id="collabPopup">
 		<button class="closeBtn">&times;</button>
 
-		<img class="swordTop" src="~/images/shared/ui/popup/sword.png" />
-		<img class="swordBottom" src="~/images/shared/ui/popup/sword.png" />
+		<img class="swordTop" src="~/images/shared/ui/popup/sword.webp" />
+		<img class="swordBottom" src="~/images/shared/ui/popup/sword.webp" />
 
 		<!-- OVERLAY DE CHARGEMENT-->
 		<div class="overlay">
 			<h4 class="progressHeader">Processing request...</h4>
-			<img class="throbber" src="~/images/shared/ui/throbber.png" />
+			<img class="throbber" src="~/images/shared/ui/throbber.webp" />
 			<progress min="-1" max="100"></progress>
 			<p class="progressText">Loading...</p>
 		</div>
@@ -47,11 +48,11 @@
 		<h2><span class="geralt">Geralt de Riv&nbsp;</span> a besoin de toi!</h2>
 		<marquee bgcolor="#222" scrolldelay="10" truespeed><font color="red">█ █ █ █ █ █ █ █</font></marquee>
 		<article>
-			<img class="geraltImg" src="~/images/shared/ui/popup/geralt.png" />
+			<img class="geraltImg" src="~/images/shared/ui/popup/geralt.webp" />
 			<p>Sauras-tu triompher de tes ennemis? Joins-moi dans mon aventure épique à la recherche de <em>l'Épée de la Lune ! &nbsp;</em> Monstres et humains ne sauront résister à notre duo inséparable.<br /><br /><small><i>Lances-toi dans mon récit dès maintenant et court la chance de gagner une PS5.</i></small></p>
 		</article>
 		<marquee bgcolor="#222" scrolldelay="10" truespeed><font color="red">█ █ █ █ █ █ █ █</font></marquee>
-		<button class="collabBtn"><b>ACCÉDER AU SITE</b></button>
+		<button class="collabBtn link" data-href="https://420-2w5-2176651-thewitcher.azurewebsites.net/"><b>ACCÉDER AU SITE</b></button>
 	</section>
 
 	@if (ViewData["sDatabaseError"] != null)
@@ -59,7 +60,7 @@
 		<partial name="500_DatabaseError" model="@ViewData["sDatabaseError"]" />
 	 }
 
-	<img class="throbber" style="z-index: -1" src="~/images/shared/ui/throbber.png" alt="Loading..." />
+	<img class="throbber" style="z-index: -1" src="~/images/shared/ui/throbber.webp" alt="Loading..." />
 
 	<!-- FOOTER -->
 	<footer>

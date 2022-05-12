@@ -45,7 +45,7 @@ namespace SessionProject2W5.Controllers
 				Criteria = new SearchCriteriaViewModel(Database.Games),
 				Results = Database.Followers
 			};
-			search.BackgroundSrc = search.Criteria.GamesFilters.Count(f => f.Allowed == true) == 1 ? $"/images/games/{Database.Games.Single(g => g.Name == search.Criteria.GamesFilters.Single(f => f.Allowed == true).Name).ShortName}/artwork.jpg" : "/images/shared/ui/misc/defaultartwork.jpg";
+			search.BackgroundSrc = search.Criteria.GamesFilters.Count(f => f.Allowed == true) == 1 ? $"/images/games/{Database.Games.Single(g => g.Name == search.Criteria.GamesFilters.Single(f => f.Allowed == true).Name).ShortName}/artwork.webp" : "/images/shared/ui/misc/defaultartwork.webp";
 
 
 			ViewData["sPageTitle"] = "Bethesda's Followers - Recherche";
@@ -70,7 +70,7 @@ namespace SessionProject2W5.Controllers
 				{
 					Criteria = criteria,
 					Results = Database.Followers,
-					BackgroundSrc = criteria.GamesFilters.Count(f => f.Allowed == true) == 1 ? $"/images/games/{Database.Games.Single(g => g.Name == criteria.GamesFilters.Single(f => f.Allowed == true).Name).ShortName}/artwork.jpg" : "/images/shared/ui/misc/defaultartwork.jpg"
+					BackgroundSrc = criteria.GamesFilters.Count(f => f.Allowed == true) == 1 ? $"/images/games/{Database.Games.Single(g => g.Name == criteria.GamesFilters.Single(f => f.Allowed == true).Name).ShortName}/artwork.webp" : "/images/shared/ui/misc/defaultartwork.webp"
 				};
 				return View(invalidsearch);
 			}
@@ -117,7 +117,7 @@ namespace SessionProject2W5.Controllers
 			{
 				Criteria = criteria,
 				Results = followers,
-				BackgroundSrc = criteria.GamesFilters.Count(f => f.Allowed == true) == 1 ? $"/images/games/{Database.Games.Single(g => g.Name == criteria.GamesFilters.Single(f => f.Allowed == true).Name).ShortName}/artwork.jpg" : "/images/shared/ui/misc/defaultartwork.jpg"
+				BackgroundSrc = criteria.GamesFilters.Count(f => f.Allowed == true) == 1 ? $"/images/games/{Database.Games.Single(g => g.Name == criteria.GamesFilters.Single(f => f.Allowed == true).Name).ShortName}/artwork.webp" : "/images/shared/ui/misc/defaultartwork.webp"
 			};
 
 
@@ -149,7 +149,7 @@ namespace SessionProject2W5.Controllers
 			criteria.GamesFilters.Where(f => f.Name == name).SingleOrDefault().Allowed = true;
 			search.Criteria = criteria;
 			search.Results = game.Followers;
-			search.BackgroundSrc = criteria.GamesFilters.Count(f => f.Allowed == true) == 1 ? $"/images/games/{Database.Games.Single(g => g.Name == criteria.GamesFilters.Single(f => f.Allowed == true).Name).ShortName}/artwork.jpg" : "/images/shared/ui/misc/defaultartwork.jpg";
+			search.BackgroundSrc = criteria.GamesFilters.Count(f => f.Allowed == true) == 1 ? $"/images/games/{Database.Games.Single(g => g.Name == criteria.GamesFilters.Single(f => f.Allowed == true).Name).ShortName}/artwork.webp" : "/images/shared/ui/misc/defaultartwork.webp";
 
 			ViewData["sPageTitle"] = "Bethesda's Followers - Recherche - " + game.Name;
 			return View(search);
@@ -177,7 +177,7 @@ namespace SessionProject2W5.Controllers
 			SearchCriteriaViewModel criteria = new SearchCriteriaViewModel(Database.Games, false, true, true);
 			criteria.GamesFilters.Where(f => f.Name == game.Name).First().Allowed = true;
 			search.Results = game.Followers;
-			search.BackgroundSrc = criteria.GamesFilters.Count(f => f.Allowed == true) == 1 ? $"/images/games/{Database.Games.Single(g => g.Name == criteria.GamesFilters.Single(f => f.Allowed == true).Name).ShortName}/artwork.jpg" : "/images/shared/ui/misc/defaultartwork.jpg";
+			search.BackgroundSrc = criteria.GamesFilters.Count(f => f.Allowed == true) == 1 ? $"/images/games/{Database.Games.Single(g => g.Name == criteria.GamesFilters.Single(f => f.Allowed == true).Name).ShortName}/artwork.webp" : "/images/shared/ui/misc/defaultartwork.webp";
 
 			ViewData["sPageTitle"] = "Bethesda's Followers - Recherche - " + game.Name;
 			return View(search);

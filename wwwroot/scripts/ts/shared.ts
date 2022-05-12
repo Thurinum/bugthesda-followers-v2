@@ -99,8 +99,8 @@ function showPopup() {
 }
 
 // changer l'image du Witcher on hover
-AD.onmouseover  = function () { ADIMG.src = "/images/shared/ui/popup/geralt2.png"; }
-AD.onmouseleave = function () { ADIMG.src = "/images/shared/ui/popup/geralt.png"; }
+AD.onmouseover  = function () { ADIMG.src = "/images/shared/ui/popup/geralt2.webp"; }
+AD.onmouseleave = function () { ADIMG.src = "/images/shared/ui/popup/geralt.webp"; }
 
 // rediriger vers le site de Zachary sur click de la popup
 $(".collabBtn", AD).onclick = function () {

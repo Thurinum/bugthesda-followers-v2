@@ -102,17 +102,7 @@
 					<quotes></quotes>
 					<abilities>	</abilities>
 				</follower>
-				<follower id="7" shortname="jzargo" name="J'zargo" description="Une collection de 4 assassins recrutables." unlockcontext="Terminer la quête des Knights of the Nine." hitpoints="40" energy="150" alignment="-100" essential="false" protected="true" raceid="2" classid="2">
-					<facts>
-						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
-					</facts>
-					<quotes>
-						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
-					</quotes>
-					<abilities>
-						<ability name="DUMMY" description="UNIMPLEMENTED" color="red" />
-					</abilities>
-				</follower>
+				
 			</followers>
 		</game>
 		<game id="2" shortname="fallout3" name="Fallout 3" description="Zachary voulait que je mette qqch" tagline="War... war never changes." director="Todd Howard" released="2008" color="green">

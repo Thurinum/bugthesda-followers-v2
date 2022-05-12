@@ -1,0 +1,20 @@
+﻿main {
+	flex-direction: column;
+}
+
+header {
+	
+}
+
+.deleteWrapper {
+	display: flex;
+	padding: 20px;
+	gap: 20px;
+	height: 80vh;
+	font-size: 5vmin;
+}
+
+.deleteWrapper img {
+	width: 30%;
+	object-fit: cover;
+}

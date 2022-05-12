@@ -30,13 +30,19 @@ namespace SessionProject2W5.Controllers
 
 			List<Follower> favorites = Database.Followers.Where(f =>
 			{
-				f.IsFavorite = true;
-				return favoriteIds.Contains(f.Id);
+				if (favoriteIds.Contains(f.Id))
+				{
+					f.IsFavorite = true;
+					return true;
+				}
+
+				return false;
 			}).ToList();
 
 			return View(favorites);
 		}
 
+		[Route("/favorite/add/{favoriteid}")]
 		[Route("/favorites/add/{favoriteid}")]
 		[Route("/favoris/ajouter/{favoriteid}")]
 		public IActionResult Add(int id)
@@ -55,6 +61,7 @@ namespace SessionProject2W5.Controllers
 			return RedirectToAction("Index");
 		}
 
+		[Route("/favorite/remove/{favoriteid}")]
 		[Route("/favorites/remove/{favoriteid}")]
 		[Route("/favoris/supprimer/{favoriteid}")]
 		public IActionResult Remove(int id)

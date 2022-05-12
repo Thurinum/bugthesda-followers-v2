@@ -11,11 +11,11 @@
 			<span>@Model.Name</span>
 			@if (Model.IsFavorite)
 			{
-				<img class="favoriteToggle link" src="~/images/shared/ui/favorite.png" data-href="/favorite/add/@(Model.Id)" alt="Ajouter @Model.Name aux favoris" />
+				<img class="favoriteToggle link" src="~/images/shared/ui/favorite.png" data-href="/favorites/remove/@(Model.Id)" alt="Ajouter @Model.Name aux favoris" />
 			}
 			else
 			{
-				<img class="favoriteToggle link" src="~/images/shared/ui/favorite_hollow.png" data-href="/favorite/remove/@(Model.Id)" alt="Enlever @Model.Name des favoris" />
+				<img class="favoriteToggle link" src="~/images/shared/ui/favorite_hollow.png" data-href="/favorites/add/@(Model.Id)" alt="Enlever @Model.Name des favoris" />
 			}
 		</figcaption>
 	</figure>
@@ -24,7 +24,7 @@
 	<section id="attributes">
 		@if (Model.IsFavorite)
 		{
-			<img src="~/images/shared/attributes/favorite_edit.png" alt="Est Favori" />
+			<img class="link" src="~/images/shared/attributes/favorite_edit.png" data-href="/favorites/remove/@(Model.Id)" alt="Est Favori" />
 		}
 		@if (Model.Protection == Follower.ProtectionLevel.Essential)
 		{

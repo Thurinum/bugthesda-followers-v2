@@ -447,10 +447,11 @@ footer {
 
 
 /* STYLES GENERIQUES */
-button.link {
+.link {
 	color: white;
 	background-color: transparent;
 	font-family: "Pathway Gothic One", sans-serif;
+	cursor: pointer;
 }
 
 a:hover, button:hover {

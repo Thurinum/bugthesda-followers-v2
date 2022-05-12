@@ -44,17 +44,17 @@ namespace SessionProject2W5.Controllers
 		[Route("/favorite/add/{favoriteid}")]
 		[Route("/favorites/add/{favoriteid}")]
 		[Route("/favoris/ajouter/{favoriteid}")]
-		public IActionResult Add(int id)
+		public IActionResult Add(int favoriteid)
 		{
 			List<int> favoriteIds = HttpContext.Session.Get<List<int>>("favoriteIds");
 
 			if (favoriteIds == null)
 				favoriteIds = new List<int>();
 
-			if (!favoriteIds.Contains(id))
-				favoriteIds.Add(id);
+			if (!favoriteIds.Contains(favoriteid))
+				favoriteIds.Add(favoriteid);
 
-			Database.Followers.Single(f => f.Id == id).IsFavorite = true;
+			Database.Followers.Single(f => f.Id == favoriteid).IsFavorite = true;
 
 			HttpContext.Session.Set<List<int>>("favoriteIds", favoriteIds);
 			return RedirectToAction("Index");
@@ -63,17 +63,17 @@ namespace SessionProject2W5.Controllers
 		[Route("/favorite/remove/{favoriteid}")]
 		[Route("/favorites/remove/{favoriteid}")]
 		[Route("/favoris/supprimer/{favoriteid}")]
-		public IActionResult Remove(int id)
+		public IActionResult Remove(int favoriteid)
 		{
 			List<int> favoriteIds = HttpContext.Session.Get<List<int>>("favoriteIds");
 
 			if (favoriteIds == null)
 				favoriteIds = new List<int>();
 
-			if (favoriteIds.Contains(id))
-				favoriteIds.Remove(id);
+			if (favoriteIds.Contains(favoriteid))
+				favoriteIds.Remove(favoriteid);
 
-			Database.Followers.Single(f => f.Id == id).IsFavorite = false;
+			Database.Followers.Single(f => f.Id == favoriteid).IsFavorite = false;
 
 			HttpContext.Session.Set<List<int>>("favoriteIds", favoriteIds);
 			return RedirectToAction("Index");

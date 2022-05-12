@@ -7,15 +7,15 @@
 		<img src="@Follower.GetPictureSrc(Model)"
 		     alt="Image du compagnion @Model.Name" />
 		<figcaption>
-			<img src="~/images/games/@(Model.Parent.ShortName)/logo.png" alt="Logo du jeu" />
+			<img class="gameLogo" src="~/images/games/@(Model.Parent.ShortName)/logo.png" alt="Logo du jeu" />
 			<span>@Model.Name</span>
 			@if (Model.IsFavorite)
 			{
-				<img class="favoriteToggle link" src="~/images/shared/ui/favorite_hollow.png" data-href="/favorite/add/@(Model.Id)" alt="Ajouter @Model.Name aux favoris" />
+				<img class="favoriteToggle link" src="~/images/shared/ui/favorite.png" data-href="/favorite/add/@(Model.Id)" alt="Ajouter @Model.Name aux favoris" />
 			}
 			else
 			{
-				<img class="favoriteToggle link" src="~/images/shared/ui/favorite.png" data-href="/favorite/remove/@(Model.Id)" alt="Enlever @Model.Name des favoris" />
+				<img class="favoriteToggle link" src="~/images/shared/ui/favorite_hollow.png" data-href="/favorite/remove/@(Model.Id)" alt="Enlever @Model.Name des favoris" />
 			}
 		</figcaption>
 	</figure>

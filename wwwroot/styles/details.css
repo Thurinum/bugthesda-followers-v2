@@ -24,15 +24,31 @@ main {
 		transition: object-position 0.5s ease-out, transform 0.5s ease-out;
 	}
 	#portrait figcaption {
-		width: 100%;
+		width: 96%;
+		padding-left: 2%;
+		padding-right: 2%;
 
 		position: relative;
 		bottom: 4ex;
+
+		display: flex;
+		flex-direction: row;
+		align-items: center;
 
 		text-align: center;
 		font-size: 4vmin;
 
 		background: #111111CC;
+	}
+	#portrait figcaption .gameLogo {
+		width: 0.7em;
+	}
+	#portrait figcaption span {
+		flex-grow: 1;
+	}
+	#portrait figcaption .favoriteToggle {
+		width: 1em;
+		cursor: pointer;
 	}
 
 #attributes {

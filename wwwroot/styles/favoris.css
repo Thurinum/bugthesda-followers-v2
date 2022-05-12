@@ -1,24 +1,102 @@
-th, td {
-	font-size: 1.3rem !important;
-}
+#cardsWrapper {
+	width: auto;
+	/*height: calc(100vh - (3.8 * var(--letterbox-height)));*/
+	margin: 0;
+	padding: 2%;
 
-/* Lien */
-a {
+	display: grid;
+	grid-template-rows: 50% 50%;
+	grid-auto-flow: column;
+	gap: var(--itemgap);
+	justify-content: left;
+
+	overflow-x: auto;
+	overflow-y: hidden;
+
+	background-size: cover;
+	background-position: center center;
+	background: transparent;
+	backdrop-filter: blur(5px);
+	box-shadow: inset 0 0 100px black;
+}
+#cardsWrapper::-webkit-scrollbar {
+	background: white;
+	box-shadow: 0 -2px 10px grey;
+}
+	#cardsWrapper::-webkit-scrollbar-button {
+		background: grey;
+	}
+	#cardsWrapper::-webkit-scrollbar-thumb {
+		background: lightgrey;
+		box-shadow: 0 2px 10px red;
+	}
+
+/* Carte d'une entite enfant */
+.follower {
+	width: 250px;
+	height: calc(100% - var(--itemgap));
+
+	display: flex;
+	flex-direction: column;
+
+	border: solid 1px grey;
+	border-radius: 5px;
+	background: #323232dd !important;
+	box-shadow: 0 5px 10px -5px black;
+	backdrop-filter: blur(10px);
+	transition: color 0.1s ease-in,
+				box-shadow 0.1s ease-in,
+				transform 0.1s ease-in;
+
 	color: white;
-	text-decoration: underline;
-	transition: text-decoration 0.1s ease-in-out;
+	text-align: center;
+	text-decoration: none;
 }
-a:hover {
-	color: cyan;
-	animation: arcciel 2s ease-in-out infinite;
-}
+	.follower:hover {
+		color: white;
+		transform: rotateX(12deg) translate(0, -2%);
+		box-shadow: 0px 15px 11px -1px #222;
+	}
+	.follower:active {
+		transform: rotateX(0) translate(0, 0);
+		box-shadow: 0 5px 9px -6px #222;
+	}
 
-/* Pourquoi pas */
-@keyframes arcciel {
-	from {
-		filter: hue-rotate(0deg);
+	.follower .addFavorite {
+		position: absolute;
+		width: 30px;
+		height: 30px;
 	}
-	to {
-		filter: hue-rotate(360deg);
+
+	.follower img {
+		width: 100%;
+		height: 50%;
+		object-fit: cover;
+		object-position: top;
 	}
-}
+	.follower .container {
+		height: 50%;
+	}
+	.follower .primaryinfo {
+		display: grid;
+		align-items: center;
+		justify-content: center;
+		grid-template-columns: 15% 1fr;
+		grid-template-rows: 1fr;
+
+		font-size: 1vw;
+	}
+	.follower .primaryinfo .gamelogo {
+		padding: 10px;
+	}
+	.follower .secondaryinfo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 10px;
+		gap: 15px;
+	}
+	.follower .secondaryinfo img {
+		width: 50px;
+		height: 50px;
+	}

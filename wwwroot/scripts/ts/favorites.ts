@@ -1,5 +1,5 @@
-// Initialiser les "tooltips" de Bootstrap
-// (https://getbootstrap.com/docs/4.0/components/tooltips/)
-$(function () {
-	$('[data-toggle="tooltip"]').tooltip()
-})
+"use strict";
+
+$("#cardsWrapper").onwheel = function (e) {
+	$("#cardsWrapper").scrollLeft += e.deltaY;
+}

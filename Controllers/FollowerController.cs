@@ -62,7 +62,7 @@ namespace SessionProject2W5.Controllers
 		/// <returns>La vue Search contenant les compagnions ayant passé à travers le filtre, ou une page 404 si la recherche ne donne aucun résultat.</returns>
 		[Route("/search/filter")]
 		[Route("/recherche/filtrer")]
-		public IActionResult Search(SearchCriteriaViewModel criteria)
+		public IActionResult FilterR(SearchCriteriaViewModel criteria)
 		{
 			if (!ModelState.IsValid)
 			{

@@ -63,7 +63,7 @@ namespace SessionProject2W5.Controllers
 			if (game.Followers.Count == 0)
 				return PartialView("204_GameEmpty", game.Name);
 
-			return PartialView(game);
+			return PartialView("_GameDetailsPartial", game);
 		}
 
 		/// <summary>
@@ -81,7 +81,7 @@ namespace SessionProject2W5.Controllers
 			if (game.Followers.Count == 0)
 				return PartialView("204_GameEmpty", game.Name);
 
-			return PartialView(id);
+			return PartialView("_GameDetailsPartial", id);
 		}
 
 		/// <summary>

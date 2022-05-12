@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\scripts\ts\favorites.ts" />
     <Content Include="wwwroot\scripts\ts\index.ts" />
     <Content Include="wwwroot\scripts\ts\shared.ts" />
   </ItemGroup>
@@ -51,7 +52,7 @@
     <None Include="Views\Follower\Details.cshtml" />
     <None Include="Views\Follower\Search.cshtml" />
     <None Include="Views\Game\Index.cshtml" />
-    <None Include="Views\Game\Index_Details.cshtml" />
+    <None Include="Views\Game\_GameDetailsPartial.cshtml" />
     <None Include="Views\Shared\500_GenericError.cshtml" />
     <None Include="Views\Shared\404_SearchNoResults.cshtml" />
     <None Include="Views\Shared\500_DatabaseError.cshtml" />
@@ -66,14 +67,13 @@
     <None Include="wwwroot\images\games\fallout3\Jericho.webp" />
     <None Include="wwwroot\images\games\skyrim\skyrim_art1.webp" />
     <None Include="wwwroot\images\games\skyrim\skyrim_art2.webp" />
-    <None Include="wwwroot\scripts\favoris.js" />
+    <None Include="wwwroot\scripts\ts\favorites.ts" />
     <None Include="wwwroot\scripts\js\index.js" />
     <None Include="wwwroot\scripts\js\index.js.map" />
     <None Include="wwwroot\scripts\js\search.js" />
     <None Include="wwwroot\scripts\js\search.js.map" />
     <None Include="wwwroot\scripts\js\shared.js" />
     <None Include="wwwroot\scripts\js\shared.js.map" />
-    <None Include="wwwroot\scripts\recherche.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -82,6 +82,10 @@
 
   <ItemGroup>
     <EditorConfigFiles Remove="C:\Users\Thurinum\OneDrive - Cégep Édouard-Montpetit\Classes\WebServer\Projects\TP2\SessionProject2W5\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Remove="wwwroot\scripts\ts\favorites.ts" />
   </ItemGroup>
 
 </Project>

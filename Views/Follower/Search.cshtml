@@ -11,7 +11,7 @@
 
 <!-- FORMULAIRE DE RECHERCHE (HIDDEN PAR DEFAULT)-->
 <form id="searchForm" action="/search/filter" method="get">
-	<partial name="Search_Form" model="Model" />
+	<partial name="_SearchFormPartial" model="Model" />
 </form>
 
 <!-- LISTE DES COMPAGNIONS-->
@@ -23,7 +23,7 @@
 <section id="cardsWrapper">
 	@foreach (Follower follower in Model.Results)
 	{
-		<partial name="Search_Follower" model="follower" />
+		<partial name="_FollowerCardPartial" model="follower" />
 	}
 </section>
 

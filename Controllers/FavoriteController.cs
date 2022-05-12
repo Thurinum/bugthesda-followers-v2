@@ -28,7 +28,11 @@ namespace SessionProject2W5.Controllers
 			if (favoriteIds == null)
 				favoriteIds = new List<int>();
 
-			List<Follower> favorites = Database.Followers.Where(f => favoriteIds.Contains(f.Id)).ToList();
+			List<Follower> favorites = Database.Followers.Where(f =>
+			{
+				f.IsFavorite = true;
+				return favoriteIds.Contains(f.Id);
+			}).ToList();
 
 			return View(favorites);
 		}
@@ -45,6 +49,8 @@ namespace SessionProject2W5.Controllers
 			if (!favoriteIds.Contains(id))
 				favoriteIds.Add(id);
 
+			Database.Followers.Single(f => f.Id == id).IsFavorite = true;
+
 			HttpContext.Session.Set<List<int>>("favoriteIds", favoriteIds);
 			return RedirectToAction("Index");
 		}
@@ -60,6 +66,8 @@ namespace SessionProject2W5.Controllers
 
 			if (favoriteIds.Contains(id))
 				favoriteIds.Remove(id);
+
+			Database.Followers.Single(f => f.Id == id).IsFavorite = false;
 
 			HttpContext.Session.Set<List<int>>("favoriteIds", favoriteIds);
 			return RedirectToAction("Index");

@@ -464,7 +464,7 @@ a:hover, button:hover {
 
 
 /* MEDIA QUIERIES */
-/*@media (min-width: 1024px) {
+@media (min-width: 1024px) {
 	.errorPopup {
 		flex-direction: column;
 	}
@@ -472,7 +472,7 @@ a:hover, button:hover {
 		.errorPopup img {
 			align-self: center;
 		}
-}*/
+}
 
 
 

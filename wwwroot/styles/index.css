@@ -1,3 +1,10 @@
+main {
+	background: url("/images/shared/misc/defaultartwork.webp");
+	background-size: 150% 150%;
+	background-position-y: center;
+	transition: background-position 0.5s ease;
+}
+
 /* overlays et backgrounds videos */
 #background {
 	width: 100%;
@@ -7,15 +14,15 @@
 	top: 0;
 	left: 0;
 
-	opacity: 1;
-	box-shadow: 0 0 25px 111px black inset;
+	opacity: 0;
+	box-shadow: 0 0 25px 111px black inset, 0 0 25px 111px black;
 	filter: blur(5px);
 
 	object-fit: cover;
 	mask-image: radial-gradient(black, transparent);
 	-webkit-mask-image: radial-gradient(black, transparent);
 
-	transition: filter 2s ease-out;
+	transition: filter 2s ease-out, opacity 1s ease-out;
 }
 
 #foreground {

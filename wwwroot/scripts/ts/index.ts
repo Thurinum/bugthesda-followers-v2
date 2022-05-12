@@ -60,29 +60,33 @@ const Carousel = {
 		// center the new active card in container
 		MAIN.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2)
 
-		let shortname = ($("input.gameName", target) as HTMLInputElement).value;
 		let background = $("#background") as HTMLVideoElement;
+		let backgroundsrc = ($("input.gameBackgroundUrl", target) as HTMLInputElement).value;
 		let overlay = $("#foreground_mist") as HTMLVideoElement;
 		let dir = index < currentIndex ? -1 : 1;
 
+		background.style.opacity = "0";
 		background.style.left = `${-dir * 100}vw`;
 		overlay.style.transform = `scaleX(${dir})`;
 		overlay.playbackRate = 2;
 		overlay.style.opacity = "0.5";
 
+		MAIN.style.backgroundPositionX = `${index * 50}%`;
+
 		setTimeout(() => {
 			background.style.transition = "";
 			background.style.left = `${dir * 100}vw`;
 			setTimeout(() => {
-				/*background.src = `/videos/games/${shortname}/background.webm#t=15`;*/
-				background.src = `/videos/fallback/${shortname}.webp`;
+				background.src = backgroundsrc + "#t=15";
 				background.load();
 
-				background.style.transition = "left 0.25s ease-out, transform 0.25s ease-out";
+				background.oncanplaythrough = () => background.style.opacity = "1";
+
+				background.style.transition = "left 0.25s ease-out, transform 0.25s ease-out, opacity 1s ease-out";
 				background.style.left = "0";
 				overlay.playbackRate = 0.9;
 				overlay.style.opacity = "0.3";				
-			}, 100);
+			}, 500);
 		}, 100);
 
 		// show clickbait popup on first launch and then every 1/10 times

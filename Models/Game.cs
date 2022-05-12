@@ -30,6 +30,11 @@ namespace SessionProject2W5.Models
 		public string ShortName;
 
 		/// <summary>
+		/// L'url de la video du jeu
+		/// </summary>
+		public string BackgroundUrl { get; set; }
+
+		/// <summary>
 		/// La description du jeu.
 		/// </summary>
 		public string Description;

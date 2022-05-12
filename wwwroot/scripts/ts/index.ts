@@ -61,7 +61,7 @@ const Carousel = {
 		MAIN.scrollLeft = target.offsetLeft - (document.body.offsetWidth / 2) + (target.offsetWidth / 2)
 
 		let shortname = ($("input.gameName", target) as HTMLInputElement).value;
-		let background = $("#background") as HTMLImageElement;
+		let background = $("#background") as HTMLVideoElement;
 		let overlay = $("#foreground_mist") as HTMLVideoElement;
 		let dir = index < currentIndex ? -1 : 1;
 
@@ -76,7 +76,7 @@ const Carousel = {
 			setTimeout(() => {
 				/*background.src = `/videos/games/${shortname}/background.webm#t=15`;*/
 				background.src = `/videos/fallback/${shortname}.webp`;
-				/*background.load();*/
+				background.load();
 
 				background.style.transition = "left 0.25s ease-out, transform 0.25s ease-out";
 				background.style.left = "0";

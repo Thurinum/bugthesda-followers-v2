@@ -206,6 +206,7 @@ namespace SessionProject2W5.Models
 							YearReleased = attri("released"),
 							Tagline = attr("tagline"),
 							Director = attr("director"),
+							BackgroundUrl = attr("backgroundurl"),
 							SharedInfo = this.SharedInfo
 						};
 

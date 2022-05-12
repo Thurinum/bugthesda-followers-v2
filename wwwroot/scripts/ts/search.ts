@@ -38,3 +38,7 @@ function setTrivia() {
 			setTimeout(setTrivia, 5000);
 		});
 }
+
+if (!navigator.userAgent.match(/chrome|chromium|crios/i)) {
+	FORM.style.backgroundColor = "rgba(20, 20, 20, 0.93)";
+}

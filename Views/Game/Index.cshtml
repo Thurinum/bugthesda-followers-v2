@@ -1,7 +1,9 @@
 ﻿@model List<Game>
 
 <!-- ARRIERE-PLAN VIDEO -->
-<img id="background" muted autoplay loop />
+<video id="background" muted autoplay loop>
+	<source src="" type="video/webm" />
+</video>
 
 <!-- CAROUSEL STYLE "COVERFLOW" DES JEUX -->
 <section id="carouselWrapper">
@@ -21,7 +23,7 @@
 				<h3 class="showOnActive">@nbFollowers @Utils.Plural("follower", nbFollowers)</h3>
 				<button class="searchBtn link" data-href="/search/@(game.Name)" data-anim="scaleup">View followers</button>
 				<h4 class="showOnActive">@game.Followers.Where(f => f.Protection == Follower.ProtectionLevel.Essential).ToList().Count @Utils.Plural("follower", nbFollowers) @Utils.Plural("essentiel", nbFollowers)</h4>
-				<input class="gameName" type="hidden" value="@game.ShortName" />
+				<input class="gameBackgroundUrl" type="hidden" value="@game.BackgroundUrl" />
 				<input class="gameColor" type="hidden" value="@game.Color" />
 			</div>
 		}
@@ -37,8 +39,8 @@
 
 <!-- AVANT-PLAN VIDEO -->
 <video id="foreground_mist" muted autoplay loop>
-	@*<source src="~/videos/shared/foreground_mist_sparks.webm" type="video/mp4" />*@
+	<source src="https://drive.google.com/uc?export=download&id=1dhRxGbT782T_KEjaOB5GiMQSIQp9tqc3" type="video/webm" />
 </video>
 <video id="foreground" muted autoplay loop>
-	@*<source src="~/videos/shared/foreground.webm" type="video/mp4" />*@
+	<source src="https://drive.google.com/uc?export=download&id=1rQx2VKsRTIKQ84kGGnfhEfUl3iw6B4SB" type="video/webm" />
 </video>

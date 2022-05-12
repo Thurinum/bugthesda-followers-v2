@@ -1,6 +1,6 @@
 ﻿@model Follower;
 
-<button class="follower link" data-href="/details/@Model.Id" autofocus>
+<button type="button" class="follower link" data-href="/details/@Model.Id" autofocus>
 	<img class="thumbnail" src="@Follower.GetPictureSrc(Model)" />
 	<div class="container">
 		@*<img class="addFavorite link " data-href="/favorites/add/@Model.Id" src="/images/shared/ui/star.png" />*@

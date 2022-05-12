@@ -2,7 +2,6 @@
 using SessionProject2W5.Extensions;
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +38,7 @@ namespace SessionProject2W5.Controllers
 				return false;
 			}).ToList();
 
-			return View(favorites);
+			return View("Favorites", favorites);
 		}
 
 		[Route("/favorite/add/{favoriteid}")]

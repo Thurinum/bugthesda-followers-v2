@@ -1,6 +1,12 @@
 ﻿@model List<Follower>
 
-<section id="favoritesWrapper">
+@section ExtraStyles {
+	<link href="~/styles/favorites.css" rel="stylesheet" />
+}
+
+<h2>Vous avez @Model.Count favoris.</h2>
+
+<section id="cardsWrapper">
 	@foreach (Follower follower in Model)
 	{
 		<form asp-action="Delete">
@@ -9,5 +15,3 @@
 		</form>
 	}
 </section>
-
-<p>Vous avez @Model.Count favoris lol</p>

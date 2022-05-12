@@ -48,7 +48,7 @@
 
   <ItemGroup>
     <None Include="C:\Users\Thurinum\OneDrive - Cégep Édouard-Montpetit\Classes\WebServer\Projects\TP2\SessionProject2W5\.editorconfig" />
-    <None Include="Views\Favorite\Index.cshtml" />
+    <None Include="Views\Favorite\Favorites.cshtml" />
     <None Include="Views\Follower\Details.cshtml" />
     <None Include="Views\Follower\Search.cshtml" />
     <None Include="Views\Game\Index.cshtml" />

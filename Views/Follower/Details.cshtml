@@ -11,15 +11,22 @@
 			<span>@Model.Name</span>
 			@if (Model.IsFavorite)
 			{
-				<img class="favoriteToggle link" src="~/images/shared/ui/favorite.png" data-href="/favorites/remove/@(Model.Id)" alt="Ajouter @Model.Name aux favoris" />
+				<img class="favoriteToggle link" src="~/images/shared/ui/favorite.png" alt="Enlever @Model.Name aux favoris" onclick="$('removeFromFavs').submit()" />
 			}
 			else
 			{
-				<img class="favoriteToggle link" src="~/images/shared/ui/favorite_hollow.png" data-href="/favorites/add/@(Model.Id)" alt="Enlever @Model.Name des favoris" />
+				<img class="favoriteToggle link" src="~/images/shared/ui/favorite_hollow.png" data-href="/favorites/add/@(Model.Id)" alt="Ajouter @Model.Name des favoris" onclick="$('addToFavs').submit()" />
 			}
 		</figcaption>
-		<img class="deleteFavorite link" data-href="/@Model.Id/delete">Supprimer</img>
+		<img class="deleteFavorite link" data-href="/@Model.Id/delete" />
 	</figure>
+
+	<form id="addToFavs" asp-controller="Favorite" asp-action="Add">
+		<input name="Id" asp-for="Id" type="hidden" value="@(Model.Id)" />
+	</form>
+	<form id="removeFromFavs" asp-controller="Favorite" asp-action="Remove">
+		<input asp-for="Id" type="hidden" value="@(Model.Id)" />
+	</form>
 
 	<!-- ATTRIBUTS -->
 	<section id="attributes">

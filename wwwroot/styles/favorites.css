@@ -4,7 +4,7 @@ main {
 
 #cardsWrapper {
 	width: auto;
-	/*height: calc(100vh - (3.8 * var(--letterbox-height)));*/
+	height: calc(100vh - (3.8 * var(--letterbox-height)));
 	margin: 0;
 	padding: 2%;
 

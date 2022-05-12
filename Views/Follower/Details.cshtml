@@ -8,7 +8,11 @@
 		     alt="Image du compagnion @Model.Name" />
 		<figcaption>
 			<img class="gameLogo" src="~/images/games/@(Model.Parent.ShortName)/logo.png" alt="Logo du jeu" />
-			<span>@Model.Name</span>
+			<span>
+				@Model.Name
+				<a href="/@Model.Id/delete" style="display:block;font-size: 18px; color: cyan;">Supprimer</a>
+				@*<img class="deleteFavorite link" data-href="/@Model.Id/delete" src="~/images/shared/ui/remove.png" />*@
+			</span>
 			@if (Model.IsFavorite)
 			{
 				<img class="favoriteToggle link" src="~/images/shared/ui/favorite.png" alt="Enlever @Model.Name aux favoris" onclick="$('removeFromFavs').submit()" />
@@ -18,7 +22,6 @@
 				<img class="favoriteToggle link" src="~/images/shared/ui/favorite_hollow.png" data-href="/favorites/add/@(Model.Id)" alt="Ajouter @Model.Name des favoris" onclick="$('addToFavs').submit()" />
 			}
 		</figcaption>
-		<img class="deleteFavorite link" data-href="/@Model.Id/delete" />
 	</figure>
 
 	<form id="addToFavs" asp-controller="Favorite" asp-action="Add">

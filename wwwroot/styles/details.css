@@ -46,6 +46,10 @@ main {
 	#portrait figcaption span {
 		flex-grow: 1;
 	}
+		#portrait figcaption .deleteFavorite {
+			height: 10px;
+		}
+	
 	#portrait figcaption .favoriteToggle {
 		width: 1em;
 		cursor: pointer;

@@ -74,7 +74,7 @@ const Carousel = {
 			background.style.transition = "";
 			background.style.left = `${dir * 100}vw`;
 			setTimeout(() => {
-				background.src = `/videos/games/${shortname}/background.mp4#t=15`;
+				background.src = `/videos/games/${shortname}/background.webm#t=15`;
 				background.load();
 
 				background.style.transition = "left 0.25s ease-out, transform 0.25s ease-out";

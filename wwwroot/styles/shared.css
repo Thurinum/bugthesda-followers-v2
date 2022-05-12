@@ -220,9 +220,9 @@ footer {
 			outline 0.5s ease-out;
 	animation: ad-float 1s ease-in-out infinite;
 }
-#collabPopup:hover {
+/*#collabPopup:hover {
 	outline: solid 93vw #400e008c;
-}
+}*/
 
 	#collabPopup h2 {
 		position: relative;
@@ -382,8 +382,8 @@ footer {
 			zoom: 0.7;
 			z-index: 6;
 
-			box-shadow: 0 0 20px 0px red;
-
+			box-shadow: 0 0 10px 0px red;
+			
 			animation: ad-throbber 1s ease-in-out infinite;
 		}
 
@@ -464,9 +464,11 @@ a:hover, button:hover {
 
 
 /* MEDIA QUIERIES */
-@media (min-width: 1024px) {
-	.errorPopup {
-		flex-direction: column;
+@media (max-width: 425px) {
+	#collabPopup {
+		bottom: 0;
+		
+		height: 100vh;
 	}
 
 		.errorPopup img {

@@ -60,17 +60,7 @@
 						<ability name="DUMMY" description="UNIMPLEMENTED" color="red" />
 					</abilities>
 				</follower>
-				<follower id="3" shortname="dbmurderer" name="Assassin de la Confrérie Noire" description="Une collection de 4 assassins recrutables." unlockcontext="Terminer la quête des Knights of the Nine." hitpoints="40" energy="150" alignment="-100" essential="false" protected="true" raceid="2" classid="2">
-					<facts>
-						<fact>Plusieurs d'entre eux ne dorment jamais.</fact>
-					</facts>
-					<quotes>
-						<quote context="À l'interaction">The Knights of the Nine have prevailed over Umaril. Truly, the gods have shown us favor.</quote>
-					</quotes>
-					<abilities>
-						<ability name="DUMMY" description="UNIMPLEMENTED" color="red" />
-					</abilities>
-				</follower>
+				
 			</followers>
 		</game>
 		<game id="1" shortname="skyrim" name="Skyrim" description="Alduin le Mangeur de Mondes (cringe) s'est éveillé de son sommeil de beaucoup longtemps et projette d'asujettir Tamriel encore une fois. Mais l'Enfant de Dragon has also awaken from his carriage in direction of head-chopping metropolis Helgen. Will he triumph of the Enemy?!?!!" tagline="Hey, you, you're finally awake." director="Todd Howard" released="2011" color="grey" backgroundurl="https://drive.google.com/uc?export=download&amp;id=1P1Bd9dAsyHvGrVPFK_kYw_0rpim-VZeR">

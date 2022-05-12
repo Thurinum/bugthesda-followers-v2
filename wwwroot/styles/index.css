@@ -166,6 +166,8 @@ main {
 	}
 		.carousel button.trigger img {
 			filter: drop-shadow(0 0 21px #2a2626);
+			user-select: none;
+			height: 40vh;
 
 			animation: logo-pulse 1s ease-in-out infinite;
 			animation-play-state: paused;
@@ -175,6 +177,9 @@ main {
 		.carousel button.trigger img:hover {
 			cursor: pointer;
 			
+		}
+		.carousel button.trigger:focus {
+			outline: none;			
 		}
 
 .carousel .searchBtn {

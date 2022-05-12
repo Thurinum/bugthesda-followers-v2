@@ -1,5 +1,5 @@
 "use strict";
-const DEBUG = true;
+const DEBUG = false;
 const MAIN = $("main");
 const AD = $("#collabPopup");
 const ADIMG = $("#collabPopup .geraltImg");

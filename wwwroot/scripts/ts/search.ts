@@ -3,6 +3,15 @@
 const SEARCH_INPUT = $("#searchInput");
 const FORM = $("#searchForm") as HTMLFormElement;
 
+function setTrivia() {
+	fetch("/game/getrandomtrivia")
+		.then(data => data.text())
+		.then(trivia => {
+			$("#trivia").innerText = trivia;
+			setTimeout(setTrivia, 5000);
+		});
+}
+
 $("#cardsWrapper").onwheel = function (e) {
 	$("#cardsWrapper").scrollLeft += e.deltaY;
 }
@@ -28,17 +37,12 @@ window.onclick = (e) => {
 	}
 }
 
-window.addEventListener("load", setTrivia);
+window.addEventListener("load", () => {
+	setTrivia();
+	$("#cardsWrapper").style.left = "0";
+	if (!navigator.userAgent.match(/chrome|chromium|crios/i)) {
+		FORM.style.backgroundColor = "rgba(20, 20, 20, 0.93)";
+	}
+});
 
-function setTrivia() {
-	fetch("/game/getrandomtrivia")
-		.then(data => data.text())
-		.then(trivia => {
-			$("#trivia").innerText = trivia;
-			setTimeout(setTrivia, 5000);
-		});
-}
 
-if (!navigator.userAgent.match(/chrome|chromium|crios/i)) {
-	FORM.style.backgroundColor = "rgba(20, 20, 20, 0.93)";
-}

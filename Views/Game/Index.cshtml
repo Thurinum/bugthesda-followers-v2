@@ -1,9 +1,7 @@
 ﻿@model List<Game>
 
 <!-- ARRIERE-PLAN VIDEO -->
-<video id="background" muted autoplay loop>
-	<source src="" type="video/mp4" />
-</video>
+<img id="background" muted autoplay loop />
 
 <!-- CAROUSEL STYLE "COVERFLOW" DES JEUX -->
 <section id="carouselWrapper">
@@ -39,8 +37,8 @@
 
 <!-- AVANT-PLAN VIDEO -->
 <video id="foreground_mist" muted autoplay loop>
-	<source src="~/videos/shared/foreground_mist_sparks.webm" type="video/mp4" />
+	@*<source src="~/videos/shared/foreground_mist_sparks.webm" type="video/mp4" />*@
 </video>
 <video id="foreground" muted autoplay loop>
-	<source src="~/videos/shared/foreground.webm" type="video/mp4" />
+	@*<source src="~/videos/shared/foreground.webm" type="video/mp4" />*@
 </video>

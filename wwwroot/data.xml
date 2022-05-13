@@ -17,7 +17,7 @@
 
 	<games>
 		<game id="0" shortname="oblivion" name="Oblivion" 
-			description="L'ombre du chaos plane sur la province Imperiale de Cyrodiil alors que le prince Daedrique de la destruction, Mehrunes Dagon, et ses servants de l'Aube Mythique se preparent a attaquer l'Empire de plein fouet en ouvrant un portail donnant vers l'Oblivion. Il faudra un heros pour s'opposer a ce grand mal... mais un heros ne peut vaincre seul." tagline="Close Shut the Jaws... of Oblivion" director="Todd Howard" released="2006" color="#d55d06" backgroundurl="https://drive.google.com/uc?export=download&amp;id=1nTzSP6AkfCPerzq4CS5-G3M16mo7xdD0">
+			description="L'ombre du chaos plane sur la province Imperiale de Cyrodiil alors que le prince Daedrique de la destruction, Mehrunes Dagon, et ses servants de l'Aube Mythique se preparent a attaquer l'Empire de plein fouet en ouvrant un portail donnant vers l'Oblivion. Il faudra un heros pour s'opposer a ce grand mal... mais un heros ne peut vaincre seul." tagline="Close Shut the Jaws... of Oblivion" director="Todd Howard" released="2006" color="#ff8638" backgroundurl="https://drive.google.com/uc?export=download&amp;id=1nTzSP6AkfCPerzq4CS5-G3M16mo7xdD0">
 			<facts>
 				<fact>La carte du monde est plus grande que Skyrim</fact>
 				<fact>Les hommes nordiques, argoniens et Khajiits sont joués par le même acteur.</fact>
@@ -74,7 +74,8 @@
 				</follower>
 			</followers>
 		</game>
-		<game id="1" shortname="skyrim" name="Skyrim" description="Alduin le Mangeur de Mondes (cringe) s'est éveillé de son sommeil de beaucoup longtemps et projette d'asujettir Tamriel encore une fois. Mais l'Enfant de Dragon has also awaken from his carriage in direction of head-chopping metropolis Helgen. Will he triumph of the Enemy?!?!!" tagline="Hey, you, you're finally awake." director="Todd Howard" released="2011" color="grey" backgroundurl="https://drive.google.com/uc?export=download&amp;id=1P1Bd9dAsyHvGrVPFK_kYw_0rpim-VZeR">
+		<game id="1" shortname="skyrim" name="Skyrim" 
+			description="Alduin le Mangeur de Mondes (cringe) s'est éveillé de son sommeil de beaucoup longtemps et projette d'asujettir Tamriel encore une fois. Mais l'Enfant de Dragon has also awaken from his carriage in direction of head-chopping metropolis Helgen. Will he triumph of the Enemy?!?!!" tagline="Hey, you, you're finally awake." director="Todd Howard" released="2011" color="#66c6ff" backgroundurl="https://drive.google.com/uc?export=download&amp;id=1P1Bd9dAsyHvGrVPFK_kYw_0rpim-VZeR">
 			<facts>
 				<fact>Whatever</fact>
 				<fact>sdfsdfsdfdsf.</fact>
@@ -110,7 +111,7 @@
 				</follower>
 			</followers>
 		</game>
-		<game id="2" shortname="fallout3" name="Fallout 3" description="Zachary voulait que je mette qqch" tagline="War... war never changes." director="Todd Howard" released="2008" color="green" backgroundurl="https://drive.google.com/uc?export=download&amp;id=1DRsGHKi9mfGZN81rfYBZMc1dC-w385C1">
+		<game id="2" shortname="fallout3" name="Fallout 3" description="Zachary voulait que je mette qqch" tagline="War... war never changes." director="Todd Howard" released="2008" color="#53ff53" backgroundurl="https://drive.google.com/uc?export=download&amp;id=1DRsGHKi9mfGZN81rfYBZMc1dC-w385C1">
 			<facts>
 				<fact>Whatever</fact>
 				<fact>sdfsdfsdfdsf.</fact>

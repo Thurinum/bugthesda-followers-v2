@@ -1,3 +1,105 @@
 ﻿main {
 	flex-direction: column;
+	background: url("/images/shared/misc/defaultartwork.webp");
+	background-size: cover;
+	background-position: center center;
 }
+
+.header, .submitWrapper {
+	background: #222222cc;
+}
+
+label {
+	font-size: 1.5em;
+	text-shadow: 0 0 5px black;
+}
+
+a {
+color: white;
+	box-shadow: -1px -2px 14px #979797;
+	background: #202020c2;
+	backdrop-filter: blur(50px);
+	border-radius: 5px;
+	padding: 10px;
+	font-family: "Pathway Gothic One";
+	font-size: 1em;
+}
+button {
+	color: white;
+	box-shadow: -1px -2px 14px #979797;
+	background: #202020c2;
+	backdrop-filter: blur(50px);
+	border-radius: 5px;
+	padding: 10px;
+	font-family: "Pathway Gothic One";
+	font-size: 1.5em;
+}
+
+#wrapper {
+	height: calc(100vh - (3 * var(--letterbox-height)));
+	backdrop-filter: blur(25px);
+}
+
+h4 {
+	text-shadow: 0 0 10px black;
+	font-size: 2em;
+	text-align: center;
+}
+p {
+	text-shadow: 0 0 5px black;
+	font-size: 1.5em;
+	text-align: center;
+}
+#form {
+	display: grid;
+	grid-template-rows: min-content min-content min-content;
+	grid-template-columns: max-content min-content max-content min-content;
+
+	align-items: center;
+	justify-content: center;
+	grid-auto-flow: column;
+	gap: 20px;
+
+	background: #22222222;
+
+	padding: 20px;
+}
+.picturePreview {
+	width: 400px;
+	object-fit: cover;
+	grid-area: span 2;
+	text-align: center;
+	border: solid 3px white;
+	border-radius: 5px;
+	box-shadow: 0 3px 10px black;
+}
+
+.description {
+	grid-column: span 2;
+}
+
+.description textarea {
+	width: 90%;
+}
+
+.context {
+	grid-column: span 2;
+}
+
+.context input {
+	width: 90%;
+}
+
+
+.alignment {
+	grid-column: span 2;
+}
+
+.alignment input {
+	width: 90%;
+}
+
+
+	input[type=range] {
+		height: 12px;
+	}

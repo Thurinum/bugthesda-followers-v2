@@ -7,114 +7,113 @@
 	var ClassNames = ViewData["sClassNames"] as List<string>;
 }
 
-<style>
-	* {
-	    font-family: 'Comic Sans MS';
-	}
-</style>
-<h1>Créer un COMPAGNION</h1>
+<header class="header">
+	<h1>Créer un COMPAGNION</h1>
+</header>
+<div id="wrapper">
+	<h4>Grâce à cette page vous pouvez ajouter un compagnion a la DB.</h4>
+	<p>Note: si vous ajoutez ou supprimez, le personnage sera vraiment ajouté/enlevé de la base de données! Donc tout le monde peut le voir! (uh-oh)</p>
 
-<h4>Grâce à cette super page ergonomique vous pouvez ajouter un compagnion a la DB.</h4>
-<p>Note: si vous ajoutez ou supprimez, le personnage sera vraiment ajouté/enlevé de la base de données! Pas de undo :)</p>
-
-<form asp-action="Create">
-	<img class="picturePreview" alt="Preview will appear here." />
-	<div>
-		<label asp-for="PictureUrl"></label>
-		<input asp-for="PictureUrl" type="url" placeholder="Entrer l'url de l'image" required oninput="this.parentNode.previousElementChild.src = this.value" />
-		<span asp-validation-for="PictureUrl"></span>
-	</div>
-	</figure>
-	<div asp-validation-summary="ModelOnly"></div>
-	<div>
-		<label asp-for="ParentId"></label>
-		<select asp-for="ParentId" required>
-			<option value="">Choisir un jeu...</option>
-			@for (int i = 0; i < GameNames.Count; i++)
-			{
-				<option value="@i">@GameNames[i]</option>
-			}
-		</select>
-		<span asp-validation-for="ParentId"></span>
-	</div>
-	<div>
-		<label asp-for="RaceId"></label>
-		<select asp-for="RaceId" required>
-			<option value="">Choisir une classe...</option>
-			@for (int i = 0; i < RaceNames.Count; i++)
-			{
-				<option value="@i">@RaceNames[i]</option>
-			}
-		</select>
-		<span asp-validation-for="RaceId"></span>
-	</div>
-	<div>
-		<label asp-for="ClassId"></label>
-		<select asp-for="ClassId" required>
-			<option value="">Choisir une race...</option>
-			@for (int i = 0; i < ClassNames.Count; i++)
-			{
-				<option value="@i">@ClassNames[i]</option>
-			}
-		</select>
-		<span asp-validation-for="ClassId"></span>
-	</div>
-	<div>
-		<label asp-for="Name"></label>
-		<input asp-for="Name" placeholder="Entrer le nom" required />
-		<span asp-validation-for="Name"></span>
-	</div>
-	<div>
-		<label asp-for="Description"></label>
-		<textarea asp-for="Description" placeholder="Entrer la description" required></textarea>
-		<span asp-validation-for="Description"></span>
-	</div>
-	<div>
-		<label asp-for="UnlockContext"></label>
-		<input asp-for="UnlockContext" placeholder="Entrer le contexte" required />
-		<span asp-validation-for="UnlockContext"></span>
-	</div>
-	<div>
-		<label asp-for="Hitpoints"></label>
-		<input asp-for="Hitpoints" min="0" max="999" required />
-		<span asp-validation-for="Hitpoints"></span>
-	</div>
-	<div>
-		<label asp-for="Energy"></label>
-		<input asp-for="Energy" min="0" max="999" required />
-		<span asp-validation-for="Energy"></span>
-	</div>
-	<div>
-		<label asp-for="Alignment"></label>
-		<input asp-for="Alignment" type="range" min="-100" value="0" max="100" step="1" list="steps" required oninput="this.nextElementSibling.value = this.value;" />
-		<output>0</output> <!-- Brillante idée de j08691 sur stack overflow -->
-		<datalist id="steps">
-			<option>-100</option>
-			<option>-50</option>
-			<option>0</option>
-			<option>50</option>
-			<option>100</option>
-		</datalist>
-		<span asp-validation-for="Alignment"></span>
-	</div>
-	<div>
-		<label>
-			<input asp-for="IsFavorite" /> @Html.DisplayNameFor(model => model.IsFavorite)
-		</label>
-	</div>
-	<div>
-		<label asp-for="Protection"></label>
-		<select asp-for="Protection" asp-items="Html.GetEnumSelectList<Follower.ProtectionLevel>()" required>
-			<option value="">Choisir un niveau...</option>
-		</select>
-		<span asp-validation-for="Protection"></span>
-	</div>
-	<div>
-		<input type="submit" value="Créer" class="btn btn-primary" />
-	</div>
-</form>
-
-<div>
-	<a asp-action="Index">Retour</a>
+	<form id="form" asp-action="Create">
+		<div asp-validation-summary="ModelOnly"></div>
+		<img class="picturePreview" alt="Preview will appear here." />
+		<div class="underPicture">
+			<div>
+				<label asp-for="Name"></label>
+				<input asp-for="Name" placeholder="Entrer le nom" required />
+				<span asp-validation-for="Name"></span>
+			</div>
+			<div>
+				<label asp-for="PictureUrl"></label>
+				<input asp-for="PictureUrl" type="url" placeholder="Entrer l'url de l'image" required oninput="$('.picturePreview').src = this.value" />
+				<span asp-validation-for="PictureUrl"></span>
+			</div>
+			<div>
+				<label>
+					<input asp-for="IsFavorite" /> @Html.DisplayNameFor(model => model.IsFavorite)
+				</label>
+			</div>
+		</div>
+		<div>
+			<label asp-for="ParentId"></label>
+			<select asp-for="ParentId" required>
+				<option value="">Choisir un jeu...</option>
+				@for (int i = 0; i < GameNames.Count; i++)
+				{
+					<option value="@i">@GameNames[i]</option>
+				}
+			</select>
+			<span asp-validation-for="ParentId"></span>
+		</div>
+		<div>
+			<label asp-for="RaceId"></label>
+			<select asp-for="RaceId" required>
+				<option value="">Choisir une classe...</option>
+				@for (int i = 0; i < RaceNames.Count; i++)
+				{
+					<option value="@i">@RaceNames[i]</option>
+				}
+			</select>
+			<span asp-validation-for="RaceId"></span>
+		</div>
+		<div>
+			<label asp-for="ClassId"></label>
+			<select asp-for="ClassId" required>
+				<option value="">Choisir une race...</option>
+				@for (int i = 0; i < ClassNames.Count; i++)
+				{
+					<option value="@i">@ClassNames[i]</option>
+				}
+			</select>
+			<span asp-validation-for="ClassId"></span>
+		</div>
+		
+		<div class="description">
+			<label asp-for="Description"></label><br/>
+			<textarea asp-for="Description" placeholder="Entrer la description" required></textarea>
+			<span asp-validation-for="Description"></span>
+		</div>
+		<div class="context">
+			<label asp-for="UnlockContext"></label>
+			<input asp-for="UnlockContext" placeholder="Entrer le contexte" required />
+			<span asp-validation-for="UnlockContext"></span>
+		</div>
+		<div class="alignment">
+			<label asp-for="Alignment"></label>
+			<input asp-for="Alignment" type="range" min="-100" value="0" max="100" step="1" list="steps" required oninput="this.nextElementSibling.value = this.value;" />
+			<output>0</output> <!-- Brillante idée de j08691 sur stack overflow -->
+			<datalist id="steps">
+				<option>-100</option>
+				<option>-50</option>
+				<option>0</option>
+				<option>50</option>
+				<option>100</option>
+			</datalist>
+			<span asp-validation-for="Alignment"></span>
+		</div>
+		<div>
+			<label asp-for="Hitpoints"></label>
+			<input asp-for="Hitpoints" min="0" max="999" required />
+			<span asp-validation-for="Hitpoints"></span>
+		</div>
+		<div>
+			<label asp-for="Energy"></label>
+			<input asp-for="Energy" min="0" max="999" required />
+			<span asp-validation-for="Energy"></span>
+		</div>
+		<div>
+			<label asp-for="Protection"></label>
+			<select asp-for="Protection" asp-items="Html.GetEnumSelectList<Follower.ProtectionLevel>()" required>
+				<option value="">Choisir un niveau...</option>
+			</select>
+			<span asp-validation-for="Protection"></span>
+		</div>
+	</form>
 </div>
+<br />
+
+<footer class="submitWrapper">
+	<a asp-action="Index">Retour</a>
+	<button form="form" type="submit">Créer</button>
+</footer>
 

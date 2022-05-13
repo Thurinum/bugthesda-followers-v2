@@ -459,7 +459,32 @@ a:hover, button:hover {
 }
 
 
+input, textarea, select {
+	box-shadow: 0px 4px 6px 0px #333;
+	color: #CFCFCF;
+	background: radial-gradient(#00000073, #00000087);
+	position: relative;
+	top: -1px;
+	border-radius: 4px;
+	padding: 5px;
+	transition: top 0.1s ease, box-shadow 0.1s ease;
+	border: solid 1px #878080a3;
+	font-family: "Pathway Gothic One";
+	font-size: 1.1em;
+}
 
+	select * {
+		background-color: black;
+	}
+
+	input:hover, textarea:hover, select:hover {
+		top: -3px;
+		box-shadow: 0px 8px 10px 0px #444;
+	}
+
+	input[type="number"]::-webkit-inner-spin-button {
+		opacity: 0;
+	}
 
 
 

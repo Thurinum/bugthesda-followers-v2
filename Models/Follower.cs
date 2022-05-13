@@ -77,7 +77,7 @@ namespace SessionProject2W5.Models
 		/// serveur grâce au ShortName généré.
 		/// </summary>
 		[Display(Name = "URL Image")]
-		[MaxLength(15e0, ErrorMessage = "L'url d'image est trop long! Max. 100 caractères.")]
+		[MaxLength(150, ErrorMessage = "L'url d'image est trop long! Max. 100 caractères.")]
 		[RegularExpression("^[a-zA-Z0-9.:/@#=_-]*$", ErrorMessage = "L'url contient des caractères invalides!")]
 		public string PictureUrl { get; set; }
 

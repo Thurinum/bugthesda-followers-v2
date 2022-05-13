@@ -2,7 +2,7 @@ main {
 	background: url("/images/shared/misc/defaultartwork.webp");
 	background-size: 150% 150%;
 	background-position-y: center;
-	transition: background-position 0.5s ease;
+	transition: background-position 0.5s ease, opacity 0.5s ease-out;
 }
 
 /* overlays et backgrounds videos */

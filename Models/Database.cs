@@ -152,6 +152,7 @@ namespace SessionProject2W5.Models
 
 			// voir wwwroot/resources/data.xml
 			// FIXME: limitation: la balise sharedinfo doit etre serialisee en premier
+			try {
 			while (reader.Read())
 			{
 				// le reader lit aussi les balises de fermeture
@@ -311,6 +312,9 @@ namespace SessionProject2W5.Models
 
 						break;
 				}
+			}
+			} catch(Exception e) {
+				this.ErrorString += $"Database file is corrupted! One or several occured errors occured while parsing XML: {e.Message}. Expect nothing to work. \n";
 			}
 
 			reader.Close();

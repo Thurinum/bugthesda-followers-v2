@@ -16,7 +16,8 @@
 	</sharedinfo>
 
 	<games>
-		<game id="0" shortname="oblivion" name="Oblivion" description="L'ombre du chaos plane sur la province Imperiale de Cyrodiil alors que le prince Daedrique de la destruction, Mehrunes Dagon, et ses servants de l'Aube Mythique se preparent a attaquer l'Empire de plein fouet en ouvrant un portail donnant vers l'Oblivion. Il faudra un heros pour s'opposer a ce grand mal... mais un heros ne peut vaincre seul." tagline="Close Shut the Jaws... of Oblivion" director="Todd Howard" released="2006" color="brown" backgroundurl="https://drive.google.com/uc?export=download&amp;id=1nTzSP6AkfCPerzq4CS5-G3M16mo7xdD0">
+		<game id="0" shortname="oblivion" name="Oblivion" 
+			description="L'ombre du chaos plane sur la province Imperiale de Cyrodiil alors que le prince Daedrique de la destruction, Mehrunes Dagon, et ses servants de l'Aube Mythique se preparent a attaquer l'Empire de plein fouet en ouvrant un portail donnant vers l'Oblivion. Il faudra un heros pour s'opposer a ce grand mal... mais un heros ne peut vaincre seul." tagline="Close Shut the Jaws... of Oblivion" director="Todd Howard" released="2006" color="#d55d06" backgroundurl="https://drive.google.com/uc?export=download&amp;id=1nTzSP6AkfCPerzq4CS5-G3M16mo7xdD0">
 			<facts>
 				<fact>La carte du monde est plus grande que Skyrim</fact>
 				<fact>Les hommes nordiques, argoniens et Khajiits sont joués par le même acteur.</fact>

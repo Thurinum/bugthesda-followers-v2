@@ -210,6 +210,7 @@ footer#quotesBar {
 	flex-direction: column;
 
 	border: solid 1px grey;
+	outline: solid 1px black;
 	border-radius: 5px;
 	background: #323232dd !important;
 	box-shadow: 0 5px 10px -5px black;

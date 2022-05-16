@@ -56,7 +56,25 @@ namespace SessionProject2W5.Controllers
 		public ActionResult Create(Follower follower)
 		{
 			if (!ModelState.IsValid)
+			{
+				List<string> gameNames = new List<string>();
+				List<string> raceNames = new List<string>();
+				List<string> classNames = new List<string>();
+
+				foreach (Game game in Database.Games.OrderBy(g => g.Id))
+					gameNames.Add(game.Name);
+
+				foreach (Race race in Database.SharedInfo.Races.OrderBy(g => g.Id))
+					raceNames.Add(race.CommonName);
+
+				foreach (Class @class in Database.SharedInfo.Classes.OrderBy(g => g.Id))
+					classNames.Add(@class.Name);
+
+				ViewData["sGameNames"] = gameNames;
+				ViewData["sRaceNames"] = raceNames;
+				ViewData["sClassNames"] = classNames;
 				return View();
+			}
 
 			int maxid = Database.Followers.Max(f => f.Id);
 			Game parent = Database.Games[(int)follower.ParentId];

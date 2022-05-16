@@ -4,10 +4,10 @@
 <article id="followerInfoWrapper">
 	<!-- IMAGE DU COMPAGNION -->
 	<figure id="portrait">
-		<img src="@Follower.GetPictureSrc(Model)"
+		<img src="@Follower.GetPictureSrc(Model)" onerror="this.src = '/images/shared/misc/default.webp'"
 		     alt="Image du compagnion @Model.Name" />
 		<figcaption>
-			<img class="gameLogo" src="~/images/games/@(Model.Parent.ShortName)/logo.webp" onerror="this.src = '/images/shared/misc/default.webp'" alt="Logo du jeu" />
+			<img class="gameLogo" src="~/images/games/@(Model.Parent.ShortName)/logo.webp" alt="Logo du jeu" />
 			<span>
 				@Model.Name
 				<a href="/@Model.Id/delete" style="display:block;font-size: 18px; color: cyan;">Supprimer</a>

@@ -10,7 +10,7 @@
 
 
 <div class="deleteWrapper">
-	<img src="~/images/games/@(Model.Parent.ShortName)/followers/@(Model.ShortName).webp" />
+	<img src="@Follower.GetPictureSrc(Model)" onerror="this.src = '/images/shared/misc/default.webp'" />
 	<p>
 		Vous êtes sur le point d'anéantir <strong>@Model.Name, @Model.Class.Name @Model.Race.NativeName</strong>.<br />
 		<em>

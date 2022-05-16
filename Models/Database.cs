@@ -282,30 +282,34 @@ namespace SessionProject2W5.Models
 						}
 
 						// parse the follower's facts
-						reader.ReadToDescendant("facts");
-						reader.ReadToDescendant("fact");
-
-						while (reader.Name == "fact" && reader.NodeType == XmlNodeType.Element)
+						if (reader.ReadToDescendant("facts"))
 						{
-							follower.Facts.Add(reader.ReadString());
-							reader.ReadToNextSibling("fact");
+							reader.ReadToDescendant("fact");
+
+							while (reader.Name == "fact" && reader.NodeType == XmlNodeType.Element)
+							{
+								follower.Facts.Add(reader.ReadString());
+								reader.ReadToNextSibling("fact");
+							}							
 						}
 
 
 						// parse follower's quotes
-						reader.ReadToFollowing("quotes");
-						reader.ReadToDescendant("quote");
-
-						while (reader.Name == "quote" && reader.NodeType == XmlNodeType.Element)
+						if (reader.ReadToFollowing("quotes"))
 						{
+							reader.ReadToDescendant("quote");
 
-							Quote quote = new Quote
+							while (reader.Name == "quote" && reader.NodeType == XmlNodeType.Element)
 							{
-								Context = attr("context"),
-								Text = reader.ReadString()
-							};
-							follower.Quotes.Add(quote);
-							reader.ReadToNextSibling("quote");
+
+								Quote quote = new Quote
+								{
+									Context = attr("context"),
+									Text = reader.ReadString()
+								};
+								follower.Quotes.Add(quote);
+								reader.ReadToNextSibling("quote");
+							}
 						}
 
 						game.Followers.Add(follower);
@@ -346,6 +350,12 @@ namespace SessionProject2W5.Models
 			element.SetAttribute("protected", follower.Protection == Follower.ProtectionLevel.Protected ? "true" : "false");
 			element.SetAttribute("raceid", follower.RaceId.ToString());
 			element.SetAttribute("classid", follower.ClassId.ToString());
+
+			// fix bug with parsing
+			XmlElement facts = doc.CreateElement("facts");
+			XmlElement quotes = doc.CreateElement("quotes");
+			element.AppendChild(facts);
+			element.AppendChild(quotes);
 
 			XmlNodeList games = doc.GetElementsByTagName("game");
 			foreach (XmlElement game in games)

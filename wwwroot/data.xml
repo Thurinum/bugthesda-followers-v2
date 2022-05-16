@@ -16,8 +16,7 @@
 	</sharedinfo>
 
 	<games>
-		<game id="0" shortname="oblivion" name="Oblivion" 
-			description="L'ombre du chaos plane sur la province Imperiale de Cyrodiil alors que le prince Daedrique de la destruction, Mehrunes Dagon, et ses servants de l'Aube Mythique se preparent a attaquer l'Empire de plein fouet en ouvrant un portail donnant vers l'Oblivion. Il faudra un heros pour s'opposer a ce grand mal... mais un heros ne peut vaincre seul." tagline="Close Shut the Jaws... of Oblivion" director="Todd Howard" released="2006" color="#ff8638" backgroundurl="https://drive.google.com/uc?export=download&amp;id=1nTzSP6AkfCPerzq4CS5-G3M16mo7xdD0">
+		<game id="0" shortname="oblivion" name="Oblivion" description="L'ombre du chaos plane sur la province Imperiale de Cyrodiil alors que le prince Daedrique de la destruction, Mehrunes Dagon, et ses servants de l'Aube Mythique se preparent a attaquer l'Empire de plein fouet en ouvrant un portail donnant vers l'Oblivion. Il faudra un heros pour s'opposer a ce grand mal... mais un heros ne peut vaincre seul." tagline="Close Shut the Jaws... of Oblivion" director="Todd Howard" released="2006" color="#ff8638" backgroundurl="https://drive.google.com/uc?export=download&amp;id=1nTzSP6AkfCPerzq4CS5-G3M16mo7xdD0">
 			<facts>
 				<fact>La carte du monde est plus grande que Skyrim</fact>
 				<fact>Les hommes nordiques, argoniens et Khajiits sont joués par le même acteur.</fact>
@@ -72,10 +71,13 @@
 						<ability name="DUMMY" description="UNIMPLEMENTED" color="red" />
 					</abilities>
 				</follower>
-			</followers>
+				<follower id="14" shortname="npcguard" pictureurl="https://i.ytimg.com/vi/vncIBREXCwU/maxresdefault.jpg" name="NPC Guard" description="I used to be an adventurer like you. Then I took an arrow in the knee" unlockcontext="Partout dans les villes" hitpoints="252" energy="999" alignment="100" essential="false" protected="false" raceid="2" classid="2">
+					<facts></facts>
+					<quotes></quotes>
+				</follower>
+			<follower id="16" shortname="geraltderiv" pictureurl="https://asset.vg247.com/geralt-thumbs-up.png/BROK/thumbnail/1200x900/quality/100/geralt-thumbs-up.png" name="Geralt de Riv" description="dgdf" unlockcontext="gfdg" hitpoints="45" energy="45" alignment="0" essential="false" protected="false" raceid="0" classid="1"><facts /><quotes /></follower></followers>
 		</game>
-		<game id="1" shortname="skyrim" name="Skyrim" 
-			description="Alduin le Mangeur de Mondes (cringe) s'est éveillé de son sommeil de beaucoup longtemps et projette d'asujettir Tamriel encore une fois. Mais l'Enfant de Dragon has also awaken from his carriage in direction of head-chopping metropolis Helgen. Will he triumph of the Enemy?!?!!" tagline="Hey, you, you're finally awake." director="Todd Howard" released="2011" color="#66c6ff" backgroundurl="https://drive.google.com/uc?export=download&amp;id=1P1Bd9dAsyHvGrVPFK_kYw_0rpim-VZeR">
+		<game id="1" shortname="skyrim" name="Skyrim" description="Alduin le Mangeur de Mondes (cringe) s'est éveillé de son sommeil de beaucoup longtemps et projette d'asujettir Tamriel encore une fois. Mais l'Enfant de Dragon has also awaken from his carriage in direction of head-chopping metropolis Helgen. Will he triumph of the Enemy?!?!!" tagline="Hey, you, you're finally awake." director="Todd Howard" released="2011" color="#66c6ff" backgroundurl="https://drive.google.com/uc?export=download&amp;id=1P1Bd9dAsyHvGrVPFK_kYw_0rpim-VZeR">
 			<facts>
 				<fact>Whatever</fact>
 				<fact>sdfsdfsdfdsf.</fact>
@@ -144,6 +146,10 @@
 					<facts></facts>
 					<quotes></quotes>
 					<abilities>	</abilities>
+				</follower>
+				<follower id="12" shortname="chad" pictureurl="https://i.kym-cdn.com/entries/icons/original/000/026/152/gigachad.jpg" name="Chad" description="feuogfeuiogfuie" unlockcontext="Gueuler AMONG US à 3 heures du matin." hitpoints="690" energy="120" alignment="0" essential="false" protected="true" raceid="0" classid="3">
+					<facts></facts>
+					<quotes></quotes>
 				</follower>
 			</followers>
 		</game>

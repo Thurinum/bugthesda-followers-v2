@@ -66,6 +66,7 @@ p {
 }
 .picturePreview {
 	width: 400px;
+	max-height: 30vh;
 	object-fit: cover;
 	grid-area: span 2;
 	text-align: center;
